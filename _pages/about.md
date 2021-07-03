@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-description:
+description: Economics | Comics | Puzzles
 
 profile:
   align: right
