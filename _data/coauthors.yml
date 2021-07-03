@@ -1,14 +1,10 @@
-"Adams":
-  - firstname: ["Edwin", "E.", "E. P.", "Edwin Plimpton"]
-    url: https://en.wikipedia.org/wiki/Edwin_Plimpton_Adams
+"Riambau":
+  - firstname: ["Guillem", "G."]
+    url: http://guillemriambau.com/
 
-"Podolsky":
-  - firstname: ["Boris", "B.", "B. Y.", "Boris Yakovlevich"]
-    url: https://en.wikipedia.org/wiki/Boris_Podolsky
-
-"Rosen":
-  - firstname: ["Nathan", "N."]
-    url: https://en.wikipedia.org/wiki/Nathan_Rosen
+"Chang":
+  - firstname: ["Jessica", "Fred", "Jessica Hao", "J."]
+    url: https://www.linkedin.com/in/jessicafredchang
 
 "Bach": 
   - firstname: ["Johann Sebastian", "J. S."]

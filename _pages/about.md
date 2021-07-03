@@ -2,19 +2,19 @@
 layout: about
 title: about
 permalink: /
-description: <a href="#">Affiliations</a>. Address. Contacts. Moto. Etc.
+description:
 
 profile:
   align: right
   image: profile-picture.png
 
-news: true  # includes a list of news items
-selected_papers: false # includes a list of papers marked as "selected={true}"
+news: false  # includes a list of news items
+selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com){:target="\_blank"}. You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
+I am interested in economics, a field whose definition is still [in flux](https://en.wikipedia.org/wiki/Definitions_of_economics). I currently define it as __the study of human relations in, around, and despite modern capitalist systems__ [see [changelog](/economics-definitions)]. This philosophy informs my research, teaching, and (occasionally) creative writing.
 
-Put your address / P.O. box / other info right below your picture. You can also disable any these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.
+I am pursuing a masters degree in Quantitative Economics at the [National University of Singapore](https://fass.nus.edu.sg/ecs/). In 2020, I graduated summa cum laude from [Yale-NUS College](https://www.yale-nus.edu.sg/), where I grew to love mathematics, statistics, and [barbershop singing](https://youtu.be/WP9ZUMi2uTc?t=1823).
 
-Link to your social media connections, too. This theme is set up to use [Font Awesome icons](http://fortawesome.github.io/Font-Awesome/){:target="\_blank"} and [Academicons](https://jpswalsh.github.io/academicons/){:target="\_blank"}, like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them.
+At present, I am working on a [new graphic novel](https://twitter.com/scottleechua/status/1321059318549106688?s=20), the [LEGO Darth Vader helmet](https://www.lego.com/en-us/product/darth-vader-helmet-75304), and an English translation of Lualhati Bautista's [_Dekada '70_](https://www.rappler.com/entertainment/theater/dekada-70-musical-review).
