@@ -6,6 +6,10 @@
   - firstname: ["Jessica", "Fred", "Jessica Hao", "J."]
     url: https://www.linkedin.com/in/jessicafredchang
 
+"Wertz":
+  - firstname: ["Tim", "Timothy", "T."]
+    url: https://www.yale-nus.edu.sg/about/faculty/timothy-wertz/
+
 "Bach": 
   - firstname: ["Johann Sebastian", "J. S."]
     url: https://en.wikipedia.org/wiki/Johann_Sebastian_Bach
