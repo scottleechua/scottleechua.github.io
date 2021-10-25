@@ -26,13 +26,13 @@ Feel free to add your own page(s) by sending a PR.
 <tr>
 <td>Academics</td>
 <td>
-<a href="http://maruan.alshedivat.com" target="_blank">★</a>
+<a href="https://maruan.alshedivat.com" target="_blank">★</a>
 <a href="https://www.cs.columbia.edu/~chen1ru/" target="_blank">★</a>
 <a href="https://maithraraghu.com" target="_blank">★</a>
-<a href="http://platanois.org" target="_blank">★</a>
+<a href="https://platanois.org" target="_blank">★</a>
 <a href="https://otiliastr.github.io" target="_blank">★</a>
 <a href="https://www.maths.dur.ac.uk/~sxwc62/" target="_blank">★</a>
-<a href="http://jessachandler.com/" target="_blank">★</a>
+<a href="https://jessachandler.com/" target="_blank">★</a>
 <a href="https://mayankm96.github.io/" target="_blank">★</a>
 <a href="https://markdean.info/" target="_blank">★</a>
 <a href="https://kakodkar.github.io/" target="_blank">★</a>
@@ -349,5 +349,5 @@ For more complex issues/bugs or feature requests, please open an issue using the
 
 The theme is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
-Originally, **al-folio** was based on the [\*folio theme](https://github.com/bogoli/-folio) (published by [Lia Bogoev](http://liabogoev.com) and under the MIT license).
+Originally, **al-folio** was based on the [\*folio theme](https://github.com/bogoli/-folio) (published by [Lia Bogoev](https://liabogoev.com) and under the MIT license).
 Since then, it got a full re-write of the styles and many additional cool features.
