@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-description: Economics | Comics | Puzzles
+description: Economics | Technology | Storytelling
 
 profile:
   align: right
@@ -13,7 +13,7 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-I am interested in economics, a field whose definition is still [in flux](https://en.wikipedia.org/wiki/Definitions_of_economics). I currently define it as __the study of human relations in, around, and despite modern capitalist systems__ [see [changelog](/economics-definitions)]. This philosophy informs my research, teaching, and (occasionally) creative writing.
+I am interested in economics, a field whose definition is still [in flux](https://en.wikipedia.org/wiki/Definitions_of_economics). I currently define it as __the study of human relations in, around, and despite modern capitalist systems__ [see [changelog](/economics-definitions)]. This philosophy informs my work, research, and (occasionally) creative writing.
 
 I am pursuing a masters degree in Quantitative Economics at the [National University of Singapore](https://fass.nus.edu.sg/ecs/). In 2020, I graduated summa cum laude from [Yale-NUS College](https://www.yale-nus.edu.sg/), where I grew to love mathematics, statistics, and [barbershop singing](https://youtu.be/WP9ZUMi2uTc?t=1823).
 
