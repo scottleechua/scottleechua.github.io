@@ -14,6 +14,27 @@ Jean shorts raw denim Vice normcore, art party High Life PBR skateboard stumptow
     <li>messenger bag</li>
 </ul>
 
+{% highlight c++ linenos %}
+
+int main(int argc, char const \*argv[])
+{
+    string myString;
+
+    cout << "input a string: ";
+    getline(cin, myString);
+    int length = myString.length();
+
+    char charArray = new char * [length];
+
+    charArray = myString;
+    for(int i = 0; i < length; ++i){
+        cout << charArray[i] << " ";
+    }
+
+    return 0;
+}
+{% endhighlight %}
+
 Hoodie Thundercats retro, tote bag 8-bit Godard craft beer gastropub. Truffaut Tumblr taxidermy, raw denim Kickstarter sartorial dreamcatcher. Quinoa chambray slow-carb salvia readymade, bicycle rights 90's yr typewriter selfies letterpress cardigan vegan.
 
 <hr>

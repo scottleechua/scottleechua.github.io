@@ -40,40 +40,37 @@ og_image: profile-picture.png # The site-wide (default for all links) Open Graph
 # Social integration
 # -----------------------------------------------------------------------------
 
-github_username: # scottleechua your GitHub user name
-gitlab_username: # your GitLab user name
-twitter_username: scottleechua # your Twitter handle
+github_username: scottleechua # your GitHub user name
+#gitlab_username: # your GitLab user name
+#twitter_username: # your Twitter handle
 linkedin_username: scottleechua # your LinkedIn user name
 scholar_userid: GJBprlAAAAAJ # your Google Scholar ID
-orcid_id: # your ORCID ID
-medium_username: # your Medium username
-quora_username: # your Quora username
-publons_id: # your ID on Publons
-research_gate_profile: # your profile on ResearchGate
-blogger_url: # your blogger URL
-work_url: # work page URL
-keybase_username: # your keybase user name
-wikidata_id: # your wikidata id
+#orcid_id: # your ORCID ID
+#medium_username: # your Medium username
+#quora_username: # your Quora username
+#publons_id: # your ID on Publons
+#research_gate_profile: # your profile on ResearchGate
+#blogger_url: # your blogger URL
+#work_url: # work page URL
+#keybase_username: # your keybase user name
+#wikidata_id: # your wikidata id
 
 contact_note: # > You can even add a little note about which of these is the best way to reach you.
 
-google_analytics: # put your google-analytics code
 # panelbear_analytics: XXXXXXXXX # panelbear analytics site ID
+# plausible_analytics: 
 
 # -----------------------------------------------------------------------------
 # Blog
 # -----------------------------------------------------------------------------
 
-# blog_name: al-folio  # your blog must have a name for it to show up in the nav bar
-# blog_description: a simple whitespace theme for academics
-# permalink: /blog/:year/:title/
+blog_name: al-folio # your blog must have a name for it to show up in the nav bar
+blog_description: a simple whitespace theme for academics
+permalink: /blog/:year/:title/
 
 # Pagination
 pagination:
   enabled: true
-
-# Comments
-# disqus_shortname: al-folio # put your disqus shortname
 
 # -----------------------------------------------------------------------------
 # Collections
@@ -162,12 +159,12 @@ scholar:
 # Optional Features
 # -----------------------------------------------------------------------------
 
-enable_google_analytics:    true
 enable_panelbear_analytics: false
-enable_mansory:             true
+enable_plausible_analytics: false
+enable_masonry:             true
 enable_math:                true
 enable_tooltips:            false
-enable_darkmode:            true
+enable_darkmode:            false
 enable_navbar_social:       false
 
 # -----------------------------------------------------------------------------
@@ -188,8 +185,8 @@ fontawesome:
 jquery:
   version: "3.5.1"
   integrity: "sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
-mathjax:
-  version: "3.1.2"
+# mathjax:
+#   version: "3.1.2"
 mansory:
   version: "4.2.2"
   integrity: "sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI="
