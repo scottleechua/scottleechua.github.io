@@ -21,7 +21,7 @@ impressum_path:  # set to path to include impressum link in the footer, use the 
 # Layout
 # -----------------------------------------------------------------------------
 
-navbar_fixed: true
+navbar_fixed: false
 footer_fixed: false
 
 # Dimensions
@@ -64,8 +64,8 @@ contact_note: # > You can even add a little note about which of these is the bes
 # Blog
 # -----------------------------------------------------------------------------
 
-blog_name: al-folio # your blog must have a name for it to show up in the nav bar
-blog_description: a simple whitespace theme for academics
+#blog_name: 
+#blog_description: 
 permalink: /blog/:title/
 
 # Pagination
