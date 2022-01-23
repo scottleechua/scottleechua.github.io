@@ -37,18 +37,19 @@ I tried to come up with a tech stack that was **as low-cost as a self-hosted web
 
 In this guide, I walk through the whole process of setting up **each and every part** of this exact stack. The guide is divided into four stages:
 
-1. [Setting up GCP](#1-setting-up-gcp)
-2. [Configuring the domain](#2-configuring-the-domain)
-3. Deploying Ghost and Caddy
-4. Configuring Ghost
+1. [Set up GCP](#1-set-up-gcp)
+2. [Configure the domain](#2-configure-the-domain)
+3. [Deploy Ghost and Caddy](#3-deploy-ghost-and-caddy)
+4. [Configure Ghost](#4-configure-ghost)
+5. [Finish Cloudflare configuration](#5-finish-cloudflare-configuration)
 
 The whole thing takes 1-2 hours depending on your comfort level with the various technologies.
 
 *Note: For configuration instructions below, change `highlighted values` and leave all other fields at default values.*
 
-### 1. Setting up GCP
+### 1. Set up GCP
 
-#### Initializing GCP
+#### Initialize GCP
 1. Log in to the Google account you want to use with GCP. Make a GCP account [here](https://console.cloud.google.com).
 2. Select `Create Project`:
     - Project name: `ghost-blog`
@@ -62,7 +63,7 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
     - Target amount: `2.00` (as cost should be zero, anyway)
     - Manage notifications: `Email alerts to billing admins and users`
 
-#### Initializing Compute Engine
+#### Initialize Compute Engine
 1. Go to Compute Engine > `Enable API`.
 2. (Optional) If asked to `Create Credentials`, do so:
     - Data accessing: `Application Data`
@@ -73,7 +74,7 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
     - Series: `E2`
     - Machine type: `e2-micro (2vCPU, 1GB memory)`
     - Boot disk:
-        - Operating system: `Ubuntu`(or any Linux OS of your choice)
+        - Operating system: `Ubuntu`
         - Version: `Ubuntu 20.04 LTS`
         - Boot disk type: `Standard persistent disk`
     - Firewall:
@@ -115,27 +116,239 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
     - Network service tier: `Standard`
     - Region: `us-west1` (the same region as your instance)
     - Attached to: `ghost-blog`
+3. Take note of the External IP address.
 
-### 2. Configuring the domain
+### 2. Configure the domain
 
+#### Buy a domain and set up Cloudflare
+1. Make a Namecheap account and buy your domain. I'll use `ghostblog.com` as an example. Going forward, everywhere you see `ghostblog.com`, replace it with your own domain name. 
+2. Make a Cloudflare account and add your domain under the Free subscription plan.
+3. Under "Review your DNS records", first **delete all** the records.
+4. `Add record`:
+    - Type: `A`
+    - Name: `ghostblog.com`
+    - IPv4 address: your GCP external IP address
+    - Proxy status: `DNS only`
+5. `Save` > `Continue` > `Confirm`.
+6. Go back to Namecheap > ghostblog.com > `Manage` > Nameservers > `Custom DNS` and input the specified Cloudflare nameservers.
+7. Go back to Cloudflare > `Done, check nameservers`.
+8. Go to Cloudflare > ghostblog.com > Overview, then in the right sidebar, Advanced Actions > `Pause Cloudflare on site` while finishing setup.
 
-{% highlight c++ linenos %}
+#### Set up Mailgun
+1. Make a Mailgun account under the `Flex Trial` plan. You'll be asked to confirm a phone number and put your card details on file.
+2. Select `Add a custom domain`:
+    - Domain name: `ghostblog.com`
+    - Domain region: `US` (unless your website requires within-`EU` data processing)
+3. Go back to Cloudflare > ghostblog.com > DNS and add the five DNS records Mailgun requires. Turn Proxy Status off (i.e., set to `DNS only`).
+4. Go back to Mailgun > `Verify DNS settings`.
+5. Once the custom domain has been added to Mailgun, go to Sending > Domain Settings > SMTP Credentials. Take note of the "login" (usually `postmaster@ghostblog.com`).
+6. Click `Reset password` > `Reset password` > `Copy`. Paste this password somewhere safe---it will only be generated this once!
+7. Go to Settings > API Keys, show the Private API Key and copy it somewhere safe.
 
-int main(int argc, char const \*argv[])
-{
-    string myString;
+### 3. Deploy Ghost and Caddy
 
-    cout << "input a string: ";
-    getline(cin, myString);
-    int length = myString.length();
+#### Set up VM
+1. Go back to GCP > Compute Engine > VM Instances > ghost-blog > `SSH`. A virtual terminal ("cloud shell") will appear in a pop-up window.
+2. First, set a password for the root user:
 
-    char charArray = new char * [length];
+{% highlight bash %}
+sudo passwd
+{% endhighlight %}
 
-    charArray = myString;
-    for(int i = 0; i < length; ++i){
-        cout << charArray[i] << " ";
-    }
+{:start="3"}
+3. Switch to root user:
+{% highlight bash %}
+su
+{% endhighlight %}
 
-    return 0;
+{:start="4"}
+4. Update Linux:
+{% highlight bash %}
+apt update
+apt upgrade
+{% endhighlight %}
+
+#### Install Docker
+1. Install dependencies:
+{% highlight bash %}
+apt install apt-transport-https ca-certificates curl software-properties-common
+{% endhighlight %}
+
+{:start="2"}
+2. Get Docker GPG key:
+{% highlight bash %}
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+{% endhighlight %}
+
+{:start="3"}
+3. Download Docker:
+{% highlight bash %}
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+{% endhighlight %}
+
+{:start="4"}
+4. Install Docker:
+{% highlight bash %}
+sudo apt update
+sudo apt-cache policy docker-ce
+sudo apt install docker-ce
+{% endhighlight %}
+
+{:start="5"}
+5. Make a new sudo-eligible user called `service_account`:
+{% highlight bash %}
+adduser service_account
+{% endhighlight %}
+
+{:start="6"}
+6. Set a password for `service_account`. Leave the "user information" for `service_account` at default values, and confirm with `Y`.
+
+{:start="7"}
+7. Give `service_account` sudo privileges:
+{% highlight bash %}
+usermod -aG sudo service_account
+{% endhighlight %}
+
+{:start="8"}
+8. Close this cloud shell window and open a new one.
+
+{:start="9"}
+9. Switch to `service_account`:
+{% highlight bash %}
+su - service_account
+{% endhighlight %}
+
+{:start="10"}
+10. Allow `service_account` to use Docker:
+{% highlight bash %}
+sudo usermod -aG docker service_account
+{% endhighlight %}
+
+{:start="11"}
+11. Verify that Docker works by running:
+{% highlight bash %}
+docker run hello-world
+{% endhighlight %}
+
+{:start="12"}
+12. Set Mailgun SMTP credentials as environment variables. First open the bash profile in Vim:
+{% highlight bash %}
+vi .profile
+{% endhighlight %}
+
+13. Vim has two modes, "Command Mode" (file is read-only) and "Insert Mode" (file is editable). Press `I` to enter Insert Mode. Add these lines at the bottom of the file, replacing the fields with the Mailgun SMTP credentials you obtained:
+{% highlight bash %}
+export mail__options__auth__user="postmaster@ghostblog.com"
+export mail__options__auth__pass="theSMTPpasswordyoucopied"
+{% endhighlight %}
+
+{:start="14"}
+14. Press `Esc` to return to "Command Mode". Type `:wq` to save and quit, then press `Enter`.
+
+{:start="15"}
+15. Update the profile with:
+{% highlight bash %}
+source .profile
+{% endhighlight %}
+
+{:start="16"}
+16. Close this cloud shell window and open a new one.
+
+#### Install Ghost and Caddy
+
+{:start="1"}
+1. Switch to `service_account`:
+{% highlight bash %}
+su - service_account
+{% endhighlight %}
+
+{:start="2"}
+2. Make a new directory called `ghost` and navigate to it:
+{% highlight bash %}
+mkdir /home/service_account/ghost
+cd ghost
+{% endhighlight %}
+
+{:start="3"}
+3. If you chose to run Mailgun from the EU, replace `smtp.mailgun.org` with `smtp.eu.mailgun.org`. Other than that, run the below command as is. This will download, configure, and run a Ghost image within Docker:
+{% highlight bash %}
+docker run -d \
+--restart always \
+--name ghost-blog \
+-v /home/service_account/ghost/content:/var/lib/ghost/content \
+-p 2368:2368 \
+-e url=https://ghostblog.com \
+-e mail__transport="SMTP" \
+-e mail__options__host="smtp.mailgun.org" \
+-e mail__options__port=2525 \
+-e mail__options__auth__user \
+-e mail__options__auth__pass \
+ghost
+{% endhighlight %}
+
+{:start="4"}
+4. Run the command below and note the "Container ID" associated with the "ghost" Image:
+{% highlight bash %}
+docker ps
+{% endhighlight %}
+
+{:start="5"}
+5. Run the command below, replacing `containerid` with yours. Verify that the environment variables (the `docker run` fields tagged with `-e`) were saved.
+{% highlight bash %}
+docker exec containerid printenv
+{% endhighlight %}
+
+{:start="6"}
+6. Create a Caddyfile to store the configuration for the Caddy web server:
+{% highlight bash %}
+vi Caddyfile
+{% endhighlight %}
+
+{:start="7"}
+7. In the text below, replace `your@email.com` with your own email. (Caddy uses your email address to procure free SSL certificates from [Let's Encrypt](https://letsencrypt.org/).) Press `I` to enter Insert Mode. Enter the following text manually, using **tabs** to indent lines:
+{% highlight bash %}
+https://ghostblog.com {
+	proxy / ghost-blog:2368 {
+		transparent
+	}
+	tls your@email.com
 }
 {% endhighlight %}
+
+{:start="8"}
+8. Press `Esc` to return to "Command Mode". Type `:wq` to save and quit, then press `Enter`.
+
+{:start="9"}
+9. Install Caddy, keying in `Y` when prompted:
+{% highlight bash %}
+docker run -it \
+--restart always \
+--link ghost-blog:ghost-blog \
+--name caddy \
+-p 80:80 \
+-p 443:443 \
+-v /home/service_account/ghost/Caddyfile:/etc/Caddyfile \
+-v /home/service_account/.caddy:/root/.caddy \
+abiosoft/caddy
+{% endhighlight %}
+
+10. Try to visit your domain `https://ghostblog.com`. Sometimes you might need to go back to Cloudflare and `Pause Cloudflare on this site` for a while. Once the webpage connects and displays the default Ghost template, close the cloud shell window. Installation is complete!
+
+### 4. Configure Ghost
+1. Go to `https://ghostblog.com/ghost`. Set up your website basic details.
+2. Go to Settings (the "gear" icon) > Email newsletter > Email newsletter settings:
+    - Mailgun region: whichever you selected previously
+    - Mailgun domain: ghostblog.com
+    - Mailgun Private API key: the Private API key you took note of
+3. Turn `off` "Enable newsletter open-rate analytics".
+4. `Save Settings`.
+5. (Optional) To disable the hovering "Subscribe" button, go to Membership > `Customize Portal` and disable "Show Portal Button."
+
+### 5. Finish Cloudflare Configuration
+1. **After 24 hours or so**, go back to Cloudflare. If you had previously `Paused` Cloudflare, go back to Advanced Actions > `Enable Cloudflare on site`.
+2. Go to ghostblog.com > DNS > `Add record`:
+    - Type: `A`
+    - Name: `www.ghostblog.com`
+    - IPv4 address: your GCP external IP address
+    - Proxy status: `Proxied`
+3. `Edit` the other A record to change Proxy status to `Proxied`.
