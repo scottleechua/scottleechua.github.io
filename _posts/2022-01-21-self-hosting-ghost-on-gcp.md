@@ -352,3 +352,8 @@ abiosoft/caddy
     - IPv4 address: your GCP external IP address
     - Proxy status: `Proxied`
 3. `Edit` the other A record to change Proxy status to `Proxied`.
+
+## Congratulations!
+At this point you should have a working self-hosted Ghost blog. The technical setup is over---from now on, you should be working within the `https://ghostblog.com/ghost` control panel instead.
+
+This tutorial owes a debt of gratitude to The Applied Architect's [Ghost on GCP tutorial](https://theappliedarchitect.com/setup-a-free-self-hosted-blog-in-under-15-minutes/) and Brian Burroughs' [Ghost + Caddy tutorial](https://techroads.org/building-a-caddy-container-stack-for-easy-https-with-docker-and-ghost/), which helped me piece together the deployment process in Step 3.
