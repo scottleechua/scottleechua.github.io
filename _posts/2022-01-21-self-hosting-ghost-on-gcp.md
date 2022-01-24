@@ -94,7 +94,6 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
     - Snapshot storage location: `Regional`
         - Location: `us-west1`
     - Schedule frequency: Weekly
-    - `Enable application consistent snapshot`
 6. Go to Disks > `ghost-blog` > `Edit`:
     - Snapshot schedule: `weekly-backup-schedule`
 
