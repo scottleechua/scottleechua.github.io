@@ -45,7 +45,7 @@ In this guide, I walk through the whole process of setting up **each and every p
 
 The whole thing takes 1-2 hours depending on your comfort level with the various technologies.
 
-*Note: For configuration instructions below, change `highlighted values` and leave all other fields at default values.*
+*Note: To follow along with the configuration instructions below, edit the `highlighted values` and leave all other fields at default values.*
 
 ### 1. Set up GCP
 
@@ -236,6 +236,7 @@ docker run hello-world
 vi .profile
 {% endhighlight %}
 
+{:start="13"}
 13. Vim has two modes, "Command Mode" (file is read-only) and "Insert Mode" (file is editable). Press `I` to enter Insert Mode. Add these lines at the bottom of the file, replacing the fields with the Mailgun SMTP credentials you obtained:
 {% highlight bash %}
 export mail__options__auth__user="postmaster@ghostblog.com"
@@ -332,6 +333,7 @@ docker run -it \
 abiosoft/caddy
 {% endhighlight %}
 
+{:start="10"}
 10. Try to visit your domain `https://ghostblog.com`. Sometimes you might need to go back to Cloudflare and `Pause Cloudflare on this site` for a while. Once the webpage connects and displays the default Ghost template, close the cloud shell window. Installation is complete!
 
 ### 4. Configure Ghost
