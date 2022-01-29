@@ -2,12 +2,12 @@
 layout: post
 title:  Self-hosting Ghost on Google Cloud Platform
 date:   2022-01-21
-description: A no-frills guide to deploying an almost-free, fully self-hosted blog using Ghost, Caddy, Cloudflare, Mailgun, and GCP.
+description: A plaintext walkthrough of deploying an almost-free, fully self-hosted blog using Ghost, Caddy, Cloudflare, Mailgun, and GCP.
 ---
 
 <img class="img-fluid rounded" src="{{ site.baseurl }}/assets/img/ghost-gcp-diagram.png" alt="web architecture diagram which is explained below">
 
-[I'm sold on this stack, bring me to the guide!](#overview)
+[I'm sold on this stack, jump to the tutorial!](#overview)
 
 ---
 
@@ -35,7 +35,7 @@ I tried to come up with a tech stack that was **as low-cost as a self-hosted web
 
 ## Overview
 
-In this guide, I walk through the whole process of setting up **each and every part** of this exact stack. The guide is divided into four stages:
+In this walkthrough, I outline the whole process of setting up **each and every part** of this exact stack, in five stages:
 
 1. [Set up GCP](#1-set-up-gcp)
 2. [Configure the domain](#2-configure-the-domain)
@@ -55,7 +55,7 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
     - Project name: `ghost-blog`
     - Location: `No organization`
 3. In the floating topbar, `Activate` Free Trial. You'll be asked to set up a billing account and put your card details on file.
-4. (Optional) In the floating topbar, `Activate` a paid account. I prefer to do this immediately for two reasons. One, everything you've set up today will be deleted unless you remember to upgrade *before* the free trial ends; and two, the resources we're using today should stay within the bounds of the Always Free tier anyway.
+4. *(Optional)* In the floating topbar, `Activate` a paid account. I prefer to do this immediately for two reasons. One, everything you've set up today will be deleted unless you remember to upgrade *before* the free trial ends; and two, the resources used (at least in this tutorial) should stay within the bounds of the Always Free tier anyway.
 5. Go to Billing > Budgets & alerts > `Create Budget`:
     - Name: `ghost-blog-budget`
     - Time range: `Monthly`
@@ -65,9 +65,9 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
 
 #### Initialize Compute Engine
 1. Go to Compute Engine > `Enable API`.
-2. (Optional) If asked to `Create Credentials`, do so:
+2. *(Optional)* If asked to `Create Credentials`, do so:
     - Data accessing: `Application Data`
-    - `Yes, I'm using Compute Engine.`    
+    - `Yes, I'm using Compute Engine`    
 3. Go to Instance Templates > `Create Instance Template`:
     - Name: `free-web-server`
     - Machine family: `General-purpose`
@@ -93,7 +93,7 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
     - Schedule location: `us-west1` (the same region as your instance)
     - Snapshot storage location: `Regional`
         - Location: `us-west1`
-    - Schedule frequency: Weekly
+    - Schedule frequency: `Weekly`
 6. Go to Disks > `ghost-blog` > `Edit`:
     - Snapshot schedule: `weekly-backup-schedule`
 
@@ -126,7 +126,7 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
 4. `Add record`:
     - Type: `A`
     - Name: `ghostblog.com`
-    - IPv4 address: your GCP external IP address
+    - IPv4 address: the static IP address you just reserved
     - Proxy status: `DNS only`
 5. `Save` > `Continue` > `Confirm`.
 6. Go back to Namecheap > ghostblog.com > `Manage` > Nameservers > `Custom DNS` and input the specified Cloudflare nameservers.
@@ -305,7 +305,7 @@ vi Caddyfile
 {% endhighlight %}
 
 {:start="7"}
-7. In the text below, replace `your@email.com` with your own email. (Caddy uses your email address to procure free SSL certificates from [Let's Encrypt](https://letsencrypt.org/).) Press `I` to enter Insert Mode. Enter the following text manually, using **tabs** to indent lines:
+7. In the text below, replace `your@email.com` with your own email. (Caddy uses your email address to procure free SSL certificates from [Let's Encrypt](https://letsencrypt.org/).) Press `I` to enter Insert Mode. **Type out** the following text in Vim directly, using **tabs** to indent lines:
 {% highlight bash %}
 https://ghostblog.com {
 	proxy / ghost-blog:2368 {
@@ -343,7 +343,7 @@ abiosoft/caddy
     - Mailgun Private API key: the Private API key you took note of
 3. Turn `off` "Enable newsletter open-rate analytics".
 4. `Save Settings`.
-5. (Optional) To disable the hovering "Subscribe" button, go to Membership > `Customize Portal` and disable "Show Portal Button."
+5. *(Optional)* To disable the hovering "Subscribe" button, go to Membership > `Customize Portal` and disable "Show Portal Button."
 
 ### 5. Finish Cloudflare Configuration
 1. **After 24 hours or so**, go back to Cloudflare. If you had previously `Paused` Cloudflare, go back to Advanced Actions > `Enable Cloudflare on site`.
@@ -357,4 +357,8 @@ abiosoft/caddy
 ## Congratulations!
 At this point you should have a working self-hosted Ghost blog. The technical setup is over---from now on, you should be working within the `https://ghostblog.com/ghost` control panel instead.
 
+### Contribute
+This walkthrough last worked for me in January 2022. If you spot errors, vulnerabilities, or potential improvements, please do [open a pull request](https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2022-01-21-self-hosting-ghost-on-gcp.md) on this blog post!
+
+### Acknowledgements
 This tutorial owes a debt of gratitude to The Applied Architect's [Ghost on GCP tutorial](https://theappliedarchitect.com/setup-a-free-self-hosted-blog-in-under-15-minutes/) and Brian Burroughs' [Ghost + Caddy tutorial](https://techroads.org/building-a-caddy-container-stack-for-easy-https-with-docker-and-ghost/), which helped me piece together the deployment process in Step 3.
