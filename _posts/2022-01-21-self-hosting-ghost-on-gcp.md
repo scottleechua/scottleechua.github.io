@@ -150,189 +150,160 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
 1. Go back to GCP > Compute Engine > VM Instances > ghost-blog > `SSH`. A virtual terminal ("cloud shell") will appear in a pop-up window.
 2. First, set a password for the root user:
 
-{% highlight bash %}
-sudo passwd
-{% endhighlight %}
-
-{:start="3"}
+    ``` bash
+    sudo passwd
+    ```
 3. Switch to root user:
-{% highlight bash %}
-su
-{% endhighlight %}
-
-{:start="4"}
+    ``` bash
+    su
+    ```
 4. Update Linux:
-{% highlight bash %}
-apt update
-apt upgrade
-{% endhighlight %}
+    ``` bash
+    apt update
+    apt upgrade
+    ```
 
 #### Install Docker
 1. Install dependencies:
-{% highlight bash %}
-apt install apt-transport-https ca-certificates curl software-properties-common
-{% endhighlight %}
+    ``` bash
+    apt install apt-transport-https ca-certificates curl software-properties-common
+    ```
 
-{:start="2"}
 2. Get Docker GPG key:
-{% highlight bash %}
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-{% endhighlight %}
+    ``` bash
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    ```
 
-{:start="3"}
 3. Download Docker:
-{% highlight bash %}
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
-{% endhighlight %}
+    ``` bash
+    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+    ```
 
-{:start="4"}
 4. Install Docker:
-{% highlight bash %}
-sudo apt update
-sudo apt-cache policy docker-ce
-sudo apt install docker-ce
-{% endhighlight %}
+    ``` bash
+    sudo apt update
+    sudo apt-cache policy docker-ce
+    sudo apt install docker-ce
+    ```
 
-{:start="5"}
 5. Make a new sudo-eligible user called `service_account`:
-{% highlight bash %}
-adduser service_account
-{% endhighlight %}
+    ``` bash
+    adduser service_account
+    ```
 
-{:start="6"}
 6. Set a password for `service_account`. Leave the "user information" for `service_account` at default values, and confirm with `Y`.
 
-{:start="7"}
 7. Give `service_account` sudo privileges:
-{% highlight bash %}
-usermod -aG sudo service_account
-{% endhighlight %}
+    ``` bash
+    usermod -aG sudo service_account
+    ```
 
-{:start="8"}
 8. Close this cloud shell window and open a new one.
 
-{:start="9"}
 9. Switch to `service_account`:
-{% highlight bash %}
-su - service_account
-{% endhighlight %}
+    ``` bash
+    su - service_account
+    ```
 
-{:start="10"}
 10. Allow `service_account` to use Docker:
-{% highlight bash %}
-sudo usermod -aG docker service_account
-{% endhighlight %}
+    ``` bash
+    sudo usermod -aG docker service_account
+    ```
 
-{:start="11"}
 11. Verify that Docker works by running:
-{% highlight bash %}
-docker run hello-world
-{% endhighlight %}
+    ``` bash
+    docker run hello-world
+    ```
 
-{:start="12"}
 12. Set Mailgun SMTP credentials as environment variables. First open the bash profile in Vim:
-{% highlight bash %}
-vi .profile
-{% endhighlight %}
+    ``` bash
+    vi .profile
+    ```
 
-{:start="13"}
 13. Vim has two modes, "Command Mode" (file is read-only) and "Insert Mode" (file is editable). Press `I` to enter Insert Mode. Add these lines at the bottom of the file, replacing the fields with the Mailgun SMTP credentials you obtained:
-{% highlight bash %}
-export mail__options__auth__user="postmaster@ghostblog.com"
-export mail__options__auth__pass="theSMTPpasswordyoucopied"
-{% endhighlight %}
+    ``` bash
+    export mail__options__auth__user="postmaster@ghostblog.com"
+    export mail__options__auth__pass="theSMTPpasswordyoucopied"
+    ```
 
-{:start="14"}
 14. Press `Esc` to return to "Command Mode". Type `:wq` to save and quit, then press `Enter`.
 
-{:start="15"}
 15. Update the profile with:
-{% highlight bash %}
-source .profile
-{% endhighlight %}
+    ``` bash
+    source .profile
+    ```
 
-{:start="16"}
 16. Close this cloud shell window and open a new one.
 
 #### Install Ghost and Caddy
 
-{:start="1"}
 1. Switch to `service_account`:
-{% highlight bash %}
-su - service_account
-{% endhighlight %}
+    ``` bash
+    su - service_account
+    ```
 
-{:start="2"}
 2. Make a new directory called `ghost` and navigate to it:
-{% highlight bash %}
-mkdir /home/service_account/ghost
-cd ghost
-{% endhighlight %}
+    ``` bash
+    mkdir /home/service_account/ghost
+    cd ghost
+    ```
 
-{:start="3"}
 3. If you chose to run Mailgun from the EU, replace `smtp.mailgun.org` with `smtp.eu.mailgun.org`. Other than that, run the below command as is. This will download, configure, and run a Ghost image within Docker:
-{% highlight bash %}
-docker run -d \
---restart always \
---name ghost-blog \
--v /home/service_account/ghost/content:/var/lib/ghost/content \
--p 2368:2368 \
--e url=https://ghostblog.com \
--e mail__transport="SMTP" \
--e mail__options__host="smtp.mailgun.org" \
--e mail__options__port=2525 \
--e mail__options__auth__user \
--e mail__options__auth__pass \
-ghost
-{% endhighlight %}
+    ``` bash
+    docker run -d \
+    --restart always \
+    --name ghost-blog \
+    -v /home/service_account/ghost/content:/var/lib/ghost/content \
+    -p 2368:2368 \
+    -e url=https://ghostblog.com \
+    -e mail__transport="SMTP" \
+    -e mail__options__host="smtp.mailgun.org" \
+    -e mail__options__port=2525 \
+    -e mail__options__auth__user \
+    -e mail__options__auth__pass \
+    ghost
+    ```
 
-{:start="4"}
 4. Run the command below and note the "Container ID" associated with the "ghost" Image:
-{% highlight bash %}
-docker ps
-{% endhighlight %}
+    ``` bash
+    docker ps
+    ```
 
-{:start="5"}
 5. Run the command below, replacing `containerid` with yours. Verify that the environment variables (the `docker run` fields tagged with `-e`) were saved.
-{% highlight bash %}
-docker exec containerid printenv
-{% endhighlight %}
+    ``` bash
+    docker exec containerid printenv
+    ```
 
-{:start="6"}
 6. Create a Caddyfile to store the configuration for the Caddy web server:
-{% highlight bash %}
-vi Caddyfile
-{% endhighlight %}
+    ``` bash
+    vi Caddyfile
+    ```
 
-{:start="7"}
 7. In the text below, replace `your@email.com` with your own email. (Caddy uses your email address to procure free SSL certificates from [Let's Encrypt](https://letsencrypt.org/).) Press `I` to enter Insert Mode. **Type out** the following text in Vim directly, using **tabs** to indent lines:
-{% highlight bash %}
-https://ghostblog.com {
-	proxy / ghost-blog:2368 {
-		transparent
-	}
-	tls your@email.com
-}
-{% endhighlight %}
+    ``` bash
+    https://ghostblog.com {
+	    proxy / ghost-blog:2368 {
+		    transparent
+	    }
+	    tls your@email.com
+    }
+    ```
 
-{:start="8"}
 8. Press `Esc` to return to "Command Mode". Type `:wq` to save and quit, then press `Enter`.
 
-{:start="9"}
 9. Install Caddy, keying in `Y` when prompted:
-{% highlight bash %}
-docker run -it \
---restart always \
---link ghost-blog:ghost-blog \
---name caddy \
--p 80:80 \
--p 443:443 \
--v /home/service_account/ghost/Caddyfile:/etc/Caddyfile \
--v /home/service_account/.caddy:/root/.caddy \
-abiosoft/caddy
-{% endhighlight %}
+    ``` bash
+    docker run -it \
+    --restart always \
+    --link ghost-blog:ghost-blog \
+    --name caddy \
+    -p 80:80 \
+    -p 443:443 \
+    -v /home/service_account/ghost/Caddyfile:/etc/Caddyfile \
+    -v /home/service_account/.caddy:/root/.caddy \
+    abiosoft/caddy
+    ```
 
-{:start="10"}
 10. Try to visit your domain `https://ghostblog.com`. Sometimes you might need to go back to Cloudflare and `Pause Cloudflare on this site` for a while. Once the webpage connects and displays the default Ghost template, close the cloud shell window. Installation is complete!
 
 ### 4. Configure Ghost
