@@ -134,7 +134,7 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
 8. Go to Cloudflare > ghostblog.com > Overview, then in the right sidebar, Advanced Actions > `Pause Cloudflare on site` while finishing setup.
 
 #### Set up Mailgun
-1. Make a Mailgun account under the `Flex Trial` plan. You'll be asked to confirm a phone number and put your card details on file.
+1. Make a Mailgun account under the `Foundation Trial` plan. You'll be asked to confirm a phone number and put your card details on file.
 2. Select `Add a custom domain`:
     - Domain name: `ghostblog.com`
     - Domain region: `US` (unless your website requires within-`EU` data processing)
@@ -210,30 +210,32 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
     sudo usermod -aG docker service_account
     ```
 
-11. Verify that Docker works by running:
+11. Close this cloud shell window and open a new one.
+
+12. Verify that Docker works by running:
     ``` bash
     docker run hello-world
     ```
 
-12. Set Mailgun SMTP credentials as environment variables. First open the bash profile in Vim:
+13. Set Mailgun SMTP credentials as environment variables. First open the bash profile in Vim:
     ``` bash
     vi .profile
     ```
 
-13. Vim has two modes, "Command Mode" (file is read-only) and "Insert Mode" (file is editable). Press `I` to enter Insert Mode. Add these lines at the bottom of the file, replacing the fields with the Mailgun SMTP credentials you obtained:
+14. Vim has two modes, "Command Mode" (file is read-only) and "Insert Mode" (file is editable). Press `I` to enter Insert Mode. Add these lines at the bottom of the file, replacing the fields with the Mailgun SMTP credentials you obtained:
     ``` bash
     export mail__options__auth__user="postmaster@ghostblog.com"
     export mail__options__auth__pass="theSMTPpasswordyoucopied"
     ```
 
-14. Press `Esc` to return to "Command Mode". Type `:wq` to save and quit, then press `Enter`.
+15. Press `Esc` to return to "Command Mode". Type `:wq` to save and quit, then press `Enter`.
 
-15. Update the profile with:
+16. Update the profile with:
     ``` bash
     source .profile
     ```
 
-16. Close this cloud shell window and open a new one.
+17. Close this cloud shell window and open a new one.
 
 #### Install Ghost and Caddy
 
