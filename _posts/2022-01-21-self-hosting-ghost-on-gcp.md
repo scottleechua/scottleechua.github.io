@@ -319,13 +319,14 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
 5. *(Optional)* To disable the hovering "Subscribe" button, go to Membership > `Customize Portal` and disable "Show Portal Button."
 
 ### 5. Finish Cloudflare Configuration
-1. **After 24 hours or so**, go back to Cloudflare. If you had previously `Paused` Cloudflare, go back to Advanced Actions > `Enable Cloudflare on site`.
+1. Go back to Cloudflare. If you had previously `Paused` Cloudflare, go back to Advanced Actions > `Enable Cloudflare on site`.
 2. Go to ghostblog.com > DNS > `Add record`:
     - Type: `A`
     - Name: `www.ghostblog.com`
     - IPv4 address: your GCP external IP address
     - Proxy status: `Proxied`
 3. `Edit` the other A record to change Proxy status to `Proxied`.
+4. Go to ghostblog.com > SSL/TLS > Overview and change SSL/TLS encryption mode to `Full`.
 
 ## Congratulations!
 At this point you should have a working self-hosted Ghost blog. The technical setup is over---from now on, you should be working within the `https://ghostblog.com/ghost` control panel instead.
