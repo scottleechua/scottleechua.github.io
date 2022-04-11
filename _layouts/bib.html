@@ -129,10 +129,13 @@
     {% if entry.website %}
       <a href="{{ entry.website }}" class="btn btn-sm z-depth-0" role="button" target="_blank">Website</a>
     {% endif %}
-    
      {% if entry.video %}
       <a href="{{ entry.video }}" class="btn btn-sm z-depth-0" role="button" target="_blank">Video</a>
       {% endif %}
+    {% if entry.replication_files %}
+      <a href="{{ entry.replication_files }}" class="btn btn-sm z-depth-0" role="button" target="_blank">Replication Files</a>
+      {% endif %}
+
     
     </div>
 

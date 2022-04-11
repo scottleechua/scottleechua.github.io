@@ -126,6 +126,11 @@ plugins:
   - jekyll/scholar
   - jekyll-twitter-plugin
   - jemoji
+  - jekyll-target-blank
+
+# jekyll-target-blank settings (https://github.com/keithmifsud/jekyll-target-blank)
+target-blank:
+    noreferrer: false
 
 # Extras
 github: [metadata]
