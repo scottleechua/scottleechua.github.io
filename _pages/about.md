@@ -20,4 +20,4 @@ In 2022, I obtained a masters degree in Quantitative Economics from the [Nationa
 
 In 2017, I wrote a fantasy/sci-fi graphic novel called [_Doorkeeper_](https://www.goodreads.com/book/show/36552949-doorkeeper) together with [Ethan Chua](https://twitter.com/daschuapital) and a team of [fantastic Filipino artists](https://doorkeeper-artists.carrd.co/) --- read it [here](https://issuu.com/scottchua/docs/doorkeeper).
 
-At present, I am working on a [new graphic novel](https://twitter.com/scottleechua/status/1321059318549106688?s=20), the [LEGO Darth Vader helmet](https://www.lego.com/en-us/product/darth-vader-helmet-75304), and an English translation of Lualhati Bautista's <i>[Dekada '70](https://www.rappler.com/entertainment/theater/dekada-70-musical-review)</i>.
+At present, I am working on a new graphic novel, the [LEGO Darth Vader helmet](https://www.lego.com/en-us/product/darth-vader-helmet-75304), and an English translation of Lualhati Bautista's <i>[Dekada '70](https://www.rappler.com/entertainment/theater/dekada-70-musical-review)</i>.
