@@ -24,7 +24,7 @@ This page is a changelog of my past and present working definitions.
     <li><b>[Adopted 05-2020]</b> "...the study of human interactions as facilitated by the economy."
     <ul>
         <li>
-            <b>Inspired by</b> encounters with <a href="https://www.rethinkeconomics.org/projects/rethinking-textbook/">pluralist economics</a>, which led me to realize that what sets economics apart from other social sciences (at least definitionally) is not any one method, but rather its focus on the economy as an object of study.
+            <b>Inspired by</b> encounters with <a href="https://www.routledge.com/Rethinking-Economics-An-Introduction-to-Pluralist-Economics/Fischer-Hasell-Proctor-Uwakwe-Perkins-Watson/p/book/9781138222687">pluralist economics</a>, which led me to realize that what sets economics apart from other social sciences (at least definitionally) is not any one method, but rather its focus on the economy as an object of study.
         </li>
         <li>
             <b>Revised because</b> of the COVID-19 pandemic, which led me to (belatedly) realize that the economy as it stands today is neither <a href="https://www.nbcnews.com/tech/security/we-don-t-have-choice-amazon-ring-call-center-workers-n1243439">the best</a> nor <a href="https://thecorrespondent.com/683/our-world-is-built-for-profit-lets-build-one-that-protects-us-instead/731976699234-4d94b0b0">the only</a> way of organizing human society.

@@ -7,12 +7,12 @@ first_name: Scott
 middle_name: Lee
 last_name: Chua 🇵🇭
 email: scottleechua@gmail.com
-description: Economics | Comics | Puzzles # > the ">" symbol means to ignore newlines until "footer_text:" A simple, whitespace theme for academics. Based on[*folio](https://github.com/bogoli/-folio) design.
+description: Econs | Comics | Puzzles # > the ">" symbol means to ignore newlines until "footer_text:" A simple, whitespace theme for academics.
 footer_text: >
   Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme. Read the <a href="/privacy/">Privacy Policy</a>.
 
 icon: # the emoji used as the favicon
-url:  https://www.scottleechua.com # the base hostname & protocol for your site (LEAVE EMPTY FOR ROOT SITE)
+url:  # the base hostname & protocol for your site (LEAVE EMPTY FOR ROOT SITE)
 baseurl: # the subpath of your site, e.g. /blog/ (LEAVE EMPTY FOR ROOT SITE)
 last_updated: false # set to true if you want to display last updated in the footer
 impressum_path:  # set to path to include impressum link in the footer, use the same path as permalink in a page, helps to conform with EU GDPR
@@ -43,7 +43,7 @@ og_image: profile-picture.png # The site-wide (default for all links) Open Graph
 github_username: scottleechua # your GitHub user name
 #gitlab_username: # your GitLab user name
 #twitter_username: # your Twitter handle
-linkedin_username: scottleechua # your LinkedIn user name
+linkedin_username: # your LinkedIn user name
 scholar_userid: GJBprlAAAAAJ # your Google Scholar ID
 #orcid_id: # your ORCID ID
 #medium_username: # your Medium username
@@ -164,7 +164,6 @@ scholar:
 # Optional Features
 # -----------------------------------------------------------------------------
 
-enable_panelbear_analytics: false
 enable_plausible_analytics: false
 enable_masonry:             true
 enable_math:                true

@@ -2,14 +2,14 @@
 layout: about
 title: about
 permalink: /
-description: Economics | Comics | Puzzles
+description: Econs | Comics | Puzzles
 
 profile:
   align: right
   image: profile-picture.png
   image-alt: "Headshot of Scott Lee Chua. Photo credit: Zac Yeow."
 
-news: false
+news: true
 selected_papers: true
 social: true
 ---

@@ -1,9 +1,8 @@
 ---
 layout: page
-permalink: /research/
-title: research
+permalink: /works/
+title: works
 description: Coming soon!
 nav: true
 sort: 1
-exclude: true
 ---

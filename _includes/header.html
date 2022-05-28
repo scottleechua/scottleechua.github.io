@@ -31,15 +31,6 @@
               {% endif %}
             </a>
           </li>
-          <!-- Blog -->
-          <li class="nav-item {% if page.url contains 'blog' %}active{% endif %}">
-            <a class="nav-link" href="{{ '/blog/' | relative_url }}">
-              blog
-              {% if page.title == "blog" %}
-              <span class="sr-only">(current)</span>
-              {% endif %}
-            </a>
-          </li>
           <!-- Other pages -->
           {% assign sorted_pages = site.pages | sort: "sort" %}
           {% for p in sorted_pages %}
@@ -56,6 +47,15 @@
           {% endif %}
           {% endunless %}
           {% endfor %}
+          <!-- Blog -->
+          <li class="nav-item {% if page.url contains 'blog' %}active{% endif %}">
+            <a class="nav-link" href="{{ '/blog/' | relative_url }}">
+              blog
+              {% if page.title == "blog" %}
+              <span class="sr-only">(current)</span>
+              {% endif %}
+            </a>
+          </li>
           {% if site.enable_darkmode %}
             <div class = "toggle-container">
               <a id = "light-toggle">
