@@ -11,4 +11,8 @@ group :jekyll_plugins do
     gem 'webrick'
     gem 'jekyll-target-blank'
     gem 'html-proofer'
+    gem 'jekyll-diagrams'
+    gem 'jekyll-minifier'
+    gem 'jekyll-sitemap'
+    gem 'mini_racer'
 end
