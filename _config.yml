@@ -187,7 +187,7 @@ filtered_bibtex_keywords: [abbr, abstract, arxiv, bibtex_show, html, pdf, select
 # Optional Features
 # -----------------------------------------------------------------------------
 
-enable_plausible_analytics: false
+enable_plausible_analytics: true
 enable_masonry:             true
 enable_math:                true
 enable_darkmode:            false
