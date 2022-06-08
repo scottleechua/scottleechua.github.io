@@ -7,7 +7,7 @@ nav: true
 exclude: true
 ---
 
-**Last updated: 26 October 2021**
+**Last updated: 8 June 2022**
 
 This Privacy Policy outlines how I collect and use your data while you are on this website.
 
@@ -19,17 +19,17 @@ I do not want to collect your personal data. However, in this age of [surveillan
   - GitHub is [GDPR-compliant](https://github.blog/2018-04-19-updates-to-our-privacy-statement-and-terms-of-service/). For more details, see their [Privacy Statement](https://docs.github.com/en/github/site-policy/github-privacy-statement#github-pages).
 2. This website is served around the world through the [Cloudflare](https://cloudflare.com) content delivery network. Cloudflare may log your IP address and other information for maintenance and security purposes.
   - I do not (and cannot) access this data.
-  - I can, and occasionally do, access aggregate metrics about this website using Cloudflare's [analytics tool](https://www.cloudflare.com/web-analytics/).
   - Cloudflare is [GDPR-compliant](https://www.cloudflare.com/trust-hub/gdpr/). For more details, see their [Privacy Policy](https://www.cloudflare.com/privacypolicy/).
-
+3. I use [Plausible](https://plausible.io) as a cookieless, privacy-first web analytics service. They log your access information ([excluding your IP address](https://plausible.io/docs/excluding)) to provide me with said service.
+  - Plausible is [GDPR-compliant](https://plausible.io/data-policy#gdpr-ccpa-and-pecr-compliant-web-analytics). For more details, see their [Privacy Policy](https://plausible.io/data-policy).
+  
 ### How I use your data
 
 __To perform simple analytics__
 
-I use Cloudflare's web analytics tool to understand the audience of this website, e.g., how are people discovering this website? Where are they from?
+I use Plausible's web analytics tool to understand my audience, e.g., how are people discovering this website? Where are they from?
 
-
-I do not wish to track you, or even collect data that allows me to track you. Thus the choice of Cloudflare: unlike other web analytics tools, Cloudflare does not download cookies or other files to your devices, and gives me access only to aggregated metrics. Indeed, this website uses no cookies or trackers or any sort.
+I do not wish to track you, or even collect data that allows me to track you. Thus the choice of Plausible: unlike other web analytics tools, Plausible does not download cookies or other files to your devices, and gives me access only to aggregated metrics. Indeed, this website uses no cookies or trackers or any sort.
 
 ### Links
 
