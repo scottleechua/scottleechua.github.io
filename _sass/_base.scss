@@ -400,11 +400,21 @@ footer.sticky-bottom {
   }
 }
 
+// News
+
+.news {
+  margin-top: 1.5rem;
+  h2 {
+    margin-bottom: 0.5rem;
+    span {
+      font-size: 1.5rem;
+    }}
+}
 
 // Publications
 
 .publications {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   h1 {
     color: var(--global-theme-color);
     font-size: 2rem;

@@ -3,6 +3,8 @@ layout: post
 title:  Self-hosting Ghost on Google Cloud Platform
 date:   2022-01-21
 description: A plaintext walkthrough of deploying an almost-free, fully self-hosted blog using Ghost, Caddy, Cloudflare, Mailgun, and GCP.
+categories: walkthrough, website, cloud
+og_image: "{{ site.baseurl }}/assets/img/ghost-gcp-diagram.png"
 ---
 
 <img class="img-fluid rounded" src="{{ site.baseurl }}/assets/img/ghost-gcp-diagram.png" alt="web architecture diagram which is explained below">

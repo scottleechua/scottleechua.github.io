@@ -2,7 +2,7 @@
 layout: page
 permalink: /privacy/
 title: Privacy Policy
-description:
+description: Privacy policy.
 nav: true
 exclude: true
 ---

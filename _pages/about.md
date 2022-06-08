@@ -2,6 +2,7 @@
 layout: about
 title: about
 permalink: /
+subtitle: Econs | Comics | Puzzles
 description: Econs | Comics | Puzzles
 
 profile:

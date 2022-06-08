@@ -2,7 +2,7 @@
 layout: page
 permalink: /economics-definitions/
 title: What is "economics"?
-description:
+description: A changelog of how I define "economics."
 nav: true
 exclude: true
 ---
