@@ -13,7 +13,7 @@ profile:
 news: true
 selected_papers: true
 social: true
-og_image: "https://scottleechua.com/assets/img/profile-picture.png"
+og_image: profile-picture.png
 ---
 
 I am interested in economics, a field whose definition is still [in flux](https://en.wikipedia.org/wiki/Definitions_of_economics). I currently define it as __the study of human relations in, around, and despite modern capitalist systems__ [see [changelog](/economics-definitions)]. This philosophy informs my work, research, and (occasionally) creative writing.
