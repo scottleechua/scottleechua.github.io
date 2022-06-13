@@ -4,7 +4,8 @@ title:  Versioning comic scripts using Fountain and GitHub
 date:   2022-05-25
 description: A plaintext walkthrough of writing and sharing auto-updating comic scripts using Fountain, <i>&#8217;afterwriting</i>, and GitHub Actions.
 categories: walkthrough, comics, cloud
-og_image: "{{ site.baseurl }}/assets/img/comic-script-diagram.png"
+og_image: comic-script-diagram.png
+twitter_large_image: true
 ---
 
 <img class="img-fluid rounded" src="{{ site.baseurl }}/assets/img/comic-script-diagram.png" alt="web architecture diagram explained below">
