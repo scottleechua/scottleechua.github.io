@@ -66,9 +66,7 @@ plausible_analytics_domain: "scottleechua.com"
 # Blog
 # -----------------------------------------------------------------------------
 
-blog_name: Blog
-blog_nav_title: blog # your blog must have a title for it to be displayed in the nav bar
-# blog_description: 
+blog_nav_title: blog
 permalink: /blog/:title/
 
 # Pagination
@@ -85,9 +83,9 @@ collections:
       layout: post
     output: true
     permalink: /news/:path/
-  projects:
+  comics:
     output: true
-    permalink: /projects/:path/
+    permalink: /comics/:path/
 
 news_limit: 5
 
@@ -190,7 +188,7 @@ filtered_bibtex_keywords: [abbr, abstract, arxiv, bibtex_show, html, pdf, select
 enable_plausible_analytics: true
 enable_masonry:             true
 enable_math:                true
-enable_darkmode:            false
+enable_darkmode:            true
 enable_navbar_social:       false
 
 # -----------------------------------------------------------------------------

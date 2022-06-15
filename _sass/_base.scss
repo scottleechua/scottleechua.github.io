@@ -18,6 +18,9 @@ table {
     }
     td {
       font-size: 1rem;
+    };
+    th {
+      width: 15%;
     }
 }
 
@@ -140,7 +143,7 @@ blockquote {
 }
 .navbar .dropdown-menu {
   background-color: var(--global-bg-color);
-  border: 1px solid var(--global-divider-color);
+//   border: 1px solid var(--global-divider-color);
   a:not(.active) {
     color: var(--global-text-color);
   }
@@ -388,6 +391,8 @@ footer.sticky-bottom {
   .grid-sizer, .grid-item {
     width: 250px;
     margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   h2.category {
@@ -399,6 +404,16 @@ footer.sticky-bottom {
     text-align: right;
   }
 }
+
+@media (max-width: 576px) {
+  .projects {
+    .grid-item{
+      width: 70%;
+      margin-left: 15%;
+    }          
+  }
+}
+
 
 // News
 
