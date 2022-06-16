@@ -1,8 +1,8 @@
 ---
-layout: page
+layout: page-nodesc
 permalink: /privacy/
 title: Privacy Policy
-description: Privacy policy.
+description: Privacy policy
 nav: true
 exclude: true
 ---

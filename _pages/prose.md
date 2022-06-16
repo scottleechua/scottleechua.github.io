@@ -9,7 +9,7 @@ nav_order: 2
 <div style="width: 50%; margin-left: auto; margin-right: auto;">
 <figure>
         <img class="img-fluid rounded z-depth-1" src="/assets/img/margarita-cover.jpg" alt="In foreground, ships docked at an old pier; in background, a woman with her face in her hands"/>
-<figcaption><center>Collage by <a href="https://www.linkedin.com/in/jimbo-albano-48028540/?originalSubdomain=ph">Jimbo Albano.</a></center></figcaption>
+<figcaption><center>Collage by <a href="https://businessmirror.com.ph/author/jimboalbano/">Jimbo Albano.</a></center></figcaption>
 </figure>
 </div>
 

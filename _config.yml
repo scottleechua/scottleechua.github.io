@@ -86,6 +86,9 @@ collections:
   comics:
     output: true
     permalink: /comics/:path/
+  puzzles:
+    output: true
+    permalink: /puzzles/:path/
 
 news_limit: 5
 
