@@ -2,7 +2,7 @@
 layout: page
 permalink: /puzzles/
 title: Puzzles
-nav: false
+nav: true
 nav_order: 3
 ---
 
@@ -16,13 +16,3 @@ nav_order: 3
     {%- endfor %}
   </div>
 </div>
-
-- Great Yale-NUS Escape co-designed with olivia and sheena
-
-ask for art permission
-
-- XScape
-
-- Substation Detention Room
-
-- Puzzle design workshop

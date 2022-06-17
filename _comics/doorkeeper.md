@@ -58,7 +58,7 @@ But perhaps even the oldest of beings can change.
 </figure>
 </div>
 
-I created *Doorkeeper* together with my coauthor, Ethan Chua, as well as a team of fantastic Filipino artists. Their portfolios are linked [here](https://doorkeeper-artists.carrd.co/) --- please follow them, commission them, and make art with them!
+I created *Doorkeeper* together with my coauthor, [Ethan Chua](https://medium.com/@ezlc327), as well as a team of fantastic Filipino artists. Their portfolios are linked [here](https://doorkeeper-artists.carrd.co/) --- please follow them, commission them, and make art with them!
 
 
 

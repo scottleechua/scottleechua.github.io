@@ -1,5 +1,7 @@
 This is the repository behind my [personal website](https://scottleechua.com).
 
-Coming soon:
+New pages under consideration:
 - `/translations`
 - `/econs` or `/metrics`
+- `/workshops`
+- `/contact`
