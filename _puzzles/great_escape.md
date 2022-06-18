@@ -4,8 +4,9 @@ title: The Great Escape
 title_header: The Great (Yale-NUS) Escape
 subtitle: Yale-NUS College, 2020
 description: Invasion of the body-snatching alien cacti from space!
-image: great-ync-escape-cover.jpg
+og_image: great-ync-escape-cover.jpg
 image_alt: Cactus in an illuminated doorway, but the shadow it casts is human.
+add_period: false
 importance: 1
 ---
 

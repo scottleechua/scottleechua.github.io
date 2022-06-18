@@ -3,8 +3,9 @@ layout: page-nodesc
 title: Detention Class
 description: Outdoor escape room meets immersive theater
 subtitle: Armenian Street Party, 2017
-image: detention-class-cover.png
+og_image: detention-class-cover.png
 image_alt: Logo of owl over red and blue striped crest captioned 'Riverview High School.' Below the crest are spaces for student's name, section, and teacher, and their mandarin characters.
+add_period: true
 importance: 2
 ---
 

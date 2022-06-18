@@ -17,7 +17,7 @@
     {%- endif -%}
     </title>
     <meta name="author" content="{{ site.first_name }} {{ site.middle_name }} {{ site.last_name }}" />
-    <meta name="description" content="{%- if page.description -%}{{ page.description }}{%- else -%}{{ site.description }}{%- endif -%}" />
+    <meta name="description" content="{%- if page.description -%}{{ page.description }}{%- else -%}{{ site.description }}{%- endif -%}{%- if page.add_period -%}.{%- endif -%}" />
 {%- if page.keywords or site.keywords %}
     <meta name="keywords" content="{%- if page.keywords -%}{{ page.keywords }}{%- else -%}{{ site.keywords }}{%- endif -%}" />
 {%- endif %}
@@ -29,7 +29,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="{%- if page.title -%}{{ page.title }}{%- else -%}{{ title }}{%- endif -%}" />
     <meta property="og:url" content="{{ page.url | prepend: site.baseurl | prepend: site.url | remove_first: 'index.html' }}" />
-    <meta property="og:description" content="{%- if page.description -%}{{ page.description }}{%- else -%}{{ site.description }}{%- endif -%}" />
+    <meta property="og:description" content="{%- if page.description -%}{{ page.description }}{%- else -%}{{ site.description }}{%- endif -%}{%- if page.add_period -%}.{%- endif -%}" />
     {% if page.og_image or site.og_image -%}
     <meta property="og:image" content="{%- if page.og_image -%}{{ site.url }}/assets/img/{{ page.og_image }}{%- else -%}{{ site.url }}/assets/img/{{ site.og_image }}{%- endif -%}" />
     {%- endif %}
@@ -38,7 +38,7 @@
     <!-- Twitter card -->
     <meta name="twitter:card" content="{%- if page.twitter_large_image -%} summary_large_image {%- else -%} summary {%- endif -%}" />
     <meta name="twitter:title" content="{%- if page.title -%}{{ page.title }}{%- else -%}{{ title }}{%- endif -%}" />
-    <meta name="twitter:description" content="{%- if page.description -%}{{ page.description }}{%- else -%}{{ site.description }}{%- endif -%}" />
+    <meta name="twitter:description" content="{%- if page.description -%}{{ page.description }}{%- else -%}{{ site.description }}{%- endif -%}{%- if page.add_period -%}.{%- endif -%}" />
     {% if page.og_image or site.og_image -%}
     <meta name="twitter:image" content="{%- if page.og_image -%}{{ site.url }}/assets/img/{{ page.og_image }}{%- else -%}{{ site.url }}/assets/img/{{ site.og_image }}{%- endif -%}" />
     {%- endif %}

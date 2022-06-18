@@ -2,8 +2,9 @@
 layout: page-nodesc
 title: Workshops
 description: Resources from workshops on reading and writing comics
-image: comic-workshops.png
+og_image: comic-workshops.png
 image_alt: Robed cosmic figure with a door for a head grapples with a red dragon swallowing the moon.
+add_period: true
 importance: 2
 ---
 

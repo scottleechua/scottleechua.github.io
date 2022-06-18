@@ -3,8 +3,9 @@ layout: page-nodesc
 title: Doorkeeper
 description: A love letter to Philippine fantasy and science fiction
 subtitle: Summit Books, 2017
-image: doorkeeper-coverart-zoom.jpg
+og_image: doorkeeper-coverart-zoom.jpg
 image_alt: Robed cosmic figure with a door for a head grapples with a red dragon swallowing the moon.
+add_period: true
 importance: 1
 ---
 

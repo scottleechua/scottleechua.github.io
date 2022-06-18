@@ -2,8 +2,9 @@
 layout: page-nodesc
 title: Workshops
 description: Resources from workshops on escape room and puzzle design
-image: puzzle-workshops-cover.png
+og_image: puzzle-workshops-cover.png
 image_alt: Black and white photo of a Rubik's cube with duct tape along the edges.
+add_period: true
 importance: 3
 ---
 
