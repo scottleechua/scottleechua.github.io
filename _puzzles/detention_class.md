@@ -4,7 +4,7 @@ title: Detention Class
 description: Outdoor escape room meets immersive theater
 subtitle: Armenian Street Party, 2017
 og_image: detention-class-cover.png
-image_alt: Logo of owl over red and blue striped crest captioned 'Riverview High School.' Below the crest are spaces for student's name, section, and teacher, and their mandarin characters.
+image_alt: The words Riverview High School below the school logo, an owl over a red and blue striped crest. Next line. The word Name, in english and chinese, then a blank space. Next line. The word Section, in english and chinese, then a blank space. Next line. The word Teacher, in english and chinese, then a blank space.
 add_period: true
 importance: 2
 ---
@@ -24,10 +24,10 @@ The installation was part escape room and part immersive theater. Puzzle-incline
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        <img class="img-fluid rounded z-depth-1" src="/assets/img/detention-class-2.jpg" alt="Man wearing cap writes notes on a teacher's table in an outdoor classroom set."/>
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/detention-class-2.jpg" alt="Photograph of a man standing behind the teacher's desk in an outdoor classroom and writing on a paper. The blackboard behind him has many things written on it: a list of banned books, a student duty roster, and the date."/>
     </div>
     <div class="col-sm mt-3 mt-md-0">
-        <img class="img-fluid rounded z-depth-1" src="/assets/img/detention-class-1.jpg" alt="Wall of a room set up on a road that reads 'Detention class: To nurture the obedient leaders of tomorrow'."/>
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/detention-class-1.jpg" alt="Photograph of a wall placed on road with the heading, Detention Class. Next four lines are in four different languages: english, chinese, malay, and tamil. The first line in english reads, to nurture the obedient leaders of our tomorrow."/>
     </div>
 </div>
 <div class="caption">

@@ -4,7 +4,7 @@ title: Doorkeeper
 description: A love letter to Philippine fantasy and science fiction
 subtitle: Summit Books, 2017
 og_image: doorkeeper-coverart-zoom.jpg
-image_alt: Robed cosmic figure with a door for a head grapples with a red dragon swallowing the moon.
+image_alt: Painting of a robed entity with a door for a head grabbing a thin red dragon that is swallowing the moon.
 add_period: true
 importance: 1
 ---
@@ -55,12 +55,11 @@ But perhaps even the oldest of beings can change.
 
 <div style="width: 100%; margin-left: auto; margin-right: auto; margin-bottom: 16px;">
 <figure>
-        <img class="img-fluid rounded z-depth-1" src="/assets/img/doorkeeper-montage.jpg" alt="Six vignettes, from left to right: a warrior princess in a forest on horseback; a precolonial shaman holding a torch; a priest in an empty Spanish church; taxi boats on a river in flooded future Manila; three friends drinking in an eighties bar; a boy learning to swim."/>
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/doorkeeper-montage.jpg" alt="Rectangular montage of six illustrations. Images from left to right are as follows. A woman in armor riding a horse in a forest, seen from the back. A crouched, muscular man holding a lit torch. A priest entering an empty church with a stained glass window. Taxi boats on a river in a flooded city. Three young people chatting over a drink. A boy holding his breath underwater."/>
 </figure>
 </div>
 
 I created *Doorkeeper* together with my coauthor, [Ethan Chua](https://medium.com/@ezlc327), as well as a team of fantastic Filipino artists. Their portfolios are linked [here](https://doorkeeper-artists.carrd.co/) --- please follow them, commission them, and make art with them!
-
 
 
 <!-- 

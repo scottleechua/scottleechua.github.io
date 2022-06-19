@@ -31,7 +31,7 @@ I wasn't sure how many people in Singapore were interested in such an esoteric s
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        <img class="img-fluid rounded z-depth-1" src="/assets/img/escape-room-workshop-1.jpg" alt="Workshop venue with projector screen. On the screen is a triangle diagram labeled 'Escape Room Design'."/>
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/escape-room-workshop-1.jpg" alt="Photograph of a training venue with around ten trainees seated and one trainer who is standing. There are workshop materials such as a whiteboard and projector screen. On the projector screen is a triangular diagram labeled, escape room design, narrative, puzzle, flow."/>
     </div>
     <div class="col-sm mt-3 mt-md-0">
         <img class="img-fluid rounded z-depth-1" src="/assets/img/escape-room-workshop-2.jpg" alt="Participants at a table during a workshop."/>
@@ -43,6 +43,7 @@ I wasn't sure how many people in Singapore were interested in such an esoteric s
 <div class="caption">
 All photos courtesy of Ailin Chin.
 </div>
+
 
 #### Praise for the workshop
 -  *Class exceeded my expectations! Speaker was engaging and interacted well with everyone. Gave tips and guides so we can read more and design our own escape rooms. Thumbs up!* -- Erina N.F.

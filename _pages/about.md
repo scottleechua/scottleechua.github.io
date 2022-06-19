@@ -7,8 +7,8 @@ description: Econs | Comics | Puzzles
 
 profile:
   align: right
-  image: profile-picture.png
-  image-alt: "Headshot of Scott Lee Chua. Photo credit: Zac Yeow."
+  image: profile-picture-lores.jpg
+  image-alt: "Headshot of Scott Lee Chua in dark blue shirt, looking to the left and smiling. Photo taken by Zac Yeow."
 
 news: true
 news_header: true

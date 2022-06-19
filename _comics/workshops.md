@@ -3,7 +3,7 @@ layout: page-nodesc
 title: Workshops
 description: Resources from workshops on reading and writing comics
 og_image: comic-workshops.png
-image_alt: Robed cosmic figure with a door for a head grapples with a red dragon swallowing the moon.
+image_alt: Four concentric circles of different colors. The statement, sequential art with words and pictures in panels, is written in the innermost circle. Other circles have photographs and screenshots of comic panels.
 add_period: true
 importance: 2
 ---
