@@ -5,14 +5,14 @@ title_header: The Great (Yale-NUS) Escape
 subtitle: Yale-NUS College, 2020
 description: Invasion of the body-snatching alien cacti from space!
 og_image: great-ync-escape-cover.jpg
-image_alt: Cactus in an illuminated doorway, but the shadow it casts is human.
+image_alt: Digitally edited photograph of a potted cactus in an illuminated doorway that casts the shadow of a human.
 add_period: false
 importance: 1
 ---
 
 <div style="width: 80%; margin-left: auto; margin-right: auto;">
 <figure>
-        <img class="img-fluid rounded z-depth-1" src="/assets/img/great-escape-1.jpg" alt="A room bathed in green light, with a TV, posters on the wall, and a locked pouch on the wooden table."/>
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/great-escape-1.jpg" alt="Photograph of a vacant room with green lights. Two tables with a locked pouch on them. A TV showing a timer, 28 minutes 26 seconds. There are many posters on the walls."/>
 </figure>
 </div>
 
@@ -23,10 +23,10 @@ importance: 1
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        <img class="img-fluid rounded z-depth-1" src="/assets/img/great-escape-2.jpg" alt="A note, some codes, and a directional padlock."/>
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/great-escape-2.jpg" alt="Photograph of a note, some codes on strips of paper, and a directional padlock lying on a wooden table."/>
     </div>
     <div class="col-sm mt-3 mt-md-0">
-        <img class="img-fluid rounded z-depth-1" src="/assets/img/great-escape-3.jpg" alt="A fake cactus and an iPad with alien symbols displayed."/>
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/great-escape-3.jpg" alt="Photograph of a potted cactus and a tablet computer with alien symbols displayed lying on a wooden table."/>
     </div>
 </div>
 
@@ -48,12 +48,14 @@ In the week it was up, we ran over thirty games in five days for over 170 player
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        <img class="img-fluid rounded z-depth-1" src="/assets/img/ync-group-photo-1.jpg" alt="Four students holding alien and cactus themed photo booth props."/>
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/ync-group-photo-1.jpg" alt="Photograph of four smiling students holding props. From left to right, a small potted plant. Paper spectacles. A printed alien mask. Cartoon drawing of a cactus."/>
     </div>
     <div class="col-sm mt-3 mt-md-0">
-        <img class="img-fluid rounded z-depth-1" src="/assets/img/ync-group-photo-3.jpg" alt="Six students holding alien and cactus themed photo booth props."/>
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/ync-group-photo-3.jpg" alt="Photograph of six smiling students holding props. Two hold boards with POW and ZAP written on them. Two others hold masks. And the other two hold small potted cactuses."/>
     </div>
     <div class="col-sm mt-3 mt-md-0">
-        <img class="img-fluid rounded z-depth-1" src="/assets/img/ync-group-photo-2.jpg" alt="Six staff members holding alien and cactus themed photo booth props."/>
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/ync-group-photo-2.jpg" alt="Photograph of six smiling staff members holding props. From left to right, a printed alien mask. Boards with ZAP and POW written on them. A cartoon drawing of a cactus. Two potted cactuses."/>
     </div>
 </div>
+
+

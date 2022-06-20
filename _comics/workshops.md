@@ -13,10 +13,10 @@ Yale-NUS College Writers' Centre, 2021
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        <img class="img-fluid rounded z-depth-1" src="/assets/img/ync-zinefest-1.jpg" alt="Poster for Yale-NUS Writers' Centre Comics and Zines Fest."/>
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/ync-zinefest-1.jpg" alt="First of two posters designed like a comic book page, for comics and zines fest of writers' centre of yale N U S college on 25 to 26 February 2021. It hosts five events. First, page one panel one, storytelling in comics, with Scott Chua. Second, zines one oh one, tell your story, with Sarah Mirk. Third, writing your comic, with Tait Bergstrom. Fourth, the sight, bidirectional arrow, the phrase, with Vanessa Thian. Fifth, comics as personal journals, with Farheen and Olivia."/>
     </div>
     <div class="col-sm mt-3 mt-md-0">
-        <img class="img-fluid rounded z-depth-1" src="/assets/img/ync-zinefest-2.jpg" alt="Poster showing details for five events at the Comics and Zines fest."/>
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/ync-zinefest-2.jpg" alt="Second of two posters for comics and zines fest of writers' centre of yale N U S college. Each of the five fest events has an entry with title, description, time and place, and facilitator's photo and biodata."/>
     </div>
 </div>
 <div class="caption">
@@ -34,7 +34,7 @@ Xavier School, 2018
 
 <div style="width: 60%; margin-left: auto; margin-right: auto;">
 <figure>
-        <img class="img-fluid rounded z-depth-1" src="/assets/img/comic-workshop-xavier.jpg" alt="Title slide with text 'Are graphic novels literature? A comic conference' by Scott Chua, comic author, and Lio Mangubat, publisher, at Xavier School, March 2, 2018. To the right is the cover of the comic book Doorkeeper."/>
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/comic-workshop-xavier.jpg" alt="Screenshot of presentation slide. On the left is the heading, are graphic novels literature?  Next line. A comic conference. Next line. Scott Chua, comic author. Next line. Lio Mangubat, publisher. Next line. Xavier School, March 2, 2018. On the right is the cover page of Doorkeeper written by Ethan Chua and Scott Lee Chua. Next line. Surnames of artists, from left to right. Duran, Felizmenio, Geneta, Guerrero, Lesaca, Mikel, Sabas."/>
 </figure>
 </div>
 

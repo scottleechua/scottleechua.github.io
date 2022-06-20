@@ -16,7 +16,7 @@ importance: 1
 
 <div style="width: 50%; margin-left: auto; margin-right: auto;">
 <figure>
-        <img class="img-fluid rounded z-depth-1" src="/assets/img/doorkeeper-cover.jpg" alt="In background, Doorkeeper, a robed cosmic figure with a door for a head, grapples with a red dragon swallowing the moon. In foreground, within Doorkeeper's robes, five characters -- a priest, musician, shaman, princess, and scientist -- stand side by side."/>
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/doorkeeper-cover.jpg" alt="Cover page of Doorkeeper written by Ethan Chua and Scott Lee Chua. Next line. Surnames of artists, from left to right. Duran, Felizmenio, Geneta, Guerrero, Lesaca, Mikel, Sabas. Next line. Foreword by Budjette Tan. The cover is a painting of a robed entity with a door for a head grabbing a thin red dragon that is swallowing the moon. Within the robes are five characters standing side by side. From left to right. Man in priest robes holding book. Woman holding electric guitar. Strong man holding spear. Woman in armor holding a sword. Woman with glasses looking at her phone."/>
 <figcaption><center>First edition cover by <a href="https://www.instagram.com/japmkl/?hl=en">Jap Mikel</a>.</center></figcaption>
 </figure>
 </div>
@@ -60,18 +60,3 @@ But perhaps even the oldest of beings can change.
 </div>
 
 I created *Doorkeeper* together with my coauthor, [Ethan Chua](https://medium.com/@ezlc327), as well as a team of fantastic Filipino artists. Their portfolios are linked [here](https://doorkeeper-artists.carrd.co/) --- please follow them, commission them, and make art with them!
-
-
-<!-- 
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        <img class="img-fluid rounded z-depth-1" src="{{ '/assets/img/doorkeeper-cover.jpg' | relative_url }}" alt="" title="example image"/>
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        <img class="img-fluid rounded z-depth-1" src="{{ '/assets/img/doorkeeper-cover.jpg' | relative_url }}" alt="" title="example image"/>
-    </div>
-</div>
-<div class="caption">
-    Caption goes here.
-</div>
- -->

@@ -11,7 +11,7 @@ importance: 2
 
 <div style="width: 80%; margin-left: auto; margin-right: auto;">
 <figure>
-        <img class="img-fluid rounded z-depth-1" src="/assets/img/detention-class-3.jpg" alt="People inside classroom set up outdoors. Some are solving puzzles. Actors playing juvenile delinquents sit on the teacher's table. Graffiti is all over the walls."/>
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/detention-class-3.jpg" alt="Photograph of classroom set up outdoors. Some people are solving puzzles. Actors dressed as students sit on the teacher's table. Graffiti is all over the walls."/>
 <figcaption><center>Participants solve puzzles to escape detention class.</center></figcaption>
 </figure>
 </div>

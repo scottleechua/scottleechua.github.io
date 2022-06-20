@@ -3,7 +3,7 @@ layout: page-nodesc
 title: Workshops
 description: Resources from workshops on escape room and puzzle design
 og_image: puzzle-workshops-cover.png
-image_alt: Black and white photo of a Rubik's cube with duct tape along the edges.
+image_alt: Black and white photograph of a rubik's cube with duct tape along the edges.
 add_period: true
 importance: 3
 ---
@@ -13,10 +13,10 @@ The Substation, 2016
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        <img class="img-fluid rounded z-depth-1" src="/assets/img/escape-room-workshop-page-1.png" alt="Poster advertising How to Design an Escape Room. This class is part of the School of Uncommon Knowledge."/>
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/escape-room-workshop-page-1.png" alt="Event poster in black and white. Caption, this class is part of the school of uncommon knowledge. Next line. how to design an escape room. Next line. Hosted by Scott Chua. A photograph of a rubik's cube with duct tape along the edges. The poster also shows the description, time and place, and sign up link for the event."/>
     </div>
     <div class="col-sm mt-3 mt-md-0">
-        <img class="img-fluid rounded z-depth-1" src="/assets/img/escape-room-workshop-page-2.png" alt="Poster advertising 'A Home for the Arts: Who teaches and who is taught?'"/>
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/escape-room-workshop-page-2.png" alt="Event poster in black and white entitled, a home for the arts, who teaches and who is taught. The poster also shows the description and sponsors of the event."/>
     </div>
 </div>
 <div class="caption">
@@ -34,16 +34,15 @@ I wasn't sure how many people in Singapore were interested in such an esoteric s
         <img class="img-fluid rounded z-depth-1" src="/assets/img/escape-room-workshop-1.jpg" alt="Photograph of a training venue with around ten trainees seated and one trainer who is standing. There are workshop materials such as a whiteboard and projector screen. On the projector screen is a triangular diagram labeled, escape room design, narrative, puzzle, flow."/>
     </div>
     <div class="col-sm mt-3 mt-md-0">
-        <img class="img-fluid rounded z-depth-1" src="/assets/img/escape-room-workshop-2.jpg" alt="Participants at a table during a workshop."/>
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/escape-room-workshop-2.jpg" alt="Photograph of participants at a table doing some activity as the trainer observes."/>
     </div>
     <div class="col-sm mt-3 mt-md-0">
-        <img class="img-fluid rounded z-depth-1" src="/assets/img/escape-room-workshop-3.jpg" alt="Closeup of a hand writing on an escape room worksheet."/>
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/escape-room-workshop-3.jpg" alt="Closeup of a hand holding pencil writing on a worksheet."/>
 </div>
 </div>
 <div class="caption">
 All photos courtesy of Ailin Chin.
 </div>
-
 
 #### Praise for the workshop
 -  *Class exceeded my expectations! Speaker was engaging and interacted well with everyone. Gave tips and guides so we can read more and design our own escape rooms. Thumbs up!* -- Erina N.F.

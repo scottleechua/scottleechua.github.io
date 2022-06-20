@@ -8,7 +8,7 @@ og_image: ghost-gcp-diagram.png
 twitter_large_image: true
 ---
 
-<img class="img-fluid rounded" src="{{ site.baseurl }}/assets/img/ghost-gcp-diagram.png" alt="web architecture diagram which is explained below">
+<img class="img-fluid rounded" src="{{ site.baseurl }}/assets/img/ghost-gcp-diagram.png" alt="A flowchart. Caddy 2 web server and ghost blog engine. A right directed arrow toward a grey box entitled google cloud platform. Inside the grey box, compute engine. Right directed arrow. Static IP address. Right directed arrow. Cloud flare content delivery network. From above the grey box, name cheap, domain registrar. Below directed arrow. Static IP address. From above cloud flare, mail provider mail gun. Below directed arrow. Cloud flare, content delivery network. Right directed arrow. Blog and newsletter.">
 
 [I'm sold on this stack, jump to the tutorial!](#overview)
 
