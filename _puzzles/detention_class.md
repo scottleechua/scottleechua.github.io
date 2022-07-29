@@ -31,5 +31,5 @@ The installation was part escape room and part immersive theater. Puzzle-incline
     </div>
 </div>
 <div class="caption">
-    First photo: Shaiful Risan preps for the next set of visitors. Second photo: the tongue-in-cheek inscription on the outside of the installation.
+    Left: Shaiful Risan preps for the next set of visitors. Right: the tongue-in-cheek inscription on the outside of the installation.
 </div>
