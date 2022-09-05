@@ -10,7 +10,7 @@ importance: 1
 ---
 
 <div style="text-align: center;padding-bottom:1.5rem;">
-<h5>read it <a href="https://issuu.com/scottchua/docs/doorkeeper">here</a></h5>
+<h5>read it <a href="https://penlab.ink/titles/doorkeeper">here</a></h5>
 </div>
 
 
