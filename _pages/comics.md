@@ -2,7 +2,7 @@
 layout: page
 title: Comics
 permalink: /comics/
-nav: true
+nav: false
 nav_order: 1
 ---
 

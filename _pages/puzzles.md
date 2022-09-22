@@ -2,7 +2,7 @@
 layout: page
 permalink: /puzzles/
 title: Puzzles
-nav: true
+nav: false
 nav_order: 3
 ---
 
