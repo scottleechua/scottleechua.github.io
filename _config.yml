@@ -66,12 +66,12 @@ plausible_analytics_domain: "scottleechua.com"
 # Blog
 # -----------------------------------------------------------------------------
 
-# blog_nav_title: blog
-# permalink: /blog/:title/
-# 
-# # Pagination
-# pagination:
-#   enabled: true
+blog_nav_title: blog
+permalink: /blog/:title/
+
+# Pagination
+pagination:
+  enabled: true
 
 # -----------------------------------------------------------------------------
 # Collections

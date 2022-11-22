@@ -2,7 +2,7 @@
 layout: page
 permalink: /prose/
 title: Prose
-nav: false
+nav: true
 nav_order: 2
 ---
 
