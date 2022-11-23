@@ -22,4 +22,4 @@ In 2022, I obtained a masters degree in Quantitative Economics from the [Nationa
 
 In 2017, I created a fantasy/sci-fi graphic novel called ***Doorkeeper*** together with [Ethan Chua](https://medium.com/@ezlc327) and a team of [fantastic Filipino artists](https://doorkeeper-artists.carrd.co/) --- read it [here](https://penlab.ink/titles/doorkeeper/).
 
-At present, I design board games with [Mosquito Games](https://mosquito.games), write for video games with [Andas Productions](https://andasproductions.com), and chip away at [a new graphic novel](https://twitter.com/scottleechua/status/1522184619285630976?s=20&t=aZErmsFtkQ8fuurrpj40pQ).
+At present, I build AI and data platforms with [Thinking Machines](https://thinkingmachin.es), design board games with [Mosquito Games](https://mosquito.games), write for video games with [Andas Productions](https://andasproductions.com), and chip away at [a new graphic novel](https://twitter.com/scottleechua/status/1522184619285630976?s=20&t=aZErmsFtkQ8fuurrpj40pQ).
