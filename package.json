@@ -21,6 +21,7 @@
   "homepage": "https://github.com/scottleechua/scottleechua.github.io#readme",
   "dependencies": {
     "@tinacms/cli": "^1.0.6",
+    "mermaid.cli": "^0.5.1",
     "tinacms": "^1.1.3"
   }
 }

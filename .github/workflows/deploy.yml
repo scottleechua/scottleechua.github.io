@@ -18,8 +18,7 @@ jobs:
         bundler-cache: true
     - name: Install deps
       run: |
-        npm install -g mermaid.cli
-        npm list
+        npm ci
     - name: Setup deploy options
       id: setup
       run: |
