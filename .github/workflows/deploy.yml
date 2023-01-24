@@ -18,7 +18,7 @@ jobs:
         bundler-cache: true
     - name: Install deps
       run: |
-        npm ci
+        yarn install --immutable
     - name: Setup deploy options
       id: setup
       run: |
