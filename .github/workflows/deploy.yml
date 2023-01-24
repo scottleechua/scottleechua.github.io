@@ -24,8 +24,8 @@ jobs:
       run: |
         git config --global user.name "GitHub Action"
         git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-        echo "::set-output name=SRC_BRANCH::${GITHUB_REF#refs/heads/}"
-        echo "::set-output name=DEPLOY_BRANCH::gh-pages"
+        echo "SRC_BRANCH=${GITHUB_REF#refs/heads/}" >> $GITHUB_OUTPUT
+        echo "DEPLOY_BRANCH=gh-pages" >> $GITHUB_OUTPUT
     - name: Deploy website
       env:
         HEAD: source
