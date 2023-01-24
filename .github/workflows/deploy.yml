@@ -19,8 +19,6 @@ jobs:
     - name: Install deps
       run: |
         npm install -g mermaid.cli
-        npm install -g @tinacms/cli
-        npm install -g tinacms
         npm list
     - name: Setup deploy options
       id: setup
