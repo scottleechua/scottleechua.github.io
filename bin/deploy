@@ -4,7 +4,7 @@
 
 # Parse cmd arguments
 
-SRC_BRANCH="source"
+SRC_BRANCH="master"
 DEPLOY_BRANCH="gh-pages"
 
 USAGE_MSG="usage: deploy [-h|--help] [-u|--user] [-s|--src SRC_BRANCH] [-d|--deploy DEPLOY_BRANCH] [--verbose] [--no-push]"
@@ -18,6 +18,8 @@ while [[ $# > 0 ]]; do
         exit 0
         ;;
         -u|--user)
+        SRC_BRANCH="source"
+        DEPLOY_BRANCH="master"
         ;;
         -s|--src)
         SRC_BRANCH="$2"
@@ -90,7 +92,7 @@ fi
 git checkout -b $DEPLOY_BRANCH
 
 # Build site
-yarn run tinacms build && bundle exec jekyll build
+bundle exec jekyll build
 
 # Delete and move files
 find . -maxdepth 1 ! -name '_site' ! -name '.git' ! -name 'CNAME' ! -name '.gitignore' -exec rm -rf {} \;

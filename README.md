@@ -1,4 +1,4 @@
-This is the repository behind my [personal website](https://scottleechua.com). It is a fork of the wonderful [al-folio Jekyll theme](https://github.com/alshedivat/al-folio).
+This is the repository behind my [personal website](https://scottleechua.com).
 
 New pages under consideration:
 - `/translations`
