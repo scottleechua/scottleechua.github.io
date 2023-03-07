@@ -2,8 +2,8 @@
 layout: about
 title: Scott Lee Chua 🇵🇭
 permalink: /
-subtitle: Econs | Comics | Puzzles
-description: Econs | Comics | Puzzles
+subtitle: Econs | Comics | Games
+description: Econs | Comics | Games
 
 profile:
   align: right

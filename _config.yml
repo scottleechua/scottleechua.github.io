@@ -7,7 +7,7 @@ first_name: Scott
 middle_name: Lee
 last_name: Chua 🇵🇭
 email: scottleechua@gmail.com
-description: Econs | Comics | Puzzles
+description: Econs | Comics | Games
 footer_text: >
   Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme. Read the <a href="/privacy/">Privacy Policy</a>.
 keywords:
@@ -86,9 +86,9 @@ collections:
   comics:
     output: true
     permalink: /comics/:path/
-  puzzles:
+  games:
     output: true
-    permalink: /puzzles/:path/
+    permalink: /games/:path/
 
 news_limit: 5
 
