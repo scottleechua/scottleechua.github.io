@@ -677,7 +677,7 @@ performance_schema=0
 <div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
 
 <span class="nb">sudo </span>apt update <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt <span class="nt">-y</span> upgrade
-<span class="nb">sudo </span>apt autoremove
+<span class="nb">sudo </span>apt clean <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt autoclean <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt autoremove
 <span class="nb">sudo </span>npm <span class="nb">install</span> <span class="nt">-g</span> npm@latest
 <span class="nb">cd</span> /var/www/ghost
 ghost backup
