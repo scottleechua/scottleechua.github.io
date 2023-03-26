@@ -423,6 +423,6 @@ This walkthrough last worked for me in **March 2023**. If you spot errors, vulne
 
 ## Acknowledgements
 
-- **2023-03**: The updated version of this walkthrough draws from Ghost's [official documentation](https://ghost.org/docs/install/ubuntu/) and Norbert Hunyadi's [Mailgun config snippet](https://bironthemes.com/blog/ghost-mailgun-config/). I also referred to Ron / Cyberjunky's [Ghost v5.0 + Caddy walkthrough](https://cyberjunky.nl/hosting-a-ghost-blog-on-google-cloud/), though I didn't go that direction in the end.
+- **2023-03**: The updated version of this walkthrough draws from Ghost's [official documentation](https://ghost.org/docs/install/ubuntu/) and Norbert Hunyadi's [Mailgun config snippet](https://bironthemes.com/blog/ghost-mailgun-config/). Curiositry's [tutorial](https://www.autodidacts.io/host-ghost-mysql8-on-fly-io-free-tier/) on hosting Ghost on [Fly.io](https://fly.io/)'s free tier and Cyberjunky's [Ghost v5.0 + Caddy walkthrough](https://cyberjunky.nl/hosting-a-ghost-blog-on-google-cloud/) were also immensely helpful, though I didn't go in those directions in the end.
 
 - **2022-01**: This walkthrough owes a debt of gratitude to The Applied Architect's [Ghost on Google Cloud tutorial](https://theappliedarchitect.com/setup-a-free-self-hosted-blog-in-under-15-minutes/) and Brian Burroughs' [Ghost + Caddy tutorial](https://techroads.org/building-a-caddy-container-stack-for-easy-https-with-docker-and-ghost/), which helped me piece together the deployment process.
