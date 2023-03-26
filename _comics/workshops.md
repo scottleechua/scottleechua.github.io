@@ -27,6 +27,8 @@ In July 2022, I was invited to run a writing workshop for grade school students 
 
 After sharing a bit about my own journey as a reader and writer, I led the participants through the process of making their very own comics. Inspired by Sarah Mirk's [zine-making workshop](https://www.mirkwork.com/speaking), we each folded, wrote, and drew an eight-page comic booklet! I had lots of fun listening to the participants share their stories.
 
+---
+
 ### Page One, Panel One: Storytelling in Comics
 Yale-NUS College Writers' Centre, 2021
 
