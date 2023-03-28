@@ -15,7 +15,7 @@ importance: 1
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        <img class="img-fluid rounded z-depth-1" src="/assets/img/doorkeeper-5th-ed-cover.jpg" alt="Second of two posters for comics and zines fest of writers' centre of yale N U S college. Each of the five fest events has an entry with title, description, time and place, and facilitator's photo and biodata."/>
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/doorkeeper-5th-ed-cover.jpg" alt="WIP"/>
     </div>
     <div class="col-sm mt-3 mt-md-0">
         <img class="img-fluid rounded z-depth-1" src="/assets/img/doorkeeper-cover.jpg" alt="Cover page of Doorkeeper written by Ethan Chua and Scott Lee Chua. Next line. Surnames of artists, from left to right. Duran, Felizmenio, Geneta, Guerrero, Lesaca, Mikel, Sabas. Next line. Foreword by Budjette Tan. The cover is a painting of a robed entity with a door for a head grabbing a thin red dragon that is swallowing the moon. Within the robes are five characters standing side by side. From left to right. Man in priest robes holding book. Woman holding electric guitar. Strong man holding spear. Woman in armor holding a sword. Woman with glasses looking at her phone."/>
@@ -37,8 +37,6 @@ And Doorkeeper travels with them, from prehistory to dictatorship, from World Wa
 Doorkeeper watches, listens, and learns. He maintains the Ways. He does his duty.
 
 But perhaps even the oldest of beings can change.
-
----
 
 #### Praise for *Doorkeeper*
 - *"Masterful worldbuilding...a bewitching tale that spans millennia."* -- Anri Ichimura, *[Esquire Philippines](https://www.esquiremag.ph/long-reads/features/this-filipino-graphic-novel-deserves-its-own-tv-show-a00304-20221005-lfrm2)*
