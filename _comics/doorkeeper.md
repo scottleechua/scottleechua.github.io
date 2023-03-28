@@ -2,7 +2,7 @@
 layout: page-nodesc
 title: Doorkeeper
 description: A love letter to Philippine fantasy and science fiction
-subtitle: Summit Books, 2017
+subtitle: Summit Books, 2017 (1st ed.)
 og_image: doorkeeper-coverart-zoom.jpg
 image_alt: Painting of a robed entity with a door for a head grabbing a thin red dragon that is swallowing the moon.
 add_period: true
@@ -10,16 +10,21 @@ importance: 1
 ---
 
 <div style="text-align: center;padding-bottom:1.5rem;">
-<h5>read it <a href="https://penlab.ink/titles/doorkeeper">here</a></h5>
+<h5><a href="https://shopee.ph/Doorkeeper-(5th-Anniversary-Edition)-i.232374857.20547350234">buy the comic</a> or <a href="https://penlab.ink/titles/doorkeeper">read it free</a></h5>
 </div>
 
-
-<div style="width: 50%; margin-left: auto; margin-right: auto;">
-<figure>
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/doorkeeper-5th-ed-cover.jpg" alt="Second of two posters for comics and zines fest of writers' centre of yale N U S college. Each of the five fest events has an entry with title, description, time and place, and facilitator's photo and biodata."/>
+    </div>
+    <div class="col-sm mt-3 mt-md-0">
         <img class="img-fluid rounded z-depth-1" src="/assets/img/doorkeeper-cover.jpg" alt="Cover page of Doorkeeper written by Ethan Chua and Scott Lee Chua. Next line. Surnames of artists, from left to right. Duran, Felizmenio, Geneta, Guerrero, Lesaca, Mikel, Sabas. Next line. Foreword by Budjette Tan. The cover is a painting of a robed entity with a door for a head grabbing a thin red dragon that is swallowing the moon. Within the robes are five characters standing side by side. From left to right. Man in priest robes holding book. Woman holding electric guitar. Strong man holding spear. Woman in armor holding a sword. Woman with glasses looking at her phone."/>
-<figcaption><center>First edition cover by <a href="https://www.instagram.com/japmkl/?hl=en">Jap Mikel</a>.</center></figcaption>
-</figure>
+    </div>
 </div>
+<div class="caption">
+Left: 5th anniversary edition cover by <a href="https://artominique.carbonmade.com/">Dominique Duran</a> (2022). Right: first edition cover by <a href="https://www.instagram.com/japmkl/?hl=en">Jap Mikel</a> (2017).
+</div>
+
 
 *An immortal being. Six individuals, trapped by fate. All of time and space.*
 
@@ -33,10 +38,13 @@ Doorkeeper watches, listens, and learns. He maintains the Ways. He does his duty
 
 But perhaps even the oldest of beings can change.
 
+---
+
 #### Praise for *Doorkeeper*
+- *"Masterful worldbuilding...a bewitching tale that spans millennia."* -- Anri Ichimura, *[Esquire Philippines](https://www.esquiremag.ph/long-reads/features/this-filipino-graphic-novel-deserves-its-own-tv-show-a00304-20221005-lfrm2)*
 - *"A wonderland."* -- Jade Castro, *[CNN Philippines](https://www.cnnphilippines.com/life/culture/literature/2017/12/30/pinoy-comics-2017.html)*
 - *"Compelling...accessible...timeless."* - Jedd Ong, *[Young Star](https://web.archive.org/web/20190904071959/http://youngstar.ph:80/doorkeeper-fresh-riff-depths-fate-philippine-history/)*
-- *"An amazing collection of stories."* -- Budjette Tan, author of *Trese*
+- *"An amazing collection of stories."* -- Budjette Tan, author of *[Trese](https://en.wikipedia.org/wiki/Trese)*
 - *"A complex weaving [that] finds a home for the reader."* -- Erik Cheski, *[Fanbase Press](https://www.fanbasepress.com/index.php/press/reviews/item/9606-doorkeeper-graphic-novel-review)*
 
 #### *Doorkeeper* in the press
@@ -45,7 +53,7 @@ But perhaps even the oldest of beings can change.
 - After *Trese*, these Filipino komiks deserve their own animated adaptation -- *[Metroscene Mag](https://www.metroscenemag.com/2021/06/after-trese-these-filipino-komiks-deserves-adaptation.html)*
 - Pinay illustrators talk about their experiences working on comics -- *[Cosmopolitan](https://www.cosmo.ph/lifestyle/career-money/what-it-s-like-to-be-women-in-the-comic-industry-a704-20171211-lfrm)*
 - The Komikon report: Madly into the mainstream -- *[Philippine Inquirer](https://lifestyle.inquirer.net/280006/komikon-report-madly-mainstream/#ixzz4zUFw027g)*
-- Let's Talk Komiks: Ethan Chua and Scott Lee Chua on creating Philippine history / mythology comic *Doorkeeper* -- *[Flipgeeks](http://www.flipgeeks.com/pinoy-komiks-dc-marvel-etc/lets-talk-komiks-ethan-and-scott-chua-on-creating-doorkeeper)*
+- Let's Talk Komiks: Ethan Chua and Scott Lee Chua on creating *Doorkeeper* -- *[Flipgeeks](http://www.flipgeeks.com/pinoy-komiks-dc-marvel-etc/lets-talk-komiks-ethan-and-scott-chua-on-creating-doorkeeper)*
 
 #### *Doorkeeper* in the community
 - In 2020 during the community quarantine, we put *Doorkeeper* up online for free, with the gracious support of Summit Books.
