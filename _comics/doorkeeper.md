@@ -15,7 +15,7 @@ importance: 1
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        <img class="img-fluid rounded z-depth-1" src="/assets/img/doorkeeper-5th-ed-cover.jpg" alt="WIP"/>
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/doorkeeper-5th-ed-cover.jpg" alt="Cover page of Doorkeeper fifth anniversary edition written by Ethan Chua and Scott Lee Chua. Above the title is a review quote Masterful wordbuilding, a bewitching tale that spans millennia end quote by Anri Ichimura, Esquire Philippines. Surnames of artists from left to right. Duran, Felizmenio, Geneta, Guerrero, Lesaca, Mikel, Sabas. Next line. Foreword by Budjette Tan. The cover is a painting of a robed entity with a door for a head. Inside its robe is dark space, the earth, and a red dragon circling the earth. Behind the entity are four windows with characters peeking through them. From left to right. Muscular man. Old woman. Man with bloody forehead. Orange haired girl. In front of the entity, sketch papers fly across the page."/>
     </div>
     <div class="col-sm mt-3 mt-md-0">
         <img class="img-fluid rounded z-depth-1" src="/assets/img/doorkeeper-cover.jpg" alt="Cover page of Doorkeeper written by Ethan Chua and Scott Lee Chua. Next line. Surnames of artists, from left to right. Duran, Felizmenio, Geneta, Guerrero, Lesaca, Mikel, Sabas. Next line. Foreword by Budjette Tan. The cover is a painting of a robed entity with a door for a head grabbing a thin red dragon that is swallowing the moon. Within the robes are five characters standing side by side. From left to right. Man in priest robes holding book. Woman holding electric guitar. Strong man holding spear. Woman in armor holding a sword. Woman with glasses looking at her phone."/>
