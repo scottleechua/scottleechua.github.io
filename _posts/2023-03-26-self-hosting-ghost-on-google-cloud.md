@@ -379,6 +379,7 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
    sudo apt update && sudo apt -y upgrade
    sudo apt clean && sudo apt autoclean && sudo apt autoremove
    sudo npm install -g npm@latest
+   sudo npm install -g ghost-cli@latest
    cd /var/www/ghost
    ghost backup
    ghost update
@@ -410,6 +411,8 @@ At this point you should have a working self-hosted Ghost blog. Updates aside, y
 This walkthrough last worked for me in **March 2023**. If you spot errors, vulnerabilities, or potential improvements, please do [open a pull request](https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2023-03-26-self-hosting-ghost-on-google-cloud.md) on this blog post!
 
 ## Changelog
+
+- **2023-05**: Add update Ghost CLI command to `update-ghost.sh`.
 
 - **2023-03**: Replace SQLite with MySQL, Caddy with NGINX, and Docker with [Ghost CLI](https://ghost.org/docs/ghost-cli/). Add update script for easier maintenance.
 
