@@ -379,8 +379,8 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
    sudo apt update && sudo apt -y upgrade
    sudo apt clean && sudo apt autoclean && sudo apt autoremove
    sudo npm install -g npm@latest
-   sudo npm install -g ghost-cli@latest
    cd /var/www/ghost
+   sudo npm install -g ghost-cli@latest
    ghost backup
    ghost update
    ghost ls
