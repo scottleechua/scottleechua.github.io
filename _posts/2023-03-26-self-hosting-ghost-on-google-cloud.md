@@ -315,6 +315,25 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
     
    If you entered a value wrong, interrupt with `Ctrl + C` then run `ghost setup`.
 
+4. If MySQL is still giving errors, run:
+
+   ```bash
+   sudo mysql
+   ```
+
+   then in the MySQL command line:
+
+   ```sql
+   ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'yourpasswordhere';
+   quit;
+   ```
+
+   then run:
+
+   ```bash
+   ghost start
+   ```
+
 #### Set up Mailgun on Ghost
 
 1. While still inside `/var/www/ghost`, run:
