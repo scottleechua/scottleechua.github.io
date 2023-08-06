@@ -589,6 +589,26 @@ performance_schema=0
 
     <p>If you entered a value wrong, interrupt with <code class="language-plaintext highlighter-rouge">Ctrl + C</code> then run <code class="language-plaintext highlighter-rouge">ghost setup</code>.</p>
   </li>
+  <li>
+    <p>If MySQL is still giving errors, run:</p>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>mysql
+</code></pre></div>    </div>
+
+    <p>then in the MySQL command line:</p>
+
+    <div class="language-sql highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="k">ALTER</span> <span class="k">USER</span> <span class="s1">'root'</span><span class="o">@</span><span class="s1">'localhost'</span> <span class="n">IDENTIFIED</span> <span class="k">WITH</span> <span class="n">mysql_native_password</span> <span class="k">BY</span> <span class="s1">'yourpasswordhere'</span><span class="p">;</span>
+<span class="n">quit</span><span class="p">;</span>
+</code></pre></div>    </div>
+
+    <p>then run:</p>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>ghost start
+</code></pre></div>    </div>
+  </li>
 </ol>
 
 <h4 id="set-up-mailgun-on-ghost">Set up Mailgun on Ghost</h4>
