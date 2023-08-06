@@ -456,34 +456,39 @@
 </code></pre></div>    </div>
   </li>
   <li>
-    <p>Start MySQL:</p>
+    <p>Start MySQL in modified mode:</p>
 
     <div class="language-bash highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl start mysql.service
-<span class="nb">sudo </span>mysql
+<div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl set-environment <span class="nv">MYSQLD_OPTS</span><span class="o">=</span><span class="s2">"--skip-networking --skip-grant-tables"</span>
+<span class="nb">sudo </span>systemctl start mysql.service
+<span class="nb">sudo </span>mysql <span class="nt">-u</span> root
 </code></pre></div>    </div>
 
     <p>This will load the MySQL command line. Enter:</p>
 
     <div class="language-sql highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="k">alter</span> <span class="k">USER</span> <span class="s1">'root'</span><span class="o">@</span><span class="s1">'localhost'</span> <span class="n">identified</span> <span class="k">with</span> <span class="n">yourpasswordhere</span> <span class="k">by</span> <span class="s1">'password'</span><span class="p">;</span>
+<div class="highlight"><pre class="highlight"><code><span class="n">flush</span> <span class="k">privileges</span><span class="p">;</span>
+<span class="n">USE</span> <span class="n">mysql</span><span class="p">;</span>
+<span class="k">ALTER</span> <span class="k">USER</span> <span class="s1">'root'</span><span class="o">@</span><span class="s1">'localhost'</span> <span class="n">identified</span> <span class="k">BY</span> <span class="s1">'yourpasswordhere'</span><span class="p">;</span>
 <span class="n">quit</span><span class="p">;</span>
 </code></pre></div>    </div>
 
     <p>replacing <code class="language-plaintext highlighter-rouge">yourpasswordhere</code> with your chosen MySQL root password.</p>
   </li>
   <li>
-    <p>Switch MySQL to production mode. Run:</p>
+    <p>Restart MySQL and switch to production mode. Run:</p>
 
     <div class="language-bash highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>mysql_secure_installation
+<div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl unset-environment MYSQLD_OPTS
+<span class="nb">sudo </span>systemctl revert mysql
+<span class="nb">sudo </span>killall <span class="nt">-u</span> mysql
+<span class="nb">sudo </span>systemctl restart mysql.service
+<span class="nb">sudo </span>mysql_secure_installation
 </code></pre></div>    </div>
 
     <p>then configure as follows:</p>
     <ul>
       <li>Install validate password component? —<code class="language-plaintext highlighter-rouge">N</code>
-</li>
-      <li>Change root password? — <code class="language-plaintext highlighter-rouge">N</code>
 </li>
       <li>Remove anonymous users? — <code class="language-plaintext highlighter-rouge">Y</code>
 </li>
@@ -509,7 +514,7 @@
 performance_schema=0
 </code></pre></div>    </div>
 
-    <p>then <code class="language-plaintext highlighter-rouge">Ctrl-X</code> &gt; <code class="language-plaintext highlighter-rouge">Y</code> &gt; `Enter to save and quit.</p>
+    <p>then <code class="language-plaintext highlighter-rouge">Ctrl-X</code> &gt; <code class="language-plaintext highlighter-rouge">Y</code> &gt; <code class="language-plaintext highlighter-rouge">Enter</code> to save and quit.</p>
   </li>
   <li>
     <p>Restart MySQL and log in:</p>
@@ -522,8 +527,8 @@ performance_schema=0
     <p>Then in the MySQL command line, run:</p>
 
     <div class="language-sql highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="k">show</span> <span class="n">variables</span> <span class="k">like</span> <span class="s1">'performance_schema’;
-</span></code></pre></div>    </div>
+<div class="highlight"><pre class="highlight"><code><span class="k">show</span> <span class="n">variables</span> <span class="k">like</span> <span class="s1">'performance_schema'</span><span class="p">;</span>
+</code></pre></div>    </div>
 
     <p>Verify that the <code class="language-plaintext highlighter-rouge">performance_schema</code> variable is indeed <code class="language-plaintext highlighter-rouge">OFF</code>, then</p>
 
@@ -712,11 +717,14 @@ ghost <span class="nb">ls</span>
 <hr>
 
 <h2 id="contribute">Contribute</h2>
-<p>This walkthrough last worked for me in <strong>March 2023</strong>. If you spot errors, vulnerabilities, or potential improvements, please do <a href="https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2023-03-26-self-hosting-ghost-on-google-cloud.md" target="_blank" rel="noopener">open a pull request</a> on this blog post!</p>
+<p>This walkthrough last worked for me in <strong>August 2023</strong>. If you spot errors, vulnerabilities, or potential improvements, please do <a href="https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2023-03-26-self-hosting-ghost-on-google-cloud.md" target="_blank" rel="noopener">open a pull request</a> on this blog post!</p>
 
 <h2 id="changelog">Changelog</h2>
 
 <ul>
+  <li>
+    <p><strong>2023-08</strong>: Revise instructions to set MySQL root password. Thanks to <a href="https://linuxhint.com/change-mysql-root-password-ubuntu/" target="_blank" rel="noopener">Shehroz Alam on Linuxhint</a>.</p>
+  </li>
   <li>
     <p><strong>2023-05</strong>: Add update Ghost CLI command to <code class="language-plaintext highlighter-rouge">update-ghost.sh</code>.</p>
   </li>
