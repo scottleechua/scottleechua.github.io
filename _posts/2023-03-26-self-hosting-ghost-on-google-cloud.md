@@ -209,31 +209,37 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
    sudo apt -y autoremove
    ```
 
-5. Start MySQL:
+5. Start MySQL in modified mode:
 
    ```bash
+   sudo systemctl set-environment MYSQLD_OPTS="--skip-networking --skip-grant-tables"
    sudo systemctl start mysql.service
-   sudo mysql
+   sudo mysql -u root
    ```
 
    This will load the MySQL command line. Enter:
 
    ```sql
-   alter USER 'root'@'localhost' identified with yourpasswordhere by 'password';
+   flush privileges;
+   USE mysql;
+   ALTER USER 'root'@'localhost' identified BY 'yourpasswordhere';
    quit;
    ```
-   
-   replacing `yourpasswordhere` with your chosen MySQL root password.
 
-6. Switch MySQL to production mode. Run:
+   replacing `yourpasswordhere` with your chosen MySQL root password.
+   
+6. Restart MySQL and switch to production mode. Run:
 
    ```bash
+   sudo systemctl unset-environment MYSQLD_OPTS
+   sudo systemctl revert mysql
+   sudo killall -u mysql
+   sudo systemctl restart mysql.service
    sudo mysql_secure_installation
    ```
 
    then configure as follows:
    - Install validate password component? —`N`
-   - Change root password? — `N`
    - Remove anonymous users? — `Y`
    - Disallow root login remotely? — `N`
    - Remove test database and its privileges? — `Y`
@@ -252,7 +258,7 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
    performance_schema=0
    ```
 
-   then `Ctrl-X` > `Y` > `Enter to save and quit.
+   then `Ctrl-X` > `Y` > `Enter` to save and quit.
 
 8. Restart MySQL and log in:
 
@@ -264,7 +270,7 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
    Then in the MySQL command line, run:
 
    ```sql
-   show variables like 'performance_schema’;
+   show variables like 'performance_schema';
    ```
 
    Verify that the `performance_schema` variable is indeed `OFF`, then
@@ -408,9 +414,11 @@ At this point you should have a working self-hosted Ghost blog. Updates aside, y
 ---
 
 ## Contribute
-This walkthrough last worked for me in **March 2023**. If you spot errors, vulnerabilities, or potential improvements, please do [open a pull request](https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2023-03-26-self-hosting-ghost-on-google-cloud.md) on this blog post!
+This walkthrough last worked for me in **August 2023**. If you spot errors, vulnerabilities, or potential improvements, please do [open a pull request](https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2023-03-26-self-hosting-ghost-on-google-cloud.md) on this blog post!
 
 ## Changelog
+
+- **2023-08**: Revise instructions to set MySQL root password. Thanks to [Shehroz Alam on Linuxhint](https://linuxhint.com/change-mysql-root-password-ubuntu/).
 
 - **2023-05**: Add update Ghost CLI command to `update-ghost.sh`.
 
