@@ -45,7 +45,7 @@ In this walkthrough, I outline the whole process of setting up **each and every 
 3. [Deploy Ghost](#3-deploy-ghost)
 4. [Configure Ghost](#4-configure-ghost)
 5. [Finish Cloudflare configuration](#5-finish-cloudflare-configuration)
-6. [Create update script](#6-create-update-script)
+6. [Create maintenance scripts](#6-create-maintenance-scripts)
 
 The whole thing takes 1-2 hours depending on your comfort level with the various technologies.
 
@@ -389,7 +389,30 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
 3. `Edit` the other A record to change Proxy status to `Proxied`.
 4. Go to ghostblog.com > SSL/TLS > Overview and change SSL/TLS encryption mode to `Full`.
 
-### 6. Create update script
+### 6. Create maintenance scripts
+
+#### Enable Ghost auto-start
+
+Sometimes virtual machines restart by themselves. Create this cron job so that whenever the virtual machine restarts, Ghost does, too.
+
+1. From the home directory of `service_account`, run:
+
+   ```bash
+   crontab -e
+   ```
+
+   and press `1` to select Nano as your text editor.
+
+2. Paste the following into the cronfile:
+
+   ```
+   @reboot cd /var/www/ghost && /usr/bin/ghost start
+   ```
+
+#### Create update script
+
+Create a single bash script that updates Ghost and all its dependencies.
+
 1. Create an update script in the home directory of `service_account`:
 
    ```bash
@@ -437,7 +460,9 @@ This walkthrough last worked for me in **August 2023**. If you spot errors, vuln
 
 ## Changelog
 
-- **2023-08**: Revise instructions to set MySQL root password. Thanks to [Shehroz Alam on Linuxhint](https://linuxhint.com/change-mysql-root-password-ubuntu/).
+- **2023-08-10**: Add cron job to auto-start Ghost upon VM restart. Thanks to [Daniel Raffel](https://github.com/danielraffel) for the contribution!
+
+- **2023-08-06**: Revise instructions to set MySQL root password. Thanks to [Shehroz Alam on Linuxhint](https://linuxhint.com/change-mysql-root-password-ubuntu/).
 
 - **2023-05**: Add update Ghost CLI command to `update-ghost.sh`.
 
@@ -449,10 +474,6 @@ This walkthrough last worked for me in **August 2023**. If you spot errors, vuln
    
    Later, after I got the CLI-based installation working, I considered recreating this setup using a Dockerfile. But MySQL uses much more RAM than SQLite, occasionally hitting the 1GB ceiling during relatively intensive operations, such as sending out newsletters. Adding Docker back into the mix would likely consume even more memory.
 
-- **2022-01**: Initial post.
+   The updated version of this walkthrough draws from Ghost's [official documentation](https://ghost.org/docs/install/ubuntu/) and Norbert Hunyadi's [Mailgun config snippet](https://bironthemes.com/blog/ghost-mailgun-config/). Curiositry's [tutorial](https://www.autodidacts.io/host-ghost-mysql8-on-fly-io-free-tier/) on hosting Ghost on [Fly.io](https://fly.io/)'s free tier and Cyberjunky's [Ghost v5.0 + Caddy walkthrough](https://cyberjunky.nl/hosting-a-ghost-blog-on-google-cloud/) were also immensely helpful, though I didn't go in those directions in the end.
 
-## Acknowledgements
-
-- **2023-03**: The updated version of this walkthrough draws from Ghost's [official documentation](https://ghost.org/docs/install/ubuntu/) and Norbert Hunyadi's [Mailgun config snippet](https://bironthemes.com/blog/ghost-mailgun-config/). Curiositry's [tutorial](https://www.autodidacts.io/host-ghost-mysql8-on-fly-io-free-tier/) on hosting Ghost on [Fly.io](https://fly.io/)'s free tier and Cyberjunky's [Ghost v5.0 + Caddy walkthrough](https://cyberjunky.nl/hosting-a-ghost-blog-on-google-cloud/) were also immensely helpful, though I didn't go in those directions in the end.
-
-- **2022-01**: This walkthrough owes a debt of gratitude to The Applied Architect's [Ghost on Google Cloud tutorial](https://theappliedarchitect.com/setup-a-free-self-hosted-blog-in-under-15-minutes/) and Brian Burroughs' [Ghost + Caddy tutorial](https://techroads.org/building-a-caddy-container-stack-for-easy-https-with-docker-and-ghost/), which helped me piece together the deployment process.
+- **2022-01**: Initial post. This walkthrough owes a debt of gratitude to The Applied Architect's [Ghost on Google Cloud tutorial](https://theappliedarchitect.com/setup-a-free-self-hosted-blog-in-under-15-minutes/) and Brian Burroughs' [Ghost + Caddy tutorial](https://techroads.org/building-a-caddy-container-stack-for-easy-https-with-docker-and-ghost/), which helped me piece together the deployment process.
