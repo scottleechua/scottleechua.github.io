@@ -179,7 +179,7 @@
   <li><a href="#3-deploy-ghost">Deploy Ghost</a></li>
   <li><a href="#4-configure-ghost">Configure Ghost</a></li>
   <li><a href="#5-finish-cloudflare-configuration">Finish Cloudflare configuration</a></li>
-  <li><a href="#6-create-update-script">Create update script</a></li>
+  <li><a href="#6-create-maintenance-scripts">Create maintenance scripts</a></li>
 </ol>
 
 <p>The whole thing takes 1-2 hours depending on your comfort level with the various technologies.</p>
@@ -686,7 +686,35 @@ performance_schema=0
   <li>Go to ghostblog.com &gt; SSL/TLS &gt; Overview and change SSL/TLS encryption mode to <code class="language-plaintext highlighter-rouge">Full</code>.</li>
 </ol>
 
-<h3 id="6-create-update-script">6. Create update script</h3>
+<h3 id="6-create-maintenance-scripts">6. Create maintenance scripts</h3>
+
+<h4 id="enable-ghost-auto-start">Enable Ghost auto-start</h4>
+
+<p>Sometimes virtual machines restart by themselves. Create this cron job so that whenever the virtual machine restarts, Ghost does, too.</p>
+
+<ol>
+  <li>
+    <p>From the home directory of <code class="language-plaintext highlighter-rouge">service_account</code>, run:</p>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>crontab <span class="nt">-e</span>
+</code></pre></div>    </div>
+
+    <p>and press <code class="language-plaintext highlighter-rouge">1</code> to select Nano as your text editor.</p>
+  </li>
+  <li>
+    <p>Paste the following into the cronfile:</p>
+
+    <div class="language-plaintext highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>@reboot cd /var/www/ghost &amp;&amp; /usr/bin/ghost start
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h4 id="create-update-script">Create update script</h4>
+
+<p>Create a single bash script that updates Ghost and all its dependencies.</p>
+
 <ol>
   <li>
     <p>Create an update script in the home directory of <code class="language-plaintext highlighter-rouge">service_account</code>:</p>
@@ -743,7 +771,10 @@ ghost <span class="nb">ls</span>
 
 <ul>
   <li>
-    <p><strong>2023-08</strong>: Revise instructions to set MySQL root password. Thanks to <a href="https://linuxhint.com/change-mysql-root-password-ubuntu/" target="_blank" rel="noopener">Shehroz Alam on Linuxhint</a>.</p>
+    <p><strong>2023-08-10</strong>: Add cron job to auto-start Ghost upon VM restart. Thanks to <a href="https://github.com/danielraffel" target="_blank" rel="noopener">Daniel Raffel</a> for the contribution!</p>
+  </li>
+  <li>
+    <p><strong>2023-08-06</strong>: Revise instructions to set MySQL root password. Thanks to <a href="https://linuxhint.com/change-mysql-root-password-ubuntu/" target="_blank" rel="noopener">Shehroz Alam on Linuxhint</a>.</p>
   </li>
   <li>
     <p><strong>2023-05</strong>: Add update Ghost CLI command to <code class="language-plaintext highlighter-rouge">update-ghost.sh</code>.</p>
@@ -756,20 +787,11 @@ ghost <span class="nb">ls</span>
     <p>Consequently, the previous setup instructions broke. Months after v5.0, the unofficial Ghost Docker images were still configured for SQLite3, and I didn’t have the bandwidth to figure out how MySQL factored in to the Docker setup. When I learned that Ghost installed via the Ghost CLI could take care of SSL certificate renewals, I was more than happy to bring this walkthrough closer to the official Ghost <a href="https://ghost.org/docs/install/ubuntu/" target="_blank" rel="noopener">installation instructions for Ubuntu</a> and its recommended stack.</p>
 
     <p>Later, after I got the CLI-based installation working, I considered recreating this setup using a Dockerfile. But MySQL uses much more RAM than SQLite, occasionally hitting the 1GB ceiling during relatively intensive operations, such as sending out newsletters. Adding Docker back into the mix would likely consume even more memory.</p>
-  </li>
-  <li>
-    <p><strong>2022-01</strong>: Initial post.</p>
-  </li>
-</ul>
 
-<h2 id="acknowledgements">Acknowledgements</h2>
-
-<ul>
-  <li>
-    <p><strong>2023-03</strong>: The updated version of this walkthrough draws from Ghost’s <a href="https://ghost.org/docs/install/ubuntu/" target="_blank" rel="noopener">official documentation</a> and Norbert Hunyadi’s <a href="https://bironthemes.com/blog/ghost-mailgun-config/" target="_blank" rel="noopener">Mailgun config snippet</a>. Curiositry’s <a href="https://www.autodidacts.io/host-ghost-mysql8-on-fly-io-free-tier/" target="_blank" rel="noopener">tutorial</a> on hosting Ghost on <a href="https://fly.io/" target="_blank" rel="noopener">Fly.io</a>’s free tier and Cyberjunky’s <a href="https://cyberjunky.nl/hosting-a-ghost-blog-on-google-cloud/" target="_blank" rel="noopener">Ghost v5.0 + Caddy walkthrough</a> were also immensely helpful, though I didn’t go in those directions in the end.</p>
+    <p>The updated version of this walkthrough draws from Ghost’s <a href="https://ghost.org/docs/install/ubuntu/" target="_blank" rel="noopener">official documentation</a> and Norbert Hunyadi’s <a href="https://bironthemes.com/blog/ghost-mailgun-config/" target="_blank" rel="noopener">Mailgun config snippet</a>. Curiositry’s <a href="https://www.autodidacts.io/host-ghost-mysql8-on-fly-io-free-tier/" target="_blank" rel="noopener">tutorial</a> on hosting Ghost on <a href="https://fly.io/" target="_blank" rel="noopener">Fly.io</a>’s free tier and Cyberjunky’s <a href="https://cyberjunky.nl/hosting-a-ghost-blog-on-google-cloud/" target="_blank" rel="noopener">Ghost v5.0 + Caddy walkthrough</a> were also immensely helpful, though I didn’t go in those directions in the end.</p>
   </li>
   <li>
-    <p><strong>2022-01</strong>: This walkthrough owes a debt of gratitude to The Applied Architect’s <a href="https://theappliedarchitect.com/setup-a-free-self-hosted-blog-in-under-15-minutes/" target="_blank" rel="noopener">Ghost on Google Cloud tutorial</a> and Brian Burroughs’ <a href="https://techroads.org/building-a-caddy-container-stack-for-easy-https-with-docker-and-ghost/" target="_blank" rel="noopener">Ghost + Caddy tutorial</a>, which helped me piece together the deployment process.</p>
+    <p><strong>2022-01</strong>: Initial post. This walkthrough owes a debt of gratitude to The Applied Architect’s <a href="https://theappliedarchitect.com/setup-a-free-self-hosted-blog-in-under-15-minutes/" target="_blank" rel="noopener">Ghost on Google Cloud tutorial</a> and Brian Burroughs’ <a href="https://techroads.org/building-a-caddy-container-stack-for-easy-https-with-docker-and-ghost/" target="_blank" rel="noopener">Ghost + Caddy tutorial</a>, which helped me piece together the deployment process.</p>
   </li>
 </ul>
 
