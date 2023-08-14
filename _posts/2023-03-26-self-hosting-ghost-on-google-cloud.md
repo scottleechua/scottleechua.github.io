@@ -140,7 +140,7 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
 3. Go back to Cloudflare > ghostblog.com > `DNS` and add the five DNS records Mailgun requires. Turn Proxy Status off (i.e., set all to `DNS only`).
 4. Go back to Mailgun > `Verify DNS settings`.
 5. Once the custom domain has been added to Mailgun, go to Sending > Domain Settings > `SMTP Credentials`. Take note of the "login" (usually `postmaster@ghostblog.com`).
-6. Click `Reset password` > `Reset password` > `Copy`. Paste this password somewhere safe---it will only be generated this once!
+6. Click `Manage SMTP Credentials`, then `Reset password` > `Reset password` > `Copy`. Paste this password somewhere safe---it will only be generated this once!
 7. Click on your profile in the upper right > `API Keys`, and take note of the Private API Key.
 
 ### 3. Deploy Ghost
@@ -460,7 +460,7 @@ This walkthrough last worked for me in **August 2023**. If you spot errors, vuln
 
 ## Changelog
 
-- **2023-08-10**: Add cron job to auto-start Ghost upon VM restart. Thanks to [Daniel Raffel](https://github.com/danielraffel) for the contribution!
+- **2023-08-10**: Add cron job to auto-start Ghost upon VM restart. Thanks to [Daniel Raffel](https://blog.danielraffel.me/) for the contribution!
 
 - **2023-08-06**: Revise instructions to set MySQL root password. Thanks to [Shehroz Alam on Linuxhint](https://linuxhint.com/change-mysql-root-password-ubuntu/).
 
