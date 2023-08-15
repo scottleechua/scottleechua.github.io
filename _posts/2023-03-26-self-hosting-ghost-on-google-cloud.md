@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  Self-hosting Ghost on Google Cloud
-date:   2023-03-26
+date:   2023-08-10
 description: A plaintext walkthrough of deploying an almost-free, fully self-hosted Ghost blog on Google Cloud.
 categories: walkthrough, website, cloud
 og_image: ghost-google-cloud-diagram.png
