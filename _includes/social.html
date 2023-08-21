@@ -55,3 +55,6 @@
             {%- if site.rss_icon -%}
             <a href="{{ site.baseurl | prepend: site.url }}/feed.xml" title="RSS Feed"><i class="fas fa-rss-square"></i></a>
             {% endif %}
+            {%- if site.mastodon_profile -%}
+            <a href="{{ site.mastodon_profile }}" title="Mastodon"><i class="fab fa-mastodon"></i></a>
+            {% endif %}
