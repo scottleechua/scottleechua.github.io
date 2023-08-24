@@ -4,4 +4,4 @@ date: 2022-02-19
 inline: true
 ---
 
-I just concluded a three-day [virtual workshop](https://www.facebook.com/SynergeiaFoundation/videos/658319248852453) with Queena Lee-Chua (my mother!) on Singapore math and the model method, for over 20,000 teachers across the Philippines. :bulb:
+I just concluded a three-day workshop with Queena Lee-Chua (my mother!) on model method problem solving for over 20,000 Filipino teachers through [Synergeia Foundation](https://www.facebook.com/synergeiafoundationinc). :bulb:
