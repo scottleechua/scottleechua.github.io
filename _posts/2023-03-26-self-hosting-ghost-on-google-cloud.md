@@ -192,7 +192,7 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
 2. Install NodeJS:
 
    ```bash
-   curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash
+   curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash
    sudo apt install -y nodejs
    sudo npm install -g npm@latest
    ```
