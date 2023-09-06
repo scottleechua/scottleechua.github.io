@@ -429,8 +429,10 @@ Create a single bash script that updates Ghost and all its dependencies.
    sudo npm install -g npm@latest
    cd /var/www/ghost
    sudo npm install -g ghost-cli@latest
+   ghost stop
    ghost backup
    ghost update
+   ghost start
    ghost ls
    ```
 
