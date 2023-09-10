@@ -189,11 +189,17 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
    sudo apt install -y nginx && sudo ufw allow 'Nginx Full'
    ```
 
-2. Install NodeJS:
+2. Install [NodeJS](https://github.com/nodesource/distributions#installation-instructions):
 
    ```bash
-   curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash
-   sudo apt install -y nodejs
+   sudo apt update
+   sudo apt install -y ca-certificates curl gnupg
+   sudo mkdir -p /etc/apt/keyrings
+   curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+   NODE_MAJOR=18
+   echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+   sudo apt update
+   sudo apt install nodejs -y
    sudo npm install -g npm@latest
    ```
 
@@ -429,8 +435,8 @@ Create a single bash script that updates Ghost and all its dependencies.
    sudo npm install -g npm@latest
    cd /var/www/ghost
    sudo npm install -g ghost-cli@latest
-   ghost stop
    ghost backup
+   ghost stop
    ghost update
    ghost start
    ghost ls
@@ -458,9 +464,11 @@ At this point you should have a working self-hosted Ghost blog. Updates aside, y
 ---
 
 ## Contribute
-This walkthrough last worked for me in **August 2023**. If you spot errors, vulnerabilities, or potential improvements, please do [open a pull request](https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2023-03-26-self-hosting-ghost-on-google-cloud.md) on this blog post!
+This walkthrough last worked for me in **September 2023**. If you spot errors, vulnerabilities, or potential improvements, please do [open a pull request](https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2023-03-26-self-hosting-ghost-on-google-cloud.md) on this blog post!
 
 ## Changelog
+
+- **2023-09-10**: Update Nodejs installation instructions to install v18, [as recommended by Ghost](https://ghost.org/docs/faq/node-versions/).
 
 - **2023-08-10**: Add cron job to auto-start Ghost upon VM restart. Thanks to [Daniel Raffel](https://blog.danielraffel.me/) for the contribution!
 
