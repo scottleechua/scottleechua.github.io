@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  Versioning comic scripts using Fountain and GitHub
-date:   2022-05-25
+date:   2023-09-12
 description: A plaintext walkthrough of writing and sharing auto-updating comic scripts using Fountain, <i>&#8217;afterwriting</i>, and GitHub Actions.
 categories: walkthrough, comics, cloud
 og_image: comic-script-diagram.png
@@ -28,13 +28,13 @@ while I write and overwrite the same single file all throughout (i.e., none of [
 
 In short, I wanted to implement [version control](https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control).
 
-The workflow I settled on is straightforward: I push my `.fountain` script files to a [GitHub](https://github.com/) repository, then use [<i>&#8217;afterwriting</i>](https://afterwriting.com/), an open-source Fountain converter, to automatically keep the PDF versions up-to-date.
+The workflow I settled on is straightforward: every time I push updated scripts to a [GitHub](https://github.com/) repository, the open-source Fountain converter [<i>&#8217;afterwriting</i>](https://afterwriting.com/) automatically (re)generates the PDF versions of those scripts.
 
 Requirement (1) is satisfied because Fountain files are plaintext, and thus compatible with GitHub's compare (`diff`) feature. Requirement (2) is satisfied because <i>&#8217;afterwriting</i> has a command line interface that can be automated with [GitHub Actions](https://github.com/features/actions).
 
 When all is said and done, the repo looks something like this:
 
-<img class="img-fluid rounded" src="{{ site.baseurl }}/assets/img/comic-script-repo.png" alt="Screenshot of a GitHub repository with two folders and seven files. There are three columns. Column one shows the names of the contents. The two folders are dot github slash workflows, and pdf. The seven files are dot gitignore, readme dot markdown, config dot json, and four dot fountain files labeled K1 through K4. Column two lists the commit messages. Column three shows the commit dates. The header reads, scottleechua and github actions bot, apply automatic changes, twenty hours ago, forty nine commits.">
+<img class="img-fluid rounded" src="{{ site.baseurl }}/assets/img/comic-script-repo.png" alt="Screenshot of a github repository with two folders and seven files. There are three columns. Column one shows the names of the contents. The two folders are dot github slash workflows, and pdf. The seven files are dot gitignore, readme dot markdown, config dot json, and four dot fountain files labeled K1 through K4. Column two lists the commit messages. Column three shows the commit dates. The header reads, scottleechua and github actions bot, apply automatic changes, twenty hours ago, forty nine commits.">
 
 ## Why use Fountain?
 Fountain is a formatting convention for writing scriptlike documents. Here is a comic script written in Fountain:
@@ -130,61 +130,49 @@ ALYSSA
         permissions:
           contents: write
         steps:
-          # Check out your repository
-          - uses: actions/checkout@v3
-          
-          # Install 'afterwriting
+          - name: Check out repo
+            uses: actions/checkout@v3
+            
+          - name: Set up Bun package manager
+            uses: oven-sh/setup-bun@v1
+
           - name: Install 'afterwriting
-            run: npm install afterwriting -g
+            run: bun install afterwriting -g
 
-          # Invoke 'afterwriting to export script.fountain to script.pdf
-          - name: Generate PDF
-            run: afterwriting --source script.fountain --pdf pdf/script.pdf --overwrite --config config.json
-
-          # Commits changes
-          - uses: stefanzweifel/git-auto-commit-action@v4
-    ```
-    
-    If you have multiple `.fountain` files, the `afterwiting --source ...` command must be invoked separately per file. For example, if you have three chapters `C1.fountain`, `C2.fountain`, and `C3.fountain`, replace the appropriate lines above with:
-    ``` yaml
-    # Invoke 'afterwriting to export script.fountain to script.pdf
-          - name: Generate PDF
+          - name: Save PDFs of all Fountain files to '/pdf'
             run: |
-              afterwriting --source C1.fountain --pdf pdf/C1.pdf --overwrite --config config.json
-              afterwriting --source C2.fountain --pdf pdf/C2.pdf --overwrite --config config.json
-              afterwriting --source C3.fountain --pdf pdf/C3.pdf --overwrite --config config.json
+              readarray -d '' filepaths< <(find . -name "*.fountain" -print0)
+              for filepath in "${filepaths[@]}"
+              do
+                basename="$(basename -s .fountain $filepath)"
+                afterwriting --source "$filepath" --pdf pdf/"$basename".pdf --overwrite --config config.json
+              done
+          
+          - name: Commit changes
+            uses: stefanzweifel/git-auto-commit-action@v4
+
     ```
-    where the vertical delimiter `|` indicates that GitHub should run multiple commands instead of just one.
+
+    This Workflow finds all the Fountain files in your repo (including subdirectories), then saves a PDF version of each file in the `/pdf` folder with the same filename.
     
-10. To the upper right of the text box, click `Start commit` > `Commit new file`.
+10. To the upper right of the text box, click `Commit changes` > `Commit changes`.
 
-11. Pull the changes to your local machine. Your folder structure should now look like:
-    ```
-    .
-    └── my-script-repo/
-        ├── .gitignore
-        ├── script.fountain
-        ├── config.json
-        ├── pdf/
-        │   └── .gitkeep
-        ├── .git/
-        │   └── << ignore these files >>
-        └── .github/
-            └── workflows/
-                └── fountain_to_pdf.yml    
-    ```
-    Setup is complete!
+11. Committing changes should kickstart a run of the Actions Workflow you just created. You can track its progress on GitHub, under `Actions`.
 
-## Update your script
+12. Once the Workflow is done, pull the changes to your local and verify that `/pdf` now contains the autogenerated file `script.pdf`.
 
-At this point, your `pdf/` subfolder is still empty, as you haven't pushed any new commits yet. Let's do that now.
+Setup is complete!
 
-1. Make some edits to `script.fountain`.
-2. Add, commit, and push the edits to GitHub.
-3. Allow the workflow to run. You can track its progress on GitHub, under `Actions`.
-4. Once the workflow has completed, go back to your local and pull changes from GitHub. A new file `script.pdf` should now appear under the `pdf/` subfolder.
+## Use
+The workflow in practice looks like this:
 
-If you don't want [merge conflicts](https://happygitwithr.com/pull-tricky.html) (and you don't), **always pull the newly-updated PDF after every push!**
+1. Edit your scripts on local.
+
+2. Commit changes and push to GitHub.
+
+3. After a minute or so, `git pull`.
+
+If you don't want [merge conflicts](https://happygitwithr.com/pull-tricky.html) (and you don't), **always pull the newly-updated PDFs after every push!**
 
 ---
 
@@ -197,13 +185,16 @@ which leads them to a page with line-by-line comparisons:
 
 <img class="img-fluid rounded" src="{{ site.baseurl }}/assets/img/comic-script-diff.png" alt="Screenshot of the diff file for K1 dot fountain. The commit message reads major draft K4, minor updates K1, K2, K3. Below the commit message, it says, showing 4 changed files, with 218 additions and 205 deletions. Below that, it shows the details of the changes in the file.">
 
-Your collaborators can also view the latest PDFs by going to the [GitHub website](https://github.com/) or by pulling the latest changes to their local repo.
+Your collaborators can also view the latest PDFs by viewing the repo on GitHub, or by pulling the latest changes to their local repo.
 
 ### Contribute
-This walkthrough last worked for me in May 2022. If you spot errors, vulnerabilities, or potential improvements, please do [open a pull request](https://google.com) on this blog post!
+This walkthrough last worked for me in September 2023. If you spot errors, vulnerabilities, or potential improvements, please do [open a pull request](https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2023-09-12-versioning-comic-scripts-using-fountain-and-github.md) on this blog post!
 
-### Acknowledgements
-This tutorial owes a deep debt of gratitude to Piotr Jamr&oacute;z and the rest of the [<i>&#8217;afterwriting</i>](https://afterwriting.com/) team. (So do I!)
+## Changelog
+
+- **2023-09-12**: Update `fountain_to_pdf.yml` to automatically find and convert all Fountain files in the repo. Thanks to [Steven Jay Cohen](https://stevenjaycohen.com/) for the feature request!
+
+- **2022-05-25**: Initial post. This tutorial owes a deep debt of gratitude to Piotr Jamr&oacute;z and the rest of the [<i>&#8217;afterwriting</i>](https://afterwriting.com/) team. (So do I!)
 
 ---
 #### Footnotes

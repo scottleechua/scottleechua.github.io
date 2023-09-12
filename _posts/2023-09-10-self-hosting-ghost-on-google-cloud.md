@@ -464,7 +464,7 @@ At this point you should have a working self-hosted Ghost blog. Updates aside, y
 ---
 
 ## Contribute
-This walkthrough last worked for me in **September 2023**. If you spot errors, vulnerabilities, or potential improvements, please do [open a pull request](https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2023-03-26-self-hosting-ghost-on-google-cloud.md) on this blog post!
+This walkthrough last worked for me in **September 2023**. If you spot errors, vulnerabilities, or potential improvements, please do [open a pull request](https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2023-09-10-self-hosting-ghost-on-google-cloud.md) on this blog post!
 
 ## Changelog
 
