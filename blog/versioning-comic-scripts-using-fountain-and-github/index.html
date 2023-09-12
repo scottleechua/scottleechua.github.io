@@ -130,7 +130,7 @@
 
   <header class="post-header">
     <h1 class="post-title">Versioning comic scripts using Fountain and GitHub</h1>
-    <p class="post-meta">May 25, 2022</p>
+    <p class="post-meta">September 12, 2023</p>
   </header>
 
   <article class="post-content">
@@ -156,13 +156,13 @@
 
 <p>In short, I wanted to implement <a href="https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control" target="_blank" rel="noopener">version control</a>.</p>
 
-<p>The workflow I settled on is straightforward: I push my <code class="language-plaintext highlighter-rouge">.fountain</code> script files to a <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a> repository, then use <a href="https://afterwriting.com/" target="_blank" rel="noopener"><i>’afterwriting</i></a>, an open-source Fountain converter, to automatically keep the PDF versions up-to-date.</p>
+<p>The workflow I settled on is straightforward: every time I push updated scripts to a <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a> repository, the open-source Fountain converter <a href="https://afterwriting.com/" target="_blank" rel="noopener"><i>’afterwriting</i></a> automatically (re)generates the PDF versions of those scripts.</p>
 
 <p>Requirement (1) is satisfied because Fountain files are plaintext, and thus compatible with GitHub’s compare (<code class="language-plaintext highlighter-rouge">diff</code>) feature. Requirement (2) is satisfied because <i>’afterwriting</i> has a command line interface that can be automated with <a href="https://github.com/features/actions" target="_blank" rel="noopener">GitHub Actions</a>.</p>
 
 <p>When all is said and done, the repo looks something like this:</p>
 
-<p><img class="img-fluid rounded" src="/assets/img/comic-script-repo.png" alt="Screenshot of a GitHub repository with two folders and seven files. There are three columns. Column one shows the names of the contents. The two folders are dot github slash workflows, and pdf. The seven files are dot gitignore, readme dot markdown, config dot json, and four dot fountain files labeled K1 through K4. Column two lists the commit messages. Column three shows the commit dates. The header reads, scottleechua and github actions bot, apply automatic changes, twenty hours ago, forty nine commits."></p>
+<p><img class="img-fluid rounded" src="/assets/img/comic-script-repo.png" alt="Screenshot of a github repository with two folders and seven files. There are three columns. Column one shows the names of the contents. The two folders are dot github slash workflows, and pdf. The seven files are dot gitignore, readme dot markdown, config dot json, and four dot fountain files labeled K1 through K4. Column two lists the commit messages. Column three shows the commit dates. The header reads, scottleechua and github actions bot, apply automatic changes, twenty hours ago, forty nine commits."></p>
 
 <h2 id="why-use-fountain">Why use Fountain?</h2>
 <p>Fountain is a formatting convention for writing scriptlike documents. Here is a comic script written in Fountain:</p>
@@ -259,66 +259,58 @@ ALYSSA
      <span class="na">permissions</span><span class="pi">:</span>
        <span class="na">contents</span><span class="pi">:</span> <span class="s">write</span>
      <span class="na">steps</span><span class="pi">:</span>
-       <span class="c1"># Check out your repository</span>
-       <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v3</span>
-          
-       <span class="c1"># Install 'afterwriting</span>
+       <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Check out repo</span>
+         <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v3</span>
+            
+       <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Set up Bun package manager</span>
+         <span class="na">uses</span><span class="pi">:</span> <span class="s">oven-sh/setup-bun@v1</span>
+
        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Install 'afterwriting</span>
-         <span class="na">run</span><span class="pi">:</span> <span class="s">npm install afterwriting -g</span>
+         <span class="na">run</span><span class="pi">:</span> <span class="s">bun install afterwriting -g</span>
 
-       <span class="c1"># Invoke 'afterwriting to export script.fountain to script.pdf</span>
-       <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Generate PDF</span>
-         <span class="na">run</span><span class="pi">:</span> <span class="s">afterwriting --source script.fountain --pdf pdf/script.pdf --overwrite --config config.json</span>
-
-       <span class="c1"># Commits changes</span>
-       <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">stefanzweifel/git-auto-commit-action@v4</span>
-</code></pre></div>    </div>
-
-    <p>If you have multiple <code class="language-plaintext highlighter-rouge">.fountain</code> files, the <code class="language-plaintext highlighter-rouge">afterwiting --source ...</code> command must be invoked separately per file. For example, if you have three chapters <code class="language-plaintext highlighter-rouge">C1.fountain</code>, <code class="language-plaintext highlighter-rouge">C2.fountain</code>, and <code class="language-plaintext highlighter-rouge">C3.fountain</code>, replace the appropriate lines above with:</p>
-    <div class="language-yaml highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code> <span class="c1"># Invoke 'afterwriting to export script.fountain to script.pdf</span>
-       <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Generate PDF</span>
+       <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Save PDFs of all Fountain files to '/pdf'</span>
          <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
-           <span class="s">afterwriting --source C1.fountain --pdf pdf/C1.pdf --overwrite --config config.json</span>
-           <span class="s">afterwriting --source C2.fountain --pdf pdf/C2.pdf --overwrite --config config.json</span>
-           <span class="s">afterwriting --source C3.fountain --pdf pdf/C3.pdf --overwrite --config config.json</span>
+           <span class="s">readarray -d '' filepaths&lt; &lt;(find . -name "*.fountain" -print0)</span>
+           <span class="s">for filepath in "${filepaths[@]}"</span>
+           <span class="s">do</span>
+             <span class="s">basename="$(basename -s .fountain $filepath)"</span>
+             <span class="s">afterwriting --source "$filepath" --pdf pdf/"$basename".pdf --overwrite --config config.json</span>
+           <span class="s">done</span>
+          
+       <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Commit changes</span>
+         <span class="na">uses</span><span class="pi">:</span> <span class="s">stefanzweifel/git-auto-commit-action@v4</span>
+
 </code></pre></div>    </div>
-    <p>where the vertical delimiter <code class="language-plaintext highlighter-rouge">|</code> indicates that GitHub should run multiple commands instead of just one.</p>
+
+    <p>This Workflow finds all the Fountain files in your repo (including subdirectories), then saves a PDF version of each file in the <code class="language-plaintext highlighter-rouge">/pdf</code> folder with the same filename.</p>
   </li>
   <li>
-    <p>To the upper right of the text box, click <code class="language-plaintext highlighter-rouge">Start commit</code> &gt; <code class="language-plaintext highlighter-rouge">Commit new file</code>.</p>
+    <p>To the upper right of the text box, click <code class="language-plaintext highlighter-rouge">Commit changes</code> &gt; <code class="language-plaintext highlighter-rouge">Commit changes</code>.</p>
   </li>
-  <li>Pull the changes to your local machine. Your folder structure should now look like:
-    <div class="language-plaintext highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code>.
-└── my-script-repo/
-    ├── .gitignore
-    ├── script.fountain
-    ├── config.json
-    ├── pdf/
-    │   └── .gitkeep
-    ├── .git/
-    │   └── &lt;&lt; ignore these files &gt;&gt;
-    └── .github/
-        └── workflows/
-            └── fountain_to_pdf.yml    
-</code></pre></div>    </div>
-    <p>Setup is complete!</p>
+  <li>
+    <p>Committing changes should kickstart a run of the Actions Workflow you just created. You can track its progress on GitHub, under <code class="language-plaintext highlighter-rouge">Actions</code>.</p>
   </li>
+  <li>Once the Workflow is done, pull the changes to your local and verify that <code class="language-plaintext highlighter-rouge">/pdf</code> now contains the autogenerated file <code class="language-plaintext highlighter-rouge">script.pdf</code>.</li>
 </ol>
 
-<h2 id="update-your-script">Update your script</h2>
+<p>Setup is complete!</p>
 
-<p>At this point, your <code class="language-plaintext highlighter-rouge">pdf/</code> subfolder is still empty, as you haven’t pushed any new commits yet. Let’s do that now.</p>
+<h2 id="use">Use</h2>
+<p>The workflow in practice looks like this:</p>
 
 <ol>
-  <li>Make some edits to <code class="language-plaintext highlighter-rouge">script.fountain</code>.</li>
-  <li>Add, commit, and push the edits to GitHub.</li>
-  <li>Allow the workflow to run. You can track its progress on GitHub, under <code class="language-plaintext highlighter-rouge">Actions</code>.</li>
-  <li>Once the workflow has completed, go back to your local and pull changes from GitHub. A new file <code class="language-plaintext highlighter-rouge">script.pdf</code> should now appear under the <code class="language-plaintext highlighter-rouge">pdf/</code> subfolder.</li>
+  <li>
+    <p>Edit your scripts on local.</p>
+  </li>
+  <li>
+    <p>Commit changes and push to GitHub.</p>
+  </li>
+  <li>
+    <p>After a minute or so, <code class="language-plaintext highlighter-rouge">git pull</code>.</p>
+  </li>
 </ol>
 
-<p>If you don’t want <a href="https://happygitwithr.com/pull-tricky.html" target="_blank" rel="noopener">merge conflicts</a> (and you don’t), <strong>always pull the newly-updated PDF after every push!</strong></p>
+<p>If you don’t want <a href="https://happygitwithr.com/pull-tricky.html" target="_blank" rel="noopener">merge conflicts</a> (and you don’t), <strong>always pull the newly-updated PDFs after every push!</strong></p>
 
 <hr>
 
@@ -331,13 +323,21 @@ ALYSSA
 
 <p><img class="img-fluid rounded" src="/assets/img/comic-script-diff.png" alt="Screenshot of the diff file for K1 dot fountain. The commit message reads major draft K4, minor updates K1, K2, K3. Below the commit message, it says, showing 4 changed files, with 218 additions and 205 deletions. Below that, it shows the details of the changes in the file."></p>
 
-<p>Your collaborators can also view the latest PDFs by going to the <a href="https://github.com/" target="_blank" rel="noopener">GitHub website</a> or by pulling the latest changes to their local repo.</p>
+<p>Your collaborators can also view the latest PDFs by viewing the repo on GitHub, or by pulling the latest changes to their local repo.</p>
 
 <h3 id="contribute">Contribute</h3>
-<p>This walkthrough last worked for me in May 2022. If you spot errors, vulnerabilities, or potential improvements, please do <a href="https://google.com" target="_blank" rel="noopener">open a pull request</a> on this blog post!</p>
+<p>This walkthrough last worked for me in September 2023. If you spot errors, vulnerabilities, or potential improvements, please do <a href="https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2023-09-12-versioning-comic-scripts-using-fountain-and-github.md" target="_blank" rel="noopener">open a pull request</a> on this blog post!</p>
 
-<h3 id="acknowledgements">Acknowledgements</h3>
-<p>This tutorial owes a deep debt of gratitude to Piotr Jamróz and the rest of the <a href="https://afterwriting.com/" target="_blank" rel="noopener"><i>’afterwriting</i></a> team. (So do I!)</p>
+<h2 id="changelog">Changelog</h2>
+
+<ul>
+  <li>
+    <p><strong>2023-09-12</strong>: Update <code class="language-plaintext highlighter-rouge">fountain_to_pdf.yml</code> to automatically find and convert all Fountain files in the repo. Thanks to <a href="https://stevenjaycohen.com/" target="_blank" rel="noopener">Steven Jay Cohen</a> for the feature request!</p>
+  </li>
+  <li>
+    <p><strong>2022-05-25</strong>: Initial post. This tutorial owes a deep debt of gratitude to Piotr Jamróz and the rest of the <a href="https://afterwriting.com/" target="_blank" rel="noopener"><i>’afterwriting</i></a> team. (So do I!)</p>
+  </li>
+</ul>
 
 <hr>
 <h4 id="footnotes">Footnotes</h4>
