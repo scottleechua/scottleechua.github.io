@@ -188,7 +188,7 @@ which leads them to a page with line-by-line comparisons:
 Your collaborators can also view the latest PDFs by viewing the repo on GitHub, or by pulling the latest changes to their local repo.
 
 ### Contribute
-This walkthrough last worked for me in September 2023. If you spot errors, vulnerabilities, or potential improvements, please do [open a pull request](https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2023-09-12-versioning-comic-scripts-using-fountain-and-github.md) on this blog post!
+This walkthrough last worked for me in **September 2023**. If you spot errors, vulnerabilities, or potential improvements, please do [open a pull request](https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2023-09-12-versioning-comic-scripts-using-fountain-and-github.md) on this blog post!
 
 ## Changelog
 
