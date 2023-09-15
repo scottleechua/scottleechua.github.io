@@ -73,6 +73,7 @@ ALYSSA
 4. Create a text file called `config.json` in `my-script-repo` containing:
     ```
     {
+      "font-family": "CourierPrime",
 	    "embolden_scene_headers": true,
 	    "show_page_numbers": true,
 	    "split_dialogue": true,
