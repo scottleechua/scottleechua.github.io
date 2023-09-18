@@ -215,7 +215,13 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
    sudo apt -y autoremove
    ```
 
-5. Start MySQL in modified mode:
+5. Stop the `snapd` process to save on RAM:
+
+   ```bash
+   sudo systemctl stop snapd.service
+   ```
+
+6. Start MySQL in modified mode:
 
    ```bash
    sudo systemctl set-environment MYSQLD_OPTS="--skip-networking --skip-grant-tables"
@@ -234,7 +240,7 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
 
    replacing `yourpasswordhere` with your chosen MySQL root password.
    
-6. Restart MySQL and switch to production mode. Run:
+7. Restart MySQL and switch to production mode. Run:
 
    ```bash
    sudo systemctl unset-environment MYSQLD_OPTS
@@ -251,7 +257,7 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
    - Remove test database and its privileges? — `Y`
    - Reload privilege tables? — `Y`
 
-7. Turning off MySQL's performance schema is [a common way to reduce its memory usage](https://www.riccardofeingold.com/how-to-reduce-ram-usage-of-ghost-and-mysql/), which occasionally tests the limits of the free tier machine's 1GB of RAM. To do this, open the MySQL configuration file:
+8. Turning off MySQL's performance schema is [a common way to reduce its memory usage](https://www.riccardofeingold.com/how-to-reduce-ram-usage-of-ghost-and-mysql/), which occasionally tests the limits of the free tier machine's 1GB of RAM. To do this, open the MySQL configuration file:
 
    ```bash
    sudo nano /etc/mysql/my.cnf
@@ -266,7 +272,7 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
 
    then `Ctrl-X` > `Y` > `Enter` to save and quit.
 
-8. Restart MySQL and log in:
+9. Restart MySQL and log in:
 
    ```bash
    sudo /etc/init.d/mysql restart
@@ -435,10 +441,10 @@ Create a single bash script that updates Ghost and all its dependencies.
    sudo npm install -g npm@latest
    cd /var/www/ghost
    sudo npm install -g ghost-cli@latest
+   sudo find ./ ! -path "./versions/*" -type f -exec chmod 664 {} \;
    ghost backup
    ghost stop
    ghost update
-   ghost start
    ghost ls
    ```
 
