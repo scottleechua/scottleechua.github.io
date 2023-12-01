@@ -445,6 +445,7 @@ Create a single bash script that updates Ghost and all its dependencies.
    ghost backup
    ghost stop
    ghost update
+   ghost start
    ghost ls
    ```
 
