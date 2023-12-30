@@ -447,7 +447,7 @@ curl <span class="nt">-fsSL</span> https://deb.nodesource.com/gpgkey/nodesource-
     <p>Clean up:</p>
 
     <div class="language-bash highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nt">-y</span> autoremove
+<div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt clean <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt autoclean <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt autoremove
 </code></pre></div>    </div>
   </li>
   <li>
@@ -657,7 +657,7 @@ performance_schema=0
 <h3 id="4-configure-ghost">4. Configure Ghost</h3>
 <ol>
   <li>Go to <code class="language-plaintext highlighter-rouge">https://ghostblog.com/ghost</code>. Create your admin login credentials.</li>
-  <li>Customize your site &gt; the “gear” icon &gt; Email newsletter &gt; <code class="language-plaintext highlighter-rouge">Mailgun configuration</code>:
+  <li>Customize your site &gt; the “gear” icon &gt; Email newsletter &gt; <code class="language-plaintext highlighter-rouge">Mailgun settings</code>:
     <ul>
       <li>Mailgun region: <code class="language-plaintext highlighter-rouge">US</code> (unless you previously chose <code class="language-plaintext highlighter-rouge">EU</code>)</li>
       <li>Mailgun domain: <code class="language-plaintext highlighter-rouge">ghostblog.com</code>
@@ -676,7 +676,7 @@ performance_schema=0
     <ul>
       <li>Type: <code class="language-plaintext highlighter-rouge">A</code>
 </li>
-      <li>Name: <code class="language-plaintext highlighter-rouge">www.ghostblog.com</code>
+      <li>Name: <code class="language-plaintext highlighter-rouge">www</code>
 </li>
       <li>IPv4 address: your Google Cloud external IP address</li>
       <li>Proxy status: <code class="language-plaintext highlighter-rouge">Proxied</code>
