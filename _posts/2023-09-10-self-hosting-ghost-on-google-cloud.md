@@ -133,7 +133,7 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
 7. Select Overview > Advanced Actions (in the right sidebar) > `Pause Cloudflare on site` while finishing setup.
 
 #### Set up Mailgun
-1. Make a [Mailgun account](https://signup.mailgun.com/new/signup) under the `Foundation Trial` plan. You'll be asked to confirm a phone number and put your card details on file.
+1. Make a [Mailgun account](https://signup.mailgun.com/new/signup) under the `Flex` plan. You'll be asked to confirm a phone number and put your card details on file.
 2. Select `Add a custom domain`:
    - Domain name: `ghostblog.com`
    - Domain region: `US` (unless your website requires within-`EU` data processing)
@@ -141,7 +141,7 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
 4. Go back to Mailgun > `Verify DNS settings`.
 5. Once the custom domain has been added to Mailgun, go to Sending > Domain Settings > `SMTP Credentials`. Take note of the "login" (usually `postmaster@ghostblog.com`).
 6. Click `Manage SMTP Credentials`, then `Reset password` > `Reset password` > `Copy`. Paste this password somewhere safe---it will only be generated this once!
-7. Click on your profile in the upper right > `API Keys`, and take note of the Private API Key.
+7. Click on your profile in the upper right > `API Security` ? `Mailgun API Keys`, and generate a Private API Key.
 
 ### 3. Deploy Ghost
 
