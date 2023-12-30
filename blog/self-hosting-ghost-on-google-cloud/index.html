@@ -385,24 +385,10 @@
     <p>Go back to Google Cloud &gt; Compute Engine &gt; VM Instances &gt; ghost-blog &gt; <code class="language-plaintext highlighter-rouge">SSH</code>. A virtual terminal (“cloud shell”) will appear in a pop-up window.</p>
   </li>
   <li>
-    <p>First, set a password for the root user:</p>
-
-    <div class="language-bash highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>passwd
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Switch to root user and authenticate:</p>
-
-    <div class="language-bash highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code>su
-</code></pre></div>    </div>
-  </li>
-  <li>
     <p>Update Linux:</p>
 
     <div class="language-bash highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code>apt update <span class="o">&amp;&amp;</span> apt <span class="nt">-y</span> upgrade
+<div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt update <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt <span class="nt">-y</span> upgrade
 </code></pre></div>    </div>
   </li>
   <li>
@@ -412,10 +398,10 @@
     <p>Make a new user called <code class="language-plaintext highlighter-rouge">service_account</code> and grant it sudo:</p>
 
     <div class="language-bash highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code>adduser service_account <span class="o">&amp;&amp;</span> usermod <span class="nt">-aG</span> <span class="nb">sudo </span>service_account
+<div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>adduser <span class="nt">--gecos</span> <span class="s2">""</span> service_account <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>usermod <span class="nt">-aG</span> <span class="nb">sudo </span>service_account
 </code></pre></div>    </div>
 
-    <p>Set a password for <code class="language-plaintext highlighter-rouge">service_account</code>. Leave all user information fields for <code class="language-plaintext highlighter-rouge">service_account</code> at default values. Confirm with <code class="language-plaintext highlighter-rouge">Y</code>.</p>
+    <p>Set a password for <code class="language-plaintext highlighter-rouge">service_account</code>.</p>
   </li>
   <li>
     <p>Switch to <code class="language-plaintext highlighter-rouge">service_account</code>:</p>
@@ -789,6 +775,9 @@ ghost <span class="nb">ls</span>
 <h2 id="changelog">Changelog</h2>
 
 <ul>
+  <li>
+    <p><strong>2023-12-30</strong>: Simplify creation process of <code class="language-plaintext highlighter-rouge">service_account</code> user.</p>
+  </li>
   <li>
     <p><strong>2023-09-10</strong>: Update Nodejs installation instructions to install v18, <a href="https://ghost.org/docs/faq/node-versions/" target="_blank" rel="noopener">as recommended by Ghost</a>.</p>
   </li>
