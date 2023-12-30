@@ -148,35 +148,23 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
 #### Set up VM instance
 1. Go back to Google Cloud > Compute Engine > VM Instances > ghost-blog > `SSH`. A virtual terminal ("cloud shell") will appear in a pop-up window.
 
-2. First, set a password for the root user:
+2. Update Linux:
 
    ```bash
-   sudo passwd
+   sudo apt update && sudo apt -y upgrade
    ```
 
-3. Switch to root user and authenticate:
+3. To allow any updated services to restart, go back to Google Cloud, `Stop` and `Resume` the instance, then `SSH` again.
+
+4. Make a new user called `service_account` and grant it sudo:
 
    ```bash
-   su
+   sudo adduser --gecos "" service_account && sudo usermod -aG sudo service_account
    ```
 
-4. Update Linux:
+   Set a password for `service_account`.
 
-   ```bash
-   apt update && apt -y upgrade
-   ```
-
-5. To allow any updated services to restart, go back to Google Cloud, `Stop` and `Resume` the instance, then `SSH` again.
-
-6. Make a new user called `service_account` and grant it sudo:
-
-   ```bash
-   adduser service_account && usermod -aG sudo service_account
-   ```
-
-   Set a password for `service_account`. Leave all user information fields for `service_account` at default values. Confirm with `Y`.
-
-7. Switch to `service_account`:
+5. Switch to `service_account`:
 
    ```bash
    su - service_account
@@ -474,6 +462,8 @@ At this point you should have a working self-hosted Ghost blog. Updates aside, y
 This walkthrough last worked for me in **September 2023**. If you spot errors, vulnerabilities, or potential improvements, please do [open a pull request](https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2023-09-10-self-hosting-ghost-on-google-cloud.md) on this blog post!
 
 ## Changelog
+
+- **2023-12-30**: Simplify creation process of `service_account` user.
 
 - **2023-09-10**: Update Nodejs installation instructions to install v18, [as recommended by Ghost](https://ghost.org/docs/faq/node-versions/).
 
