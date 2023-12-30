@@ -200,7 +200,7 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
 4. Clean up:
 
    ```bash
-   sudo apt -y autoremove
+   sudo apt clean && sudo apt autoclean && sudo apt autoremove
    ```
 
 5. Stop the `snapd` process to save on RAM:
@@ -372,7 +372,7 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
 
 ### 4. Configure Ghost
 1. Go to `https://ghostblog.com/ghost`. Create your admin login credentials.
-2. Customize your site > the "gear" icon > Email newsletter > `Mailgun configuration`:
+2. Customize your site > the "gear" icon > Email newsletter > `Mailgun settings`:
    - Mailgun region: `US` (unless you previously chose `EU`)
    - Mailgun domain: `ghostblog.com`
    - Mailgun Private API key: paste it here.
@@ -383,7 +383,7 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
 1. Go back to Cloudflare. If you had previously `Paused` Cloudflare, go back to Advanced Actions > `Enable Cloudflare on site`.
 2. Go to ghostblog.com > DNS > `Add record`:
    - Type: `A`
-   - Name: `www.ghostblog.com`
+   - Name: `www`
    - IPv4 address: your Google Cloud external IP address
    - Proxy status: `Proxied`
 3. `Edit` the other A record to change Proxy status to `Proxied`.
