@@ -4,4 +4,13 @@ permalink: /robots.txt
 User-agent: *
 Disallow:
 
+User-agent: GPTbot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /
+
 Sitemap: {{ site.baseurl | prepend: site.url }}/sitemap.xml
