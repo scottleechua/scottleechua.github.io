@@ -1,4 +1,13 @@
 User-agent: *
 Disallow:
 
+User-agent: GPTbot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /
+
 Sitemap: https://scottleechua.com/sitemap.xml
