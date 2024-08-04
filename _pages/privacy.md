@@ -7,7 +7,7 @@ nav: true
 exclude: true
 ---
 
-**Last updated: 31 Mar 2024**
+**Last updated: 4 Aug 2024**
 
 This Privacy Policy outlines how I collect and use your data while you are on this website.
 
@@ -29,7 +29,7 @@ __To perform simple analytics__
 
 I use GoatCounter's web analytics tool to understand my audience, e.g., how are people discovering this website? Where are they from?
 
-I do not wish to track you, or even collect data that allows me to track you. Thus the choice of GoatCounter: unlike other web analytics tools, GoatCounter does not download cookies or other files to your devices, and gives me access only to aggregated metrics. Indeed, this website uses no cookies or trackers or any sort.
+I do not wish to track you, or even collect data that allows me to track you. Thus the choice of GoatCounter: unlike other web analytics tools, GoatCounter does not download cookies to your devices, and gives me access only to aggregated metrics.
 
 ### Links
 When you click on links on this website, you may be directed to a third-party website or application, at which point this Policy no longer applies.
@@ -38,4 +38,4 @@ When you click on links on this website, you may be directed to a third-party we
 I may modify this Privacy Policy at any time, without prior notice. This is most likely to happen if I set up a mailing list of some sort. Changes to this Privacy Policy take effect immediately upon their posting on this page.
 
 ### Contact us
-For issues / questions / clarifications, please send an email to <a href="mailto:scottleechua@gmail.com">scottleechua [at] gmail [dot] com</a>.
+For issues / questions / clarifications, please send an email to scottleechua [at] gmail [dot] com.
