@@ -9,7 +9,6 @@ exclude: true
 
 Occasionally, I develop small websites for friends and colleagues:
 
-- [`andasproductions.com`](https://andasproductions.com) --- a project showcase
 - [`blog.biancalesaca.com`](https://blog.biancalesaca.com) --- an art process blog
 - [`dunnodowhat.com`](https://dunnodowhat.com) --- newsletter of free / indie events in Singapore
 - [`komikeros.com`](https://komikeros.com) --- a digital library for komiks (Filipino comics)
@@ -34,7 +33,7 @@ Occasionally, I develop small websites for friends and colleagues:
 
 A huge thank you to:
 
-- [@umang_io](https://www.fiverr.com/umang_io) for his help customizing Ghost themes for [`andasproductions.com`](https://andasproductions.com), [`dunnodowhat.com`](https://dunnodowhat.com), [`myleyantay.com`](https://myleyantay.com), and [`yamsmusic.com`](https://yamsmusic.com)
+- [@umang_io](https://www.fiverr.com/umang_io) for his help customizing Ghost themes for [`dunnodowhat.com`](https://dunnodowhat.com), [`myleyantay.com`](https://myleyantay.com), and [`yamsmusic.com`](https://yamsmusic.com)
 - [@nirob_19](https://www.fiverr.com/nirob_19) for his help fixing the CSS for [`lawrenceypil.com`](https://lawrenceypil.com)
 - [@chiradip_b](https://www.fiverr.com/chiradip_b) for his help writing alt text for [`scottleechua.com`](/)
 - [@rubel_hossain](https://www.fiverr.com/rubel_hossain) for his help improving the functionality of [`komikeros.com`](https://komikeros.com)
