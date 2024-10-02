@@ -97,6 +97,7 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
    - Snapshot storage location: `Regional`
       - Location: `us-west1`
    - Schedule frequency: `Weekly`
+   - Autodelete snapshots after: `7` days
 5. Go to Disks > `ghost-blog` > `Edit`:
    - Snapshot schedule: `weekly-backup-schedule`
 
@@ -177,18 +178,14 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
    sudo apt install -y nginx && sudo ufw allow 'Nginx Full'
    ```
 
-2. Install [NodeJS](https://github.com/nodesource/distributions#installation-instructions):
+2. Install NodeJS using [`nvm`](https://github.com/nvm-sh/nvm):
 
    ```bash
-   sudo apt update
-   sudo apt install -y ca-certificates curl gnupg
-   sudo mkdir -p /etc/apt/keyrings
-   curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
-   NODE_MAJOR=20
-   echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
-   sudo apt update
-   sudo apt install nodejs -y
-   sudo npm install -g npm@latest
+   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+   export NVM_DIR="$HOME/.nvm"
+   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+   nvm install 20.17.0
    ```
 
 3. Install MySQL:
@@ -471,6 +468,8 @@ At this point you should have a working self-hosted Ghost blog. Updates aside, y
 This walkthrough last worked for me in **September 2023**. If you spot errors, vulnerabilities, or potential improvements, please do [open a pull request](https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2023-09-10-self-hosting-ghost-on-google-cloud.md) on this blog post!
 
 ## Changelog
+
+- **2024-10-02**: Add setting to autodelete disk snapshots after 7 days to minimize costs, as snapshot storage is no longer included in the Free Tier.
 
 - **2024-09-20**: Update Nodejs installation instructions to install v20, [as recommended by Ghost](https://ghost.org/docs/faq/node-versions/).
 
