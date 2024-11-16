@@ -85,8 +85,6 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
       - `Allow HTTPS traffic`
    - Advanced Options > Networking > `Network tags`:
       - Type `mail` then press `Enter`
-   - Security:
-      - Turn on `Secure Boot`, `vTPM`, and `Integrity Monitoring`
 3. Go to VM instances > `Create an instance`:
    - New VM Instance from template: `free-web-server`
    - Name: `ghost-blog`
@@ -468,6 +466,8 @@ At this point you should have a working self-hosted Ghost blog. Updates aside, y
 This walkthrough last worked for me in **September 2023**. If you spot errors, vulnerabilities, or potential improvements, please do [open a pull request](https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2023-09-10-self-hosting-ghost-on-google-cloud.md) on this blog post!
 
 ## Changelog
+
+- **2024-11-17**: Remove Secure Boot recommendation as the setting doesn't always stick, and seems to create more trouble when SSH-ing.
 
 - **2024-10-02**: Add setting to autodelete disk snapshots after 7 days to minimize costs, as snapshot storage is no longer included in the Free Tier.
 
