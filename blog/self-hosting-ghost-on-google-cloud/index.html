@@ -265,12 +265,6 @@
 </li>
         </ul>
       </li>
-      <li>Security:
-        <ul>
-          <li>Turn on <code class="language-plaintext highlighter-rouge">Secure Boot</code>, <code class="language-plaintext highlighter-rouge">vTPM</code>, and <code class="language-plaintext highlighter-rouge">Integrity Monitoring</code>
-</li>
-        </ul>
-      </li>
     </ul>
   </li>
   <li>Go to VM instances &gt; <code class="language-plaintext highlighter-rouge">Create an instance</code>:
@@ -786,6 +780,9 @@ ghost <span class="nb">ls</span>
 <h2 id="changelog">Changelog</h2>
 
 <ul>
+  <li>
+    <p><strong>2024-11-17</strong>: Remove Secure Boot recommendation as the setting doesn’t always stick, and seems to create more trouble when SSH-ing.</p>
+  </li>
   <li>
     <p><strong>2024-10-02</strong>: Add setting to autodelete disk snapshots after 7 days to minimize costs, as snapshot storage is no longer included in the Free Tier.</p>
   </li>
