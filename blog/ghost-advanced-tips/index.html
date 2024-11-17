@@ -11,25 +11,24 @@
     <!-- prevent Microsoft AI scraping -->
     <meta name="robots" content="noarchive">
     
-    <title>
-        blog | Scott Lee Chua 🇵🇭</title>
+    <title>Self-hosting Ghost on Google Cloud | Scott Lee Chua 🇵🇭</title>
     <meta name="author" content="Scott Lee Chua 🇵🇭" />
-    <meta name="description" content="Econs | Comics | Games" />
+    <meta name="description" content="A plaintext walkthrough of deploying an almost-free, fully self-hosted Ghost blog on Google Cloud." />
 
     <!-- OpenGraph -->
     <meta property="og:site_name" content="Scott Lee Chua 🇵🇭" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Blog" />
-    <meta property="og:url" content="https://scottleechua.com/blog/" />
-    <meta property="og:description" content="Econs | Comics | Games" />
-    <meta property="og:image" content="https://scottleechua.com/assets/img/profile-picture-lores.jpg" />
+    <meta property="og:title" content="Self-hosting Ghost on Google Cloud" />
+    <meta property="og:url" content="https://scottleechua.com/blog/ghost-advanced-tips/" />
+    <meta property="og:description" content="A plaintext walkthrough of deploying an almost-free, fully self-hosted Ghost blog on Google Cloud." />
+    <meta property="og:image" content="https://scottleechua.com/assets/img/ghost-google-cloud-diagram.png" />
     <meta property="og:locale" content="en" />
 
     <!-- Twitter card -->
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Blog" />
-    <meta name="twitter:description" content="Econs | Comics | Games" />
-    <meta name="twitter:image" content="https://scottleechua.com/assets/img/profile-picture-lores.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Self-hosting Ghost on Google Cloud" />
+    <meta name="twitter:description" content="A plaintext walkthrough of deploying an almost-free, fully self-hosted Ghost blog on Google Cloud." />
+    <meta name="twitter:image" content="https://scottleechua.com/assets/img/ghost-google-cloud-diagram.png" />
     
 
 
@@ -51,7 +50,7 @@
 <!-- Styles -->
     
     <link rel="stylesheet" href="/assets/css/main.css">
-    <link rel="canonical" href="https://scottleechua.com/blog/">
+    <link rel="canonical" href="https://scottleechua.com/blog/ghost-advanced-tips/">
 
     <!-- Dark Mode -->
     
@@ -99,7 +98,8 @@
               </li>
               <li class="nav-item ">
                 <a class="nav-link" href="/games/">games</a>
-              </li><!-- Blog -->
+              </li>
+<!-- Blog -->
               
               <li class="nav-item active">
                 <a class="nav-link" href="/blog/">blog<span class="sr-only">(current)</span></a>
@@ -126,64 +126,26 @@
     <!-- Content -->
 
     <div class="container mt-5">
-      <div class="post">
+      <!-- _layouts/post.html -->
 
-  <ul class="post-list">
-    
 
-    
 
-    <li>
-      <h3>
-        
-          <a class="post-title" href="/blog/versioning-comic-scripts-using-fountain-and-github/">Versioning comic scripts using Fountain and GitHub</a>
-        
-      </h3>
-      <p>A plaintext walkthrough of writing and sharing auto-updating comic scripts using Fountain, <i>&#8217;afterwriting</i>, and GitHub Actions.</p>
-      <p class="post-meta">
-        September 12, 2023 &nbsp; &middot; &nbsp;
-        10 min read
-      </p>
-    </li>
+<div class="post">
 
-    
+  <header class="post-header">
+    <h1 class="post-title">Self-hosting Ghost on Google Cloud</h1>
+    <p class="post-meta">September 10, 2023</p>
+  </header>
 
-    
+  <article class="post-content">
+    <p>Maintenance scripts
+Reducing load time
+https://github.com/jochumdev/ghost-jsdelivr
+Customizing main.min.js</p>
 
-    <li>
-      <h3>
-        
-          <a class="post-title" href="/blog/ghost-advanced-tips/">Self-hosting Ghost on Google Cloud</a>
-        
-      </h3>
-      <p>A plaintext walkthrough of deploying an almost-free, fully self-hosted Ghost blog on Google Cloud.</p>
-      <p class="post-meta">
-        September 10, 2023 &nbsp; &middot; &nbsp;
-        1 min read
-      </p>
-    </li>
+<p>robots.txt</p>
 
-    
-
-    
-
-    <li>
-      <h3>
-        
-          <a class="post-title" href="/blog/self-hosting-ghost-on-google-cloud/">Self-hosting Ghost on Google Cloud</a>
-        
-      </h3>
-      <p>A plaintext walkthrough of deploying an almost-free, fully self-hosted Ghost blog on Google Cloud.</p>
-      <p class="post-meta">
-        September 10, 2023 &nbsp; &middot; &nbsp;
-        21 min read
-      </p>
-    </li>
-
-    
-  </ul>
-
-  
+  </article>
 
 </div>
 
@@ -193,8 +155,8 @@
 
     <footer class="sticky-bottom mt-5">
   <div class="container">
-    &copy; 2021–2024 Scott Lee Chua.
-    Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme. Read the <a href="/privacy/">Privacy Policy</a>.
+    © 2021–2024 Scott Lee Chua.
+    Powered by <a href="https://jekyllrb.com/" target="_blank" rel="noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" target="_blank" rel="noopener">al-folio</a> theme. Read the <a href="/privacy/">Privacy Policy</a>.
 
     
     
@@ -225,8 +187,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js" integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja" crossorigin="anonymous"></script>
 
     <!-- To automatically render math in text elements, include the auto-render extension: -->
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"
-        onload="renderMathInElement(document.body);"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
         
 
   <script data-goatcounter="https://scottleechua.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>

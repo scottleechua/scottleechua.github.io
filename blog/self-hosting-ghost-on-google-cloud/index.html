@@ -421,14 +421,18 @@
 </code></pre></div>    </div>
   </li>
   <li>
-    <p>Install NodeJS using <a href="https://github.com/nvm-sh/nvm" target="_blank" rel="noopener"><code class="language-plaintext highlighter-rouge">nvm</code></a>:</p>
+    <p>Install NodeJS:</p>
 
     <div class="language-bash highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code>curl <span class="nt">-o-</span> https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
-<span class="nb">export </span><span class="nv">NVM_DIR</span><span class="o">=</span><span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.nvm"</span>
-<span class="o">[</span> <span class="nt">-s</span> <span class="s2">"</span><span class="nv">$NVM_DIR</span><span class="s2">/nvm.sh"</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="se">\.</span> <span class="s2">"</span><span class="nv">$NVM_DIR</span><span class="s2">/nvm.sh"</span>
-<span class="o">[</span> <span class="nt">-s</span> <span class="s2">"</span><span class="nv">$NVM_DIR</span><span class="s2">/bash_completion"</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="se">\.</span> <span class="s2">"</span><span class="nv">$NVM_DIR</span><span class="s2">/bash_completion"</span>
-nvm <span class="nb">install </span>20.17.0
+<div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get update
+<span class="nb">sudo </span>apt-get <span class="nb">install</span> <span class="nt">-y</span> ca-certificates curl gnupg
+<span class="nb">sudo mkdir</span> <span class="nt">-p</span> /etc/apt/keyrings
+curl <span class="nt">-fsSL</span> https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | <span class="nb">sudo </span>gpg <span class="nt">--dearmor</span> <span class="nt">-o</span> /etc/apt/keyrings/nodesource.gpg
+   
+<span class="nv">NODE_MAJOR</span><span class="o">=</span>20
+<span class="nb">echo</span> <span class="s2">"deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_</span><span class="nv">$NODE_MAJOR</span><span class="s2">.x nodistro main"</span> | <span class="nb">sudo tee</span> /etc/apt/sources.list.d/nodesource.list
+<span class="nb">sudo </span>apt update
+<span class="nb">sudo </span>apt <span class="nb">install </span>nodejs <span class="nt">-y</span>
 </code></pre></div>    </div>
   </li>
   <li>
