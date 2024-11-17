@@ -134,11 +134,11 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
 #### Set up Mailgun
 1. Make a [Mailgun account](https://signup.mailgun.com/new/signup) under the `Flex` plan. You'll be asked to confirm a phone number and put your card details on file.
 2. Select `Add a custom domain`:
-   - Domain name: `ghostblog.com`
+   - Domain name: `mg.ghostblog.com`
    - Domain region: `US` (unless your website requires within-`EU` data processing)
 3. Go back to Cloudflare > ghostblog.com > `DNS` and add the five DNS records Mailgun requires. Turn Proxy Status off (i.e., set all to `DNS only`).
 4. Go back to Mailgun > `Verify DNS settings`.
-5. Once the custom domain has been added to Mailgun, go to Sending > Domain Settings > `SMTP Credentials`. Take note of the "login" (usually `postmaster@ghostblog.com`).
+5. Once the custom domain has been added to Mailgun, go to Sending > Domain Settings > `SMTP Credentials`. Take note of the "login" (usually `postmaster@mg.ghostblog.com`).
 6. Click `Manage SMTP Credentials`, then `Reset password` > `Reset password` > `Copy`. Paste this password somewhere safe---it will only be generated this once!
 7. Click on your profile in the upper right > `API Security` ? `Mailgun API Keys`, and generate a Private API Key.
 
@@ -382,7 +382,7 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
 1. Go to `https://ghostblog.com/ghost`. Create your admin login credentials.
 2. Customize your site > the "gear" icon > Email newsletter > `Mailgun settings`:
    - Mailgun region: `US` (unless you previously chose `EU`)
-   - Mailgun domain: `ghostblog.com`
+   - Mailgun domain: `mg.ghostblog.com`
    - Mailgun Private API key: paste it here.
 
    Then click `Save` in the upper-right corner.
@@ -471,7 +471,7 @@ This walkthrough last worked for me in **September 2023**. If you spot errors, v
 
 ## Changelog
 
-- **2024-11-17**: Remove Secure Boot recommendation as the setting doesn't always stick, and seems to create more trouble when SSH-ing.
+- **2024-11-17**: Remove Secure Boot recommendation as the setting doesn't always stick, and seems to create more trouble when SSH-ing; revert Nodejs installation from using `nvm` to direct installation; update Mailgun instructions to use a mail-specific subdomain (`mg`) by default.
 
 - **2024-10-02**: Add setting to autodelete disk snapshots after 7 days to minimize costs, as snapshot storage is no longer included in the Free Tier.
 
