@@ -80,6 +80,7 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
       - Operating system: `Ubuntu`
       - Version: `Ubuntu 22.04 LTS x86/64`
       - Boot disk type: `Standard persistent disk`
+      - Size (GB): 25
    - Firewall:
       - `Allow HTTP traffic`
       - `Allow HTTPS traffic`
@@ -168,6 +169,32 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
    ```bash
    su - service_account
    ```
+
+#### Create swapfile
+To minimize the chance of Ghost running out of memory on a small virtual machine like this one, create a swapfile---a preallocated amount of disk storage that the RAM can overflow to.
+
+1. Allocate 2GB to a swapfile that only root can access:
+   ```bash
+   sudo fallocate -l 2G /swapfile
+   sudo chmod 600 /swapfile
+   sudo mkswap /swapfile
+   sudo swapon /swapfile
+   ```
+
+2. To make the swapfile persistent, open the file:
+   ```bash
+   sudo nano /etc/fstab
+   ```
+   and add this line at the bottom:
+   ```bash
+   /swapfile swap swap defaults 0 0
+   ```
+
+3. Now running:
+   ```bash
+   sudo free -h
+   ```
+   should show `Swap: 2.0G`.
 
 #### Install Ghost dependencies
 1. Install Nginx and open the firewall:
@@ -470,6 +497,8 @@ At this point you should have a working self-hosted Ghost blog. Updates aside, y
 This walkthrough last worked for me in **September 2023**. If you spot errors, vulnerabilities, or potential improvements, please do [open a pull request](https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2023-09-10-self-hosting-ghost-on-google-cloud.md) on this blog post!
 
 ## Changelog
+
+- **2024-11-20**: Create a 25GB boot disk and [set up swapfiles](https://linuxize.com/post/create-a-linux-swap-file/) immediately upon Ghost setup in order to stave off Ghost websites going offline due to virtual machines running out of memory.
 
 - **2024-11-17**: Remove Secure Boot recommendation as the setting doesn't always stick, and seems to create more trouble when SSH-ing; revert Nodejs installation from using `nvm` to direct installation; update Mailgun instructions to use a mail-specific subdomain (`mg`) by default.
 
