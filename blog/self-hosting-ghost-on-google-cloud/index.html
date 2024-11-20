@@ -251,6 +251,7 @@
 </li>
           <li>Boot disk type: <code class="language-plaintext highlighter-rouge">Standard persistent disk</code>
 </li>
+          <li>Size (GB): 25</li>
         </ul>
       </li>
       <li>Firewall:
@@ -408,6 +409,35 @@
     <div class="language-bash highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code>su - service_account
 </code></pre></div>    </div>
+  </li>
+</ol>
+
+<h4 id="create-swapfile">Create swapfile</h4>
+<p>To minimize the chance of Ghost running out of memory on a small virtual machine like this one, create a swapfile—a preallocated amount of disk storage that the RAM can overflow to.</p>
+
+<ol>
+  <li>Allocate 2GB to a swapfile that only root can access:
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>fallocate <span class="nt">-l</span> 2G /swapfile
+<span class="nb">sudo chmod </span>600 /swapfile
+<span class="nb">sudo </span>mkswap /swapfile
+<span class="nb">sudo </span>swapon /swapfile
+</code></pre></div>    </div>
+  </li>
+  <li>To make the swapfile persistent, open the file:
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>nano /etc/fstab
+</code></pre></div>    </div>
+    <p>and add this line at the bottom:</p>
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>/swapfile swap swap defaults 0 0
+</code></pre></div>    </div>
+  </li>
+  <li>Now running:
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>free <span class="nt">-h</span>
+</code></pre></div>    </div>
+    <p>should show <code class="language-plaintext highlighter-rouge">Swap: 2.0G</code>.</p>
   </li>
 </ol>
 
@@ -784,6 +814,9 @@ ghost <span class="nb">ls</span>
 <h2 id="changelog">Changelog</h2>
 
 <ul>
+  <li>
+    <p><strong>2024-11-20</strong>: Create a 25GB boot disk and <a href="https://linuxize.com/post/create-a-linux-swap-file/" target="_blank" rel="noopener">set up swapfiles</a> immediately upon Ghost setup in order to stave off Ghost websites going offline due to virtual machines running out of memory.</p>
+  </li>
   <li>
     <p><strong>2024-11-17</strong>: Remove Secure Boot recommendation as the setting doesn’t always stick, and seems to create more trouble when SSH-ing; revert Nodejs installation from using <code class="language-plaintext highlighter-rouge">nvm</code> to direct installation; update Mailgun instructions to use a mail-specific subdomain (<code class="language-plaintext highlighter-rouge">mg</code>) by default.</p>
   </li>
