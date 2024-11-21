@@ -323,11 +323,11 @@ blockquote {
 .social .contact-icons {
   font-size: 4rem;
 }
-.social .contact-icons a i::before {
+.social .contact-icons a svg, .social .contact-icons a i::before {
   color: var(--global-text-color);
   transition-property: all 0.2s ease-in-out;
 }
-.social .contact-icons a:hover i::before {
+.social .contact-icons a:hover svg, .social .contact-icons a:hover i::before {
   color: var(--global-theme-color);
 }
 .social .contact-note {
