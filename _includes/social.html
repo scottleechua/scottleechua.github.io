@@ -1,5 +1,5 @@
             {%- if site.email -%}
-            <a href="mailto:{{ site.email | encode_email }}" title="email"><i class="fas fa-envelope"></i></a>
+            <a href="mailto:{{ site.email | encode_email }}" title="email"><i class="fa-solid fa-envelope"></i></a>
             {% endif %}
             {%- if site.orcid_id -%}
             <a href="https://orcid.org/{{ site.orcid_id }}" title="ORCID"><i class="ai ai-orcid"></i></a>
@@ -14,47 +14,50 @@
             <a href="https://www.researchgate.net/profile/{{site.research_gate_profile}}/" title="ResearchGate"><i class="ai ai-researchgate"></i></a>
             {% endif %}
             {%- if site.github_username -%}
-            <a href="https://github.com/{{ site.github_username }}" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://github.com/{{ site.github_username }}" title="GitHub"><i class="fa-brands fa-github"></i></a>
             {% endif %}
             {%- if site.linkedin_username -%}
-            <a href="https://www.linkedin.com/in/{{ site.linkedin_username }}" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.linkedin.com/in/{{ site.linkedin_username }}" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
             {% endif %}
             {%- if site.twitter_username -%}
-            <a href="https://twitter.com/{{ site.twitter_username }}" title="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://twitter.com/{{ site.twitter_username }}" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
             {% endif %}
             {%- if site.medium_username -%}
-            <a href="https://medium.com/@{{ site.medium_username }}" title="Medium"><i class="fab fa-medium"></i></a>
+            <a href="https://medium.com/@{{ site.medium_username }}" title="Medium"><i class="fa-brands fa-medium"></i></a>
             {% endif %}
             {%- if site.quora_username -%}
-            <a href="https://www.quora.com/profile/{{ site.quora_username }}" title="Quora"><i class="fab fa-quora"></i></a>
+            <a href="https://www.quora.com/profile/{{ site.quora_username }}" title="Quora"><i class="fa-brands fa-quora"></i></a>
             {% endif %}
             {%- if site.blogger_url -%}
-            <a href="{{ site.blogger_url }}" title="Blogger"><i class="fab fa-blogger-b"></i></a>
+            <a href="{{ site.blogger_url }}" title="Blogger"><i class="fa-brands fa-blogger-b"></i></a>
             {% endif %}
             {%- if site.work_url -%}
-            <a href="{{ site.work_url }}" title="Work"><i class="fas fa-briefcase"></i></a>
+            <a href="{{ site.work_url }}" title="Work"><i class="fa-solid fa-briefcase"></i></a>
             {% endif %}
             {%- if site.wikidata_id -%}
-            <a href="https://www.wikidata.org/wiki/{{ site.wikidata_id }}" title="Wikidata"><i class="fas fa-barcode"></i></a>
+            <a href="https://www.wikidata.org/wiki/{{ site.wikidata_id }}" title="Wikidata"><i class="fa-solid fa-barcode"></i></a>
             {% endif %}
             {%- if site.strava_userid -%}
-            <a href="https://www.strava.com/athletes/{{ site.strava_userid }}" title="Strava"><i class="fab fa-strava"></i></a>
+            <a href="https://www.strava.com/athletes/{{ site.strava_userid }}" title="Strava"><i class="fa-brands fa-strava"></i></a>
             {% endif %}
             {%- if site.keybase_username -%}
-            <a href="https://keybase.io/{{ site.keybase_username }}" title="Keybase"><i class="fab fa-keybase"></i></a>
+            <a href="https://keybase.io/{{ site.keybase_username }}" title="Keybase"><i class="fa-brands fa-keybase"></i></a>
             {% endif %}
             {%- if site.gitlab_username -%}
-            <a href="https://gitlab.com/{{ site.gitlab_username }}" title="GitLab"><i class="fab fa-gitlab"></i></a>
+            <a href="https://gitlab.com/{{ site.gitlab_username }}" title="GitLab"><i class="fa-brands fa-gitlab"></i></a>
             {% endif %}
             {%- if site.dblp_url -%}
             <a href="{{ site.dblp_url }}" title="DBLP"><i class="ai ai-dblp"></i></a>
             {% endif %}
             {%- if site.stackoverflow_id -%}
-            <a href="https://stackoverflow.com/users/{{ site.stackoverflow_id }}" title="Stackoverflow"><i class="fab fa-stack-overflow"></i></a>
+            <a href="https://stackoverflow.com/users/{{ site.stackoverflow_id }}" title="Stackoverflow"><i class="fa-brands fa-stack-overflow"></i></a>
             {% endif %}
             {%- if site.rss_icon -%}
-            <a href="{{ site.url }}/feed.xml" title="RSS Feed"><i class="fas fa-rss-square"></i></a>
+            <a href="{{ site.url }}/feed.xml" title="RSS Feed"><i class="fa-solid fa-square-rss"></i></a>
             {% endif %}
             {%- if site.mastodon_profile -%}
-            <a href="{{ site.mastodon_profile }}" title="Mastodon"><i class="fab fa-mastodon"></i></a>
+            <a href="{{ site.mastodon_profile }}" title="Mastodon"><i class="fa-brands fa-mastodon"></i></a>
+            {% endif %}
+            {%- if site.bluesky_profile -%}
+            <a href="{{ site.bluesky_profile }}" title="Bluesky"><i class="fa-brands fa-bluesky"></i></a>
             {% endif %}

@@ -55,8 +55,9 @@ scholar_userid: GJBprlAAAAAJ # your Google Scholar ID
 #wikidata_id: # your wikidata id
 #dblp_url: # your DBLP profile url
 #stackoverflow_id: #your stackoverflow id
-mastodon_profile: https://mastodon.social/@scottleechua
+#mastodon_profile: https://mastodon.social/@scottleechua
 s3_url: https://d48rdc2gjiluz.cloudfront.net
+bluesky_profile: https://bsky.app/profile/scottleechua.com
 
 contact_note: # > You can even add a little note about which of these is the best way to reach you.
 
@@ -206,8 +207,10 @@ bootstrap:
     css: "sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY="
     js: "sha256-SyTu6CwrfOhaznYZPoolVw2rxoY7lKYKQvqbtqN93HI="
 fontawesome:
-  version: "5.15.4"
-  integrity: "sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4="
+  version: "6.7.1"
+  integrity:
+    css: "sha256-tTPGZ9Rj5Gno6F5FRoPuBpoW31u5ky7IVxaP5J3Ot5o="
+    js: "sha256-OUS5KSI0FzXk07uK21SSLdUdWJ55gg3ZaJQ+9luYpdE="
 jquery:
   version: "3.6.0"
   integrity: "sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
