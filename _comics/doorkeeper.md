@@ -10,7 +10,7 @@ importance: 1
 ---
 
 <div style="text-align: center;padding-bottom:1.5rem;">
-<h5><a href="https://shopee.ph/Doorkeeper-(5th-Anniversary-Edition)-i.232374857.20547350234">buy the comic</a> or <a href="https://komikeros.com/doorkeeper">read it free</a></h5>
+<h5><a href="https://shopee.ph/Doorkeeper-(5th-Anniversary-Edition)-i.232374857.20547350234">buy the comic</a> or <a href="https://read.komiks.space/doorkeeper">read it free</a></h5>
 </div>
 
 <div class="row">
