@@ -165,6 +165,7 @@ blockquote {
 }
 .card .card-title {
   color: var(--global-text-color);
+  margin-top: 0;
 }
 .card .card-item {
   width: auto;
