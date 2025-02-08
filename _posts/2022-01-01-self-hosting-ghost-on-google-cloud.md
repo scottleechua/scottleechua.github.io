@@ -141,7 +141,7 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
 4. Go back to Mailgun > `Verify DNS settings`.
 5. Once the custom domain has been added to Mailgun, go to Sending > Domain Settings > `SMTP Credentials`. Take note of the "login" (usually `postmaster@mg.ghostblog.com`).
 6. Click `Manage SMTP Credentials`, then `Reset password` > `Reset password` > `Copy`. Paste this password somewhere safe---it will only be generated this once!
-7. Click on your profile in the upper right > `API Security` ? `Mailgun API Keys`, and generate a Private API Key.
+7. Click on your profile in the upper right > `API Security` > `Mailgun API Keys`, and generate a Private API Key.
 
 ### 3. Deploy Ghost
 
