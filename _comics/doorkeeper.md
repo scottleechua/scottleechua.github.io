@@ -6,7 +6,7 @@ subtitle: Summit Books, 2017 (1st ed.)
 og_image: doorkeeper-coverart-zoom.jpg
 image_alt: Painting of a robed entity with a door for a head grabbing a thin red dragon that is swallowing the moon.
 add_period: true
-importance: 1
+importance: 2
 ---
 
 <div style="text-align: center;padding-bottom:1.5rem;">
@@ -59,7 +59,7 @@ But perhaps even the oldest of beings can change.
 
 #### The *Doorkeeper* team
 
-<div style="width: 100%; margin-left: auto; margin-right: auto; margin-bottom: 16px;">
+<div style="text-align: center; width: 100%; margin-left: auto; margin-right: auto; margin-bottom: 16px;">
 <figure>
         <img class="img-fluid rounded z-depth-1" src="/assets/img/doorkeeper-montage.jpg" alt="Rectangular montage of six illustrations. Images from left to right are as follows. A woman in armor riding a horse in a forest, seen from the back. A crouched, muscular man holding a lit torch. A priest entering an empty church with a stained glass window. Taxi boats on a river in a flooded city. Three young people chatting over a drink. A boy holding his breath underwater."/>
 </figure>
