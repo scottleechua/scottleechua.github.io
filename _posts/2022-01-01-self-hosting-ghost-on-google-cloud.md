@@ -2,7 +2,7 @@
 layout: post
 title:  Self-hosting Ghost on Google Cloud
 last_updated:   2024-11-20
-description: A plaintext walkthrough of deploying an almost-free, fully self-hosted Ghost blog on Google Cloud.
+description: A plaintext guide to deploying an almost-free, fully self-hosted Ghost blog on Google Cloud.
 categories: walkthrough, website, cloud
 og_image: ghost-google-cloud-diagram.png
 twitter_large_image: true

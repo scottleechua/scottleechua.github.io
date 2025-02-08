@@ -2,7 +2,7 @@
 layout: post
 title: Versioning comic scripts using Fountain and GitHub
 last_updated: 2024-06-23
-description: A plaintext walkthrough of writing and sharing auto-updating comic scripts using Fountain, <i>&#8217;afterwriting</i>, and GitHub Actions.
+description: A plaintext guide to writing and sharing comic scripts using Fountain, <i>&#8217;afterwriting</i>, and GitHub Actions.
 categories: walkthrough, comics, cloud
 og_image: comic-script-diagram.png
 twitter_large_image: true
