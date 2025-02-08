@@ -50,6 +50,7 @@ But perhaps even the oldest of beings can change.
 - 5 Filipino graphic novels that deserve their own Netflix show -- *[This Is Hype](https://web.archive.org/web/20221203101546/https://thisishype.ph/5-filipino-graphic-novels-that-deserve-their-own-netflix-show/)*
 - After *Trese*, these Filipino komiks deserve their own animated adaptation -- *[Metroscene Mag](https://www.metroscenemag.com/2021/06/after-trese-these-filipino-komiks-deserves-adaptation.html)*
 - Pinay illustrators talk about their experiences working on comics -- *[Cosmopolitan](https://www.cosmo.ph/lifestyle/career-money/what-it-s-like-to-be-women-in-the-comic-industry-a704-20171211-lfrm)*
+- *Doorkeeper*: How time both ruins and connects -- *[The Benildean](https://thebenildean.org/2022/04/doorkeeper-how-time-both-ruins-and-connects)*
 - The Komikon report: Madly into the mainstream -- *[Philippine Inquirer](https://lifestyle.inquirer.net/280006/komikon-report-madly-mainstream/#ixzz4zUFw027g)*
 - Let's Talk Komiks: Ethan Chua and Scott Lee Chua on creating *Doorkeeper* -- *[Flipgeeks](http://www.flipgeeks.com/pinoy-komiks-dc-marvel-etc/lets-talk-komiks-ethan-and-scott-chua-on-creating-doorkeeper)*
 
