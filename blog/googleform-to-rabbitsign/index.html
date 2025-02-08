@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <!-- Head -->
+  <head><!-- Metadata, OpenGraph and Schema.org -->
+        <!-- Standard metadata -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- prevent Microsoft AI scraping -->
+    <meta name="robots" content="noarchive">
+    
+    <title>Sending customized documents for e-signature using RabbitSign and Google Forms | Scott Lee Chua 🇵🇭</title>
+    <meta name="author" content="Scott Lee Chua 🇵🇭" />
+    <meta name="description" content="A plaintext guide to integrating Google Forms with RabbitSign using an Apps Script." />
+
+    <!-- OpenGraph -->
+    <meta property="og:site_name" content="Scott Lee Chua 🇵🇭" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Sending customized documents for e-signature using RabbitSign and Google Forms" />
+    <meta property="og:url" content="https://scottleechua.com/blog/googleform-to-rabbitsign/" />
+    <meta property="og:description" content="A plaintext guide to integrating Google Forms with RabbitSign using an Apps Script." />
+    <meta property="og:image" content="https://scottleechua.com/assets/img/googleform-to-rabbitsign-diagram.png" />
+    <meta property="og:locale" content="en" />
+
+    <!-- Twitter card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Sending customized documents for e-signature using RabbitSign and Google Forms" />
+    <meta name="twitter:description" content="A plaintext guide to integrating Google Forms with RabbitSign using an Apps Script." />
+    <meta name="twitter:image" content="https://scottleechua.com/assets/img/googleform-to-rabbitsign-diagram.png" />
+    
+
+
+<!-- Mastodon linkback -->
+    <link rel="me" href="" />
+
+<!-- Bootstrap & MDB -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css" integrity="sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw=" crossorigin="anonymous" />
+
+<!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.1/css/fontawesome.min.css" integrity="sha256-tTPGZ9Rj5Gno6F5FRoPuBpoW31u5ky7IVxaP5J3Ot5o=" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.1/js/all.min.js" integrity="sha256-OUS5KSI0FzXk07uK21SSLdUdWJ55gg3ZaJQ+9luYpdE=" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css" integrity="sha256-i1+4qU2G2860dGGIOJscdC30s9beBXjFfzjWLjBRsBg=" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons">
+
+<!-- Code Syntax Highlighting -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/github.css" media="none" id="highlight_theme_light" />
+
+<!-- Styles -->
+    
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="canonical" href="https://scottleechua.com/blog/googleform-to-rabbitsign/">
+
+    <!-- Dark Mode -->
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/native.css" media="none" id="highlight_theme_dark" />
+
+    <script src="/assets/js/theme.js"></script>
+    <script src="/assets/js/dark_mode.js"></script>
+    
+  </head>
+
+  <body class="sticky-bottom-footer">
+
+    <!-- Header -->
+
+    
+    <header>
+
+      <!-- Nav Bar -->
+      <nav id="navbar" class="navbar navbar-light navbar-expand-sm sticky-top">
+        <div class="container">
+          <a class="navbar-brand title font-weight-lighter" href="https://scottleechua.com/">Scott Lee  Chua 🇵🇭</a>
+          
+          <!-- Navbar Toggle -->
+          <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar top-bar"></span>
+            <span class="icon-bar middle-bar"></span>
+            <span class="icon-bar bottom-bar"></span>
+          </button>
+
+          <div class="collapse navbar-collapse text-right" id="navbarNav">
+            <ul class="navbar-nav ml-auto flex-nowrap">
+
+              <!-- About -->
+              <li class="nav-item ">
+                <a class="nav-link" href="/">about</a>
+              </li>
+
+              <!-- Other pages -->
+              <li class="nav-item ">
+                <a class="nav-link" href="/comics/">comics</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/prose/">prose</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="/games/">games</a>
+              </li>
+<!-- Blog -->
+              
+              <li class="nav-item active">
+                <a class="nav-link" href="/blog/">blog<span class="sr-only">(current)</span></a>
+              </li>
+
+              
+<!--
+
+              <!~~ Toggle theme mode ~~>
+              <div class = "toggle-container">
+                <a id = "light-toggle">
+                  <i class="fa-solid fa-moon"></i>
+                  <i class="fa-solid fa-sun"></i>
+                </a>
+              </div>
+ -->
+              
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Content -->
+
+    <div class="container mt-5">
+      <!-- _layouts/post.html -->
+
+
+
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Sending customized documents for e-signature using RabbitSign and Google Forms</h1>
+    <p class="post-meta">February 8, 2025</p>
+  </header>
+
+  <article class="post-content">
+    <p><img class="img-fluid rounded" src="/assets/img/googleform-to-rabbitsign-diagram.png" alt="A flowchart. Google Forms. Right directed arrow. Apps Script. An arrow from below. Secret Manager. Right directed arrow. RabbitSign, e-signature platform."></p>
+
+<h2 id="try-it-out-now">Try it out now!</h2>
+<p>See this workflow in action for yourself!</p>
+
+<ol>
+  <li>Go to <a href="https://10minutemail.net" target="_blank" rel="noopener">10minutemail</a> and get a temporary email address.</li>
+  <li>Fill out this <a href="https://docs.google.com/forms/d/e/1FAIpQLSdRA_m0kYRXReUqKgqyRg-4TF9m3PDkR6jEJLbLIUoBw8ZLdg/viewform?usp=header" target="_blank" rel="noopener">Superhero Registration Google Form</a>.</li>
+  <li>Within a few minutes, you should receive a customized Superhero Oath in your temporary mailbox — sign it and submit!</li>
+</ol>
+
+<p><a href="#setup">I’m sold on this workflow, jump to the tutorial!</a></p>
+
+<p><img class="img-fluid rounded" src="https://raw.githubusercontent.com/scottleechua/googleform-to-rabbitsign/main/assets/header.jpeg" alt="A flowchart. Google Forms. Right directed arrow. Apps Script. An arrow from below. Secret Manager. Right directed arrow. RabbitSign, e-signature platform."></p>
+
+<h2 id="why-this-workflow">Why this workflow?</h2>
+
+<p>I manage <a href="https://read.komiks.space" target="_blank" rel="noopener"><code class="language-plaintext highlighter-rouge">read.komiks.space</code></a>, an online space to read Southeast Asian comics. Whenever we onboard a new comic creator, we first sign a license agreement so they can allow us to host their works. Previously, sending out license agreements was a manual, multi-step process:</p>
+
+<ol>
+  <li>I send them a Google Form to collect their details (name, ID number, biodata, and so on).</li>
+  <li>Once they submit the form, I make a copy of my license agreement template, fill in their responses, and save to PDF.</li>
+  <li>I upload the PDF to <a href="https://www.rabbitsign.com/index.html" target="_blank" rel="noopener">RabbitSign</a><sup id="fnref:1"><a href="#fn:1" class="footnote" rel="footnote" role="doc-noteref">1</a></sup> and send it out for e-signature.</li>
+</ol>
+
+<p>I wanted to remove myself from the picture, so that the instant they submit the Google Form, a personalized license agreement lands in their inbox moments later, ready to be signed. (Hence this workflow!)</p>
+
+<p>The key here is <a href="https://developers.google.com/apps-script" target="_blank" rel="noopener">Google Apps Script</a>, an automation scripting platform that integrates very nicely with the Google ecosystem of tools. In particular, we want a script that:</p>
+
+<ol>
+  <li>gets triggered whenever a specific Google Form is submitted;</li>
+  <li>fills a RabbitSign template document with the relevant form data;<sup id="fnref:2"><a href="#fn:2" class="footnote" rel="footnote" role="doc-noteref">2</a></sup> and</li>
+  <li>instantly sends the document out for signing.</li>
+</ol>
+
+<p>In this guide, we’ll use <a href="https://github.com/scottleechua/googleform-to-rabbitsign" target="_blank" rel="noopener">some template code I wrote</a> that takes care of a lot of the low-level plumbing for you.</p>
+
+<p>And since we’re using Google tools anyway, we’ll securely store our RabbitSign API credentials in Google Cloud Secret Manager, where Apps Script can safely retrieve them.</p>
+
+<h2 id="cost">Cost</h2>
+<p>This workflow runs for as close to free as possible:</p>
+<ul>
+  <li>Google Forms and Apps Script are both free.<sup id="fnref:3"><a href="#fn:3" class="footnote" rel="footnote" role="doc-noteref">3</a></sup>
+</li>
+  <li>The RabbitSign API is currently free while in public beta; check <a href="https://www.rabbitsign.com/developer.html" target="_blank" rel="noopener">here</a> for up-to-date pricing.</li>
+  <li>Google Cloud Secret Manager gives you up to 6 active secrets and 10k access operations for free each month under the <a href="https://cloud.google.com/free/docs/free-cloud-features#secret-manager" target="_blank" rel="noopener">Google Cloud Free Tier</a>.</li>
+</ul>
+
+<h2 id="setup">Setup</h2>
+<p>This process has four steps:</p>
+<ol>
+  <li><a href="#1-set-up-accounts">Set up accounts</a></li>
+  <li><a href="#2-create-a-rabbitsign-template">Create a RabbitSign template</a></li>
+  <li><a href="#3-prepare-the-google-form">Prepare the Google Form</a></li>
+  <li><a href="#4-customize-the-apps-script-code">Customize the Apps Script code</a></li>
+</ol>
+
+<h3 id="1-set-up-accounts">1. Set up accounts</h3>
+
+<h4 id="get-rabbitsign-api-credentials">Get RabbitSign API credentials</h4>
+<ol>
+  <li>
+<a href="https://www.rabbitsign.com/index.html" target="_blank" rel="noopener">Create a RabbitSign account</a> and log in. Then go to the <a href="https://www.rabbitsign.com/user/developer" target="_blank" rel="noopener">Developer Console</a>. Accept the terms of service.</li>
+  <li>Under My Developer Keys &gt; <code class="language-plaintext highlighter-rouge">Create Key</code>. Name it something meaningful like <code class="language-plaintext highlighter-rouge">apps-script-key</code>.</li>
+  <li>Take note of the Key ID and the Key Secret.</li>
+</ol>
+
+<h4 id="set-up-google-cloud">Set up Google Cloud</h4>
+<ol>
+  <li>Log in to the Google account you want to use with Google Forms. Activate Google Cloud <a href="https://console.cloud.google.com" target="_blank" rel="noopener">here</a>.</li>
+  <li>Select <code class="language-plaintext highlighter-rouge">Create Project</code>:
+    <ul>
+      <li>Project name: <code class="language-plaintext highlighter-rouge">googleform-to-rabbitsign</code>
+</li>
+      <li>Location: <code class="language-plaintext highlighter-rouge">No organization</code>
+</li>
+    </ul>
+
+    <p>Take note of the <strong>Project ID</strong>.</p>
+  </li>
+  <li>In the floating topbar, <code class="language-plaintext highlighter-rouge">Activate</code> Free Trial. Set up a billing account.</li>
+  <li>
+<em>(Optional)</em> In the floating topbar, <code class="language-plaintext highlighter-rouge">Activate</code> a paid account. I prefer to do this immediately, otherwise anything you do now will be deleted unless you remember to upgrade <em>before</em> the free trial ends.</li>
+</ol>
+
+<h4 id="create-secret">Create Secret</h4>
+<ol>
+  <li>Search for <code class="language-plaintext highlighter-rouge">Secret Manager API</code>, then <code class="language-plaintext highlighter-rouge">Enable</code> it.</li>
+  <li>Select <code class="language-plaintext highlighter-rouge">Create Secret</code> and enter:
+    <ul>
+      <li>Name: <code class="language-plaintext highlighter-rouge">rabbitsign-api-secret</code>
+</li>
+      <li>Secret value: <code class="language-plaintext highlighter-rouge">{"id":"&lt;APIKEYID&gt;","secret":"&lt;APIKEYSECRET&gt;"}</code>
+</li>
+    </ul>
+
+    <p>replacing <code class="language-plaintext highlighter-rouge">&lt;APIKEYID&gt;</code> and <code class="language-plaintext highlighter-rouge">&lt;APIKEYSECRET&gt;</code> with your actual RabbitSign credentials.</p>
+  </li>
+  <li>
+    <p>Confirm <code class="language-plaintext highlighter-rouge">Create Secret</code>. Now your API credentials have Secret ID: <code class="language-plaintext highlighter-rouge">rabbitsign-api-secret</code> and Secret Version: <code class="language-plaintext highlighter-rouge">1</code>.</p>
+
+    <p>In the future, if you rotate API keys, you can <code class="language-plaintext highlighter-rouge">Add new version</code> to the same Secret. This would keep your Secret ID the same, but increment the Secret Version to <code class="language-plaintext highlighter-rouge">2</code>.</p>
+  </li>
+</ol>
+
+<h3 id="2-create-a-rabbitsign-template">2. Create a RabbitSign template</h3>
+
+<ol>
+  <li>From the <a href="https://www.rabbitsign.com/dashboard" target="_blank" rel="noopener">RabbitSign Dashboard</a>, click <code class="language-plaintext highlighter-rouge">Create a template</code>. Upload your template file as PDF.</li>
+  <li>Fill in the default title and message, which will become the subject and body of the email RabbitSign sends to your recipient. You can override these default messages later in <a href="#4-customize-the-apps-script-code">Step 4</a>.</li>
+  <li>Tick <code class="language-plaintext highlighter-rouge">Include sender fields</code>.</li>
+  <li>Enter a value for Role Name, e.g., <code class="language-plaintext highlighter-rouge">Recipient</code>. Take note of what you entered.</li>
+  <li>With Assignee set to <code class="language-plaintext highlighter-rouge">Sender (Me)</code>, drag and drop the fields you want to fill using the Google Form responses. RabbitSign calls these “sender fields.” Assign each sender field a custom <code class="language-plaintext highlighter-rouge">Field Name</code>. <strong>Note these down as you won’t see them again after this!</strong>
+</li>
+  <li>With Assignee set to <code class="language-plaintext highlighter-rouge">Recipient</code>, drag and drop the fields you want the recipient to fill in themselves. In this case, since the recipient will provide their details via Google Form, just a <code class="language-plaintext highlighter-rouge">Signature</code> field will probably suffice.</li>
+  <li>Select <code class="language-plaintext highlighter-rouge">Create Template</code>.</li>
+  <li>Go back to the Dashboard &gt; <code class="language-plaintext highlighter-rouge">Templates</code> &gt; select the template you just created. Take note of the <strong>Template ID</strong>.</li>
+</ol>
+
+<p><img class="img-fluid rounded" src="/assets/img/googleform-to-rabbitsign-template.png" alt="A flowchart. Google Forms. Right directed arrow. Apps Script. An arrow from below. Secret Manager. Right directed arrow. RabbitSign, e-signature platform."></p>
+<div class="caption">
+Sender fields (blue) are labeled with meaningful Field Names. The only Recipient field (green) is a Signature field.
+</div>
+
+<h3 id="3-prepare-the-google-form">3. Prepare the Google Form</h3>
+
+<ol>
+  <li>Create a <a href="https://forms.new" target="_blank" rel="noopener">new Google Form</a>. Go to Settings &gt; Responses &gt; Collect email addresses &gt; <code class="language-plaintext highlighter-rouge">Responder input</code>.</li>
+  <li>From your Google Form, click the 3-dots icon in the upper right &gt; select <code class="language-plaintext highlighter-rouge">Apps Script</code>. This creates a new Apps Script project. Give it a meaningful title, as the project will show up as a “Third-party app” in your Google account’s <a href="https://myaccount.google.com/data-and-privacy" target="_blank" rel="noopener">Data and Privacy tab</a> later.</li>
+  <li>From Apps Script, go to Project Settings &gt; tick <code class="language-plaintext highlighter-rouge">Show 'appsscript.json' manifest file in editor</code>.</li>
+  <li>Open the now-visible <code class="language-plaintext highlighter-rouge">appsscript.json</code> file and add a new entry:
+    <div class="language-plaintext highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> "oauthScopes": [
+     "https://www.googleapis.com/auth/script.external_request",
+     "https://www.googleapis.com/auth/cloud-platform",
+     "https://www.googleapis.com/auth/forms"
+ ]
+</code></pre></div>    </div>
+    <p>remembering to add a comma after the previous argument.</p>
+  </li>
+  <li>Delete <code class="language-plaintext highlighter-rouge">Code.gs</code>. Copy over <code class="language-plaintext highlighter-rouge">main.gs</code> and <code class="language-plaintext highlighter-rouge">utils.gs</code> from <a href="https://github.com/scottleechua/googleform-to-rabbitsign" target="_blank" rel="noopener">this GitHub repo</a>.</li>
+  <li>Go to Triggers &gt; <code class="language-plaintext highlighter-rouge">Add Trigger</code>. Edit the following:
+    <ul>
+      <li>Select event type: <code class="language-plaintext highlighter-rouge">On form submit</code>
+</li>
+      <li>Failure notification settings: <code class="language-plaintext highlighter-rouge">Immediately</code>
+</li>
+    </ul>
+  </li>
+  <li>Click <code class="language-plaintext highlighter-rouge">Save</code>. This should initiate a Google authentication flow to grant the project the necessary permissions. Accept the risks, proceed, and grant all the requested permissions.</li>
+</ol>
+
+<h3 id="4-customize-the-apps-script-code">4. Customize the Apps Script code</h3>
+
+<p>While editing <code class="language-plaintext highlighter-rouge">main.gs</code>, you can refer to <a href="https://github.com/scottleechua/googleform-to-rabbitsign/blob/main/demo.gs" target="_blank" rel="noopener">the <code class="language-plaintext highlighter-rouge">demo.gs</code> file</a> that powers the <a href="https://docs.google.com/forms/d/e/1FAIpQLSdRA_m0kYRXReUqKgqyRg-4TF9m3PDkR6jEJLbLIUoBw8ZLdg/viewform?usp=header" target="_blank" rel="noopener">Superhero Registration demo form</a>. (You won’t have to edit anything in <code class="language-plaintext highlighter-rouge">utils.gs</code>.)</p>
+
+<ol>
+  <li>Fill in the config values at the top of <code class="language-plaintext highlighter-rouge">main.gs</code>:
+    <ul>
+      <li>PROJECT_ID: the Google Cloud Project ID you noted in <a href="#1-set-up-accounts">Step 1</a>
+</li>
+      <li>SECRET_ID: <code class="language-plaintext highlighter-rouge">rabbitsign-api-secret</code>
+</li>
+      <li>SECRET_VERSION: <code class="language-plaintext highlighter-rouge">1</code>
+</li>
+      <li>TEMPLATE_ID: the RabbitSign template ID you noted in <a href="#2-create-a-rabbitsign-template">Step 2</a>
+</li>
+      <li>RECIPIENT_ROLE_NAME: <code class="language-plaintext highlighter-rouge">Recipient</code>
+</li>
+      <li>DOCUMENT_TITLE and EMAIL_BODY: the subject and body of the email RabbitSign will send out; this overrides the default values you set earlier in <a href="#2-create-a-rabbitsign-template">Step 2</a>.</li>
+    </ul>
+  </li>
+  <li>
+    <p>On line 29, replace <code class="language-plaintext highlighter-rouge">"Name"</code> with the exact text of the Google Form question that asks for the recipient’s name. For example, if the Google Form question reads, “Enter your full name here:”, then line 29 should read:</p>
+
+    <div class="language-js highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code> <span class="kd">const</span> <span class="nx">recipientName</span> <span class="o">=</span> <span class="nx">googleFormAnswers</span><span class="p">[</span><span class="dl">"</span><span class="s2">Enter your full name here:</span><span class="dl">"</span><span class="p">];</span>
+</code></pre></div>    </div>
+
+    <p>complete with any capitalization and punctuation used.</p>
+  </li>
+  <li>Uncomment line 33 (Option 1).</li>
+  <li>
+    <p>Below line 39, assign Google Form answers to the corresponding RabbitSign fields. The Google Form answers are contained in the dictionary <code class="language-plaintext highlighter-rouge">googleFormAnswers</code>, where the keys are the question texts and the values are the responses.</p>
+
+    <p>The goal is to fill up the dictionary <code class="language-plaintext highlighter-rouge">rabbitsignFields</code>, where the keys are the sender field values you noted in <a href="#2-create-a-rabbitsign-template">Step 2</a>, and the values are as follows:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: center"><strong>RabbitSign field type</strong></th>
+          <th style="text-align: center"><strong>Expected value</strong></th>
+          <th><strong>Notes</strong></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center">Text</td>
+          <td style="text-align: center">any string</td>
+          <td>Also useful for arbitrary calendar dates (“1938-04-18”).</td>
+        </tr>
+        <tr>
+          <td style="text-align: center">Checkbox</td>
+          <td style="text-align: center">“true” or “false”</td>
+          <td>Note that these are strings!</td>
+        </tr>
+        <tr>
+          <td style="text-align: center">Date</td>
+          <td style="text-align: center">“true”</td>
+          <td>This is just a dummy argument, as RabbitSign dates actually get their value from <code class="language-plaintext highlighter-rouge">payload["date"]</code>.</td>
+        </tr>
+        <tr>
+          <td style="text-align: center">Signature and Initials</td>
+          <td style="text-align: center">string</td>
+          <td>Whatever you type here will show up in cursive as your e-signature, e.g., “Professor X”.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>See <a href="https://github.com/scottleechua/googleform-to-rabbitsign/blob/main/demo.gs#L37" target="_blank" rel="noopener">lines 37–43</a> of <code class="language-plaintext highlighter-rouge">demo.gs</code> for working examples of each field type.</p>
+  </li>
+  <li>Submit some test responses to the Google Form. Use the Apps Script Execution log to debug. It might help to examine the raw Google Form payloads by forwarding them to tools like <a href="https://requestcatcher.com" target="_blank" rel="noopener">RequestCatcher</a>.</li>
+</ol>
+
+<h3 id="congratulations">Congratulations!</h3>
+
+<p>At this point, you’ve connected Google Forms to RabbitSign and saved yourself hours of manual form-filling! Your future self thanks you. <img class="emoji" title=":rocket:" alt=":rocket:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f680.png" height="20" width="20"></p>
+
+<hr>
+
+<h3 id="contribute">Contribute</h3>
+<p>This workflow last worked for me as of the most recent date in the changelog below. If you spot errors, vulnerabilities, or potential improvements, please do <a href="https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2025-02-08-googleform-to-rabbitsign.md" target="_blank" rel="noopener">open a pull request</a> on this blog post!</p>
+
+<h2 id="changelog">Changelog</h2>
+
+<ul>
+  <li>
+<strong>2025-02-08</strong>: Initial post. This workflow owes a deep debt of gratitude to <a href="https://www.rabbitsign.com/team.html" target="_blank" rel="noopener">the RabbitSign team</a> who have created such an elegant, delightful e-signing platform.</li>
+</ul>
+
+<hr>
+<h4 id="footnotes">Footnotes</h4>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1">
+      <p>I’m a big advocate for <a href="https://blog.rabbitsign.com/launching-an-unlimited-free-e-signing-service-fe77a50a66aa" target="_blank" rel="noopener">RabbitSign</a>, a low-cost e-signature platform created by Stanley Zhong that cleverly uses serverless architecture to bring costs as low as possible. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">↩</a></p>
+    </li>
+    <li id="fn:2">
+      <p>While other online form providers let you forward submitted form data elsewhere (e.g., <a href="https://www.typeform.com/developers/webhooks/" target="_blank" rel="noopener">Typeform webhooks</a>), they generally <strong>don’t</strong> let you transform the data or modify the HTTP request before sending—which the RabbitSign API requires, and Apps Script lets you do. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">↩</a></p>
+    </li>
+    <li id="fn:3">
+      <p>Apps Script is technically subject to <a href="https://developers.google.com/apps-script/guides/services/quotas" target="_blank" rel="noopener">some quotas and limitations on runtimes</a>, but your form would need to be receiving thousands of submissions per day for these to even become an issue. <a href="#fnref:3" class="reversefootnote" role="doc-backlink">↩</a></p>
+    </li>
+  </ol>
+</div>
+
+  </article>
+
+</div>
+
+    </div>
+
+    <!-- Footer -->
+
+    <footer class="sticky-bottom mt-5">
+  <div class="container">
+    © 2021–2025 Scott Lee Chua.
+    Powered by <a href="https://jekyllrb.com/" target="_blank" rel="noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" target="_blank" rel="noopener">al-folio</a> theme. Read the <a href="/privacy/">Privacy Policy</a>.
+
+    
+    
+  </div>
+</footer>
+
+  <!-- jQuery -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+  <!-- Bootsrap & MDB scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.2/dist/umd/popper.min.js" integrity="sha256-l/1pMF/+J4TThfgARS6KwWrk/egwuVvhRzfLAMQ6Ds4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha256-SyTu6CwrfOhaznYZPoolVw2rxoY7lKYKQvqbtqN93HI=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/js/mdb.min.js" integrity="sha256-NdbiivsvWt7VYCt6hYNT3h/th9vSTL4EDWeGs5SN3DA=" crossorigin="anonymous"></script>
+
+  <!-- Masonry & imagesLoaded -->
+  <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+  <script defer src="/assets/js/masonry.js" type="text/javascript"></script>
+  <!-- Load Common JS -->
+<script src="/assets/js/common.js"></script>
+
+  
+
+<!-- KaTeX -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js" integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja" crossorigin="anonymous"></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+        
+
+  <script data-goatcounter="https://scottleechua.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+  </body>
+</html>
