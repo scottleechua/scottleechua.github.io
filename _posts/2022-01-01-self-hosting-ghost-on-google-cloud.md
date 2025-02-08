@@ -3,7 +3,7 @@ layout: post
 title:  Self-hosting Ghost on Google Cloud
 last_updated:   2024-11-20
 description: A plaintext guide to deploying an almost-free, fully self-hosted Ghost blog on Google Cloud.
-categories: walkthrough, website, cloud
+categories: guide, website, cloud
 og_image: ghost-google-cloud-diagram.png
 twitter_large_image: true
 ---
@@ -28,7 +28,7 @@ I recently helped a friend migrate his movie review blog off [Wix's free tier](h
 Requirement (1) ruled out other "as-a-service" website builders, while (2), (3), and (4) together ruled out my go-to [Jekyll](https://jekyllrb.com/) + [GitHub Pages](https://pages.github.com/) combo. In the end, I settled on the stack shown in the diagram above. A brief overview of why I chose each component:
 
 - **Blog engine.** I chose [Ghost](https://ghost.org/) as it has a beautiful content editor and a mobile-friendly control panel. While Ghost (the company) offers managed hosting plans for a fee, Ghost (the blog engine) is open-source and free to self-host.
-- **Web server.** I chose [NGINX](https://www.nginx.com/) as it is Ghost's default option, and I went with the path of least resistance and most documentation. (In the previous version of this walkthrough, I chose [Caddy](https://caddyserver.com/) as it seemed less arcane, but replicating the custom setup proved irksome after [the breaking changes](#changelog) in Ghost v5.0.)
+- **Web server.** I chose [NGINX](https://www.nginx.com/) as it is Ghost's default option, and I went with the path of least resistance and most documentation. (In the previous version of this guide, I chose [Caddy](https://caddyserver.com/) as it seemed less arcane, but replicating the custom setup proved irksome after [the breaking changes](#changelog) in Ghost v5.0.)
 - **Hosting server.** I chose to use a [Compute Engine](https://cloud.google.com/compute) virtual machine to host the website, because Google Cloud has a unique [Always Free Tier](https://cloud.google.com/free/docs/free-cloud-features#compute) (distinct from their free trial period) with resources enough to permanently host a small- to medium-sized blog (1GB RAM, 1GB monthly traffic to all regions except China and Australia). Google Cloud usually charges for static external IP addresses, but these are also free when attached to Free Tier virtual machines.
 - **Domain registrar.** I like to buy my domain names through [Namecheap](https://namecheap.com) because they're transparent with their prices and don't fill your cart with upsells.
 - **Content delivery network (CDN).** I use [Cloudflare](https://cloudflare.com)'s free CDN service to shorten website loading times and protect against [DDOS](https://www.cloudflare.com/learning/ddos/what-is-a-ddos-attack/) attacks. I also prefer managing DNS records through Cloudflare (rather than at the domain registrar level); not only is [domain resolution](https://www.cloudflare.com/learning/dns/what-is-dns/) faster, the user interface is also sleeker.
@@ -38,7 +38,7 @@ I tried to come up with a tech stack that was **as low-cost as a self-hosted web
 
 ## Overview
 
-In this walkthrough, I outline the whole process of setting up **each and every part** of this exact stack, in six steps:
+In this guide, I outline the whole process of setting up **each and every part** of this exact stack, in six steps:
 
 1. [Set up Google Cloud](#1-set-up-google-cloud)
 2. [Configure the domain](#2-configure-the-domain)
@@ -494,7 +494,7 @@ At this point you should have a working self-hosted Ghost blog. Updates aside, y
 ---
 
 ## Contribute
-This walkthrough last worked for me as of the most recent date in the changelog below. If you spot errors, vulnerabilities, or potential improvements, please do [open a pull request](https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2022-01-01-self-hosting-ghost-on-google-cloud.md) on this blog post!
+This workflow last worked for me as of the most recent date in the changelog below. If you spot errors, vulnerabilities, or potential improvements, please do [open a pull request](https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2022-01-01-self-hosting-ghost-on-google-cloud.md) on this blog post!
 
 ## Changelog
 

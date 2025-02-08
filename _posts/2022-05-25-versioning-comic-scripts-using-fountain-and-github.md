@@ -3,7 +3,7 @@ layout: post
 title: Versioning comic scripts using Fountain and GitHub
 last_updated: 2024-06-23
 description: A plaintext guide to writing and sharing comic scripts using Fountain, <i>&#8217;afterwriting</i>, and GitHub Actions.
-categories: walkthrough, comics, cloud
+categories: guide, comics, cloud
 og_image: comic-script-diagram.png
 twitter_large_image: true
 ---
@@ -189,7 +189,7 @@ which leads them to a page with line-by-line comparisons:
 Your collaborators can also view the latest PDFs by viewing the repo on GitHub, or by pulling the latest changes to their local repo.
 
 ### Contribute
-This walkthrough last worked for me as of the most recent date in the changelog below. If you spot errors, vulnerabilities, or potential improvements, please do [open a pull request](https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2022-05-25-versioning-comic-scripts-using-fountain-and-github.md) on this blog post!
+This workflow last worked for me as of the most recent date in the changelog below. If you spot errors, vulnerabilities, or potential improvements, please do [open a pull request](https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2022-05-25-versioning-comic-scripts-using-fountain-and-github.md) on this blog post!
 
 ## Changelog
 
