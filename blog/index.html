@@ -41,7 +41,7 @@ pagination:
       </h3>
       <p>{{ post.description }}</p>
       <p class="post-meta">
-        {{ post.date | date: '%B %-d, %Y' }} &nbsp; &middot; &nbsp;
+        last updated: {{ post.last_updated | date: '%-d %b %Y' }} &nbsp; &middot; &nbsp;
         {{ read_time }} min read
         {%- if post.external_source %}
         &nbsp; &middot; &nbsp; {{ post.external_source }}

@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  Self-hosting Ghost on Google Cloud
-date:   2024-11-20
+last_updated:   2024-11-20
 description: A plaintext walkthrough of deploying an almost-free, fully self-hosted Ghost blog on Google Cloud.
 categories: walkthrough, website, cloud
 og_image: ghost-google-cloud-diagram.png
@@ -494,7 +494,7 @@ At this point you should have a working self-hosted Ghost blog. Updates aside, y
 ---
 
 ## Contribute
-This walkthrough last worked for me as of the most recent date in the changelog below. If you spot errors, vulnerabilities, or potential improvements, please do [open a pull request](https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2023-09-10-self-hosting-ghost-on-google-cloud.md) on this blog post!
+This walkthrough last worked for me as of the most recent date in the changelog below. If you spot errors, vulnerabilities, or potential improvements, please do [open a pull request](https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2022-01-01-self-hosting-ghost-on-google-cloud.md) on this blog post!
 
 ## Changelog
 
