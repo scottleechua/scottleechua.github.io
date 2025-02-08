@@ -165,7 +165,7 @@
   <li>
 <strong>Blog engine.</strong> I chose <a href="https://ghost.org/" target="_blank" rel="noopener">Ghost</a> as it has a beautiful content editor and a mobile-friendly control panel. While Ghost (the company) offers managed hosting plans for a fee, Ghost (the blog engine) is open-source and free to self-host.</li>
   <li>
-<strong>Web server.</strong> I chose <a href="https://www.nginx.com/" target="_blank" rel="noopener">NGINX</a> as it is Ghost’s default option, and I went with the path of least resistance and most documentation. (In the previous version of this walkthrough, I chose <a href="https://caddyserver.com/" target="_blank" rel="noopener">Caddy</a> as it seemed less arcane, but replicating the custom setup proved irksome after <a href="#changelog">the breaking changes</a> in Ghost v5.0.)</li>
+<strong>Web server.</strong> I chose <a href="https://www.nginx.com/" target="_blank" rel="noopener">NGINX</a> as it is Ghost’s default option, and I went with the path of least resistance and most documentation. (In the previous version of this guide, I chose <a href="https://caddyserver.com/" target="_blank" rel="noopener">Caddy</a> as it seemed less arcane, but replicating the custom setup proved irksome after <a href="#changelog">the breaking changes</a> in Ghost v5.0.)</li>
   <li>
 <strong>Hosting server.</strong> I chose to use a <a href="https://cloud.google.com/compute" target="_blank" rel="noopener">Compute Engine</a> virtual machine to host the website, because Google Cloud has a unique <a href="https://cloud.google.com/free/docs/free-cloud-features#compute" target="_blank" rel="noopener">Always Free Tier</a> (distinct from their free trial period) with resources enough to permanently host a small- to medium-sized blog (1GB RAM, 1GB monthly traffic to all regions except China and Australia). Google Cloud usually charges for static external IP addresses, but these are also free when attached to Free Tier virtual machines.</li>
   <li>
@@ -180,7 +180,7 @@
 
 <h2 id="overview">Overview</h2>
 
-<p>In this walkthrough, I outline the whole process of setting up <strong>each and every part</strong> of this exact stack, in six steps:</p>
+<p>In this guide, I outline the whole process of setting up <strong>each and every part</strong> of this exact stack, in six steps:</p>
 
 <ol>
   <li><a href="#1-set-up-google-cloud">Set up Google Cloud</a></li>
@@ -811,7 +811,7 @@ ghost <span class="nb">ls</span>
 <hr>
 
 <h2 id="contribute">Contribute</h2>
-<p>This walkthrough last worked for me as of the most recent date in the changelog below. If you spot errors, vulnerabilities, or potential improvements, please do <a href="https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2022-01-01-self-hosting-ghost-on-google-cloud.md" target="_blank" rel="noopener">open a pull request</a> on this blog post!</p>
+<p>This workflow last worked for me as of the most recent date in the changelog below. If you spot errors, vulnerabilities, or potential improvements, please do <a href="https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2022-01-01-self-hosting-ghost-on-google-cloud.md" target="_blank" rel="noopener">open a pull request</a> on this blog post!</p>
 
 <h2 id="changelog">Changelog</h2>
 
