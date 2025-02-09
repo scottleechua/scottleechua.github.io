@@ -19,7 +19,7 @@ See this workflow in action for yourself!
 
 [I'm sold on this workflow, jump to the tutorial!](#setup)
 
-<img class="img-fluid rounded" src="https://raw.githubusercontent.com/scottleechua/googleform-to-rabbitsign/main/assets/header.jpeg" alt="A flowchart. Google Forms. Right directed arrow. Apps Script. An arrow from below. Secret Manager. Right directed arrow. RabbitSign, e-signature platform.">
+<img class="img-fluid rounded" src="https://raw.githubusercontent.com/scottleechua/googleform-to-rabbitsign/main/assets/header.jpeg" alt="A digital 'superhero oath' document being prepared in RabbitSign, with fields for names, dates, email, and signature. It also includes a checkbox for joining a group chat and field customization options on the right panel.">
 
 ## Why this workflow?
 
