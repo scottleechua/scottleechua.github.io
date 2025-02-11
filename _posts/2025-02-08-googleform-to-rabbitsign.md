@@ -44,7 +44,7 @@ And since we're using Google tools anyway, we'll securely store our RabbitSign A
 ## Cost
 This workflow runs for as close to free as possible:
 - Google Forms and Apps Script are both free.[^3]
-- The RabbitSign API costs 0.10 USD per document created, and comes with a [consumable free tier](https://www.rabbitsign.com/developer.html) of 10 free documents created via API.
+- The RabbitSign API comes with [10 free documents](https://www.rabbitsign.com/developer.html) created via API, and 0.10 USD per document thereafter.
 - Google Cloud Secret Manager gives you up to 6 active secrets and 10k access operations for free each month under the [Google Cloud Free Tier](https://cloud.google.com/free/docs/free-cloud-features#secret-manager).
 
 ## Setup
@@ -57,7 +57,7 @@ This process has four steps:
 ### 1. Set up accounts
 
 #### Get RabbitSign API credentials
-1. [Create a RabbitSign account](https://www.rabbitsign.com/index.html) and log in. Then go to the [Developer Console](https://www.rabbitsign.com/user/developer). Accept the terms of service.
+1. [Create a RabbitSign account](https://www.rabbitsign.com/index.html) and log in. Then go to the [Developer Console](https://www.rabbitsign.com/user/developer). Accept the terms of service and add a payment method.
 2. Under My Developer Keys > `Create Key`. Name it something meaningful like `apps-script-key`.
 3. Take note of the Key ID and the Key Secret.
 
