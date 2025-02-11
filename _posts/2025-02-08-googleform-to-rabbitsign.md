@@ -44,7 +44,7 @@ And since we're using Google tools anyway, we'll securely store our RabbitSign A
 ## Cost
 This workflow runs for as close to free as possible:
 - Google Forms and Apps Script are both free.[^3]
-- The RabbitSign API is currently free while in public beta; check [here](https://www.rabbitsign.com/developer.html) for up-to-date pricing.
+- The RabbitSign API costs 0.10 USD per document created, and comes with a [consumable free tier](https://www.rabbitsign.com/developer.html) of 10 free documents created via API.
 - Google Cloud Secret Manager gives you up to 6 active secrets and 10k access operations for free each month under the [Google Cloud Free Tier](https://cloud.google.com/free/docs/free-cloud-features#secret-manager).
 
 ## Setup
@@ -164,6 +164,7 @@ At this point, you've connected Google Forms to RabbitSign and saved yourself ho
 This workflow last worked for me as of the most recent date in the changelog below. If you spot errors, vulnerabilities, or potential improvements, please do [open a pull request](https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2025-02-08-googleform-to-rabbitsign.md) on this blog post!
 
 ## Changelog
+- **2025-02-12**: Update RabbitSign API status and pricing.
 
 - **2025-02-08**: Initial post. This workflow owes a deep debt of gratitude to [the RabbitSign team](https://www.rabbitsign.com/team.html) who have created such an elegant, delightful e-signing platform.
 
