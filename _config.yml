@@ -2,7 +2,7 @@
 # Site settings
 # -----------------------------------------------------------------------------
 
-title: blank # the website title (if blank, full name will be used instead)
+title: Scott Lee Chua 🇵🇭 # the website title (if blank, full name will be used instead)
 first_name: Scott
 middle_name: Lee
 last_name: Chua 🇵🇭
@@ -133,6 +133,7 @@ plugins:
   - jekyll-target-blank
   - jekyll-minifier
   - jekyll-sitemap
+  - jekyll-feed
 
 # jekyll-target-blank settings (https://github.com/keithmifsud/jekyll-target-blank)
 target-blank:
@@ -182,6 +183,17 @@ scholar:
   
 filtered_bibtex_keywords: [abbr, abstract, arxiv, bibtex_show, html, pdf, selected, supp, blog, code, poster, slides, website] # Filter out certain bibtex entry keywords used internally from the bib output
 
+# -----------------------------------------------------------------------------
+# Jekyll Feed
+# -----------------------------------------------------------------------------
+author: Scott Lee Chua
+feed:
+  collections:
+    posts:
+      path: "/feed/blog.xml"
+    news:
+      path: "/feed/news.xml"
+  excerpt_only: true
 
 # -----------------------------------------------------------------------------
 # Optional Features

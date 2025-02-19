@@ -15,4 +15,5 @@ group :jekyll_plugins do
     gem 'jekyll-minifier'
     gem 'jekyll-sitemap'
     gem 'mini_racer'
+    gem 'jekyll-feed'
 end
