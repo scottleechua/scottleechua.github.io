@@ -4,7 +4,7 @@ extends: default
 ignore: |
   _site/
   .jekyll-cache/
-  .github/workflows
+  .github/workflows/
 
 rules:
   indentation:
