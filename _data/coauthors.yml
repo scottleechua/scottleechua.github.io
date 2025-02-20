@@ -1,3 +1,4 @@
+---
 "Riambau":
   - firstname: ["Guillem", "G."]
     url: http://guillemriambau.com
@@ -8,7 +9,7 @@
 
 "Wertz":
   - firstname: ["Tim", "Timothy", "T."]
-    url: https://www.yale-nus.edu.sg/about/faculty/timothy-wertz
+    url: https://blog.nus.edu.sg/wertz
 
 "Chua":
   - firstname: ["Ethan", "E."]
