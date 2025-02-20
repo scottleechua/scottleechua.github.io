@@ -9,3 +9,5 @@ ignore: |
 rules:
   indentation:
     indent-sequences: true
+  line-length:
+    max: 150

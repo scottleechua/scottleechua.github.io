@@ -1,22 +1,19 @@
+---
 # -----------------------------------------------------------------------------
 # Site settings
 # -----------------------------------------------------------------------------
 
-title: Scott Lee Chua 🇵🇭 # the website title (if blank, full name will be used instead)
+title: Scott Lee Chua 🇵🇭  # if blank, full name will be used instead
 first_name: Scott
 middle_name: Lee
 last_name: Chua 🇵🇭
 email: scottleechua@gmail.com
 description: Econs | Comics | Games
-footer_text: >
-  Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme. Read the <a href="/privacy/">Privacy Policy</a>.
 keywords:
 
 lang: en
-icon: # the emoji used as the favicon
-url:  https://scottleechua.com
-last_updated: false # set to true if you want to display last updated in the footer
-impressum_path:  # set to path to include impressum link in the footer, use the same path as permalink in a page, helps to conform with EU GDPR
+icon:  # the emoji used as the favicon
+url: https://scottleechua.com
 
 # -----------------------------------------------------------------------------
 # Layout
@@ -31,35 +28,35 @@ max_width: 800px
 # Open Graph & Schema.org
 # -----------------------------------------------------------------------------
 # Display links to the page with a preview object on social media.
-serve_og_meta: true # Include Open Graph meta tags in the HTML head
-serve_schema_org: false # Include Schema.org in the HTML head
-og_image: profile-picture-lores.jpg # The site-wide (default for all links) Open Graph preview image
+serve_og_meta: true  # Include Open Graph meta tags in the HTML head
+serve_schema_org: false  # Include Schema.org in the HTML head
+og_image: profile-picture-lores.jpg  # The sitewide Open Graph preview image
 
 # -----------------------------------------------------------------------------
 # Social integration
 # -----------------------------------------------------------------------------
 
-github_username: scottleechua # your GitHub user name
-#gitlab_username: # your GitLab user name
-#twitter_username: # your Twitter handle
-#linkedin_username: # your LinkedIn user name
-scholar_userid: GJBprlAAAAAJ # your Google Scholar ID
-#orcid_id: # your ORCID ID
-#medium_username: # your Medium username
-#quora_username: # your Quora username
-#publons_id: # your ID on Publons
-#research_gate_profile: # your profile on ResearchGate
-#blogger_url: # your blogger URL
-#work_url: # work page URL
-#keybase_username: # your keybase user name
-#wikidata_id: # your wikidata id
-#dblp_url: # your DBLP profile url
-#stackoverflow_id: #your stackoverflow id
-#mastodon_profile: https://mastodon.social/@scottleechua
+github_username: scottleechua
+# gitlab_username:
+# twitter_username:
+# linkedin_username:
+scholar_userid: GJBprlAAAAAJ
+# orcid_id:
+# medium_username:
+# quora_username:
+# publons_id:
+# research_gate_profile:
+# blogger_url:
+# work_url:  # work page URL
+# keybase_username:
+# wikidata_id:
+# dblp_url:
+# stackoverflow_id:
+# mastodon_profile: https://mastodon.social/@scottleechua
 s3_url: https://d48rdc2gjiluz.cloudfront.net
 bluesky_profile: https://bsky.app/profile/scottleechua.com
 
-contact_note: # > You can even add a little note about which of these is the best way to reach you.
+contact_note:  # which of these is the best way to reach you?
 
 # -----------------------------------------------------------------------------
 # Blog
@@ -99,8 +96,8 @@ news_limit: 5
 markdown: kramdown
 highlighter: rouge
 highlight_theme: github  # https://github.com/jwarby/jekyll-pygments-themes
-highlight_theme_light: github  # https://github.com/jwarby/jekyll-pygments-themes
-highlight_theme_dark: native  # https://github.com/jwarby/jekyll-pygments-themes
+highlight_theme_light: github
+highlight_theme_dark: native
 kramdown:
   input: GFM
   syntax_highlighter_opts:
@@ -135,9 +132,9 @@ plugins:
   - jekyll-sitemap
   - jekyll-feed
 
-# jekyll-target-blank settings (https://github.com/keithmifsud/jekyll-target-blank)
+# External link settings (https://github.com/keithmifsud/jekyll-target-blank)
 target-blank:
-    noreferrer: false
+  noreferrer: false
 
 # Extras
 github: [metadata]
@@ -180,8 +177,6 @@ scholar:
   details_link: Details
 
   query: "@*"
-  
-filtered_bibtex_keywords: [abbr, abstract, arxiv, bibtex_show, html, pdf, selected, supp, blog, code, poster, slides, website] # Filter out certain bibtex entry keywords used internally from the bib output
 
 # -----------------------------------------------------------------------------
 # Jekyll Feed
@@ -200,11 +195,11 @@ feed:
 # -----------------------------------------------------------------------------
 
 enable_goatcounter: true
-enable_mastodon_linkback:   true
-enable_masonry:             true
-enable_math:                true
-enable_darkmode:            true
-enable_navbar_social:       false
+enable_mastodon_linkback: true
+enable_masonry: true
+enable_math: true
+enable_darkmode: true
+enable_navbar_social: false
 
 # -----------------------------------------------------------------------------
 # Library versions
