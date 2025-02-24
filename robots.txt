@@ -17,6 +17,9 @@ Disallow: /
 User-agent: Applebot-Extended
 Disallow: /
 
+User-agent: Brightbot 1.0
+Disallow: /
+
 User-agent: Bytespider
 Disallow: /
 
@@ -33,6 +36,12 @@ User-agent: ClaudeBot
 Disallow: /
 
 User-agent: cohere-ai
+Disallow: /
+
+User-agent: cohere-training-data-crawler
+Disallow: /
+
+User-agent: Crawlspace
 Disallow: /
 
 User-agent: Diffbot
@@ -95,6 +104,9 @@ Disallow: /
 User-agent: omgilibot
 Disallow: /
 
+User-agent: PanguBot
+Disallow: /
+
 User-agent: PerplexityBot
 Disallow: /
 
@@ -102,6 +114,12 @@ User-agent: PetalBot
 Disallow: /
 
 User-agent: Scrapy
+Disallow: /
+
+User-agent: SemrushBot-OCOB
+Disallow: /
+
+User-agent: SemrushBot-SWA
 Disallow: /
 
 User-agent: Sidetrade indexer bot
