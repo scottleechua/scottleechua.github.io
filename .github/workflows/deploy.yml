@@ -20,6 +20,13 @@ jobs:
       with:
         ruby-version: '3.2.1'
         bundler-cache: true
+    - name: Update bots.yml
+      run: |
+        curl https://raw.githubusercontent.com/ai-robots-txt/ai.robots.txt/refs/heads/main/robots.txt -o robots-list.txt
+        head -n -1 robots-list.txt > tmp.txt
+        mv tmp.txt robots-list.txt
+        sed -i "s/User-agent:/-/g" robots-list.txt
+        mv robots-list.txt _data/bots.yml
     - name: Build site
       run: |
         bundle exec jekyll build
