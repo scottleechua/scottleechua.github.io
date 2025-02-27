@@ -5,7 +5,6 @@ group :jekyll_plugins do
     gem 'jekyll-github-metadata'
     gem 'jekyll-paginate-v2'
     gem 'jekyll-scholar'
-    gem 'jemoji'
     gem 'jekyll-target-blank'
     gem 'jekyll-minifier'
     gem 'jekyll-sitemap'

@@ -156,7 +156,7 @@ While editing `main.gs`, you can refer to [the `demo.gs` file](https://github.co
 
 ### Congratulations!
 
-At this point, you've connected Google Forms to RabbitSign and saved yourself hours of manual form-filling! Your future self thanks you. :rocket:
+At this point, you've connected Google Forms to RabbitSign and saved yourself hours of manual form-filling! Your future self thanks you. 🫡
 
 ---
 
