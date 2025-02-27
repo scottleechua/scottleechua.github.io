@@ -23,7 +23,7 @@ Scholastic Readers Camp, 2022
 Left: an explosive title slide. Right: some of the characters participants used in their comic booklets.
 </div>
 
-In July 2022, I was invited to run a writing workshop for grade school students at the [Scholastic Readers Camp](https://www.scholastic.asia/), a wonderful annual event meant to cultivate a culture of reading.
+In July 2022, I was invited to run a writing workshop for grade school students at the [Scholastic Readers Camp](https://scholastic.asia/en), a wonderful annual event meant to cultivate a culture of reading.
 
 After sharing a bit about my own journey as a reader and writer, I led the participants through the process of making their very own comics. Inspired by Sarah Mirk's [zine-making workshop](https://www.mirkwork.com/speaking), we each folded, wrote, and drew an eight-page comic booklet! I had lots of fun listening to the participants share their stories.
 

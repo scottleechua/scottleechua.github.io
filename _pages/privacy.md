@@ -16,7 +16,7 @@ I do not want to collect your personal data. However, in this age of [surveillan
 
 1. This website is hosted on [GitHub Pages](https://pages.github.com), which may log your IP address and other information for security purposes.
   - I do not (and cannot) access this data.
-  - GitHub is [GDPR-compliant](https://github.blog/2018-04-19-updates-to-our-privacy-statement-and-terms-of-service/). For more details, see their [Privacy Statement](https://docs.github.com/en/github/site-policy/github-privacy-statement#github-pages).
+  - GitHub is [GDPR-compliant](https://github.blog/2018-04-19-updates-to-our-privacy-statement-and-terms-of-service/). For more details, see their [Privacy Statement](https://docs.github.com/en/github/site-policy/github-privacy-statement).
 2. This website is served around the world through the [Cloudflare](https://cloudflare.com) content delivery network. Cloudflare may log your IP address and other information for maintenance and security purposes.
   - I do not (and cannot) access this data.
   - Cloudflare is [GDPR-compliant](https://www.cloudflare.com/trust-hub/gdpr/). For more details, see their [Privacy Policy](https://www.cloudflare.com/privacypolicy/).

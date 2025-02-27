@@ -20,7 +20,7 @@ In March 2017, I was commissioned by [The Substation](https://www.substation.org
 
 The installation was part escape room and part immersive theater. Puzzle-inclined visitors decoded ciphers and cracked locks to break into the teacher's desk, where a treasure trove of [chewing gum](https://en.wikipedia.org/wiki/Chewing_gum_sales_ban_in_Singapore) awaited them. Others played trashcan basketball and shot the breeze with the resident delinquents, played by Shaiful Risan and his band of punks.
 
-*Detention Class* ran for two nights, over the course of the [2017 Armenian Street Party](http://scene.sg/lifestyle/armenian-street-party-2017-5-reasons-to-check-it-out/).
+*Detention Class* ran for two nights, over the course of the [2017 Armenian Street Party](https://archive.md/l69oV).
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">

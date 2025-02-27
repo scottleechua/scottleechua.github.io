@@ -16,7 +16,7 @@ twitter_large_image: true
 
 ## Why this stack?
 
-I recently helped a friend migrate his movie review blog off [Wix's free tier](https://support.wix.com/en/article/free-vs-premium-site) and onto a [Ghost](https://ghost.org/) blog self-hosted on [Google Cloud](https://cloud.google.com/). He was looking for
+I recently helped a friend migrate his movie review blog off [Wix](https://www.wix.com/plans) and onto a [Ghost](https://ghost.org/) blog self-hosted on [Google Cloud](https://cloud.google.com/). He was looking for
 
 1. the ability to use a custom domain without an additional fee;
 2. a visual, rich-text content editor;
@@ -119,7 +119,7 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
 
 #### Buy a domain and set up Cloudflare
 1. Make a [Namecheap account](https://www.namecheap.com/myaccount/signup/) and buy your domain. I'll use `ghostblog.com` as an example. Going forward, everywhere you see `ghostblog.com`, replace it with your own domain name. 
-2. Make a [Cloudflare account](https://dash.cloudflare.com/sign-up?lang=en-US) and add your domain under the Free subscription plan.
+2. Make a [Cloudflare account](https://www.cloudflare.com/plans/) and add your domain under the Free subscription plan.
 3. Under "Review your DNS records", first **delete all the records**.
 4. Then `Add record`:
    - Type: `A`
@@ -513,7 +513,7 @@ This workflow last worked for me as of the most recent date in the changelog bel
 
 - **2023-09-10**: Update Nodejs installation instructions to install v18, [as recommended by Ghost](https://ghost.org/docs/faq/node-versions/).
 
-- **2023-08-10**: Add cron job to auto-start Ghost upon VM restart. Thanks to [Daniel Raffel](https://blog.danielraffel.me/) for the contribution!
+- **2023-08-10**: Add cron job to auto-start Ghost upon VM restart. Thanks to [Daniel Raffel](https://danielraffel.me/) for the contribution!
 
 - **2023-08-06**: Revise instructions to set MySQL root password. Thanks to [Shehroz Alam on Linuxhint](https://linuxhint.com/change-mysql-root-password-ubuntu/).
 

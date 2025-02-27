@@ -150,7 +150,7 @@ While editing `main.gs`, you can refer to [the `demo.gs` file](https://github.co
     | Date | "true" | This is just a dummy argument, as RabbitSign dates actually get their value from `payload["date"]`. |
     | Signature and Initials | string | Whatever you type here will show up in cursive as your e-signature, e.g., "Professor X". |
 
-    See [lines 37–43](https://github.com/scottleechua/googleform-to-rabbitsign/blob/main/demo.gs#L37) of `demo.gs` for working examples of each field type.
+    See [lines 37–43](https://github.com/scottleechua/googleform-to-rabbitsign/blob/main/demo.gs) of `demo.gs` for working examples of each field type.
 
 5. Submit some test responses to the Google Form. Use the Apps Script Execution log to debug. It might help to examine the raw Google Form payloads by forwarding them to tools like [RequestCatcher](https://requestcatcher.com).
 

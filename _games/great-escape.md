@@ -36,7 +36,7 @@ In January 2020, I designed, produced, and facilitated ***The Great (Yale-NUS) E
 
 Inside the room, players discover that [IKEA cacti](https://www.ikea.com/sg/en/p/cactaceae-potted-plant-cactus-assorted-70530732/) --- a dorm room decor favorite --- were secretly body-snatching aliens from space. Can players escape the aliens' lair in time to foil their dastardly plans?
 
-For a homebrewed escape room on a minimal budget, I'm very proud of the production value we were able to achieve. We fabricated custom puzzle pieces from wood and acrylic, programmed a Telegram bot so players could "speak with the aliens," and teamed up with the school's [satirical newspaper](https://themocktant.com/2020/01/09/recent-spate-of-succulent-ownership-at-yale-nus-discovered-to-be-alien-invasion/) to hide some easter eggs on the open web.
+For a homebrewed escape room on a minimal budget, I'm very proud of the production value we were able to achieve. We fabricated custom puzzle pieces from wood and acrylic, programmed a Telegram bot so players could "speak with the aliens," and teamed up with the school's [satirical newspaper](https://archive.md/XSqcM) to hide some easter eggs on the open web.
 
 In the week it was up, we ran over thirty games in five days for over 170 players. Every game was booked out.
 
