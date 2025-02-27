@@ -114,11 +114,9 @@ keep_files:
 # Plug-ins
 plugins:
   - jekyll-email-protect
-  - jekyll-github-metadata
   - jekyll-paginate-v2
   - jekyll/scholar
   - jekyll-target-blank
-  - jekyll-minifier
   - jekyll-sitemap
   - jekyll-feed
 
@@ -126,22 +124,12 @@ plugins:
 target-blank:
   noreferrer: false
 
-# Extras
-github: [metadata]
-
 # Sitemap settings
 defaults:
   - scope:
       path: "assets/**/*.*"
     values:
       sitemap: false
-
-# Jekyll Minifier
-
-jekyll-minifier:
-  exclude: ['robots.txt']
-  uglifier_args:
-    harmony: true
 
 # -----------------------------------------------------------------------------
 # Jekyll Scholar
