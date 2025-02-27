@@ -5,7 +5,7 @@
   <div class="col-sm-2 abbr">
   {% if entry.abbr %}
     {% if site.data.venues[entry.abbr] %}
-    <abbr class="badge"><a href="{{site.data.venues[entry.abbr].url}}" target="_blank">{{entry.abbr}}</a></abbr>
+    <abbr class="badge"><a href="{{site.data.venues[entry.abbr].url}}">{{entry.abbr}}</a></abbr>
     {% else %}
     <abbr class="badge">{{entry.abbr}}</abbr>
     {% endif %}
@@ -17,7 +17,7 @@
       {{reference}}
     {% else %}
         {% if entry.doi %}
-        <div class="title"><a href="{{entry.doi}}" target="_blank">{{entry.title}}</a></div>
+        <div class="title"><a href="{{entry.doi}}">{{entry.title}}</a></div>
         {% else %}
       <div class="title">{{entry.title}}</div>
         {% endif %}
@@ -51,7 +51,7 @@
                 <em>{{- author.first }} {{ author.last }}</em>
               {% else %}
                 {% if coauthor_url %}
-                  <a href="{{coauthor_url}}" target="_blank">{{- author.first }} {{ author.last }}</a>
+                  <a href="{{coauthor_url}}">{{- author.first }} {{ author.last }}</a>
                 {% else %}
                   {{- author.first }} {{ author.last }}
                 {% endif %}
@@ -61,7 +61,7 @@
                 and <em>{{- author.first }} {{ author.last }}</em>
               {% else %}
                 {% if coauthor_url %}
-                  and <a href="{{coauthor_url}}" target="_blank">{{- author.first }} {{ author.last }}</a>
+                  and <a href="{{coauthor_url}}">{{- author.first }} {{ author.last }}</a>
                 {% else %}
                   and {{- author.first }} {{ author.last }}
                 {% endif %}
@@ -73,7 +73,7 @@
                 <em>{{- author.first }} {{ author.last }}</em>,
               {% else %}
                 {% if coauthor_url %}
-                  <a href="{{coauthor_url}}" target="_blank">{{- author.first }} {{ author.last }}</a>,
+                  <a href="{{coauthor_url}}">{{- author.first }} {{ author.last }}</a>,
                 {% else %}
                   {{- author.first }} {{ author.last }},
                 {% endif %}
@@ -83,7 +83,7 @@
                 and <em>{{- author.first }} {{ author.last }}</em>
               {% else %}
                 {% if coauthor_url %}
-                  and <a href="{{coauthor_url}}" target="_blank">{{- author.first }} {{ author.last }}</a>
+                  and <a href="{{coauthor_url}}">{{- author.first }} {{ author.last }}</a>
                 {% else %}
                   and {{- author.first }} {{ author.last }}
                 {% endif %}
@@ -116,46 +116,46 @@
       <a class="abstract btn btn-sm z-depth-0" role="button">Abstract</a>
     {% endif %}
     {% if entry.arxiv %}
-      <a href="https://arxiv.org/abs/{{ entry.arxiv }}" class="btn btn-sm z-depth-0" role="button" target="_blank">arXiv</a>
+      <a href="https://arxiv.org/abs/{{ entry.arxiv }}" class="btn btn-sm z-depth-0" role="button">arXiv</a>
     {% endif %}
     {% if entry.ssrn %}
-      <a href="{{ entry.ssrn }}" class="btn btn-sm z-depth-0" role="button" target="_blank">SSRN</a>
+      <a href="{{ entry.ssrn }}" class="btn btn-sm z-depth-0" role="button">SSRN</a>
     {% endif %}
     {% if entry.paper %}
-      <a href="{{ entry.paper }}" class="btn btn-sm z-depth-0" role="button" target="_blank">Paper</a>
+      <a href="{{ entry.paper }}" class="btn btn-sm z-depth-0" role="button">Paper</a>
     {% endif %}
     {% if entry.pdf %}
       {% if entry.pdf contains 's3/' %}
-      <a href="{{ entry.pdf | replace_first: 's3', site.s3_url }}" class="btn btn-sm z-depth-0" role="button" target="_blank">PDF</a>      
+      <a href="{{ entry.pdf | replace_first: 's3', site.s3_url }}" class="btn btn-sm z-depth-0" role="button">PDF</a>      
       {% else %}
-      <a href="{{ entry.pdf }}" class="btn btn-sm z-depth-0" role="button" target="_blank">PDF</a>
+      <a href="{{ entry.pdf }}" class="btn btn-sm z-depth-0" role="button">PDF</a>
       {% endif %}
     {% endif %}
     {% if entry.blog %}
-      <a href="{{ entry.blog }}" class="btn btn-sm z-depth-0" role="button" target="_blank">Blog</a>
+      <a href="{{ entry.blog }}" class="btn btn-sm z-depth-0" role="button">Blog</a>
     {% endif %}
     {% if entry.poster %}
       {% if entry.poster contains 's3/' %}
-      <a href="{{ entry.poster | replace_first: 's3', site.s3_url }}" class="btn btn-sm z-depth-0" role="button" target="_blank">Poster</a>
+      <a href="{{ entry.poster | replace_first: 's3', site.s3_url }}" class="btn btn-sm z-depth-0" role="button">Poster</a>
       {% else %}
-      <a href="{{ entry.poster }}" class="btn btn-sm z-depth-0" role="button" target="_blank">Poster</a>
+      <a href="{{ entry.poster }}" class="btn btn-sm z-depth-0" role="button">Poster</a>
       {% endif %}
     {% endif %}
     {% if entry.slides %}
       {% if entry.slides contains 's3/' %}
-      <a href="{{ entry.slides | replace_first: 's3', site.s3_url }}" class="btn btn-sm z-depth-0" role="button" target="_blank">Slides</a>
+      <a href="{{ entry.slides | replace_first: 's3', site.s3_url }}" class="btn btn-sm z-depth-0" role="button">Slides</a>
       {% else %}
-      <a href="{{ entry.slides }}" class="btn btn-sm z-depth-0" role="button" target="_blank">Slides</a>
+      <a href="{{ entry.slides }}" class="btn btn-sm z-depth-0" role="button">Slides</a>
       {% endif %}
     {% endif %}
     {% if entry.website %}
-      <a href="{{ entry.website }}" class="btn btn-sm z-depth-0" role="button" target="_blank">Website</a>
+      <a href="{{ entry.website }}" class="btn btn-sm z-depth-0" role="button">Website</a>
     {% endif %}
      {% if entry.video %}
-      <a href="{{ entry.video }}" class="btn btn-sm z-depth-0" role="button" target="_blank">Video</a>
+      <a href="{{ entry.video }}" class="btn btn-sm z-depth-0" role="button">Video</a>
       {% endif %}
     {% if entry.code %}
-      <a href="{{ entry.code }}" class="btn btn-sm z-depth-0" role="button" target="_blank">Code</a>
+      <a href="{{ entry.code }}" class="btn btn-sm z-depth-0" role="button">Code</a>
     {% endif %}
     
     </div>
