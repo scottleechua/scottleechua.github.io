@@ -7,7 +7,7 @@ nav: true
 exclude: true
 ---
 
-**Last updated: 4 Aug 2024**
+**Last updated: 27 Feb 2025**
 
 This Privacy Policy outlines how I collect and use your data while you are on this website.
 
