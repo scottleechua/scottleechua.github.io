@@ -23,7 +23,7 @@ The Substation, 2016
 Posters courtesy of The Substation.
 </div>
 
-In November 2016, I taught escape room design for [The Substation's](https://www.substation.org/) *School of Uncommon Knowledge,* a wonderful workshop series that ran on a barter system --- the price of admission to my workshop was one pre-loved book. :smile:
+In November 2016, I taught escape room design for [The Substation's](https://www.substation.org/) *School of Uncommon Knowledge,* a wonderful workshop series that ran on a barter system --- the price of admission to my workshop was one pre-loved book. 😁
 
 The goal of the workshop was to teach participants a basic framework of escape room design, before guiding them through designing their own escape rooms on the spot --- see my slides [here](https://d48rdc2gjiluz.cloudfront.net/how_to_design_an_escape_room_scottleechua.pdf).
 
