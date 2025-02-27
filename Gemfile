@@ -5,15 +5,11 @@ group :jekyll_plugins do
     gem 'jekyll-github-metadata'
     gem 'jekyll-paginate-v2'
     gem 'jekyll-scholar'
-    gem 'jekyll-twitter-plugin'
     gem 'jemoji'
-    gem 'unicode_utils'
-    gem 'webrick'
     gem 'jekyll-target-blank'
-    gem 'html-proofer'
-    gem 'jekyll-diagrams'
     gem 'jekyll-minifier'
     gem 'jekyll-sitemap'
-    gem 'mini_racer'
     gem 'jekyll-feed'
 end
+
+gem 'html-proofer'
