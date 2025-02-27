@@ -43,7 +43,10 @@ scholar_userid: GJBprlAAAAAJ
 # wikidata_id:
 # dblp_url:
 # stackoverflow_id:
-# mastodon_profile: https://mastodon.social/@scottleechua
+mastodon_profile:
+  url: https://mastodon.social/@scottleechua
+  linkback: true
+  display: false
 s3_url: https://d48rdc2gjiluz.cloudfront.net
 bluesky_profile: https://bsky.app/profile/scottleechua.com
 
@@ -173,7 +176,6 @@ feed:
 # -----------------------------------------------------------------------------
 
 enable_goatcounter: true
-enable_mastodon_linkback: true
 enable_masonry: true
 enable_math: true
 enable_darkmode: true

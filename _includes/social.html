@@ -55,8 +55,8 @@
             {%- if site.rss_icon -%}
             <a href="{{ site.url }}/feed.xml" title="RSS Feed"><i class="fa-solid fa-square-rss"></i></a>
             {% endif %}
-            {%- if site.mastodon_profile -%}
-            <a href="{{ site.mastodon_profile }}" title="Mastodon"><i class="fa-brands fa-mastodon"></i></a>
+            {%- if site.mastodon_profile.display -%}
+            <a href="{{ site.mastodon_profile.url }}" title="Mastodon"><i class="fa-brands fa-mastodon"></i></a>
             {% endif %}
             {%- if site.bluesky_profile -%}
             <a href="{{ site.bluesky_profile }}" title="Bluesky"><i class="fa-brands fa-bluesky"></i></a>
