@@ -123,10 +123,6 @@ plugins:
   - jekyll-sitemap
   - jekyll-feed
 
-# External link settings (https://github.com/keithmifsud/jekyll-target-blank)
-target-blank:
-  noreferrer: false
-
 # Sitemap settings
 defaults:
   - scope:
