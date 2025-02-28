@@ -149,8 +149,8 @@
 <p>See this workflow in action for yourself!</p>
 
 <ol>
-  <li>Go to <a href="https://10minutemail.net" target="_blank" rel="noopener">10minutemail</a> and get a temporary email address.</li>
-  <li>Fill out this <a href="https://docs.google.com/forms/d/e/1FAIpQLSdRA_m0kYRXReUqKgqyRg-4TF9m3PDkR6jEJLbLIUoBw8ZLdg/viewform?usp=header" target="_blank" rel="noopener">Superhero Registration Google Form</a>.</li>
+  <li>Go to <a href="https://10minutemail.net" target="_blank" rel="noopener noreferrer">10minutemail</a> and get a temporary email address.</li>
+  <li>Fill out this <a href="https://docs.google.com/forms/d/e/1FAIpQLSdRA_m0kYRXReUqKgqyRg-4TF9m3PDkR6jEJLbLIUoBw8ZLdg/viewform?usp=header" target="_blank" rel="noopener noreferrer">Superhero Registration Google Form</a>.</li>
   <li>Within a few minutes, you should receive a customized Superhero Oath in your temporary mailbox — sign it and submit!</li>
 </ol>
 
@@ -160,17 +160,17 @@
 
 <h2 id="why-this-workflow">Why this workflow?</h2>
 
-<p>I manage <a href="https://read.komiks.space" target="_blank" rel="noopener"><code class="language-plaintext highlighter-rouge">read.komiks.space</code></a>, an online space to read Southeast Asian comics. Whenever we onboard a new comic creator, we first sign a license agreement so they can allow us to host their works. Previously, sending out license agreements was a manual, multi-step process:</p>
+<p>I manage <a href="https://read.komiks.space" target="_blank" rel="noopener noreferrer"><code class="language-plaintext highlighter-rouge">read.komiks.space</code></a>, an online space to read Southeast Asian comics. Whenever we onboard a new comic creator, we first sign a license agreement so they can allow us to host their works. Previously, sending out license agreements was a manual, multi-step process:</p>
 
 <ol>
   <li>I send them a Google Form to collect their details (name, ID number, biodata, and so on).</li>
   <li>Once they submit the form, I make a copy of my license agreement template, fill in their responses, and save to PDF.</li>
-  <li>I upload the PDF to <a href="https://www.rabbitsign.com/index.html" target="_blank" rel="noopener">RabbitSign</a><sup id="fnref:1"><a href="#fn:1" class="footnote" rel="footnote" role="doc-noteref">1</a></sup> and send it out for e-signature.</li>
+  <li>I upload the PDF to <a href="https://www.rabbitsign.com/index.html" target="_blank" rel="noopener noreferrer">RabbitSign</a><sup id="fnref:1"><a href="#fn:1" class="footnote" rel="footnote" role="doc-noteref">1</a></sup> and send it out for e-signature.</li>
 </ol>
 
 <p>I wanted to remove myself from the picture, so that the instant they submit the Google Form, a personalized license agreement lands in their inbox moments later, ready to be signed. (Hence this workflow!)</p>
 
-<p>The key here is <a href="https://developers.google.com/apps-script" target="_blank" rel="noopener">Google Apps Script</a>, an automation scripting platform that integrates very nicely with the Google ecosystem of tools. In particular, we want a script that:</p>
+<p>The key here is <a href="https://developers.google.com/apps-script" target="_blank" rel="noopener noreferrer">Google Apps Script</a>, an automation scripting platform that integrates very nicely with the Google ecosystem of tools. In particular, we want a script that:</p>
 
 <ol>
   <li>gets triggered whenever a specific Google Form is submitted;</li>
@@ -178,7 +178,7 @@
   <li>instantly sends the document out for signing.</li>
 </ol>
 
-<p>In this guide, we’ll use <a href="https://github.com/scottleechua/googleform-to-rabbitsign" target="_blank" rel="noopener">some template code I wrote</a> that takes care of a lot of the low-level plumbing for you.</p>
+<p>In this guide, we’ll use <a href="https://github.com/scottleechua/googleform-to-rabbitsign" target="_blank" rel="noopener noreferrer">some template code I wrote</a> that takes care of a lot of the low-level plumbing for you.</p>
 
 <p>And since we’re using Google tools anyway, we’ll securely store our RabbitSign API credentials in Google Cloud Secret Manager, where Apps Script can safely retrieve them.</p>
 
@@ -187,8 +187,8 @@
 <ul>
   <li>Google Forms and Apps Script are both free.<sup id="fnref:3"><a href="#fn:3" class="footnote" rel="footnote" role="doc-noteref">3</a></sup>
 </li>
-  <li>The RabbitSign API comes with <a href="https://www.rabbitsign.com/developer.html" target="_blank" rel="noopener">10 free documents</a> created via API, and 0.10 USD per document thereafter.</li>
-  <li>Google Cloud Secret Manager gives you up to 6 active secrets and 10k access operations for free each month under the <a href="https://cloud.google.com/free/docs/free-cloud-features#secret-manager" target="_blank" rel="noopener">Google Cloud Free Tier</a>.</li>
+  <li>The RabbitSign API comes with <a href="https://www.rabbitsign.com/developer.html" target="_blank" rel="noopener noreferrer">10 free documents</a> created via API, and 0.10 USD per document thereafter.</li>
+  <li>Google Cloud Secret Manager gives you up to 6 active secrets and 10k access operations for free each month under the <a href="https://cloud.google.com/free/docs/free-cloud-features#secret-manager" target="_blank" rel="noopener noreferrer">Google Cloud Free Tier</a>.</li>
 </ul>
 
 <h2 id="setup">Setup</h2>
@@ -205,14 +205,14 @@
 <h4 id="get-rabbitsign-api-credentials">Get RabbitSign API credentials</h4>
 <ol>
   <li>
-<a href="https://www.rabbitsign.com/index.html" target="_blank" rel="noopener">Create a RabbitSign account</a> and log in. Then go to the <a href="https://www.rabbitsign.com/user/developer" target="_blank" rel="noopener">Developer Console</a>. Accept the terms of service and add a payment method.</li>
+<a href="https://www.rabbitsign.com/index.html" target="_blank" rel="noopener noreferrer">Create a RabbitSign account</a> and log in. Then go to the <a href="https://www.rabbitsign.com/user/developer" target="_blank" rel="noopener noreferrer">Developer Console</a>. Accept the terms of service and add a payment method.</li>
   <li>Under My Developer Keys &gt; <code class="language-plaintext highlighter-rouge">Create Key</code>. Name it something meaningful like <code class="language-plaintext highlighter-rouge">apps-script-key</code>.</li>
   <li>Take note of the Key ID and the Key Secret.</li>
 </ol>
 
 <h4 id="set-up-google-cloud">Set up Google Cloud</h4>
 <ol>
-  <li>Log in to the Google account you want to use with Google Forms. Activate Google Cloud <a href="https://console.cloud.google.com" target="_blank" rel="noopener">here</a>.</li>
+  <li>Log in to the Google account you want to use with Google Forms. Activate Google Cloud <a href="https://console.cloud.google.com" target="_blank" rel="noopener noreferrer">here</a>.</li>
   <li>Select <code class="language-plaintext highlighter-rouge">Create Project</code>:
     <ul>
       <li>Project name: <code class="language-plaintext highlighter-rouge">googleform-to-rabbitsign</code>
@@ -251,7 +251,7 @@
 <h3 id="2-create-a-rabbitsign-template">2. Create a RabbitSign template</h3>
 
 <ol>
-  <li>From the <a href="https://www.rabbitsign.com/dashboard" target="_blank" rel="noopener">RabbitSign Dashboard</a>, click <code class="language-plaintext highlighter-rouge">Create a template</code>. Upload your template file as PDF.</li>
+  <li>From the <a href="https://www.rabbitsign.com/dashboard" target="_blank" rel="noopener noreferrer">RabbitSign Dashboard</a>, click <code class="language-plaintext highlighter-rouge">Create a template</code>. Upload your template file as PDF.</li>
   <li>Fill in the default title and message, which will become the subject and body of the email RabbitSign sends to your recipient. You can override these default messages later in <a href="#4-customize-the-apps-script-code">Step 4</a>.</li>
   <li>Tick <code class="language-plaintext highlighter-rouge">Include sender fields</code>.</li>
   <li>Enter a value for Role Name, e.g., <code class="language-plaintext highlighter-rouge">Recipient</code>. Take note of what you entered.</li>
@@ -270,8 +270,8 @@ Sender fields (blue) are labeled with meaningful Field Names. The only Recipient
 <h3 id="3-prepare-the-google-form">3. Prepare the Google Form</h3>
 
 <ol>
-  <li>Create a <a href="https://forms.new" target="_blank" rel="noopener">new Google Form</a>. Go to Settings &gt; Responses &gt; Collect email addresses &gt; <code class="language-plaintext highlighter-rouge">Responder input</code>.</li>
-  <li>From your Google Form, click the 3-dots icon in the upper right &gt; select <code class="language-plaintext highlighter-rouge">Apps Script</code>. This creates a new Apps Script project. Give it a meaningful title, as the project will show up as a “Third-party app” in your Google account’s <a href="https://myaccount.google.com/data-and-privacy" target="_blank" rel="noopener">Data and Privacy tab</a> later.</li>
+  <li>Create a <a href="https://forms.new" target="_blank" rel="noopener noreferrer">new Google Form</a>. Go to Settings &gt; Responses &gt; Collect email addresses &gt; <code class="language-plaintext highlighter-rouge">Responder input</code>.</li>
+  <li>From your Google Form, click the 3-dots icon in the upper right &gt; select <code class="language-plaintext highlighter-rouge">Apps Script</code>. This creates a new Apps Script project. Give it a meaningful title, as the project will show up as a “Third-party app” in your Google account’s <a href="https://myaccount.google.com/data-and-privacy" target="_blank" rel="noopener noreferrer">Data and Privacy tab</a> later.</li>
   <li>From Apps Script, go to Project Settings &gt; tick <code class="language-plaintext highlighter-rouge">Show 'appsscript.json' manifest file in editor</code>.</li>
   <li>Open the now-visible <code class="language-plaintext highlighter-rouge">appsscript.json</code> file and add a new entry:
     <div class="language-plaintext highlighter-rouge">
@@ -283,7 +283,7 @@ Sender fields (blue) are labeled with meaningful Field Names. The only Recipient
 </code></pre></div>    </div>
     <p>remembering to add a comma after the previous argument.</p>
   </li>
-  <li>Delete <code class="language-plaintext highlighter-rouge">Code.gs</code>. Copy over <code class="language-plaintext highlighter-rouge">main.gs</code> and <code class="language-plaintext highlighter-rouge">utils.gs</code> from <a href="https://github.com/scottleechua/googleform-to-rabbitsign" target="_blank" rel="noopener">this GitHub repo</a>.</li>
+  <li>Delete <code class="language-plaintext highlighter-rouge">Code.gs</code>. Copy over <code class="language-plaintext highlighter-rouge">main.gs</code> and <code class="language-plaintext highlighter-rouge">utils.gs</code> from <a href="https://github.com/scottleechua/googleform-to-rabbitsign" target="_blank" rel="noopener noreferrer">this GitHub repo</a>.</li>
   <li>Go to Triggers &gt; <code class="language-plaintext highlighter-rouge">Add Trigger</code>. Edit the following:
     <ul>
       <li>Select event type: <code class="language-plaintext highlighter-rouge">On form submit</code>
@@ -297,7 +297,7 @@ Sender fields (blue) are labeled with meaningful Field Names. The only Recipient
 
 <h3 id="4-customize-the-apps-script-code">4. Customize the Apps Script code</h3>
 
-<p>While editing <code class="language-plaintext highlighter-rouge">main.gs</code>, you can refer to <a href="https://github.com/scottleechua/googleform-to-rabbitsign/blob/main/demo.gs" target="_blank" rel="noopener">the <code class="language-plaintext highlighter-rouge">demo.gs</code> file</a> that powers the <a href="https://docs.google.com/forms/d/e/1FAIpQLSdRA_m0kYRXReUqKgqyRg-4TF9m3PDkR6jEJLbLIUoBw8ZLdg/viewform?usp=header" target="_blank" rel="noopener">Superhero Registration demo form</a>. (You won’t have to edit anything in <code class="language-plaintext highlighter-rouge">utils.gs</code>.)</p>
+<p>While editing <code class="language-plaintext highlighter-rouge">main.gs</code>, you can refer to <a href="https://github.com/scottleechua/googleform-to-rabbitsign/blob/main/demo.gs" target="_blank" rel="noopener noreferrer">the <code class="language-plaintext highlighter-rouge">demo.gs</code> file</a> that powers the <a href="https://docs.google.com/forms/d/e/1FAIpQLSdRA_m0kYRXReUqKgqyRg-4TF9m3PDkR6jEJLbLIUoBw8ZLdg/viewform?usp=header" target="_blank" rel="noopener noreferrer">Superhero Registration demo form</a>. (You won’t have to edit anything in <code class="language-plaintext highlighter-rouge">utils.gs</code>.)</p>
 
 <ol>
   <li>Fill in the config values at the top of <code class="language-plaintext highlighter-rouge">main.gs</code>:
@@ -362,9 +362,9 @@ Sender fields (blue) are labeled with meaningful Field Names. The only Recipient
       </tbody>
     </table>
 
-    <p>See <a href="https://github.com/scottleechua/googleform-to-rabbitsign/blob/main/demo.gs" target="_blank" rel="noopener">lines 37–43</a> of <code class="language-plaintext highlighter-rouge">demo.gs</code> for working examples of each field type.</p>
+    <p>See <a href="https://github.com/scottleechua/googleform-to-rabbitsign/blob/main/demo.gs" target="_blank" rel="noopener noreferrer">lines 37–43</a> of <code class="language-plaintext highlighter-rouge">demo.gs</code> for working examples of each field type.</p>
   </li>
-  <li>Submit some test responses to the Google Form. Use the Apps Script Execution log to debug. It might help to examine the raw Google Form payloads by forwarding them to tools like <a href="https://requestcatcher.com" target="_blank" rel="noopener">RequestCatcher</a>.</li>
+  <li>Submit some test responses to the Google Form. Use the Apps Script Execution log to debug. It might help to examine the raw Google Form payloads by forwarding them to tools like <a href="https://requestcatcher.com" target="_blank" rel="noopener noreferrer">RequestCatcher</a>.</li>
 </ol>
 
 <h3 id="congratulations">Congratulations!</h3>
@@ -374,7 +374,7 @@ Sender fields (blue) are labeled with meaningful Field Names. The only Recipient
 <hr>
 
 <h3 id="contribute">Contribute</h3>
-<p>This workflow last worked for me as of the most recent date in the changelog below. If you spot errors, vulnerabilities, or potential improvements, please do <a href="https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2025-02-08-googleform-to-rabbitsign.md" target="_blank" rel="noopener">open a pull request</a> on this blog post!</p>
+<p>This workflow last worked for me as of the most recent date in the changelog below. If you spot errors, vulnerabilities, or potential improvements, please do <a href="https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2025-02-08-googleform-to-rabbitsign.md" target="_blank" rel="noopener noreferrer">open a pull request</a> on this blog post!</p>
 
 <h2 id="changelog">Changelog</h2>
 <ul>
@@ -382,7 +382,7 @@ Sender fields (blue) are labeled with meaningful Field Names. The only Recipient
     <p><strong>2025-02-12</strong>: Update RabbitSign API status and pricing.</p>
   </li>
   <li>
-    <p><strong>2025-02-08</strong>: Initial post. This workflow owes a deep debt of gratitude to <a href="https://www.rabbitsign.com/team.html" target="_blank" rel="noopener">the RabbitSign team</a> who have created such an elegant, delightful e-signing platform.</p>
+    <p><strong>2025-02-08</strong>: Initial post. This workflow owes a deep debt of gratitude to <a href="https://www.rabbitsign.com/team.html" target="_blank" rel="noopener noreferrer">the RabbitSign team</a> who have created such an elegant, delightful e-signing platform.</p>
   </li>
 </ul>
 
@@ -392,13 +392,13 @@ Sender fields (blue) are labeled with meaningful Field Names. The only Recipient
 <div class="footnotes" role="doc-endnotes">
   <ol>
     <li id="fn:1">
-      <p>I’m a big advocate for <a href="https://blog.rabbitsign.com/launching-an-unlimited-free-e-signing-service-fe77a50a66aa" target="_blank" rel="noopener">RabbitSign</a>, a low-cost e-signature platform created by Stanley Zhong that cleverly uses serverless architecture to bring costs as low as possible. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">↩</a></p>
+      <p>I’m a big advocate for <a href="https://blog.rabbitsign.com/launching-an-unlimited-free-e-signing-service-fe77a50a66aa" target="_blank" rel="noopener noreferrer">RabbitSign</a>, a low-cost e-signature platform created by Stanley Zhong that cleverly uses serverless architecture to bring costs as low as possible. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">↩</a></p>
     </li>
     <li id="fn:2">
-      <p>While other online form providers let you forward submitted form data elsewhere (e.g., <a href="https://www.typeform.com/developers/webhooks/" target="_blank" rel="noopener">Typeform webhooks</a>), they generally <strong>don’t</strong> let you transform the data or modify the HTTP request before sending—which the RabbitSign API requires, and Apps Script lets you do. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">↩</a></p>
+      <p>While other online form providers let you forward submitted form data elsewhere (e.g., <a href="https://www.typeform.com/developers/webhooks/" target="_blank" rel="noopener noreferrer">Typeform webhooks</a>), they generally <strong>don’t</strong> let you transform the data or modify the HTTP request before sending—which the RabbitSign API requires, and Apps Script lets you do. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">↩</a></p>
     </li>
     <li id="fn:3">
-      <p>Apps Script is technically subject to <a href="https://developers.google.com/apps-script/guides/services/quotas" target="_blank" rel="noopener">some quotas and limitations on runtimes</a>, but your form would need to be receiving thousands of submissions per day for these to even become an issue. <a href="#fnref:3" class="reversefootnote" role="doc-backlink">↩</a></p>
+      <p>Apps Script is technically subject to <a href="https://developers.google.com/apps-script/guides/services/quotas" target="_blank" rel="noopener noreferrer">some quotas and limitations on runtimes</a>, but your form would need to be receiving thousands of submissions per day for these to even become an issue. <a href="#fnref:3" class="reversefootnote" role="doc-backlink">↩</a></p>
     </li>
   </ol>
 </div>
@@ -414,7 +414,7 @@ Sender fields (blue) are labeled with meaningful Field Names. The only Recipient
     <footer class="sticky-bottom mt-5">
   <div class="container">
     © 2021–2025 Scott Lee Chua.
-    Powered by <a href="https://jekyllrb.com/" target="_blank" rel="noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" target="_blank" rel="noopener">al-folio</a> theme. Read the <a href="/privacy/">Privacy Policy</a>.
+    Powered by <a href="https://jekyllrb.com/" target="_blank" rel="noopener noreferrer">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" target="_blank" rel="noopener noreferrer">al-folio</a> theme. Read the <a href="/privacy/">Privacy Policy</a>.
   </div>
 </footer>
 

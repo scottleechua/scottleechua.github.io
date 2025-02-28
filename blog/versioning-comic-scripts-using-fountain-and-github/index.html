@@ -151,7 +151,7 @@
 
 <h2 id="why-this-workflow">Why this workflow?</h2>
 
-<p>I write comic scripts in <a href="https://fountain.io" target="_blank" rel="noopener">Fountain</a>, an open-format filetype for scripts and screenplays, and export them to PDF to send to my collaborators (artists, coauthors, publishers).</p>
+<p>I write comic scripts in <a href="https://fountain.io" target="_blank" rel="noopener noreferrer">Fountain</a>, an open-format filetype for scripts and screenplays, and export them to PDF to send to my collaborators (artists, coauthors, publishers).</p>
 
 <p>Previously, each new draft would result in a sheepish email to everyone involved, asking them to please ignore the previous draft and see bullet points below for the summary of changes. This was untenable.</p>
 
@@ -161,13 +161,13 @@
   <li>access the <strong>latest version</strong> of the script in PDF,</li>
 </ol>
 
-<p>while I write and overwrite the same single file all throughout (i.e., none of <a href="https://phdcomics.com/comics.php?f=1531" target="_blank" rel="noopener">this</a>).</p>
+<p>while I write and overwrite the same single file all throughout (i.e., none of <a href="https://phdcomics.com/comics.php?f=1531" target="_blank" rel="noopener noreferrer">this</a>).</p>
 
-<p>In short, I wanted to implement <a href="https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control" target="_blank" rel="noopener">version control</a>.</p>
+<p>In short, I wanted to implement <a href="https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control" target="_blank" rel="noopener noreferrer">version control</a>.</p>
 
-<p>The workflow I settled on is straightforward: every time I push updated scripts to a <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a> repository, the open-source Fountain converter <a href="https://afterwriting.com/" target="_blank" rel="noopener"><i>’afterwriting</i></a> automatically (re)generates the PDF versions of those scripts.</p>
+<p>The workflow I settled on is straightforward: every time I push updated scripts to a <a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a> repository, the open-source Fountain converter <a href="https://afterwriting.com/" target="_blank" rel="noopener noreferrer"><i>’afterwriting</i></a> automatically (re)generates the PDF versions of those scripts.</p>
 
-<p>Requirement (1) is satisfied because Fountain files are plaintext, and thus compatible with GitHub’s compare (<code class="language-plaintext highlighter-rouge">diff</code>) feature. Requirement (2) is satisfied because <i>’afterwriting</i> has a command line interface that can be automated with <a href="https://github.com/features/actions" target="_blank" rel="noopener">GitHub Actions</a>.</p>
+<p>Requirement (1) is satisfied because Fountain files are plaintext, and thus compatible with GitHub’s compare (<code class="language-plaintext highlighter-rouge">diff</code>) feature. Requirement (2) is satisfied because <i>’afterwriting</i> has a command line interface that can be automated with <a href="https://github.com/features/actions" target="_blank" rel="noopener noreferrer">GitHub Actions</a>.</p>
 
 <p>When all is said and done, the repo looks something like this:</p>
 
@@ -186,9 +186,9 @@ ALYSSA
 *Uh-huh...*
 </code></pre></div></div>
 
-<p><strong>Fountain is free.</strong> Like <a href="https://www.markdownguide.org/basic-syntax/" target="_blank" rel="noopener">Markdown</a>, Fountain files are <strong>nothing more than plaintext files</strong> saved with a <code class="language-plaintext highlighter-rouge">.fountain</code> extension. Unlike Final Draft, Word, or Google Doc files, which require costly <sup id="fnref:1"><a href="#fn:1" class="footnote" rel="footnote" role="doc-noteref">1</a></sup> and proprietary software to view and edit, <code class="language-plaintext highlighter-rouge">.fountain</code> files can be read and edited on literally any computer.<sup id="fnref:2"><a href="#fn:2" class="footnote" rel="footnote" role="doc-noteref">2</a></sup></p>
+<p><strong>Fountain is free.</strong> Like <a href="https://www.markdownguide.org/basic-syntax/" target="_blank" rel="noopener noreferrer">Markdown</a>, Fountain files are <strong>nothing more than plaintext files</strong> saved with a <code class="language-plaintext highlighter-rouge">.fountain</code> extension. Unlike Final Draft, Word, or Google Doc files, which require costly <sup id="fnref:1"><a href="#fn:1" class="footnote" rel="footnote" role="doc-noteref">1</a></sup> and proprietary software to view and edit, <code class="language-plaintext highlighter-rouge">.fountain</code> files can be read and edited on literally any computer.<sup id="fnref:2"><a href="#fn:2" class="footnote" rel="footnote" role="doc-noteref">2</a></sup></p>
 
-<p><strong>Fountain is futureproof.</strong> Proprietary software may <del>force</del> strongly encourage you to <a href="https://store.finaldraft.com/final-draft-12-upgrade.html" target="_blank" rel="noopener">upgrade to the latest version</a> or <a href="https://support.microsoft.com/en-us/office/converting-documents-to-a-newer-format-34ec742e-f0f9-4d95-bbe3-3ee8e30a86fa" target="_blank" rel="noopener">change your file formats</a>, but your computer will always have a text editor. This makes Fountain ideal for storing scripts without worrying about software obsolescence or incompatibilities.</p>
+<p><strong>Fountain is futureproof.</strong> Proprietary software may <del>force</del> strongly encourage you to <a href="https://store.finaldraft.com/final-draft-12-upgrade.html" target="_blank" rel="noopener noreferrer">upgrade to the latest version</a> or <a href="https://support.microsoft.com/en-us/office/converting-documents-to-a-newer-format-34ec742e-f0f9-4d95-bbe3-3ee8e30a86fa" target="_blank" rel="noopener noreferrer">change your file formats</a>, but your computer will always have a text editor. This makes Fountain ideal for storing scripts without worrying about software obsolescence or incompatibilities.</p>
 
 <p><strong>Fountain exports to the usual file formats.</strong> While plaintext Fountain already looks rather “script-like,” free converter software can parse the special formatting rules<sup id="fnref:3"><a href="#fn:3" class="footnote" rel="footnote" role="doc-noteref">3</a></sup> into a nicely-rendered PDF:</p>
 
@@ -199,7 +199,7 @@ ALYSSA
 <h2 id="setup">Setup</h2>
 
 <ol>
-  <li>Make a GitHub account, create a new private repository, and <a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository" target="_blank" rel="noopener">clone</a> it to your local computer. Let’s call this folder <code class="language-plaintext highlighter-rouge">my-script-repo</code>.</li>
+  <li>Make a GitHub account, create a new private repository, and <a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository" target="_blank" rel="noopener noreferrer">clone</a> it to your local computer. Let’s call this folder <code class="language-plaintext highlighter-rouge">my-script-repo</code>.</li>
   <li>Open a text editor.<sup id="fnref:4"><a href="#fn:4" class="footnote" rel="footnote" role="doc-noteref">4</a></sup> Create a text file called <code class="language-plaintext highlighter-rouge">.gitignore</code> in <code class="language-plaintext highlighter-rouge">my-script-repo</code> containing:
     <div class="language-plaintext highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code> .DS_Store
@@ -232,10 +232,10 @@ ALYSSA
      "each_scene_on_new_page": false
  }
 </code></pre></div>    </div>
-    <p>This config file customizes the PDF output generated by <i>’afterwriting</i>. Customize these settings as you like; refer to the <a href="https://github.com/ifrost/afterwriting-labs/blob/master/docs/clients.md" target="_blank" rel="noopener">documentation</a> for a complete list of available settings.</p>
+    <p>This config file customizes the PDF output generated by <i>’afterwriting</i>. Customize these settings as you like; refer to the <a href="https://github.com/ifrost/afterwriting-labs/blob/master/docs/clients.md" target="_blank" rel="noopener noreferrer">documentation</a> for a complete list of available settings.</p>
   </li>
   <li>Create a subfolder <code class="language-plaintext highlighter-rouge">my-script-repo/pdf</code>. Inside it, create an empty text file called <code class="language-plaintext highlighter-rouge">.gitkeep</code>.</li>
-  <li>Add, commit, then push this first set of changes to GitHub. (For help, see <a href="https://www.earthdatascience.org/workshops/intro-version-control-git/basic-git-commands/" target="_blank" rel="noopener">here</a>.) At this stage, your folder structure should look like:
+  <li>Add, commit, then push this first set of changes to GitHub. (For help, see <a href="https://www.earthdatascience.org/workshops/intro-version-control-git/basic-git-commands/" target="_blank" rel="noopener noreferrer">here</a>.) At this stage, your folder structure should look like:
     <div class="language-plaintext highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code> .
  └── my-script-repo/
@@ -320,7 +320,7 @@ ALYSSA
   </li>
 </ol>
 
-<p>If you don’t want <a href="https://happygitwithr.com/pull-tricky.html" target="_blank" rel="noopener">merge conflicts</a> (and you don’t), <strong>always pull the newly-updated PDFs after every push!</strong></p>
+<p>If you don’t want <a href="https://happygitwithr.com/pull-tricky.html" target="_blank" rel="noopener noreferrer">merge conflicts</a> (and you don’t), <strong>always pull the newly-updated PDFs after every push!</strong></p>
 
 <hr>
 
@@ -336,7 +336,7 @@ ALYSSA
 <p>Your collaborators can also view the latest PDFs by viewing the repo on GitHub, or by pulling the latest changes to their local repo.</p>
 
 <h3 id="contribute">Contribute</h3>
-<p>This workflow last worked for me as of the most recent date in the changelog below. If you spot errors, vulnerabilities, or potential improvements, please do <a href="https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2022-05-25-versioning-comic-scripts-using-fountain-and-github.md" target="_blank" rel="noopener">open a pull request</a> on this blog post!</p>
+<p>This workflow last worked for me as of the most recent date in the changelog below. If you spot errors, vulnerabilities, or potential improvements, please do <a href="https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2022-05-25-versioning-comic-scripts-using-fountain-and-github.md" target="_blank" rel="noopener noreferrer">open a pull request</a> on this blog post!</p>
 
 <h2 id="changelog">Changelog</h2>
 
@@ -345,10 +345,10 @@ ALYSSA
     <p><strong>2024-06-23</strong>: Update GitHub Action <code class="language-plaintext highlighter-rouge">checkout@v3</code> to <code class="language-plaintext highlighter-rouge">v4</code>.</p>
   </li>
   <li>
-    <p><strong>2023-09-12</strong>: Update <code class="language-plaintext highlighter-rouge">fountain_to_pdf.yml</code> to automatically find and convert all Fountain files in the repo. Thanks to <a href="https://stevenjaycohen.com/" target="_blank" rel="noopener">Steven Jay Cohen</a> for the feature request!</p>
+    <p><strong>2023-09-12</strong>: Update <code class="language-plaintext highlighter-rouge">fountain_to_pdf.yml</code> to automatically find and convert all Fountain files in the repo. Thanks to <a href="https://stevenjaycohen.com/" target="_blank" rel="noopener noreferrer">Steven Jay Cohen</a> for the feature request!</p>
   </li>
   <li>
-    <p><strong>2022-05-25</strong>: Initial post. This tutorial owes a deep debt of gratitude to Piotr Jamróz and the rest of the <a href="https://afterwriting.com/" target="_blank" rel="noopener"><i>’afterwriting</i></a> team. (So do I!)</p>
+    <p><strong>2022-05-25</strong>: Initial post. This tutorial owes a deep debt of gratitude to Piotr Jamróz and the rest of the <a href="https://afterwriting.com/" target="_blank" rel="noopener noreferrer"><i>’afterwriting</i></a> team. (So do I!)</p>
   </li>
 </ul>
 
@@ -361,16 +361,16 @@ ALYSSA
       <p>While Google Docs is technically free, a stable internet connection is not. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">↩</a></p>
     </li>
     <li id="fn:2">
-      <p>Free Fountain-specific scriptwriting apps with syntax highlighting and other quality-of-life features are also available, such as <a href="https://kapitan.fi/beat/" target="_blank" rel="noopener">Beat</a> (Mac) or <a href="https://www.trelby.org/" target="_blank" rel="noopener">Trelby</a> (Windows, Linux). <a href="#fnref:2" class="reversefootnote" role="doc-backlink">↩</a></p>
+      <p>Free Fountain-specific scriptwriting apps with syntax highlighting and other quality-of-life features are also available, such as <a href="https://kapitan.fi/beat/" target="_blank" rel="noopener noreferrer">Beat</a> (Mac) or <a href="https://www.trelby.org/" target="_blank" rel="noopener noreferrer">Trelby</a> (Windows, Linux). <a href="#fnref:2" class="reversefootnote" role="doc-backlink">↩</a></p>
     </li>
     <li id="fn:3">
-      <p>For instance, section headings begin with <code class="language-plaintext highlighter-rouge">#</code>; scene headings begin with <code class="language-plaintext highlighter-rouge">.</code>; character names are in all caps. Read the full syntax guide <a href="https://fountain.io/syntax" target="_blank" rel="noopener">here</a>. <a href="#fnref:3" class="reversefootnote" role="doc-backlink">↩</a></p>
+      <p>For instance, section headings begin with <code class="language-plaintext highlighter-rouge">#</code>; scene headings begin with <code class="language-plaintext highlighter-rouge">.</code>; character names are in all caps. Read the full syntax guide <a href="https://fountain.io/syntax" target="_blank" rel="noopener noreferrer">here</a>. <a href="#fnref:3" class="reversefootnote" role="doc-backlink">↩</a></p>
     </li>
     <li id="fn:4">
-      <p>Every operating system has one by default, e.g., <a href="https://apps.microsoft.com/store/detail/9MSMLRH6LZF3?hl=en-us&amp;gl=US" target="_blank" rel="noopener">Notepad</a> on Windows, <a href="https://support.apple.com/en-ph/guide/textedit/welcome/mac" target="_blank" rel="noopener">TextEdit</a> on Mac. <a href="#fnref:4" class="reversefootnote" role="doc-backlink">↩</a></p>
+      <p>Every operating system has one by default, e.g., <a href="https://apps.microsoft.com/store/detail/9MSMLRH6LZF3?hl=en-us&amp;gl=US" target="_blank" rel="noopener noreferrer">Notepad</a> on Windows, <a href="https://support.apple.com/en-ph/guide/textedit/welcome/mac" target="_blank" rel="noopener noreferrer">TextEdit</a> on Mac. <a href="#fnref:4" class="reversefootnote" role="doc-backlink">↩</a></p>
     </li>
     <li id="fn:5">
-      <p>Read the <a href="https://docs.github.com/en/pull-requests/committing-changes-to-your-project/viewing-and-comparing-commits/comparing-commits" target="_blank" rel="noopener">GitHub documentation</a> for more ways to compare commits. <a href="#fnref:5" class="reversefootnote" role="doc-backlink">↩</a></p>
+      <p>Read the <a href="https://docs.github.com/en/pull-requests/committing-changes-to-your-project/viewing-and-comparing-commits/comparing-commits" target="_blank" rel="noopener noreferrer">GitHub documentation</a> for more ways to compare commits. <a href="#fnref:5" class="reversefootnote" role="doc-backlink">↩</a></p>
     </li>
   </ol>
 </div>
@@ -386,7 +386,7 @@ ALYSSA
     <footer class="sticky-bottom mt-5">
   <div class="container">
     © 2021–2025 Scott Lee Chua.
-    Powered by <a href="https://jekyllrb.com/" target="_blank" rel="noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" target="_blank" rel="noopener">al-folio</a> theme. Read the <a href="/privacy/">Privacy Policy</a>.
+    Powered by <a href="https://jekyllrb.com/" target="_blank" rel="noopener noreferrer">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" target="_blank" rel="noopener noreferrer">al-folio</a> theme. Read the <a href="/privacy/">Privacy Policy</a>.
   </div>
 </footer>
 

@@ -151,7 +151,7 @@
 
 <h2 id="why-this-stack">Why this stack?</h2>
 
-<p>I recently helped a friend migrate his movie review blog off <a href="https://www.wix.com/plans" target="_blank" rel="noopener">Wix</a> and onto a <a href="https://ghost.org/" target="_blank" rel="noopener">Ghost</a> blog self-hosted on <a href="https://cloud.google.com/" target="_blank" rel="noopener">Google Cloud</a>. He was looking for</p>
+<p>I recently helped a friend migrate his movie review blog off <a href="https://www.wix.com/plans" target="_blank" rel="noopener noreferrer">Wix</a> and onto a <a href="https://ghost.org/" target="_blank" rel="noopener noreferrer">Ghost</a> blog self-hosted on <a href="https://cloud.google.com/" target="_blank" rel="noopener noreferrer">Google Cloud</a>. He was looking for</p>
 
 <ol>
   <li>the ability to use a custom domain without an additional fee;</li>
@@ -162,21 +162,21 @@
 
 <p><strong>for free, or as close to free as possible.</strong></p>
 
-<p>Requirement (1) ruled out other “as-a-service” website builders, while (2), (3), and (4) together ruled out my go-to <a href="https://jekyllrb.com/" target="_blank" rel="noopener">Jekyll</a> + <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a> combo. In the end, I settled on the stack shown in the diagram above. A brief overview of why I chose each component:</p>
+<p>Requirement (1) ruled out other “as-a-service” website builders, while (2), (3), and (4) together ruled out my go-to <a href="https://jekyllrb.com/" target="_blank" rel="noopener noreferrer">Jekyll</a> + <a href="https://pages.github.com/" target="_blank" rel="noopener noreferrer">GitHub Pages</a> combo. In the end, I settled on the stack shown in the diagram above. A brief overview of why I chose each component:</p>
 
 <ul>
   <li>
-<strong>Blog engine.</strong> I chose <a href="https://ghost.org/" target="_blank" rel="noopener">Ghost</a> as it has a beautiful content editor and a mobile-friendly control panel. While Ghost (the company) offers managed hosting plans for a fee, Ghost (the blog engine) is open-source and free to self-host.</li>
+<strong>Blog engine.</strong> I chose <a href="https://ghost.org/" target="_blank" rel="noopener noreferrer">Ghost</a> as it has a beautiful content editor and a mobile-friendly control panel. While Ghost (the company) offers managed hosting plans for a fee, Ghost (the blog engine) is open-source and free to self-host.</li>
   <li>
-<strong>Web server.</strong> I chose <a href="https://www.nginx.com/" target="_blank" rel="noopener">NGINX</a> as it is Ghost’s default option, and I went with the path of least resistance and most documentation. (In the previous version of this guide, I chose <a href="https://caddyserver.com/" target="_blank" rel="noopener">Caddy</a> as it seemed less arcane, but replicating the custom setup proved irksome after <a href="#changelog">the breaking changes</a> in Ghost v5.0.)</li>
+<strong>Web server.</strong> I chose <a href="https://www.nginx.com/" target="_blank" rel="noopener noreferrer">NGINX</a> as it is Ghost’s default option, and I went with the path of least resistance and most documentation. (In the previous version of this guide, I chose <a href="https://caddyserver.com/" target="_blank" rel="noopener noreferrer">Caddy</a> as it seemed less arcane, but replicating the custom setup proved irksome after <a href="#changelog">the breaking changes</a> in Ghost v5.0.)</li>
   <li>
-<strong>Hosting server.</strong> I chose to use a <a href="https://cloud.google.com/compute" target="_blank" rel="noopener">Compute Engine</a> virtual machine to host the website, because Google Cloud has a unique <a href="https://cloud.google.com/free/docs/free-cloud-features#compute" target="_blank" rel="noopener">Always Free Tier</a> (distinct from their free trial period) with resources enough to permanently host a small- to medium-sized blog (1GB RAM, 1GB monthly traffic to all regions except China and Australia). Google Cloud usually charges for static external IP addresses, but these are also free when attached to Free Tier virtual machines.</li>
+<strong>Hosting server.</strong> I chose to use a <a href="https://cloud.google.com/compute" target="_blank" rel="noopener noreferrer">Compute Engine</a> virtual machine to host the website, because Google Cloud has a unique <a href="https://cloud.google.com/free/docs/free-cloud-features#compute" target="_blank" rel="noopener noreferrer">Always Free Tier</a> (distinct from their free trial period) with resources enough to permanently host a small- to medium-sized blog (1GB RAM, 1GB monthly traffic to all regions except China and Australia). Google Cloud usually charges for static external IP addresses, but these are also free when attached to Free Tier virtual machines.</li>
   <li>
-<strong>Domain registrar.</strong> I like to buy my domain names through <a href="https://namecheap.com" target="_blank" rel="noopener">Namecheap</a> because they’re transparent with their prices and don’t fill your cart with upsells.</li>
+<strong>Domain registrar.</strong> I like to buy my domain names through <a href="https://namecheap.com" target="_blank" rel="noopener noreferrer">Namecheap</a> because they’re transparent with their prices and don’t fill your cart with upsells.</li>
   <li>
-<strong>Content delivery network (CDN).</strong> I use <a href="https://cloudflare.com" target="_blank" rel="noopener">Cloudflare</a>’s free CDN service to shorten website loading times and protect against <a href="https://www.cloudflare.com/learning/ddos/what-is-a-ddos-attack/" target="_blank" rel="noopener">DDOS</a> attacks. I also prefer managing DNS records through Cloudflare (rather than at the domain registrar level); not only is <a href="https://www.cloudflare.com/learning/dns/what-is-dns/" target="_blank" rel="noopener">domain resolution</a> faster, the user interface is also sleeker.</li>
+<strong>Content delivery network (CDN).</strong> I use <a href="https://cloudflare.com" target="_blank" rel="noopener noreferrer">Cloudflare</a>’s free CDN service to shorten website loading times and protect against <a href="https://www.cloudflare.com/learning/ddos/what-is-a-ddos-attack/" target="_blank" rel="noopener noreferrer">DDOS</a> attacks. I also prefer managing DNS records through Cloudflare (rather than at the domain registrar level); not only is <a href="https://www.cloudflare.com/learning/dns/what-is-dns/" target="_blank" rel="noopener noreferrer">domain resolution</a> faster, the user interface is also sleeker.</li>
   <li>
-<strong>Mail provider.</strong> Ghost has a built-in newsletter feature that integrates most easily with <a href="https://mailgun.com" target="_blank" rel="noopener">Mailgun</a>. I’m not too familiar with mail providers, but Mailgun has been great so far, consistently sending emails to inbox, not spam. The first 1,250 emails every month are <a href="https://help.mailgun.com/hc/en-us/articles/360048661093-How-does-PAYG-billing-work" target="_blank" rel="noopener">free</a>, and 0.80 USD / thousand emails thereafter. (Ghost also uses Mailgun to send password reset emails, so it’s a good idea to set Mailgun up even if you won’t be sending out newsletters.)</li>
+<strong>Mail provider.</strong> Ghost has a built-in newsletter feature that integrates most easily with <a href="https://mailgun.com" target="_blank" rel="noopener noreferrer">Mailgun</a>. I’m not too familiar with mail providers, but Mailgun has been great so far, consistently sending emails to inbox, not spam. The first 1,250 emails every month are <a href="https://help.mailgun.com/hc/en-us/articles/360048661093-How-does-PAYG-billing-work" target="_blank" rel="noopener noreferrer">free</a>, and 0.80 USD / thousand emails thereafter. (Ghost also uses Mailgun to send password reset emails, so it’s a good idea to set Mailgun up even if you won’t be sending out newsletters.)</li>
 </ul>
 
 <p>I tried to come up with a tech stack that was <strong>as low-cost as a self-hosted website could possibly be.</strong> In the diagram above, the only cost for certain is the annual domain name rental fee; everything else is either totally free (Ghost, NGINX, MySQL) or free with usage limits (Google Cloud, Cloudflare, Mailgun).</p>
@@ -202,7 +202,7 @@
 
 <h4 id="initialize-account">Initialize account</h4>
 <ol>
-  <li>Log in to the Google account you want to use with Google Cloud, then activate Google Cloud <a href="https://console.cloud.google.com" target="_blank" rel="noopener">here</a>.</li>
+  <li>Log in to the Google account you want to use with Google Cloud, then activate Google Cloud <a href="https://console.cloud.google.com" target="_blank" rel="noopener noreferrer">here</a>.</li>
   <li>Select <code class="language-plaintext highlighter-rouge">Create Project</code>:
     <ul>
       <li>Project name: <code class="language-plaintext highlighter-rouge">ghost-blog</code>
@@ -278,7 +278,7 @@
 </li>
       <li>Name: <code class="language-plaintext highlighter-rouge">ghost-blog</code>
 </li>
-      <li>Region: <code class="language-plaintext highlighter-rouge">us-west1</code> (or any region on the <a href="https://cloud.google.com/free/docs/free-cloud-features#compute" target="_blank" rel="noopener">Always Free Tier</a>)</li>
+      <li>Region: <code class="language-plaintext highlighter-rouge">us-west1</code> (or any region on the <a href="https://cloud.google.com/free/docs/free-cloud-features#compute" target="_blank" rel="noopener noreferrer">Always Free Tier</a>)</li>
     </ul>
   </li>
   <li>Go to Snapshots &gt; <code class="language-plaintext highlighter-rouge">Create Snapshot Schedule</code>:
@@ -343,8 +343,8 @@
 
 <h4 id="buy-a-domain-and-set-up-cloudflare">Buy a domain and set up Cloudflare</h4>
 <ol>
-  <li>Make a <a href="https://www.namecheap.com/myaccount/signup/" target="_blank" rel="noopener">Namecheap account</a> and buy your domain. I’ll use <code class="language-plaintext highlighter-rouge">ghostblog.com</code> as an example. Going forward, everywhere you see <code class="language-plaintext highlighter-rouge">ghostblog.com</code>, replace it with your own domain name.</li>
-  <li>Make a <a href="https://www.cloudflare.com/plans/" target="_blank" rel="noopener">Cloudflare account</a> and add your domain under the Free subscription plan.</li>
+  <li>Make a <a href="https://www.namecheap.com/myaccount/signup/" target="_blank" rel="noopener noreferrer">Namecheap account</a> and buy your domain. I’ll use <code class="language-plaintext highlighter-rouge">ghostblog.com</code> as an example. Going forward, everywhere you see <code class="language-plaintext highlighter-rouge">ghostblog.com</code>, replace it with your own domain name.</li>
+  <li>Make a <a href="https://www.cloudflare.com/plans/" target="_blank" rel="noopener noreferrer">Cloudflare account</a> and add your domain under the Free subscription plan.</li>
   <li>Under “Review your DNS records”, first <strong>delete all the records</strong>.</li>
   <li>Then <code class="language-plaintext highlighter-rouge">Add record</code>:
     <ul>
@@ -366,7 +366,7 @@
 
 <h4 id="set-up-mailgun">Set up Mailgun</h4>
 <ol>
-  <li>Make a <a href="https://signup.mailgun.com/new/signup" target="_blank" rel="noopener">Mailgun account</a> under the <code class="language-plaintext highlighter-rouge">Flex</code> plan. You’ll be asked to confirm a phone number and put your card details on file.</li>
+  <li>Make a <a href="https://signup.mailgun.com/new/signup" target="_blank" rel="noopener noreferrer">Mailgun account</a> under the <code class="language-plaintext highlighter-rouge">Flex</code> plan. You’ll be asked to confirm a phone number and put your card details on file.</li>
   <li>Select <code class="language-plaintext highlighter-rouge">Add a custom domain</code>:
     <ul>
       <li>Domain name: <code class="language-plaintext highlighter-rouge">mg.ghostblog.com</code>
@@ -536,7 +536,7 @@ curl <span class="nt">-fsSL</span> https://deb.nodesource.com/gpgkey/nodesource-
     </ul>
   </li>
   <li>
-    <p>Turning off MySQL’s performance schema is <a href="https://www.riccardofeingold.com/how-to-reduce-ram-usage-of-ghost-and-mysql/" target="_blank" rel="noopener">a common way to reduce its memory usage</a>, which occasionally tests the limits of the free tier machine’s 1GB of RAM. To do this, open the MySQL configuration file:</p>
+    <p>Turning off MySQL’s performance schema is <a href="https://www.riccardofeingold.com/how-to-reduce-ram-usage-of-ghost-and-mysql/" target="_blank" rel="noopener noreferrer">a common way to reduce its memory usage</a>, which occasionally tests the limits of the free tier machine’s 1GB of RAM. To do this, open the MySQL configuration file:</p>
 
     <div class="language-bash highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>nano /etc/mysql/my.cnf
@@ -813,7 +813,7 @@ ghost <span class="nb">ls</span>
 <hr>
 
 <h2 id="contribute">Contribute</h2>
-<p>This workflow last worked for me as of the most recent date in the changelog below. If you spot errors, vulnerabilities, or potential improvements, please do <a href="https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2022-01-01-self-hosting-ghost-on-google-cloud.md" target="_blank" rel="noopener">open a pull request</a> on this blog post!</p>
+<p>This workflow last worked for me as of the most recent date in the changelog below. If you spot errors, vulnerabilities, or potential improvements, please do <a href="https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2022-01-01-self-hosting-ghost-on-google-cloud.md" target="_blank" rel="noopener noreferrer">open a pull request</a> on this blog post!</p>
 
 <h2 id="changelog">Changelog</h2>
 
@@ -821,7 +821,7 @@ ghost <span class="nb">ls</span>
 
 <ul>
   <li>
-    <p><strong>2024-11-20</strong>: Create a 25GB boot disk and <a href="https://linuxize.com/post/create-a-linux-swap-file/" target="_blank" rel="noopener">set up swapfiles</a> immediately upon Ghost setup in order to stave off Ghost websites going offline due to virtual machines running out of memory.</p>
+    <p><strong>2024-11-20</strong>: Create a 25GB boot disk and <a href="https://linuxize.com/post/create-a-linux-swap-file/" target="_blank" rel="noopener noreferrer">set up swapfiles</a> immediately upon Ghost setup in order to stave off Ghost websites going offline due to virtual machines running out of memory.</p>
   </li>
   <li>
     <p><strong>2024-11-17</strong>: Remove Secure Boot recommendation as the setting doesn’t always stick, and seems to create more trouble when SSH-ing; revert Nodejs installation from using <code class="language-plaintext highlighter-rouge">nvm</code> to direct installation; update Mailgun instructions to use a mail-specific subdomain (<code class="language-plaintext highlighter-rouge">mg</code>) by default.</p>
@@ -830,39 +830,39 @@ ghost <span class="nb">ls</span>
     <p><strong>2024-10-02</strong>: Add setting to autodelete disk snapshots after 7 days to minimize costs, as snapshot storage is no longer included in the Free Tier.</p>
   </li>
   <li>
-    <p><strong>2024-09-20</strong>: Update Nodejs installation instructions to install v20, <a href="https://ghost.org/docs/faq/node-versions/" target="_blank" rel="noopener">as recommended by Ghost</a>.</p>
+    <p><strong>2024-09-20</strong>: Update Nodejs installation instructions to install v20, <a href="https://ghost.org/docs/faq/node-versions/" target="_blank" rel="noopener noreferrer">as recommended by Ghost</a>.</p>
   </li>
   <li>
-    <p><strong>2024-07-24</strong>: Add step to disable <a href="https://ghost.org/docs/config?via=cathy45&amp;ref=spectralwebservices.com#search" target="_blank" rel="noopener">sodoSearch</a> and <a href="https://forum.ghost.org/t/is-it-possible-to-disable-jsdelivr-cdn/31761" target="_blank" rel="noopener">improve page load times</a>.</p>
+    <p><strong>2024-07-24</strong>: Add step to disable <a href="https://ghost.org/docs/config?via=cathy45&amp;ref=spectralwebservices.com#search" target="_blank" rel="noopener noreferrer">sodoSearch</a> and <a href="https://forum.ghost.org/t/is-it-possible-to-disable-jsdelivr-cdn/31761" target="_blank" rel="noopener noreferrer">improve page load times</a>.</p>
   </li>
   <li>
     <p><strong>2023-12-30</strong>: Simplify creation process of <code class="language-plaintext highlighter-rouge">service_account</code> user.</p>
   </li>
   <li>
-    <p><strong>2023-09-10</strong>: Update Nodejs installation instructions to install v18, <a href="https://ghost.org/docs/faq/node-versions/" target="_blank" rel="noopener">as recommended by Ghost</a>.</p>
+    <p><strong>2023-09-10</strong>: Update Nodejs installation instructions to install v18, <a href="https://ghost.org/docs/faq/node-versions/" target="_blank" rel="noopener noreferrer">as recommended by Ghost</a>.</p>
   </li>
   <li>
-    <p><strong>2023-08-10</strong>: Add cron job to auto-start Ghost upon VM restart. Thanks to <a href="https://danielraffel.me/" target="_blank" rel="noopener">Daniel Raffel</a> for the contribution!</p>
+    <p><strong>2023-08-10</strong>: Add cron job to auto-start Ghost upon VM restart. Thanks to <a href="https://danielraffel.me/" target="_blank" rel="noopener noreferrer">Daniel Raffel</a> for the contribution!</p>
   </li>
   <li>
-    <p><strong>2023-08-06</strong>: Revise instructions to set MySQL root password. Thanks to <a href="https://linuxhint.com/change-mysql-root-password-ubuntu/" target="_blank" rel="noopener">Shehroz Alam on Linuxhint</a>.</p>
+    <p><strong>2023-08-06</strong>: Revise instructions to set MySQL root password. Thanks to <a href="https://linuxhint.com/change-mysql-root-password-ubuntu/" target="_blank" rel="noopener noreferrer">Shehroz Alam on Linuxhint</a>.</p>
   </li>
   <li>
     <p><strong>2023-05</strong>: Add update Ghost CLI command to <code class="language-plaintext highlighter-rouge">update-ghost.sh</code>.</p>
   </li>
   <li>
-    <p><strong>2023-03</strong>: Replace SQLite with MySQL, Caddy with NGINX, and Docker with <a href="https://ghost.org/docs/ghost-cli/" target="_blank" rel="noopener">Ghost CLI</a>. Add update script for easier maintenance.</p>
+    <p><strong>2023-03</strong>: Replace SQLite with MySQL, Caddy with NGINX, and Docker with <a href="https://ghost.org/docs/ghost-cli/" target="_blank" rel="noopener noreferrer">Ghost CLI</a>. Add update script for easier maintenance.</p>
 
-    <p>Ghost v5.0+ <a href="https://ghost.org/docs/changes" target="_blank" rel="noopener">introduced a breaking change</a>: it would drop support for all databases except MySQL 8.</p>
+    <p>Ghost v5.0+ <a href="https://ghost.org/docs/changes" target="_blank" rel="noopener noreferrer">introduced a breaking change</a>: it would drop support for all databases except MySQL 8.</p>
 
-    <p>Consequently, the previous setup instructions broke. Months after v5.0, the unofficial Ghost Docker images were still configured for SQLite3, and I didn’t have the bandwidth to figure out how MySQL factored in to the Docker setup. When I learned that Ghost installed via the Ghost CLI could take care of SSL certificate renewals, I was more than happy to bring this walkthrough closer to the official Ghost <a href="https://ghost.org/docs/install/ubuntu/" target="_blank" rel="noopener">installation instructions for Ubuntu</a> and its recommended stack.</p>
+    <p>Consequently, the previous setup instructions broke. Months after v5.0, the unofficial Ghost Docker images were still configured for SQLite3, and I didn’t have the bandwidth to figure out how MySQL factored in to the Docker setup. When I learned that Ghost installed via the Ghost CLI could take care of SSL certificate renewals, I was more than happy to bring this walkthrough closer to the official Ghost <a href="https://ghost.org/docs/install/ubuntu/" target="_blank" rel="noopener noreferrer">installation instructions for Ubuntu</a> and its recommended stack.</p>
 
     <p>Later, after I got the CLI-based installation working, I considered recreating this setup using a Dockerfile. But MySQL uses much more RAM than SQLite, occasionally hitting the 1GB ceiling during relatively intensive operations, such as sending out newsletters. Adding Docker back into the mix would likely consume even more memory.</p>
 
-    <p>The updated version of this walkthrough draws from Ghost’s <a href="https://ghost.org/docs/install/ubuntu/" target="_blank" rel="noopener">official documentation</a> and Norbert Hunyadi’s <a href="https://bironthemes.com/blog/ghost-mailgun-config/" target="_blank" rel="noopener">Mailgun config snippet</a>. Curiositry’s <a href="https://www.autodidacts.io/host-ghost-mysql8-on-fly-io-free-tier/" target="_blank" rel="noopener">tutorial</a> on hosting Ghost on <a href="https://fly.io/" target="_blank" rel="noopener">Fly.io</a>’s free tier and Cyberjunky’s <a href="https://cyberjunky.nl/hosting-a-ghost-blog-on-google-cloud/" target="_blank" rel="noopener">Ghost v5.0 + Caddy walkthrough</a> were also immensely helpful, though I didn’t go in those directions in the end.</p>
+    <p>The updated version of this walkthrough draws from Ghost’s <a href="https://ghost.org/docs/install/ubuntu/" target="_blank" rel="noopener noreferrer">official documentation</a> and Norbert Hunyadi’s <a href="https://bironthemes.com/blog/ghost-mailgun-config/" target="_blank" rel="noopener noreferrer">Mailgun config snippet</a>. Curiositry’s <a href="https://www.autodidacts.io/host-ghost-mysql8-on-fly-io-free-tier/" target="_blank" rel="noopener noreferrer">tutorial</a> on hosting Ghost on <a href="https://fly.io/" target="_blank" rel="noopener noreferrer">Fly.io</a>’s free tier and Cyberjunky’s <a href="https://cyberjunky.nl/hosting-a-ghost-blog-on-google-cloud/" target="_blank" rel="noopener noreferrer">Ghost v5.0 + Caddy walkthrough</a> were also immensely helpful, though I didn’t go in those directions in the end.</p>
   </li>
   <li>
-    <p><strong>2022-01</strong>: Initial post. This walkthrough owes a debt of gratitude to The Applied Architect’s <a href="https://theappliedarchitect.com/setup-a-free-self-hosted-blog-in-under-15-minutes/" target="_blank" rel="noopener">Ghost on Google Cloud tutorial</a> and Brian Burroughs’ <a href="https://techroads.org/building-a-caddy-container-stack-for-easy-https-with-docker-and-ghost/" target="_blank" rel="noopener">Ghost + Caddy tutorial</a>, which helped me piece together the deployment process.</p>
+    <p><strong>2022-01</strong>: Initial post. This walkthrough owes a debt of gratitude to The Applied Architect’s <a href="https://theappliedarchitect.com/setup-a-free-self-hosted-blog-in-under-15-minutes/" target="_blank" rel="noopener noreferrer">Ghost on Google Cloud tutorial</a> and Brian Burroughs’ <a href="https://techroads.org/building-a-caddy-container-stack-for-easy-https-with-docker-and-ghost/" target="_blank" rel="noopener noreferrer">Ghost + Caddy tutorial</a>, which helped me piece together the deployment process.</p>
   </li>
 </ul>
 
@@ -877,7 +877,7 @@ ghost <span class="nb">ls</span>
     <footer class="sticky-bottom mt-5">
   <div class="container">
     © 2021–2025 Scott Lee Chua.
-    Powered by <a href="https://jekyllrb.com/" target="_blank" rel="noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" target="_blank" rel="noopener">al-folio</a> theme. Read the <a href="/privacy/">Privacy Policy</a>.
+    Powered by <a href="https://jekyllrb.com/" target="_blank" rel="noopener noreferrer">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" target="_blank" rel="noopener noreferrer">al-folio</a> theme. Read the <a href="/privacy/">Privacy Policy</a>.
   </div>
 </footer>
 
