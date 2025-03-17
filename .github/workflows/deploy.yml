@@ -31,6 +31,6 @@ jobs:
       run: |
         bundle exec jekyll build
     - name: Deploy
-      uses: JamesIves/github-pages-deploy-action@v4
+      uses: JamesIves/github-pages-deploy-action@7351ba88c48758cc8e6520eb2cc139c8e8258bee
       with:
         folder: _site
