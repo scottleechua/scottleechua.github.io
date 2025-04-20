@@ -82,7 +82,7 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
       - Boot disk type: `Standard persistent disk`
       - Size (GB): 25
    - Firewall:
-      - `Allow HTTPS traffic`
+      - `Allow HTTP traffic`, `Allow HTTPS traffic`
    - Advanced Options > Networking > `Network tags`:
       - Type `mail` then press `Enter`
 3. Go to VM instances > `Create an instance`:
@@ -496,6 +496,8 @@ At this point you should have a working self-hosted Ghost blog. Updates aside, y
 This workflow last worked for me as of the most recent date in the changelog below. If you spot errors, vulnerabilities, or potential improvements, please do [open a pull request](https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2022-01-01-self-hosting-ghost-on-google-cloud.md) on this blog post!
 
 ## Changelog
+
+-**2025-04-19**: Reopen port 80 (HTTP)! It turns out that ACME, the service that manages renewal of SSL certificates, requires access to port 80 to pass the [HTTP-01 Challenge](https://letsencrypt.org/docs/challenge-types/) during certificate renewal time.
 
 -**2025-02-25**: Keep port 80 (HTTP) closed by default.
 
