@@ -497,9 +497,9 @@ This workflow last worked for me as of the most recent date in the changelog bel
 
 ## Changelog
 
--**2025-04-19**: Reopen port 80 (HTTP)! It turns out that ACME, the service that manages renewal of SSL certificates, requires access to port 80 to pass the [HTTP-01 Challenge](https://letsencrypt.org/docs/challenge-types/) during certificate renewal time.
+- **2025-04-19**: Reopen port 80 (HTTP)! It turns out that ACME, the service that manages renewal of SSL certificates, requires access to port 80 to pass the [HTTP-01 Challenge](https://letsencrypt.org/docs/challenge-types/) during certificate renewal time.
 
--**2025-02-25**: Keep port 80 (HTTP) closed by default.
+- **2025-02-25**: Keep port 80 (HTTP) closed by default.
 
 - **2024-11-20**: Create a 25GB boot disk and [set up swapfiles](https://linuxize.com/post/create-a-linux-swap-file/) immediately upon Ghost setup in order to stave off Ghost websites going offline due to virtual machines running out of memory.
 
