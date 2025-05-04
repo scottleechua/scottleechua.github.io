@@ -33,6 +33,7 @@ Occasionally, I develop small websites for friends and colleagues:
 
 A huge thank you to:
 
+- [Cathy Sarisky](https://www.spectralwebservices.com) for her help in extensively customizing both the functionality and appearance of the Ghost theme for [`talk.komiks.space`](https://talk.komiks.space)
 - [@umang_io](https://www.fiverr.com/umang_io) for his help customizing Ghost themes for [`dunnodowhat.com`](https://dunnodowhat.com), [`myleyantay.com`](https://myleyantay.com), and [`yamsmusic.com`](https://yamsmusic.com)
 - [@nirob_19](https://www.fiverr.com/nirob_19) for his help fixing the CSS for [`lawrenceypil.com`](https://lawrenceypil.com)
 - [@chiradip_b](https://www.fiverr.com/chiradip_b) for his help writing alt text for [`scottleechua.com`](/)
