@@ -760,34 +760,21 @@ performance_schema=0
 
 <h4 id="create-update-script">Create update script</h4>
 
-<p>Create a single bash script that updates Ghost and all its dependencies.</p>
+<p>I use <a href="https://gist.github.com/scottleechua/ca3db03becdfcc1efe5730b26b7fa8f8" target="_blank" rel="noopener noreferrer">this script</a> to keep my self-hosted Ghost machines up to date — feel free to adapt it for your purposes or use it as is!</p>
 
 <ol>
   <li>
-    <p>Create an update script in the home directory of <code class="language-plaintext highlighter-rouge">service_account</code>:</p>
+    <p>Create a new file in the home directory of <code class="language-plaintext highlighter-rouge">service_account</code>:</p>
 
     <div class="language-bash highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>nano update-ghost.sh
+<div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> <span class="o">&amp;&amp;</span> <span class="nb">touch </span>update-ghost.sh <span class="o">&amp;&amp;</span> nano update-ghost.sh
 </code></pre></div>    </div>
   </li>
   <li>
-    <p>Paste the following text into the update script:</p>
-
-    <div class="language-bash highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
-
-<span class="nb">sudo </span>apt update <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt <span class="nt">-y</span> upgrade
-<span class="nb">sudo </span>apt clean <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt autoclean <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt autoremove
-<span class="nb">sudo </span>npm <span class="nb">install</span> <span class="nt">-g</span> npm@latest
-<span class="nb">cd</span> /var/www/ghost
-<span class="nb">sudo </span>npm <span class="nb">install</span> <span class="nt">-g</span> ghost-cli@latest
-<span class="nb">sudo </span>find ./ <span class="o">!</span> <span class="nt">-path</span> <span class="s2">"./versions/*"</span> <span class="nt">-type</span> f <span class="nt">-exec</span> <span class="nb">chmod </span>664 <span class="o">{}</span> <span class="se">\;</span>
-ghost backup
-ghost stop
-ghost update
-ghost start
-ghost <span class="nb">ls</span>
-</code></pre></div>    </div>
+    <p>Copy and paste <a href="https://gist.github.com/scottleechua/ca3db03becdfcc1efe5730b26b7fa8f8" target="_blank" rel="noopener noreferrer">the contents of this update script</a> into the editor.</p>
+  </li>
+  <li>
+    <p>On lines 4 and 5, replace <code class="language-plaintext highlighter-rouge">GHOST_ADMIN_EMAIL</code> and <code class="language-plaintext highlighter-rouge">GHOST_ADMIN_PASSWORD</code> with your own credentials.</p>
   </li>
   <li>
     <p>Make it executable:</p>
@@ -804,10 +791,17 @@ ghost <span class="nb">ls</span>
 <div class="highlight"><pre class="highlight"><code>su - service_account
 ./update-ghost.sh
 </code></pre></div>    </div>
+  </li>
+  <li>
+    <p>In my experience, the update can take up to half an hour, depending on how long it’s been since the last one. Afterwards, you would usually need to restart the virtual machine:</p>
 
-    <p>Note that <code class="language-plaintext highlighter-rouge">ghost backup</code> requires your Ghost admin credentials.</p>
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>reboot
+</code></pre></div>    </div>
   </li>
 </ol>
+
+<p>While it would technically be possible to configure automatic updates with a cron job, I would advise keeping an eye on the update process in case human intervention is required.</p>
 
 <h3 id="congratulations">Congratulations!</h3>
 <p>At this point you should have a working self-hosted Ghost blog. Updates aside, you should be working from the <code class="language-plaintext highlighter-rouge">https://ghostblog.com/ghost</code> control panel from now on.</p>
@@ -820,6 +814,9 @@ ghost <span class="nb">ls</span>
 <h2 id="changelog">Changelog</h2>
 
 <ul>
+  <li>
+    <p><strong>2025-05-16</strong>: Replace the update script template with one that can run without human interaction.</p>
+  </li>
   <li>
     <p><strong>2025-04-19</strong>: Reopen port 80 (HTTP)! It turns out that ACME, the service that manages renewal of SSL certificates, requires access to port 80 to pass the <a href="https://letsencrypt.org/docs/challenge-types/" target="_blank" rel="noopener noreferrer">HTTP-01 Challenge</a> during certificate renewal time.</p>
   </li>
