@@ -445,47 +445,39 @@ Sometimes virtual machines restart by themselves. Create this cron job so that w
 
 #### Create update script
 
-Create a single bash script that updates Ghost and all its dependencies.
+I use [this script](https://gist.github.com/scottleechua/ca3db03becdfcc1efe5730b26b7fa8f8) to keep my self-hosted Ghost machines up to date --- feel free to adapt it for your purposes or use it as is!
 
-1. Create an update script in the home directory of `service_account`:
-
-   ```bash
-   cd && sudo nano update-ghost.sh
-   ```
-
-2. Paste the following text into the update script:
+1. Create a new file in the home directory of `service_account`:
 
    ```bash
-   #!/bin/bash
-
-   sudo apt update && sudo apt -y upgrade
-   sudo apt clean && sudo apt autoclean && sudo apt autoremove
-   sudo npm install -g npm@latest
-   cd /var/www/ghost
-   sudo npm install -g ghost-cli@latest
-   sudo find ./ ! -path "./versions/*" -type f -exec chmod 664 {} \;
-   ghost backup
-   ghost stop
-   ghost update
-   ghost start
-   ghost ls
+   cd && touch update-ghost.sh && nano update-ghost.sh
    ```
 
-3. Make it executable:
+2. Copy and paste [the contents of this update script](https://gist.github.com/scottleechua/ca3db03becdfcc1efe5730b26b7fa8f8) into the editor.
+
+3. On lines 4 and 5, replace `GHOST_ADMIN_EMAIL` and `GHOST_ADMIN_PASSWORD` with your own credentials.
+
+4. Make it executable:
 
    ```bash
    sudo chown service_account:service_account update-ghost.sh
    sudo chmod 775 update-ghost.sh
    ```
 
-4. Now every time you want to update Ghost in the future, `SSH` to the virtual machine, then
+5. Now every time you want to update Ghost in the future, `SSH` to the virtual machine, then
 
    ```bash
    su - service_account
    ./update-ghost.sh
    ```
 
-   Note that `ghost backup` requires your Ghost admin credentials.
+6. In my experience, the update can take up to half an hour, depending on how long it's been since the last one. Afterwards, you would usually need to restart the virtual machine:
+
+   ```bash
+   sudo reboot
+   ```
+
+While it would technically be possible to configure automatic updates with a cron job, I would advise keeping an eye on the update process in case human intervention is required.
 
 ### Congratulations!
 At this point you should have a working self-hosted Ghost blog. Updates aside, you should be working from the `https://ghostblog.com/ghost` control panel from now on.
@@ -496,6 +488,8 @@ At this point you should have a working self-hosted Ghost blog. Updates aside, y
 This workflow last worked for me as of the most recent date in the changelog below. If you spot errors, vulnerabilities, or potential improvements, please do [open a pull request](https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2022-01-01-self-hosting-ghost-on-google-cloud.md) on this blog post!
 
 ## Changelog
+
+- **2025-05-16**: Replace the update script template with one that can run without human interaction.
 
 - **2025-04-19**: Reopen port 80 (HTTP)! It turns out that ACME, the service that manages renewal of SSL certificates, requires access to port 80 to pass the [HTTP-01 Challenge](https://letsencrypt.org/docs/challenge-types/) during certificate renewal time.
 
