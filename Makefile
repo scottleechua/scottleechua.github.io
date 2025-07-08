@@ -1,3 +1,5 @@
+.PHONY: dev init proof
+
 dev:
 	code .
 	bundle exec jekyll serve
