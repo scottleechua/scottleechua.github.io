@@ -774,7 +774,7 @@ performance_schema=0
     <p>Copy and paste <a href="https://gist.github.com/scottleechua/ca3db03becdfcc1efe5730b26b7fa8f8" target="_blank" rel="noopener noreferrer">the contents of this update script</a> into the editor.</p>
   </li>
   <li>
-    <p>On lines 4 and 5, replace <code class="language-plaintext highlighter-rouge">GHOST_ADMIN_EMAIL</code> and <code class="language-plaintext highlighter-rouge">GHOST_ADMIN_PASSWORD</code> with your own credentials.</p>
+    <p>On line 5, replace <code class="language-plaintext highlighter-rouge">GHOST_STAFF_TOKEN</code> with your Ghost staff token, which you can get from Ghost Admin Dashboard &gt; Your Profile &gt; Staff Token.</p>
   </li>
   <li>
     <p>Make it executable:</p>
@@ -814,6 +814,9 @@ performance_schema=0
 <h2 id="changelog">Changelog</h2>
 
 <ul>
+  <li>
+    <p><strong>2025-08-15</strong>: Update the update script to use Ghost staff token instead of username and password, a change made in <a href="https://github.com/TryGhost/Ghost-CLI/releases/tag/v1.28.0" target="_blank" rel="noopener noreferrer">Ghost CLI v1.28</a>.</p>
+  </li>
   <li>
     <p><strong>2025-05-16</strong>: Replace the update script template with one that can run without human interaction.</p>
   </li>
