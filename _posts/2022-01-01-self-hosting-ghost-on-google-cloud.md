@@ -455,7 +455,7 @@ I use [this script](https://gist.github.com/scottleechua/ca3db03becdfcc1efe5730b
 
 2. Copy and paste [the contents of this update script](https://gist.github.com/scottleechua/ca3db03becdfcc1efe5730b26b7fa8f8) into the editor.
 
-3. On lines 4 and 5, replace `GHOST_ADMIN_EMAIL` and `GHOST_ADMIN_PASSWORD` with your own credentials.
+3. On line 5, replace `GHOST_STAFF_TOKEN` with your Ghost staff token, which you can get from Ghost Admin Dashboard > Your Profile > Staff Token.
 
 4. Make it executable:
 
@@ -488,6 +488,8 @@ At this point you should have a working self-hosted Ghost blog. Updates aside, y
 This workflow last worked for me as of the most recent date in the changelog below. If you spot errors, vulnerabilities, or potential improvements, please do [open a pull request](https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2022-01-01-self-hosting-ghost-on-google-cloud.md) on this blog post!
 
 ## Changelog
+
+- **2025-08-15**: Update the update script to use Ghost staff token instead of username and password, a change made in [Ghost CLI v1.28](https://github.com/TryGhost/Ghost-CLI/releases/tag/v1.28.0).
 
 - **2025-05-16**: Replace the update script template with one that can run without human interaction.
 
