@@ -10,4 +10,4 @@ init:
 
 proof:
 	bundle exec jekyll build
-	ruby runHtmlProofer.rb
+	ruby scripts/runHtmlProofer.rb
