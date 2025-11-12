@@ -18,19 +18,14 @@ jobs:
     - name: Setup Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: '3.4.5'
+        ruby-version: '3.4.7'
         bundler-cache: true
     - name: Update robots.txt
-      run: |
-        if curl 'https://raw.githubusercontent.com/ai-robots-txt/ai.robots.txt/refs/heads/main/robots.txt' > robots-list.txt
-          then echo "Using ai-robots-txt's bot list..."; mv -f robots-list.txt robots.txt
-          else echo "ai-robots-txt not available, using bots.yml..."
-        fi
-        echo "Done!"
+      run: ./scripts/update-robots.sh
     - name: Build site
       run: |
         bundle exec jekyll build
     - name: Deploy
-      uses: JamesIves/github-pages-deploy-action@v4.7.3
+      uses: JamesIves/github-pages-deploy-action@v4.7.4
       with:
         folder: _site
