@@ -270,7 +270,7 @@ To minimize the chance of Ghost running out of memory on a small virtual machine
    - Remove test database and its privileges? — `Y`
    - Reload privilege tables? — `Y`
 
-8. Turning off MySQL's performance schema is [a common way to reduce its memory usage](https://www.riccardofeingold.com/how-to-reduce-ram-usage-of-ghost-and-mysql/), which occasionally tests the limits of the free tier machine's 1GB of RAM. To do this, open the MySQL configuration file:
+8. Turning off MySQL's performance schema is a common way to reduce its memory usage, which occasionally tests the limits of the free tier machine's 1GB of RAM. To do this, open the MySQL configuration file:
 
    ```bash
    sudo nano /etc/mysql/my.cnf
