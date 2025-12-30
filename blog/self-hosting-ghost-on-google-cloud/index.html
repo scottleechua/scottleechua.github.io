@@ -378,8 +378,8 @@
   </li>
   <li>Go back to Cloudflare &gt; ghostblog.com &gt; <code class="language-plaintext highlighter-rouge">DNS</code> and add the five DNS records Mailgun requires. Turn Proxy Status off (i.e., set all to <code class="language-plaintext highlighter-rouge">DNS only</code>).</li>
   <li>Go back to Mailgun &gt; <code class="language-plaintext highlighter-rouge">Verify DNS settings</code>.</li>
-  <li>Once the custom domain has been added to Mailgun, go to Sending &gt; Domain Settings &gt; <code class="language-plaintext highlighter-rouge">SMTP Credentials</code>. Take note of the “login” (usually <code class="language-plaintext highlighter-rouge">postmaster@mg.ghostblog.com</code>).</li>
-  <li>Click <code class="language-plaintext highlighter-rouge">Manage SMTP Credentials</code>, then <code class="language-plaintext highlighter-rouge">Reset password</code> &gt; <code class="language-plaintext highlighter-rouge">Reset password</code> &gt; <code class="language-plaintext highlighter-rouge">Copy</code>. Paste this password somewhere safe—it will only be generated this once!</li>
+  <li>Once the custom domain has been added to Mailgun, go to Sending &gt; Domain Settings &gt; <code class="language-plaintext highlighter-rouge">SMTP Credentials</code> &gt; <code class="language-plaintext highlighter-rouge">Add new SMTP user</code>.</li>
+  <li>Set the SMTP username as <code class="language-plaintext highlighter-rouge">postmaster</code> by convention, then click <code class="language-plaintext highlighter-rouge">Create</code>. Copy the username and password. Paste the password somewhere safe—it will only be generated this once!</li>
   <li>Click on your profile in the upper right &gt; <code class="language-plaintext highlighter-rouge">API Security</code> &gt; <code class="language-plaintext highlighter-rouge">Mailgun API Keys</code>, and generate a Private API Key.</li>
 </ol>
 
@@ -814,6 +814,9 @@ performance_schema=0
 <h2 id="changelog">Changelog</h2>
 
 <ul>
+  <li>
+    <p><strong>2025-12-30</strong>: Update the Mailgun SMTP credentials creation process.</p>
+  </li>
   <li>
     <p><strong>2025-08-15</strong>: Update the update script to use Ghost staff token instead of username and password, a change made in <a href="https://github.com/TryGhost/Ghost-CLI/releases/tag/v1.28.0" target="_blank" rel="noopener noreferrer">Ghost CLI v1.28</a>.</p>
   </li>
