@@ -138,8 +138,8 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
    - Domain region: `US` (unless your website requires within-`EU` data processing)
 3. Go back to Cloudflare > ghostblog.com > `DNS` and add the five DNS records Mailgun requires. Turn Proxy Status off (i.e., set all to `DNS only`).
 4. Go back to Mailgun > `Verify DNS settings`.
-5. Once the custom domain has been added to Mailgun, go to Sending > Domain Settings > `SMTP Credentials`. Take note of the "login" (usually `postmaster@mg.ghostblog.com`).
-6. Click `Manage SMTP Credentials`, then `Reset password` > `Reset password` > `Copy`. Paste this password somewhere safe---it will only be generated this once!
+5. Once the custom domain has been added to Mailgun, go to Sending > Domain Settings > `SMTP Credentials` > `Add new SMTP user`.
+6. Set the SMTP username as `postmaster` by convention, then click `Create`. Copy the username and password. Paste the password somewhere safe---it will only be generated this once!
 7. Click on your profile in the upper right > `API Security` > `Mailgun API Keys`, and generate a Private API Key.
 
 ### 3. Deploy Ghost
@@ -488,6 +488,8 @@ At this point you should have a working self-hosted Ghost blog. Updates aside, y
 This workflow last worked for me as of the most recent date in the changelog below. If you spot errors, vulnerabilities, or potential improvements, please do [open a pull request](https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2022-01-01-self-hosting-ghost-on-google-cloud.md) on this blog post!
 
 ## Changelog
+
+- **2025-12-30**: Update the Mailgun SMTP credentials creation process.
 
 - **2025-08-15**: Update the update script to use Ghost staff token instead of username and password, a change made in [Ghost CLI v1.28](https://github.com/TryGhost/Ghost-CLI/releases/tag/v1.28.0).
 
