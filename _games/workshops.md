@@ -44,6 +44,8 @@ I wasn't sure how many people in Singapore were interested in such an esoteric s
 All photos courtesy of Ailin Chin.
 </div>
 
+Since then, I've run this workshop for corporate clients, game developers, and university students. If you'd like me to run this workshop for you, please [reach out](mailto:scottleechua@gmail.com)!
+
 #### Praise for the workshop
 -  *Class exceeded my expectations! Speaker was engaging and interacted well with everyone. Gave tips and guides so we can read more and design our own escape rooms. Thumbs up!* -- Erina N.F.
 - *I really appreciate how consistently engaging it was, as it wasn't just a lecture but also had activities for us to design our own escape room in real time.* -- Dianne A.
