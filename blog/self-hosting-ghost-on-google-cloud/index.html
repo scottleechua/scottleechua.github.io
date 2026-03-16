@@ -380,7 +380,7 @@
   <li>Go back to Mailgun &gt; <code class="language-plaintext highlighter-rouge">Verify DNS settings</code>.</li>
   <li>Once the custom domain has been added to Mailgun, go to Sending &gt; Domain Settings &gt; <code class="language-plaintext highlighter-rouge">SMTP Credentials</code> &gt; <code class="language-plaintext highlighter-rouge">Add new SMTP user</code>.</li>
   <li>Set the SMTP username as <code class="language-plaintext highlighter-rouge">postmaster</code> by convention, then click <code class="language-plaintext highlighter-rouge">Create</code>. Copy the username and password. Paste the password somewhere safe—it will only be generated this once!</li>
-  <li>Click on your profile in the upper right &gt; <code class="language-plaintext highlighter-rouge">API Security</code> &gt; <code class="language-plaintext highlighter-rouge">Mailgun API Keys</code>, and generate a Private API Key.</li>
+  <li>Click on your profile in the upper right &gt; <code class="language-plaintext highlighter-rouge">API Security</code> &gt; <code class="language-plaintext highlighter-rouge">Mailgun API Keys</code>, and generate an API Key with the role of “Developer”.</li>
 </ol>
 
 <h3 id="3-deploy-ghost">3. Deploy Ghost</h3>
@@ -814,6 +814,9 @@ performance_schema=0
 <h2 id="changelog">Changelog</h2>
 
 <ul>
+  <li>
+    <p><strong>2026-03-16</strong>: Specify the Mailgun API key should have the “Developer” role.</p>
+  </li>
   <li>
     <p><strong>2025-12-30</strong>: Update the Mailgun SMTP credentials creation process.</p>
   </li>
