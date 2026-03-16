@@ -252,7 +252,7 @@
         <ul>
           <li>Operating system: <code class="language-plaintext highlighter-rouge">Ubuntu</code>
 </li>
-          <li>Version: <code class="language-plaintext highlighter-rouge">Ubuntu 22.04 LTS x86/64</code>
+          <li>Version: <code class="language-plaintext highlighter-rouge">Ubuntu 24.04 LTS x86/64</code>
 </li>
           <li>Boot disk type: <code class="language-plaintext highlighter-rouge">Standard persistent disk</code>
 </li>
@@ -368,7 +368,7 @@
 
 <h4 id="set-up-mailgun">Set up Mailgun</h4>
 <ol>
-  <li>Make a <a href="https://signup.mailgun.com/new/signup" target="_blank" rel="noopener noreferrer">Mailgun account</a> under the <code class="language-plaintext highlighter-rouge">Flex</code> plan. You’ll be asked to confirm a phone number and put your card details on file.</li>
+  <li>Make a <a href="https://signup.mailgun.com/new/signup" target="_blank" rel="noopener noreferrer">Mailgun account</a> under the <code class="language-plaintext highlighter-rouge">Flex</code> plan. You’ll be asked to confirm a phone number and put your card details on file. For the latest on how to access the <code class="language-plaintext highlighter-rouge">Flex</code> plan, check <a href="https://forum.ghost.org/t/mailgun-flex-plan-deprecated/60120" target="_blank" rel="noopener noreferrer">this forum thread</a>.</li>
   <li>Select <code class="language-plaintext highlighter-rouge">Add a custom domain</code>:
     <ul>
       <li>Domain name: <code class="language-plaintext highlighter-rouge">mg.ghostblog.com</code>
@@ -394,11 +394,17 @@
     <p>Update Linux:</p>
 
     <div class="language-bash highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt update <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt <span class="nt">-y</span> upgrade
+<div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get update <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt-get <span class="nt">-y</span> upgrade
 </code></pre></div>    </div>
   </li>
   <li>
-    <p>To allow any updated services to restart, go back to Google Cloud, <code class="language-plaintext highlighter-rouge">Stop</code> and <code class="language-plaintext highlighter-rouge">Resume</code> the instance, then <code class="language-plaintext highlighter-rouge">SSH</code> again.</p>
+    <p>To allow any updated services to restart, run:</p>
+
+    <div class="language-bash highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>reboot
+</code></pre></div>    </div>
+
+    <p>then in Google Cloud, <code class="language-plaintext highlighter-rouge">SSH</code> again.</p>
   </li>
   <li>
     <p>Make a new user called <code class="language-plaintext highlighter-rouge">service_account</code> and grant it sudo:</p>
@@ -453,7 +459,7 @@
     <p>Install Nginx and open the firewall:</p>
 
     <div class="language-bash highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> nginx <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>ufw allow <span class="s1">'Nginx Full'</span>
+<div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install</span> <span class="nt">-y</span> nginx <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>ufw allow <span class="s1">'Nginx Full'</span>
 </code></pre></div>    </div>
   </li>
   <li>
@@ -465,24 +471,36 @@
 <span class="nb">sudo mkdir</span> <span class="nt">-p</span> /etc/apt/keyrings
 curl <span class="nt">-fsSL</span> https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | <span class="nb">sudo </span>gpg <span class="nt">--dearmor</span> <span class="nt">-o</span> /etc/apt/keyrings/nodesource.gpg
    
-<span class="nv">NODE_MAJOR</span><span class="o">=</span>20
+<span class="nv">NODE_MAJOR</span><span class="o">=</span>22
 <span class="nb">echo</span> <span class="s2">"deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_</span><span class="nv">$NODE_MAJOR</span><span class="s2">.x nodistro main"</span> | <span class="nb">sudo tee</span> /etc/apt/sources.list.d/nodesource.list
-<span class="nb">sudo </span>apt update
-<span class="nb">sudo </span>apt <span class="nb">install </span>nodejs <span class="nt">-y</span>
+<span class="nb">sudo </span>apt-get update
+<span class="nb">sudo </span>apt-get <span class="nb">install </span>nodejs <span class="nt">-y</span>
 </code></pre></div>    </div>
   </li>
   <li>
-    <p>Install MySQL:</p>
+    <p>Install MySQL and run it:</p>
 
     <div class="language-bash highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> mysql-server
+<div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install</span> <span class="nt">-y</span> mysql-server
+<span class="nb">sudo </span>mysql
 </code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Within the MySQL command line, enter:</p>
+
+    <div class="language-sql highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="k">ALTER</span> <span class="k">USER</span> <span class="s1">'root'</span><span class="o">@</span><span class="s1">'localhost'</span> <span class="n">IDENTIFIED</span> <span class="k">WITH</span> <span class="s1">'mysql_native_password'</span> <span class="k">BY</span> <span class="s1">'yourpasswordhere'</span><span class="p">;</span>
+<span class="n">FLUSH</span> <span class="k">PRIVILEGES</span><span class="p">;</span>
+<span class="n">exit</span>
+</code></pre></div>    </div>
+
+    <p>replacing <code class="language-plaintext highlighter-rouge">yourpasswordhere</code> with your chosen MySQL root password.</p>
   </li>
   <li>
     <p>Clean up:</p>
 
     <div class="language-bash highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt clean <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt autoclean <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt autoremove
+<div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get clean <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt-get autoclean <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt-get autoremove
 </code></pre></div>    </div>
   </li>
   <li>
@@ -491,51 +509,6 @@ curl <span class="nt">-fsSL</span> https://deb.nodesource.com/gpgkey/nodesource-
     <div class="language-bash highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl stop snapd.service
 </code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Start MySQL in modified mode:</p>
-
-    <div class="language-bash highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl set-environment <span class="nv">MYSQLD_OPTS</span><span class="o">=</span><span class="s2">"--skip-networking --skip-grant-tables"</span>
-<span class="nb">sudo </span>systemctl start mysql.service
-<span class="nb">sudo </span>mysql <span class="nt">-u</span> root
-</code></pre></div>    </div>
-
-    <p>This will load the MySQL command line. Enter:</p>
-
-    <div class="language-sql highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="n">flush</span> <span class="k">privileges</span><span class="p">;</span>
-<span class="n">USE</span> <span class="n">mysql</span><span class="p">;</span>
-<span class="k">ALTER</span> <span class="k">USER</span> <span class="s1">'root'</span><span class="o">@</span><span class="s1">'localhost'</span> <span class="n">identified</span> <span class="k">BY</span> <span class="s1">'yourpasswordhere'</span><span class="p">;</span>
-<span class="n">quit</span><span class="p">;</span>
-</code></pre></div>    </div>
-
-    <p>replacing <code class="language-plaintext highlighter-rouge">yourpasswordhere</code> with your chosen MySQL root password.</p>
-  </li>
-  <li>
-    <p>Restart MySQL and switch to production mode. Run:</p>
-
-    <div class="language-bash highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl unset-environment MYSQLD_OPTS
-<span class="nb">sudo </span>systemctl revert mysql
-<span class="nb">sudo </span>killall <span class="nt">-u</span> mysql
-<span class="nb">sudo </span>systemctl restart mysql.service
-<span class="nb">sudo </span>mysql_secure_installation
-</code></pre></div>    </div>
-
-    <p>then configure as follows:</p>
-    <ul>
-      <li>Install validate password component? —<code class="language-plaintext highlighter-rouge">N</code>
-</li>
-      <li>Remove anonymous users? — <code class="language-plaintext highlighter-rouge">Y</code>
-</li>
-      <li>Disallow root login remotely? — <code class="language-plaintext highlighter-rouge">N</code>
-</li>
-      <li>Remove test database and its privileges? — <code class="language-plaintext highlighter-rouge">Y</code>
-</li>
-      <li>Reload privilege tables? — <code class="language-plaintext highlighter-rouge">Y</code>
-</li>
-    </ul>
   </li>
   <li>
     <p>Turning off MySQL’s performance schema is a common way to reduce its memory usage, which occasionally tests the limits of the free tier machine’s 1GB of RAM. To do this, open the MySQL configuration file:</p>
@@ -561,7 +534,7 @@ performance_schema=0
 <span class="nb">sudo </span>mysql <span class="nt">-u</span> root <span class="nt">-p</span>
 </code></pre></div>    </div>
 
-    <p>Then in the MySQL command line, run:</p>
+    <p>then type in your password. In the MySQL command line, run:</p>
 
     <div class="language-sql highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code><span class="k">show</span> <span class="n">variables</span> <span class="k">like</span> <span class="s1">'performance_schema'</span><span class="p">;</span>
@@ -570,7 +543,7 @@ performance_schema=0
     <p>Verify that the <code class="language-plaintext highlighter-rouge">performance_schema</code> variable is indeed <code class="language-plaintext highlighter-rouge">OFF</code>, then</p>
 
     <div class="language-sql highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="n">quit</span><span class="p">;</span>
+<div class="highlight"><pre class="highlight"><code><span class="n">exit</span>
 </code></pre></div>    </div>
   </li>
 </ol>
@@ -625,26 +598,6 @@ performance_schema=0
     </ul>
 
     <p>If you entered a value wrong, interrupt with <code class="language-plaintext highlighter-rouge">Ctrl + C</code> then run <code class="language-plaintext highlighter-rouge">ghost setup</code>.</p>
-  </li>
-  <li>
-    <p>If MySQL is still giving errors, run:</p>
-
-    <div class="language-bash highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>mysql
-</code></pre></div>    </div>
-
-    <p>then in the MySQL command line:</p>
-
-    <div class="language-sql highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="k">ALTER</span> <span class="k">USER</span> <span class="s1">'root'</span><span class="o">@</span><span class="s1">'localhost'</span> <span class="n">IDENTIFIED</span> <span class="k">WITH</span> <span class="n">mysql_native_password</span> <span class="k">BY</span> <span class="s1">'yourpasswordhere'</span><span class="p">;</span>
-<span class="n">quit</span><span class="p">;</span>
-</code></pre></div>    </div>
-
-    <p>then run:</p>
-
-    <div class="language-bash highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code>ghost start
-</code></pre></div>    </div>
   </li>
 </ol>
 
@@ -815,7 +768,7 @@ performance_schema=0
 
 <ul>
   <li>
-    <p><strong>2026-03-16</strong>: Specify the Mailgun API key should have the “Developer” role.</p>
+    <p><strong>2026-03-16</strong>: Update dependencies, Mailgun interface, and simplify MySQL instructions based on the <a href="https://docs.ghost.org/install/ubuntu" target="_blank" rel="noopener noreferrer">updated official installation guide</a>.</p>
   </li>
   <li>
     <p><strong>2025-12-30</strong>: Update the Mailgun SMTP credentials creation process.</p>
