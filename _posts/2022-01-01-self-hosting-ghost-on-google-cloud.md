@@ -140,7 +140,7 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
 4. Go back to Mailgun > `Verify DNS settings`.
 5. Once the custom domain has been added to Mailgun, go to Sending > Domain Settings > `SMTP Credentials` > `Add new SMTP user`.
 6. Set the SMTP username as `postmaster` by convention, then click `Create`. Copy the username and password. Paste the password somewhere safe---it will only be generated this once!
-7. Click on your profile in the upper right > `API Security` > `Mailgun API Keys`, and generate a Private API Key.
+7. Click on your profile in the upper right > `API Security` > `Mailgun API Keys`, and generate an API Key with the role of "Developer".
 
 ### 3. Deploy Ghost
 
@@ -488,6 +488,8 @@ At this point you should have a working self-hosted Ghost blog. Updates aside, y
 This workflow last worked for me as of the most recent date in the changelog below. If you spot errors, vulnerabilities, or potential improvements, please do [open a pull request](https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2022-01-01-self-hosting-ghost-on-google-cloud.md) on this blog post!
 
 ## Changelog
+
+- **2026-03-16**: Specify the Mailgun API key should have the "Developer" role.
 
 - **2025-12-30**: Update the Mailgun SMTP credentials creation process.
 
