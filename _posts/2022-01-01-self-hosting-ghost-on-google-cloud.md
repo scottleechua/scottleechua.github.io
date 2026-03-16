@@ -78,7 +78,7 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
    - Machine type: `e2-micro (2vCPU, 1GB memory)`
    - Boot disk:
       - Operating system: `Ubuntu`
-      - Version: `Ubuntu 22.04 LTS x86/64`
+      - Version: `Ubuntu 24.04 LTS x86/64`
       - Boot disk type: `Standard persistent disk`
       - Size (GB): 25
    - Firewall:
@@ -132,7 +132,7 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
 7. Select Overview > Advanced Actions (in the right sidebar) > `Pause Cloudflare on site` while finishing setup.
 
 #### Set up Mailgun
-1. Make a [Mailgun account](https://signup.mailgun.com/new/signup) under the `Flex` plan. You'll be asked to confirm a phone number and put your card details on file.
+1. Make a [Mailgun account](https://signup.mailgun.com/new/signup) under the `Flex` plan. You'll be asked to confirm a phone number and put your card details on file. For the latest on how to access the `Flex` plan, check [this forum thread](https://forum.ghost.org/t/mailgun-flex-plan-deprecated/60120).
 2. Select `Add a custom domain`:
    - Domain name: `mg.ghostblog.com`
    - Domain region: `US` (unless your website requires within-`EU` data processing)
@@ -150,10 +150,16 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
 2. Update Linux:
 
    ```bash
-   sudo apt update && sudo apt -y upgrade
+   sudo apt-get update && sudo apt-get -y upgrade
    ```
 
-3. To allow any updated services to restart, go back to Google Cloud, `Stop` and `Resume` the instance, then `SSH` again.
+3. To allow any updated services to restart, run:
+
+   ```bash
+   sudo reboot
+   ```
+   
+   then in Google Cloud, `SSH` again.
 
 4. Make a new user called `service_account` and grant it sudo:
 
@@ -199,7 +205,7 @@ To minimize the chance of Ghost running out of memory on a small virtual machine
 1. Install Nginx and open the firewall:
 
    ```bash
-   sudo apt install -y nginx && sudo ufw allow 'Nginx Full'
+   sudo apt-get install -y nginx && sudo ufw allow 'Nginx Full'
    ```
 
 2. Install NodeJS:
@@ -210,67 +216,42 @@ To minimize the chance of Ghost running out of memory on a small virtual machine
    sudo mkdir -p /etc/apt/keyrings
    curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
    
-   NODE_MAJOR=20
+   NODE_MAJOR=22
    echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
-   sudo apt update
-   sudo apt install nodejs -y
+   sudo apt-get update
+   sudo apt-get install nodejs -y
    ```
 
-3. Install MySQL:
+3. Install MySQL and run it:
 
    ```bash
-   sudo apt install -y mysql-server
+   sudo apt-get install -y mysql-server
+   sudo mysql
    ```
 
-4. Clean up:
+4. Within the MySQL command line, enter:
+
+   ```sql
+   ALTER USER 'root'@'localhost' IDENTIFIED WITH 'mysql_native_password' BY 'yourpasswordhere';
+   FLUSH PRIVILEGES;
+   exit
+   ```
+
+   replacing `yourpasswordhere` with your chosen MySQL root password.
+
+5. Clean up:
 
    ```bash
-   sudo apt clean && sudo apt autoclean && sudo apt autoremove
+   sudo apt-get clean && sudo apt-get autoclean && sudo apt-get autoremove
    ```
 
-5. Stop the `snapd` process to save on RAM:
+6. Stop the `snapd` process to save on RAM:
 
    ```bash
    sudo systemctl stop snapd.service
    ```
 
-6. Start MySQL in modified mode:
-
-   ```bash
-   sudo systemctl set-environment MYSQLD_OPTS="--skip-networking --skip-grant-tables"
-   sudo systemctl start mysql.service
-   sudo mysql -u root
-   ```
-
-   This will load the MySQL command line. Enter:
-
-   ```sql
-   flush privileges;
-   USE mysql;
-   ALTER USER 'root'@'localhost' identified BY 'yourpasswordhere';
-   quit;
-   ```
-
-   replacing `yourpasswordhere` with your chosen MySQL root password.
-   
-7. Restart MySQL and switch to production mode. Run:
-
-   ```bash
-   sudo systemctl unset-environment MYSQLD_OPTS
-   sudo systemctl revert mysql
-   sudo killall -u mysql
-   sudo systemctl restart mysql.service
-   sudo mysql_secure_installation
-   ```
-
-   then configure as follows:
-   - Install validate password component? —`N`
-   - Remove anonymous users? — `Y`
-   - Disallow root login remotely? — `N`
-   - Remove test database and its privileges? — `Y`
-   - Reload privilege tables? — `Y`
-
-8. Turning off MySQL's performance schema is a common way to reduce its memory usage, which occasionally tests the limits of the free tier machine's 1GB of RAM. To do this, open the MySQL configuration file:
+7. Turning off MySQL's performance schema is a common way to reduce its memory usage, which occasionally tests the limits of the free tier machine's 1GB of RAM. To do this, open the MySQL configuration file:
 
    ```bash
    sudo nano /etc/mysql/my.cnf
@@ -285,14 +266,14 @@ To minimize the chance of Ghost running out of memory on a small virtual machine
 
    then `Ctrl-X` > `Y` > `Enter` to save and quit.
 
-9. Restart MySQL and log in:
+8. Restart MySQL and log in:
 
    ```bash
    sudo /etc/init.d/mysql restart
    sudo mysql -u root -p
    ```
 
-   Then in the MySQL command line, run:
+   then type in your password. In the MySQL command line, run:
 
    ```sql
    show variables like 'performance_schema';
@@ -301,7 +282,7 @@ To minimize the chance of Ghost running out of memory on a small virtual machine
    Verify that the `performance_schema` variable is indeed `OFF`, then
 
    ```sql
-   quit;
+   exit
    ```
 
 #### Set up Ghost
@@ -339,25 +320,6 @@ To minimize the chance of Ghost running out of memory on a small virtual machine
    - Start Ghost? — `Y`
     
    If you entered a value wrong, interrupt with `Ctrl + C` then run `ghost setup`.
-
-4. If MySQL is still giving errors, run:
-
-   ```bash
-   sudo mysql
-   ```
-
-   then in the MySQL command line:
-
-   ```sql
-   ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'yourpasswordhere';
-   quit;
-   ```
-
-   then run:
-
-   ```bash
-   ghost start
-   ```
 
 #### Set up Mailgun on Ghost
 
@@ -489,7 +451,7 @@ This workflow last worked for me as of the most recent date in the changelog bel
 
 ## Changelog
 
-- **2026-03-16**: Specify the Mailgun API key should have the "Developer" role.
+- **2026-03-16**: Update dependencies, Mailgun interface, and simplify MySQL instructions based on the [updated official installation guide](https://docs.ghost.org/install/ubuntu).
 
 - **2025-12-30**: Update the Mailgun SMTP credentials creation process.
 
