@@ -368,10 +368,10 @@ To minimize the chance of Ghost running out of memory on a small virtual machine
 
 ### 4. Configure Ghost
 1. Go to `https://ghostblog.com/ghost`. Create your admin login credentials.
-2. Customize your site > the "gear" icon > Email newsletter > `Mailgun settings`:
+2. Customize your site > the "gear" icon > Membership > Newsletters > Mailgun > `Edit`:
    - Mailgun region: `US` (unless you previously chose `EU`)
    - Mailgun domain: `mg.ghostblog.com`
-   - Mailgun Private API key: paste it here.
+   - Mailgun API key: paste it here.
 
    Then click `Save` in the upper-right corner.
 
