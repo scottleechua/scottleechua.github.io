@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
-      uses: actions/checkout@v5
+      uses: actions/checkout@v6
     - name: Setup Ruby
       uses: ruby/setup-ruby@v1
       with:
@@ -26,6 +26,6 @@ jobs:
       run: |
         bundle exec jekyll build
     - name: Deploy
-      uses: JamesIves/github-pages-deploy-action@v4.7.4
+      uses: JamesIves/github-pages-deploy-action@v4.8.0
       with:
         folder: _site
