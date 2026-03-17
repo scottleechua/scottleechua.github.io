@@ -1,0 +1,25 @@
+---
+name: Update Copyright Year
+
+on:
+  schedule:
+    - cron: '37 8 1 1 *'
+
+permissions:
+  contents: write
+
+jobs:
+  update-year:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source branch
+        uses: actions/checkout@v5
+        with:
+          ref: source
+
+      - name: Push empty commit to trigger rebuild
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git commit --allow-empty -m "chore: rebuild site for new year $(date -u +'%Y')"
+          git push
