@@ -32,7 +32,7 @@ importance: 1
 
 <br>
 
-In January 2020, I designed, produced, and facilitated ***The Great (Yale-NUS) Escape*** in collaboration with [Sheena Diong](https://www.linkedin.com/in/sheena-diong-442931129). With another semester ahead (and the pandemic not so far away), we wanted to create something fun for the college community --- a memorable way for friends, colleagues, and suitemates to bond face-to-face.
+In January 2020, I designed, produced, and facilitated ***The Great (Yale-NUS) Escape***, together with cocreators [Olivia Dure](https://www.youtube.com/watch?v=4RLTA4ayDGw) and [Sheena Diong](https://www.linkedin.com/in/sheena-diong-442931129). With another semester ahead (and the pandemic not so far away), we wanted to create something fun for the college community --- a memorable way for friends, colleagues, and suitemates to bond face-to-face.
 
 Inside the room, players discover that [IKEA cacti](https://www.ikea.com/sg/en/p/cactaceae-potted-plant-cactus-assorted-70530732/) --- a dorm room decor favorite --- were secretly body-snatching aliens from space. Can players escape the aliens' lair in time to foil their dastardly plans?
 
