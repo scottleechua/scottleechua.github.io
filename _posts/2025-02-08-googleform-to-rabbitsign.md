@@ -93,7 +93,7 @@ This process has four steps:
 7. Select `Create Template`.
 8. Go back to the Dashboard > `Templates` > select the template you just created. Take note of the **Template ID**.
 
-<img class="img-fluid rounded" src="/assets/img/googleform-to-rabbitsign-template.png" alt="A flowchart. Google Forms. Right directed arrow. Apps Script. An arrow from below. Secret Manager. Right directed arrow. RabbitSign, e-signature platform.">
+<img class="img-fluid rounded" src="/assets/img/googleform-to-rabbitsign-template.png" alt="Screenshot of the RabbitSign template editor with a Superhero Oath document open. Blue sender fields labeled real-name, superhero-name, powers-date, date-today, chat-checkbox, and email are placed throughout the document. A green Signature field is assigned to the recipient. The left sidebar shows the Assignee dropdown set to Sender (Me) with field type buttons. The right sidebar shows Font Size, Field Width, and Field Name properties for the selected real-name field.">
 <div class="caption">
 Sender fields (blue) are labeled with meaningful Field Names. The only Recipient field (green) is a Signature field.
 </div>

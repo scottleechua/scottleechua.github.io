@@ -4,7 +4,7 @@ title: Between Panels
 description: Making comics in, on, and through history
 subtitle: "MĀNOA: A Pacific Journal of International Writing, 2024"
 og_image: between-panels-cover.jpg
-image_alt: Painting of a robed entity with a door for a head grabbing a thin red dragon that is swallowing the moon.
+image_alt: Sketched cover for Between Panels by Scott Lee Chua and Ren2x Galeno, showing two grinning thieves shushing each other outside a bank vault.
 add_period: true
 importance: 1
 ---
@@ -15,10 +15,10 @@ importance: 1
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        <img class="img-fluid rounded z-depth-1" src="/assets/img/between-panels-sample-1.jpg" alt="Cover page of Doorkeeper fifth anniversary edition written by Ethan Chua and Scott Lee Chua. Above the title is a review quote Masterful wordbuilding, a bewitching tale that spans millennia end quote by Anri Ichimura, Esquire Philippines. Surnames of artists from left to right. Duran, Felizmenio, Geneta, Guerrero, Lesaca, Mikel, Sabas. Next line. Foreword by Budjette Tan. The cover is a painting of a robed entity with a door for a head. Inside its robe is dark space, the earth, and a red dragon circling the earth. Behind the entity are four windows with characters peeking through them. From left to right. Muscular man. Old woman. Man with bloody forehead. Orange haired girl. In front of the entity, sketch papers fly across the page."/>
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/between-panels-sample-1.jpg" alt="A black and white comic depicts a pair of scissors cutting comic strips out of a newspaper. The narrator begins, 'Five pesos used to buy you fifteen minutes. Fifteen whole minutes, mind you. But that was before the nuns heard about my librarial service... confiscated my scrapbook... gathered everyone in the covered courts and denounced Charles Schulz, Jim Davis, and Pol Medina Jr. as a bunch of pagans and satanists.' In the next row there are four panels depicting the scrapbooking process. Comic panels are glued onto a graphing notebook. Next, another panel from a different comic is placed beside it. The following shows a glue stick tracing the edge of yet another comic, which is placed onto the grid paper. The narrator continues, 'Which is to say, before business really took off.' A boy with glasses walks down a flight of stairs, clutching his notebook as he passes a nun. The narrator continues, 'After that, I asked Kongkong (Grandfather) to subscribe to the Star, which had more English comics.' A closeup of the boy's notebook, comic strips peeking out of the top edge. The narrator continues, 'He'd been a Bulletin man since the war, when they gave him his job as a newsboy.' A girl in a school uniform counts coins in her outstretched palm. The narrator continues, 'The next day, I bought four graphing notebooks with the last of my allowance.' The hallway of the school is full of children huddled over these notebooks all reading these collections of comics. 'Kongkong subscribed to the Star.' The little boy with glasses counts the money he’s made."/>
     </div>
     <div class="col-sm mt-3 mt-md-0">
-        <img class="img-fluid rounded z-depth-1" src="/assets/img/between-panels-sample-2.jpg" alt="Cover page of Doorkeeper written by Ethan Chua and Scott Lee Chua. Next line. Surnames of artists, from left to right. Duran, Felizmenio, Geneta, Guerrero, Lesaca, Mikel, Sabas. Next line. Foreword by Budjette Tan. The cover is a painting of a robed entity with a door for a head grabbing a thin red dragon that is swallowing the moon. Within the robes are five characters standing side by side. From left to right. Man in priest robes holding book. Woman holding electric guitar. Strong man holding spear. Woman in armor holding a sword. Woman with glasses looking at her phone."/>
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/between-panels-sample-2.jpg" alt="A Spanish galleon pulls into a port as the narrator says, 'At the height of the Spanish empire, a strange galleon made landfall at Manila carrying nothing but cacao. The port officials marveled at its ornate carvings, its gleaming hull, its sails of finest Chinese silk.' A senior inspector in conquistador armor asks, 'Port of origin?' as he fills out a form. A woman on the ship calls out, “Punta de Panamao... a small town hidden away on the southern coast of the isle of Panamao.' The inspector looks up, startled, and smitten by her beauty. In the next panel, a jar of New World Chocolates on a checkout counter is shown as the narrator describes that 'As the cacao was rumored to have healing powers, it was soon all sold, and the galleon departed. A week later, the senior inspector abandoned his post and sailed to Panamao, which we know today as Biliran.' The young narrator and an old man, his grandfather, are at a shop buying the cacao powder as the narrator continues, 'When he arrived, however, there was no shipyard... no galleon... and, of course, no girl.'"/>
     </div>
 </div>
 <div class="caption">
@@ -29,8 +29,10 @@ The first two pages.
 
 It was published in the Philippine spotlight issue of the [Mānoa Journal](https://manoajournal.org/) (guest edited by [Laurel Flores Fantauzzo](https://laurelfloresfantauzzo.com)) and graciously nominated for the [2025 Pushcart Prize](https://www.instagram.com/manoa_journal/p/DDXzhk4tEXN).
 
+*Between Panels* was part of the [2026 Nib & Ink Festival Marketplace](https://nif-shop.cartoonist.coop), a digital comics fair organized by [Cartoonists United](https://cartoonist.coop).
+
 <div style="text-align: center; width: 100%; margin-left: auto; margin-right: auto; margin-top: 16px;">
 <figure>
-        <img class="img-fluid rounded z-depth-1" src="/assets/img/between-panels-cover.jpg" alt="Rectangular montage of six illustrations. Images from left to right are as follows. A woman in armor riding a horse in a forest, seen from the back. A crouched, muscular man holding a lit torch. A priest entering an empty church with a stained glass window. Taxi boats on a river in a flooded city. Three young people chatting over a drink. A boy holding his breath underwater."/>
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/between-panels-cover.jpg" alt="Sketched cover showing two grinning thieves shushing each other outside a bank vault. The stylized title Between Panels appears above. Below reads, written by Scott Lee Chua, illustrated by Ren2x Galeno. Construction guidelines are visible across the page."/>
 </figure>
 </div>
