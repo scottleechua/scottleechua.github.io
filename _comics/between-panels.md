@@ -2,7 +2,7 @@
 layout: page-nodesc
 title: Between Panels
 description: Making comics in, on, and through history
-subtitle: "MĀNOA: A Pacific Journal of International Writing, 2024"
+subtitle: "MĀNOA: A Pacific Journal of International Writing"
 og_image: between-panels-cover.jpg
 image_alt: Sketched cover for Between Panels by Scott Lee Chua and Ren2x Galeno, showing two grinning thieves shushing each other outside a bank vault.
 add_period: true
