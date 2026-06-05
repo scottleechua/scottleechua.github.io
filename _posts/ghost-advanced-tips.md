@@ -32,3 +32,9 @@ https://github.com/ghostboard/ghost-purge-images
 sudo chmod -R a+rw content
 then run the purge
 then ghost doctor to change permissions back
+
+
+
+Replacing the default service account
+Replace it with one with just monitoring metric writer and logs writer
+Remove project editor role
