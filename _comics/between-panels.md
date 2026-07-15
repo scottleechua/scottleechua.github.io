@@ -2,15 +2,15 @@
 layout: page-nodesc
 title: Between Panels
 description: Making comics in, on, and through history
-subtitle: "MĀNOA: A Pacific Journal of International Writing"
-og_image: between-panels-cover.jpg
+subtitle: "a graphic meta-memoir"
+og_image: between-panels-cover.jpeg
 image_alt: Sketched cover for Between Panels by Scott Lee Chua and Ren2x Galeno, showing two grinning thieves shushing each other outside a bank vault.
 add_period: true
 importance: 1
 ---
 
 <div style="text-align: center;padding-bottom:1.5rem;">
-<h5><a href="https://muse.jhu.edu/issue/54064">buy the digital issue</a></h5>
+<h5><a href="https://docs.google.com/forms/d/e/1FAIpQLSfdh-hz4SnNdhNShDH77gRb7ObB80uHFpT_yNKVqyWzm2pfJw/viewform">buy the print edition</a></h5>
 </div>
 
 <div class="row">
@@ -27,12 +27,25 @@ The first two pages.
 
 *Between Panels* is a short comic about making comics in, on, and through history --- in collaboration with the inimitable [Renren Galeno](https://rengaleno.pb.online/).
 
-It was published in the Philippine spotlight issue of the [Mānoa Journal](https://manoajournal.org/) (guest edited by [Laurel Flores Fantauzzo](https://laurelfloresfantauzzo.com)) and graciously nominated for the [2025 Pushcart Prize](https://www.instagram.com/manoa_journal/p/DDXzhk4tEXN).
+It was first published in the Philippine spotlight issue of the [Mānoa Journal](https://manoajournal.org/) (guest edited by [Laurel Flores Fantauzzo](https://laurelfloresfantauzzo.com)) and graciously nominated for the [2025 Pushcart Prize](https://www.instagram.com/manoa_journal/p/DDXzhk4tEXN).
 
-*Between Panels* was part of the [2026 Nib & Ink Festival Marketplace](https://nif-shop.cartoonist.coop), a digital comics fair organized by [Cartoonists United](https://cartoonist.coop).
+*Between Panels* was selected for the 2026 Nib & Ink Festival Marketplace, an online comics fair organized by [Cartoonists United](https://cartoonist.coop).
 
-<div style="text-align: center; width: 100%; margin-left: auto; margin-right: auto; margin-top: 16px;">
+#### Praise for *Between Panels*
+
+- *"A celebration of the stories that make up our patchwork history, where the whole is always bigger than the sum of its parts."* -- Lawrence Ypil, author of *[The Experiment of the Tropics](https://lawrenceypil.com/publications#the-experiment-of-the-tropics-2019---order-here)*
+- *"A very thoughtful exploration... Books like this remind you that comics are a medium for any kind of storytelling."* -- Rocky Sunico, *[I Geek Therefore I Am](https://www.rockysunico.com/)*
+
+#### The numbered edition
+
+In July 2026, Renren and I launched a special print edition of *Between Panels*.
+
+It's a numbered edition of 150, printed on archival-quality 140gsm Tintoretto Gesso, with exclusive back matter and a special translucent overlay on the cover.
+
+Watch us [flip through the pages](https://www.instagram.com/p/Dac3SdICUIg/?img_index=2), or [buy your copy today](https://docs.google.com/forms/d/e/1FAIpQLSfdh-hz4SnNdhNShDH77gRb7ObB80uHFpT_yNKVqyWzm2pfJw/viewform).
+
+<div style="text-align: center; width: 80%; margin-left: auto; margin-right: auto; margin-top: 16px;">
 <figure>
-        <img class="img-fluid rounded z-depth-1" src="/assets/img/between-panels-cover.jpg" alt="Sketched cover showing two grinning thieves shushing each other outside a bank vault. The stylized title Between Panels appears above. Below reads, written by Scott Lee Chua, illustrated by Ren2x Galeno. Construction guidelines are visible across the page."/>
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/between-panels-flatlay.jpeg" alt="A comic book entitled 'Between Panels', written by Scott Lee Chua and illustrated by Renren Galeno, rests on a wooden desk surrounded by art supplies. The cover features a cartoon character of a grinning thief with his finger raised to his lips. Around the book are scissors, a pencil and eraser, eye drops, a black ink bottle, a coffee mug, a cutting mat, loose newspaper cuttings, and a printed medical lab results sheet. The overall scene evokes a comic book artist's busy workspace."/>
 </figure>
 </div>
