@@ -6,8 +6,10 @@ dev:
 
 init:
 	bundle install
+	npm install
 	pre-commit install
 
 proof:
 	bundle exec jekyll build
 	ruby scripts/runHtmlProofer.rb
+	node scripts/verifyLinks.mjs

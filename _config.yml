@@ -109,6 +109,12 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - vendor
+  - Makefile
+  - README.md
+  - package.json
+  - package-lock.json
+  - scripts/
+  - tmp/
 keep_files:
   - CNAME
   - .nojekyll

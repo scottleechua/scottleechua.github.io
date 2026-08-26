@@ -1,0 +1,13 @@
+{
+  "name": "scottleechua-link-checker",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Build tooling: the stage-2 browser link checker.",
+  "scripts": {
+    "verify-links": "node scripts/verifyLinks.mjs"
+  },
+  "devDependencies": {
+    "puppeteer-core": "^25.3.0"
+  }
+}

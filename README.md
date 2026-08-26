@@ -9,4 +9,4 @@ New pages under consideration:
 
 The theme of this repo (i.e., functionality and layout) is made available under the [MIT License](/LICENSE).
 
-The contents of this repo (i.e., copy, media, content) &copy; 2024 Scott Lee Chua, all rights reserved.
+The contents of this repo (i.e., copy, media, content) &copy; 2026 Scott Lee Chua, all rights reserved.
