@@ -2,7 +2,7 @@
 layout: page-nodesc
 title: Between Panels
 description: Making comics in, on, and through history
-subtitle: "a graphic meta-memoir"
+subtitle: "MĀNOA: A Pacific Journal of International Writing, 2024"
 og_image: between-panels-cover.jpeg
 image_alt: Sketched cover for Between Panels by Scott Lee Chua and Ren2x Galeno, showing two grinning thieves shushing each other outside a bank vault.
 add_period: true
@@ -25,7 +25,7 @@ importance: 1
 The first two pages.
 </div>
 
-*Between Panels* is a short comic about making comics in, on, and through history --- in collaboration with the inimitable [Renren Galeno](https://rengaleno.pb.online/).
+*Between Panels* is a graphic meta-memoir about making comics in, on, and through history --- in collaboration with the inimitable [Renren Galeno](https://rengaleno.pb.online/).
 
 It was first published in the Philippine spotlight issue of the [Mānoa Journal](https://manoajournal.org/) (guest edited by [Laurel Flores Fantauzzo](https://laurelfloresfantauzzo.com)) and graciously nominated for the [2025 Pushcart Prize](https://www.instagram.com/manoa_journal/p/DDXzhk4tEXN).
 
