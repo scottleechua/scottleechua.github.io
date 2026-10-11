@@ -78,7 +78,7 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
    - Machine type: `e2-micro (2vCPU, 1GB memory)`
    - Boot disk:
       - Operating system: `Ubuntu`
-      - Version: `Ubuntu 24.04 LTS x86/64`
+      - Version: `Ubuntu 24.04 LTS Minimal x86/64`
       - Boot disk type: `Standard persistent disk`
       - Size (GB): 25
    - Firewall:
@@ -147,10 +147,12 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
 #### Set up VM instance
 1. Go back to Google Cloud > Compute Engine > VM Instances > ghost-blog > `SSH`. A virtual terminal ("cloud shell") will appear in a pop-up window.
 
-2. Update Linux:
+2. Update Linux and install necessary packages not in the Minimal bundle:
 
    ```bash
    sudo apt-get update && sudo apt-get -y upgrade
+   sudo apt update && sudo apt install -y nano ufw cron
+   sudo systemctl enable --now cron
    ```
 
 3. To allow any updated services to restart, run:
@@ -450,6 +452,8 @@ At this point you should have a working self-hosted Ghost blog. Updates aside, y
 This workflow last worked for me as of the most recent date in the changelog below. If you spot errors, vulnerabilities, or potential improvements, please do [open a pull request](https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2022-01-01-self-hosting-ghost-on-google-cloud.md) on this blog post!
 
 ## Changelog
+
+- **2026-10-11**: Change my recommended boot OS to the Minimal version of Ubuntu, and updated setup instructions with any necessary additional installations. Ghost seems to run and update faster on Minimal.
 
 - **2026-03-16**: Update dependencies, Mailgun interface, and simplify MySQL instructions based on the [updated official installation guide](https://docs.ghost.org/install/ubuntu).
 
