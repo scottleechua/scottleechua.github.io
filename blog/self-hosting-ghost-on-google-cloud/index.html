@@ -252,7 +252,7 @@
         <ul>
           <li>Operating system: <code class="language-plaintext highlighter-rouge">Ubuntu</code>
 </li>
-          <li>Version: <code class="language-plaintext highlighter-rouge">Ubuntu 24.04 LTS x86/64</code>
+          <li>Version: <code class="language-plaintext highlighter-rouge">Ubuntu 24.04 LTS Minimal x86/64</code>
 </li>
           <li>Boot disk type: <code class="language-plaintext highlighter-rouge">Standard persistent disk</code>
 </li>
@@ -391,10 +391,12 @@
     <p>Go back to Google Cloud &gt; Compute Engine &gt; VM Instances &gt; ghost-blog &gt; <code class="language-plaintext highlighter-rouge">SSH</code>. A virtual terminal (“cloud shell”) will appear in a pop-up window.</p>
   </li>
   <li>
-    <p>Update Linux:</p>
+    <p>Update Linux and install necessary packages not in the Minimal bundle:</p>
 
     <div class="language-bash highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get update <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt-get <span class="nt">-y</span> upgrade
+<span class="nb">sudo </span>apt update <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> nano ufw cron
+<span class="nb">sudo </span>systemctl <span class="nb">enable</span> <span class="nt">--now</span> cron
 </code></pre></div>    </div>
   </li>
   <li>
@@ -767,6 +769,9 @@ performance_schema=0
 <h2 id="changelog">Changelog</h2>
 
 <ul>
+  <li>
+    <p><strong>2026-10-11</strong>: Change my recommended boot OS to the Minimal version of Ubuntu, and updated setup instructions with any necessary additional installations. Ghost seems to run and update faster on Minimal.</p>
+  </li>
   <li>
     <p><strong>2026-03-16</strong>: Update dependencies, Mailgun interface, and simplify MySQL instructions based on the <a href="https://docs.ghost.org/install/ubuntu" target="_blank" rel="noopener noreferrer">updated official installation guide</a>.</p>
   </li>
