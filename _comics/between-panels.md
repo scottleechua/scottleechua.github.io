@@ -10,7 +10,7 @@ importance: 1
 ---
 
 <div style="text-align: center;padding-bottom:1.5rem;">
-<h5><a href="https://docs.google.com/forms/d/e/1FAIpQLSfdh-hz4SnNdhNShDH77gRb7ObB80uHFpT_yNKVqyWzm2pfJw/viewform">buy the print edition</a></h5>
+<h5><a href="#stockists">buy the print edition</a></h5>
 </div>
 
 <div class="row">
@@ -42,10 +42,20 @@ In July 2026, Renren and I launched a special print edition of *Between Panels*.
 
 It's a numbered edition of 150, printed on archival-quality 140gsm Tintoretto Gesso, with exclusive back matter and a special translucent overlay on the cover.
 
-Watch us [flip through the pages](https://www.instagram.com/p/Dac3SdICUIg/?img_index=2), or [buy your copy today](https://docs.google.com/forms/d/e/1FAIpQLSfdh-hz4SnNdhNShDH77gRb7ObB80uHFpT_yNKVqyWzm2pfJw/viewform).
+Watch us [flip through the pages](https://www.instagram.com/p/Dac3SdICUIg/?img_index=2), or [buy your copy today](#stockists).
 
 <div style="text-align: center; width: 80%; margin-left: auto; margin-right: auto; margin-top: 16px;">
 <figure>
         <img class="img-fluid rounded z-depth-1" src="/assets/img/between-panels-flatlay.jpeg" alt="A comic book entitled 'Between Panels', written by Scott Lee Chua and illustrated by Renren Galeno, rests on a wooden desk surrounded by art supplies. The cover features a cartoon character of a grinning thief with his finger raised to his lips. Around the book are scissors, a pencil and eraser, eye drops, a black ink bottle, a coffee mug, a cutting mat, loose newspaper cuttings, and a printed medical lab results sheet. The overall scene evokes a comic book artist's busy workspace."/>
 </figure>
 </div>
+
+#### Stockists
+
+*Between Panels* is available in the Philippines at:
+
+- [Everything's Fine](https://everythingsfine.ph)
+- [Good Intentions Books](https://goodintentionsbooks.ph)
+- [Komiket](https://www.instagram.com/komiketph)
+
+For regional or international shipping, please [fill out this online order form](https://docs.google.com/forms/d/e/1FAIpQLSfdh-hz4SnNdhNShDH77gRb7ObB80uHFpT_yNKVqyWzm2pfJw/viewform).
