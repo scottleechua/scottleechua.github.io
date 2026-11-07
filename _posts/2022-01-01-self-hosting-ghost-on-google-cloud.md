@@ -452,8 +452,6 @@ This workflow last worked for me as of the most recent date in the changelog bel
 
 - **2026-11-07**: The major change is to introduce the use of a Cloudflare tunnel to expose the blog to the internet. This hardens security, as we can close the server's own ports, and also removes the need to reserve a static IP address within Google Cloud. Some minor changes: recommend setting up blogs on the `www` subdomain instead of the apex; recommend Cloudflare domain registrar instead of Namecheap; update the `update.sh` bash script.
 
-Change my recommended boot OS to the Minimal version of Ubuntu, and updated setup instructions with any necessary additional installations. Ghost seems to run and update faster on Minimal.
-
 - **2026-10-11**: Change my recommended boot OS to the Minimal version of Ubuntu, and updated setup instructions with any necessary additional installations. Ghost seems to run and update faster on Minimal.
 
 - **2026-03-16**: Update dependencies, Mailgun interface, and simplify MySQL instructions based on the [updated official installation guide](https://docs.ghost.org/install/ubuntu).
