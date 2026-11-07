@@ -139,17 +139,31 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
 
    ```bash
    sudo apt-get update && sudo apt-get -y upgrade
-   sudo apt update && sudo apt install -y nano cron bash-completion
+   sudo apt update && sudo apt install -y nano cron bash-completion unattended-upgrades
    sudo systemctl enable --now cron
+   sudo tee /etc/apt/apt.conf.d/20auto-upgrades >/dev/null <<'EOF'
+   APT::Periodic::Update-Package-Lists "1";
+   APT::Periodic::Unattended-Upgrade "1";
+   EOF
    ```
 
-3. To allow any updated services to restart, run:
-
+3. Run:
    ```bash
-   sudo reboot
+   sudo nano /etc/apt/apt.conf.d/52unattended-upgrades-local
    ```
    
-   then in Google Cloud, `SSH` again.
+   then paste in:
+
+   ```
+   Unattended-Upgrade::Automatic-Reboot "false";
+   Unattended-Upgrade::Remove-Unused-Dependencies "true";
+   
+   Unattended-Upgrade::Origins-Pattern {
+      "site=pkg.cloudflare.com";
+   };
+   ```
+
+   and Ctrl-X to exit.
 
 4. Make a new user called `service_account` and grant it sudo:
 
