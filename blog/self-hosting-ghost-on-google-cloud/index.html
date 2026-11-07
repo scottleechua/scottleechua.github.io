@@ -11,23 +11,23 @@
     <!-- prevent Microsoft AI scraping -->
     <meta name="robots" content="noarchive">
     
-    <title>Self-hosting Ghost on Google Cloud | Scott Lee Chua 🇵🇭</title>
+    <title>Self-hosting Ghost on Google Cloud and Cloudflare | Scott Lee Chua 🇵🇭</title>
     <meta name="author" content="Scott Lee Chua 🇵🇭" />
-    <meta name="description" content="A plaintext guide to deploying an almost-free, fully self-hosted Ghost blog on Google Cloud." />
+    <meta name="description" content="A plaintext guide to deploying an almost-free, fully self-hosted Ghost blog on Google Cloud and Cloudflare." />
 
     <!-- OpenGraph -->
     <meta property="og:site_name" content="Scott Lee Chua 🇵🇭" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Self-hosting Ghost on Google Cloud" />
+    <meta property="og:title" content="Self-hosting Ghost on Google Cloud and Cloudflare" />
     <meta property="og:url" content="https://scottleechua.com/blog/self-hosting-ghost-on-google-cloud/" />
-    <meta property="og:description" content="A plaintext guide to deploying an almost-free, fully self-hosted Ghost blog on Google Cloud." />
+    <meta property="og:description" content="A plaintext guide to deploying an almost-free, fully self-hosted Ghost blog on Google Cloud and Cloudflare." />
     <meta property="og:image" content="https://scottleechua.com/assets/img/ghost-google-cloud-diagram.png" />
     <meta property="og:locale" content="en" />
 
     <!-- Twitter card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Self-hosting Ghost on Google Cloud" />
-    <meta name="twitter:description" content="A plaintext guide to deploying an almost-free, fully self-hosted Ghost blog on Google Cloud." />
+    <meta name="twitter:title" content="Self-hosting Ghost on Google Cloud and Cloudflare" />
+    <meta name="twitter:description" content="A plaintext guide to deploying an almost-free, fully self-hosted Ghost blog on Google Cloud and Cloudflare." />
     <meta name="twitter:image" content="https://scottleechua.com/assets/img/ghost-google-cloud-diagram.png" />
     
 
@@ -138,12 +138,12 @@
 <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">Self-hosting Ghost on Google Cloud</h1>
+    <h1 class="post-title">Self-hosting Ghost on Google Cloud and Cloudflare</h1>
     <p class="post-meta">January 1, 2022</p>
   </header>
 
   <article class="post-content">
-    <p><img class="img-fluid rounded" src="/assets/img/ghost-google-cloud-diagram.png" alt="A flowchart. Engine X web server and ghost blog engine. A right directed arrow toward a grey box entitled google cloud. Inside the grey box, compute engine. Right directed arrow. Static IP address. Right directed arrow. Cloud flare content delivery network. From above the grey box, name cheap, domain registrar. Below directed arrow. Static IP address. From above cloud flare, mail provider mail gun. Below directed arrow. Cloud flare, content delivery network. Right directed arrow. Blog and newsletter."></p>
+    <p><img class="img-fluid rounded" src="/assets/img/ghost-google-cloud-diagram.png" alt="Architecture diagram of a self-hosted blog setup, shown with each service’s logo. On the left, Ghost, labeled “Blog engine,” has an arrow pointing to Google Cloud Compute Engine in the center. Above Compute Engine, Mailgun, labeled “Mail provider,” has an arrow pointing down into it. From Compute Engine, an arrow points right to Cloudflare, labeled “Tunnel, CDN, and domain registrar."></p>
 
 <p><a href="#overview">I’m sold on this stack, jump to the walkthrough!</a></p>
 
@@ -168,18 +168,16 @@
   <li>
 <strong>Blog engine.</strong> I chose <a href="https://ghost.org/" target="_blank" rel="noopener noreferrer">Ghost</a> as it has a beautiful content editor and a mobile-friendly control panel. While Ghost (the company) offers managed hosting plans for a fee, Ghost (the blog engine) is open-source and free to self-host.</li>
   <li>
-<strong>Web server.</strong> I chose <a href="https://www.nginx.com/" target="_blank" rel="noopener noreferrer">NGINX</a> as it is Ghost’s default option, and I went with the path of least resistance and most documentation. (In the previous version of this guide, I chose <a href="https://caddyserver.com/" target="_blank" rel="noopener noreferrer">Caddy</a> as it seemed less arcane, but replicating the custom setup proved irksome after <a href="#changelog">the breaking changes</a> in Ghost v5.0.)</li>
+<strong>Hosting server.</strong> I chose to use a <a href="https://cloud.google.com/compute" target="_blank" rel="noopener noreferrer">Compute Engine</a> virtual machine to host the website, because Google Cloud has a unique <a href="https://cloud.google.com/free/docs/free-cloud-features#compute" target="_blank" rel="noopener noreferrer">Always Free Tier</a> (distinct from their free trial period) with resources enough to permanently host a small- to medium-sized blog (1GB RAM, 1GB monthly traffic to all regions except China and Australia). We’ll then expose the blog to the public internet using a <a href="https://developers.cloudflare.com/tunnel/" target="_blank" rel="noopener noreferrer">Cloudflare tunnel</a>, which saves us from having to open ports to the public internet.</li>
   <li>
-<strong>Hosting server.</strong> I chose to use a <a href="https://cloud.google.com/compute" target="_blank" rel="noopener noreferrer">Compute Engine</a> virtual machine to host the website, because Google Cloud has a unique <a href="https://cloud.google.com/free/docs/free-cloud-features#compute" target="_blank" rel="noopener noreferrer">Always Free Tier</a> (distinct from their free trial period) with resources enough to permanently host a small- to medium-sized blog (1GB RAM, 1GB monthly traffic to all regions except China and Australia). Google Cloud usually charges for static external IP addresses, but these are also free when attached to Free Tier virtual machines.</li>
+<strong>Domain registrar.</strong> I like to buy my domain names through <a href="https://cloudflare.com" target="_blank" rel="noopener noreferrer">Cloudflare</a> because they’re transparent with their prices and don’t fill your cart with upsells. Their DNS record management is also more modern and intuitive.</li>
   <li>
-<strong>Domain registrar.</strong> I like to buy my domain names through <a href="https://namecheap.com" target="_blank" rel="noopener noreferrer">Namecheap</a> because they’re transparent with their prices and don’t fill your cart with upsells.</li>
-  <li>
-<strong>Content delivery network (CDN).</strong> I use <a href="https://cloudflare.com" target="_blank" rel="noopener noreferrer">Cloudflare</a>’s free CDN service to shorten website loading times and protect against <a href="https://www.cloudflare.com/learning/ddos/what-is-a-ddos-attack/" target="_blank" rel="noopener noreferrer">DDOS</a> attacks. I also prefer managing DNS records through Cloudflare (rather than at the domain registrar level); not only is <a href="https://www.cloudflare.com/learning/dns/what-is-dns/" target="_blank" rel="noopener noreferrer">domain resolution</a> faster, the user interface is also sleeker.</li>
+<strong>Content delivery network (CDN).</strong> I also use <a href="https://cloudflare.com" target="_blank" rel="noopener noreferrer">Cloudflare</a> for its free CDN service to shorten website loading times and protect against <a href="https://www.cloudflare.com/learning/ddos/what-is-a-ddos-attack/" target="_blank" rel="noopener noreferrer">DDOS</a> attacks.</li>
   <li>
 <strong>Mail provider.</strong> Ghost has a built-in newsletter feature that integrates most easily with <a href="https://mailgun.com" target="_blank" rel="noopener noreferrer">Mailgun</a>. I’m not too familiar with mail providers, but Mailgun has been great so far, consistently sending emails to inbox, not spam. The first 1,250 emails every month are <a href="https://help.mailgun.com/hc/en-us/articles/360048661093-How-does-PAYG-billing-work" target="_blank" rel="noopener noreferrer">free</a>, and 0.80 USD / thousand emails thereafter. (Ghost also uses Mailgun to send password reset emails, so it’s a good idea to set Mailgun up even if you won’t be sending out newsletters.)</li>
 </ul>
 
-<p>I tried to come up with a tech stack that was <strong>as low-cost as a self-hosted website could possibly be.</strong> In the diagram above, the only cost for certain is the annual domain name rental fee; everything else is either totally free (Ghost, NGINX, MySQL) or free with usage limits (Google Cloud, Cloudflare, Mailgun).</p>
+<p>I tried to come up with a tech stack that was <strong>as low-cost as a self-hosted website could possibly be.</strong> In the diagram above, the only cost for certain is the annual domain name rental fee; everything else is either totally free (Ghost) or free with usage limits (Google Cloud, Cloudflare, Mailgun).</p>
 
 <h2 id="overview">Overview</h2>
 
@@ -242,11 +240,13 @@
     <ul>
       <li>Name: <code class="language-plaintext highlighter-rouge">free-web-server</code>
 </li>
+      <li>Location: <code class="language-plaintext highlighter-rouge">Regional</code>
+</li>
       <li>Machine family: <code class="language-plaintext highlighter-rouge">General-purpose</code>
 </li>
       <li>Series: <code class="language-plaintext highlighter-rouge">E2</code>
 </li>
-      <li>Machine type: <code class="language-plaintext highlighter-rouge">e2-micro (2vCPU, 1GB memory)</code>
+      <li>Machine type: <code class="language-plaintext highlighter-rouge">e2-micro (2vCPU, 1 core, 1GB memory)</code>
 </li>
       <li>Boot disk:
         <ul>
@@ -256,13 +256,7 @@
 </li>
           <li>Boot disk type: <code class="language-plaintext highlighter-rouge">Standard persistent disk</code>
 </li>
-          <li>Size (GB): 25</li>
-        </ul>
-      </li>
-      <li>Firewall:
-        <ul>
-          <li>
-<code class="language-plaintext highlighter-rouge">Allow HTTP traffic</code>, <code class="language-plaintext highlighter-rouge">Allow HTTPS traffic</code>
+          <li>Size (GB): <code class="language-plaintext highlighter-rouge">30</code>
 </li>
         </ul>
       </li>
@@ -270,6 +264,12 @@
         <ul>
           <li>Type <code class="language-plaintext highlighter-rouge">mail</code> then press <code class="language-plaintext highlighter-rouge">Enter</code>
 </li>
+        </ul>
+      </li>
+      <li>Management &gt; Metadata &gt; <code class="language-plaintext highlighter-rouge">Add item</code>:
+        <ul>
+          <li>
+<code class="language-plaintext highlighter-rouge">enable-oslogin</code>: TRUE</li>
         </ul>
       </li>
     </ul>
@@ -280,23 +280,23 @@
 </li>
       <li>Name: <code class="language-plaintext highlighter-rouge">ghost-blog</code>
 </li>
-      <li>Region: <code class="language-plaintext highlighter-rouge">us-west1</code> (or any region on the <a href="https://cloud.google.com/free/docs/free-cloud-features#compute" target="_blank" rel="noopener noreferrer">Always Free Tier</a>)</li>
+      <li>Region: <code class="language-plaintext highlighter-rouge">us-central1</code> (or any region on the <a href="https://cloud.google.com/free/docs/free-cloud-features#compute" target="_blank" rel="noopener noreferrer">Always Free Tier</a>)</li>
     </ul>
   </li>
   <li>Go to Snapshots &gt; <code class="language-plaintext highlighter-rouge">Create Snapshot Schedule</code>:
     <ul>
       <li>Name: <code class="language-plaintext highlighter-rouge">weekly-backup-schedule</code>
 </li>
-      <li>Schedule location: <code class="language-plaintext highlighter-rouge">us-west1</code> (the same region as your instance)</li>
+      <li>Schedule location: <code class="language-plaintext highlighter-rouge">us-central1</code> (the same region as your instance)</li>
       <li>Snapshot storage location: <code class="language-plaintext highlighter-rouge">Regional</code>
         <ul>
-          <li>Location: <code class="language-plaintext highlighter-rouge">us-west1</code>
+          <li>Location: <code class="language-plaintext highlighter-rouge">us-central1</code>
 </li>
         </ul>
       </li>
       <li>Schedule frequency: <code class="language-plaintext highlighter-rouge">Weekly</code>
 </li>
-      <li>Autodelete snapshots after: <code class="language-plaintext highlighter-rouge">7</code> days</li>
+      <li>Autodelete snapshots after: <code class="language-plaintext highlighter-rouge">14</code> days</li>
     </ul>
   </li>
   <li>Go to Disks &gt; <code class="language-plaintext highlighter-rouge">ghost-blog</code> &gt; <code class="language-plaintext highlighter-rouge">Edit</code>:
@@ -309,7 +309,14 @@
 
 <h4 id="initialize-vpc-network">Initialize VPC Network</h4>
 <ol>
-  <li>Go to VPC network &gt; Firewall &gt; <code class="language-plaintext highlighter-rouge">Create Firewall Rule</code>:
+  <li>Go to VPC network &gt; Firewall and delete the following default rules:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">default-allow-icmp</code></li>
+      <li><code class="language-plaintext highlighter-rouge">default-allow-rdp</code></li>
+    </ul>
+  </li>
+  <li>Click on <code class="language-plaintext highlighter-rouge">default-allow-ssh</code> &gt; Edit. Remove <code class="language-plaintext highlighter-rouge">0.0.0.0/0</code> from the Source IPv4 ranges and replace it with <code class="language-plaintext highlighter-rouge">35.235.240.0/20</code>.</li>
+  <li>Click <code class="language-plaintext highlighter-rouge">Create Firewall Rule</code>:
     <ul>
       <li>Name: <code class="language-plaintext highlighter-rouge">allow-outgoing-2525</code>
 </li>
@@ -327,43 +334,14 @@
 </li>
     </ul>
   </li>
-  <li>Go to IP addresses &gt; <code class="language-plaintext highlighter-rouge">Reserve External Static Address</code>:
-    <ul>
-      <li>Name: <code class="language-plaintext highlighter-rouge">ghost-blog-ip</code>
-</li>
-      <li>Network service tier: <code class="language-plaintext highlighter-rouge">Standard</code>
-</li>
-      <li>Region: <code class="language-plaintext highlighter-rouge">us-west1</code> (the same region as your instance)</li>
-      <li>Attached to: <code class="language-plaintext highlighter-rouge">ghost-blog</code>
-</li>
-    </ul>
-  </li>
-  <li>Take note of the External IP address assigned to your instance.</li>
 </ol>
 
 <h3 id="2-configure-the-domain">2. Configure the domain</h3>
 
 <h4 id="buy-a-domain-and-set-up-cloudflare">Buy a domain and set up Cloudflare</h4>
 <ol>
-  <li>Make a <a href="https://www.namecheap.com/myaccount/signup/" target="_blank" rel="noopener noreferrer">Namecheap account</a> and buy your domain. I’ll use <code class="language-plaintext highlighter-rouge">ghostblog.com</code> as an example. Going forward, everywhere you see <code class="language-plaintext highlighter-rouge">ghostblog.com</code>, replace it with your own domain name.</li>
-  <li>Make a <a href="https://www.cloudflare.com/plans/" target="_blank" rel="noopener noreferrer">Cloudflare account</a> and add your domain under the Free subscription plan.</li>
-  <li>Under “Review your DNS records”, first <strong>delete all the records</strong>.</li>
-  <li>Then <code class="language-plaintext highlighter-rouge">Add record</code>:
-    <ul>
-      <li>Type: <code class="language-plaintext highlighter-rouge">A</code>
-</li>
-      <li>Name: <code class="language-plaintext highlighter-rouge">@</code>
-</li>
-      <li>IPv4 address: your external IP address</li>
-      <li>Proxy status: <code class="language-plaintext highlighter-rouge">DNS only</code>
-</li>
-      <li>
-<code class="language-plaintext highlighter-rouge">Save</code> &gt; <code class="language-plaintext highlighter-rouge">Continue</code> &gt; <code class="language-plaintext highlighter-rouge">Confirm</code>.</li>
-    </ul>
-  </li>
-  <li>Go back to Namecheap &gt; ghostblog.com &gt; Manage &gt; Nameservers &gt; <code class="language-plaintext highlighter-rouge">Custom DNS</code> and input the specified Cloudflare nameservers.</li>
-  <li>Go back to Cloudflare &gt; <code class="language-plaintext highlighter-rouge">Done, check nameservers</code>.</li>
-  <li>Select Overview &gt; Advanced Actions (in the right sidebar) &gt; <code class="language-plaintext highlighter-rouge">Pause Cloudflare on site</code> while finishing setup.</li>
+  <li>Make a <a href="https://www.cloudflare.com/plans/" target="_blank" rel="noopener noreferrer">Cloudflare account</a> and buy your domain. I’ll use <code class="language-plaintext highlighter-rouge">ghostblog.com</code> as an example. Going forward, everywhere you see <code class="language-plaintext highlighter-rouge">ghostblog.com</code>, replace it with your own domain name.</li>
+  <li>Add your domain under the Free subscription plan.</li>
 </ol>
 
 <h4 id="set-up-mailgun">Set up Mailgun</h4>
@@ -395,7 +373,7 @@
 
     <div class="language-bash highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get update <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt-get <span class="nt">-y</span> upgrade
-<span class="nb">sudo </span>apt update <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> nano ufw cron
+<span class="nb">sudo </span>apt update <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> nano cron bash-completion
 <span class="nb">sudo </span>systemctl <span class="nb">enable</span> <span class="nt">--now</span> cron
 </code></pre></div>    </div>
   </li>
@@ -457,13 +435,6 @@
 
 <h4 id="install-ghost-dependencies">Install Ghost dependencies</h4>
 <ol>
-  <li>
-    <p>Install Nginx and open the firewall:</p>
-
-    <div class="language-bash highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install</span> <span class="nt">-y</span> nginx <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>ufw allow <span class="s1">'Nginx Full'</span>
-</code></pre></div>    </div>
-  </li>
   <li>
     <p>Install NodeJS:</p>
 
@@ -578,7 +549,7 @@ performance_schema=0
 
     <p>then configure as follows:</p>
     <ul>
-      <li>Blog URL: <code class="language-plaintext highlighter-rouge">https://ghostblog.com</code>
+      <li>Blog URL: <code class="language-plaintext highlighter-rouge">https://www.ghostblog.com</code>
 </li>
       <li>MySQL hostname: <code class="language-plaintext highlighter-rouge">localhost</code>
 </li>
@@ -590,9 +561,8 @@ performance_schema=0
 </li>
       <li>Set up Ghost MySQL user? — <code class="language-plaintext highlighter-rouge">Y</code>
 </li>
-      <li>Set up NGINX? — <code class="language-plaintext highlighter-rouge">Y</code>
+      <li>Set up NGINX? — <code class="language-plaintext highlighter-rouge">N</code>
 </li>
-      <li>Set up SSL? — <code class="language-plaintext highlighter-rouge">Y</code>, then enter your email</li>
       <li>Set up systemd? — <code class="language-plaintext highlighter-rouge">Y</code>
 </li>
       <li>Start Ghost? — <code class="language-plaintext highlighter-rouge">Y</code>
@@ -654,9 +624,32 @@ performance_schema=0
   </li>
 </ol>
 
-<h3 id="4-configure-ghost">4. Configure Ghost</h3>
+<h3 id="4-setup-cloudflare-tunnel">4. Setup Cloudflare tunnel</h3>
 <ol>
-  <li>Go to <code class="language-plaintext highlighter-rouge">https://ghostblog.com/ghost</code>. Create your admin login credentials.</li>
+  <li>In your Cloudflare dashboard, go to Zero Trust and activate the free plan.</li>
+  <li>Then go to Networking &gt; Tunnels &gt; <code class="language-plaintext highlighter-rouge">Create Tunnel</code> and set Tunnel name to <code class="language-plaintext highlighter-rouge">www.ghostblog.com</code>.</li>
+  <li>Under Setup Environment, select:
+    <ul>
+      <li>Operating system: Debian</li>
+      <li>Architecture: 64-bit
+then copy and paste the two install commands (‘Install cloudflared’ and ‘Install as service’) into the SSH window.</li>
+    </ul>
+  </li>
+  <li>Once the Connection status says ‘Tunnel connected successfully’, click <code class="language-plaintext highlighter-rouge">Continue</code>.</li>
+  <li>Click into the tunnel &gt; Routes &gt; <code class="language-plaintext highlighter-rouge">Add route</code>:
+    <ul>
+      <li>Type: Published Application</li>
+      <li>Subdomain: <code class="language-plaintext highlighter-rouge">www</code>
+</li>
+      <li>Service URL: <code class="language-plaintext highlighter-rouge">http://localhost:2368</code>
+</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="5-configure-ghost">5. Configure Ghost</h3>
+<ol>
+  <li>Go to <code class="language-plaintext highlighter-rouge">https://www.ghostblog.com/ghost</code>. Create your admin login credentials.</li>
   <li>Customize your site &gt; the “gear” icon &gt; Membership &gt; Newsletters &gt; Mailgun &gt; <code class="language-plaintext highlighter-rouge">Edit</code>:
     <ul>
       <li>Mailgun region: <code class="language-plaintext highlighter-rouge">US</code> (unless you previously chose <code class="language-plaintext highlighter-rouge">EU</code>)</li>
@@ -669,26 +662,39 @@ performance_schema=0
   </li>
 </ol>
 
-<h3 id="5-finish-cloudflare-configuration">5. Finish Cloudflare configuration</h3>
+<h3 id="6-finish-cloudflare-configuration">6. Finish Cloudflare configuration</h3>
 <ol>
-  <li>Go back to Cloudflare. If you had previously <code class="language-plaintext highlighter-rouge">Paused</code> Cloudflare, go back to Advanced Actions &gt; <code class="language-plaintext highlighter-rouge">Enable Cloudflare on site</code>.</li>
-  <li>Go to ghostblog.com &gt; DNS &gt; <code class="language-plaintext highlighter-rouge">Add record</code>:
+  <li>
+<em>(optional)</em> If you want your site to also be accessible at the apex domain (i.e., <code class="language-plaintext highlighter-rouge">https://ghostblog.com</code>), go back to Cloudflare &gt; ghostblog.com &gt; DNS &gt; <code class="language-plaintext highlighter-rouge">Add record</code>:
     <ul>
-      <li>Type: <code class="language-plaintext highlighter-rouge">A</code>
+      <li>Type: <code class="language-plaintext highlighter-rouge">AAAA</code>
 </li>
-      <li>Name: <code class="language-plaintext highlighter-rouge">www</code>
+      <li>Name: <code class="language-plaintext highlighter-rouge">@</code>
 </li>
-      <li>IPv4 address: your Google Cloud external IP address</li>
-      <li>Proxy status: <code class="language-plaintext highlighter-rouge">Proxied</code>
-</li>
+      <li>IPv6 address: <code class="language-plaintext highlighter-rouge">100::</code>
+and ensure that the record is proxied through Cloudflare.</li>
     </ul>
   </li>
-  <li>
-<code class="language-plaintext highlighter-rouge">Edit</code> the other A record to change Proxy status to <code class="language-plaintext highlighter-rouge">Proxied</code>.</li>
-  <li>Go to ghostblog.com &gt; SSL/TLS &gt; Overview and change SSL/TLS encryption mode to <code class="language-plaintext highlighter-rouge">Full</code>.</li>
+  <li>Under Rules &gt; Redirect Rules &gt; <code class="language-plaintext highlighter-rouge">Create rule</code>:
+    <ul>
+      <li>Rule name: <code class="language-plaintext highlighter-rouge">Redirect Apex to www</code>
+</li>
+      <li>If incoming requests match: <code class="language-plaintext highlighter-rouge">Custom filter expression</code>
+</li>
+      <li>When incoming requests match: <code class="language-plaintext highlighter-rouge">Hostname equals ghostblog.com</code>
+</li>
+      <li>Type: <code class="language-plaintext highlighter-rouge">Dynamic</code>
+</li>
+      <li>Expression: <code class="language-plaintext highlighter-rouge">concat("https://www.ghostblog.com", http.request.uri.path)</code>
+</li>
+      <li>Status code: <code class="language-plaintext highlighter-rouge">301</code>
+</li>
+      <li>Preserve query string: ticked</li>
+    </ul>
+  </li>
 </ol>
 
-<h3 id="6-create-maintenance-scripts">6. Create maintenance scripts</h3>
+<h3 id="7-create-maintenance-scripts">7. Create maintenance scripts</h3>
 
 <h4 id="enable-ghost-auto-start">Enable Ghost auto-start</h4>
 
@@ -701,8 +707,6 @@ performance_schema=0
     <div class="language-bash highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code>crontab <span class="nt">-e</span>
 </code></pre></div>    </div>
-
-    <p>and press <code class="language-plaintext highlighter-rouge">1</code> to select Nano as your text editor.</p>
   </li>
   <li>
     <p>Paste the following into the cronfile:</p>
@@ -759,7 +763,7 @@ performance_schema=0
 <p>While it would technically be possible to configure automatic updates with a cron job, I would advise keeping an eye on the update process in case human intervention is required.</p>
 
 <h3 id="congratulations">Congratulations!</h3>
-<p>At this point you should have a working self-hosted Ghost blog. Updates aside, you should be working from the <code class="language-plaintext highlighter-rouge">https://ghostblog.com/ghost</code> control panel from now on.</p>
+<p>At this point you should have a working self-hosted Ghost blog. Updates aside, you should be working from the <code class="language-plaintext highlighter-rouge">https://www.ghostblog.com/ghost</code> control panel from now on.</p>
 
 <hr>
 
@@ -767,6 +771,13 @@ performance_schema=0
 <p>This workflow last worked for me as of the most recent date in the changelog below. If you spot errors, vulnerabilities, or potential improvements, please do <a href="https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2022-01-01-self-hosting-ghost-on-google-cloud.md" target="_blank" rel="noopener noreferrer">open a pull request</a> on this blog post!</p>
 
 <h2 id="changelog">Changelog</h2>
+
+<ul>
+  <li>
+<strong>2026-11-07</strong>: The major change is to introduce the use of a Cloudflare tunnel to expose the blog to the internet. This hardens security, as we can close the server’s own ports, and also removes the need to reserve a static IP address within Google Cloud. Some minor changes: recommend setting up blogs on the <code class="language-plaintext highlighter-rouge">www</code> subdomain instead of the apex; recommend Cloudflare domain registrar instead of Namecheap; update the <code class="language-plaintext highlighter-rouge">update.sh</code> bash script.</li>
+</ul>
+
+<p>Change my recommended boot OS to the Minimal version of Ubuntu, and updated setup instructions with any necessary additional installations. Ghost seems to run and update faster on Minimal.</p>
 
 <ul>
   <li>
