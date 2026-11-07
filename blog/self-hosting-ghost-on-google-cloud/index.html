@@ -270,7 +270,8 @@
       <li>Management &gt; Metadata &gt; <code class="language-plaintext highlighter-rouge">Add item</code>:
         <ul>
           <li>
-<code class="language-plaintext highlighter-rouge">enable-oslogin</code>: TRUE</li>
+<code class="language-plaintext highlighter-rouge">enable-oslogin</code>: <code class="language-plaintext highlighter-rouge">TRUE</code>
+</li>
         </ul>
       </li>
     </ul>
@@ -374,7 +375,7 @@
 
     <div class="language-bash highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get update <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt-get <span class="nt">-y</span> upgrade
-<span class="nb">sudo </span>apt update <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> nano bash-completion unattended-upgrades
+<span class="nb">sudo </span>apt update <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> nano bash-completion
 <span class="nb">sudo tee</span> /etc/apt/apt.conf.d/20auto-upgrades <span class="o">&gt;</span>/dev/null <span class="o">&lt;&lt;</span><span class="sh">'</span><span class="no">EOF</span><span class="sh">'
 APT::Periodic::Update-Package-Lists "1";
 APT::Periodic::Unattended-Upgrade "1";
