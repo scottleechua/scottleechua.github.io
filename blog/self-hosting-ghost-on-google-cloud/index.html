@@ -181,15 +181,16 @@
 
 <h2 id="overview">Overview</h2>
 
-<p>In this guide, I outline the whole process of setting up <strong>each and every part</strong> of this exact stack, in six steps:</p>
+<p>In this guide, I outline the whole process of setting up <strong>each and every part</strong> of this exact stack, in seven steps:</p>
 
 <ol>
   <li><a href="#1-set-up-google-cloud">Set up Google Cloud</a></li>
   <li><a href="#2-configure-the-domain">Configure the domain</a></li>
   <li><a href="#3-deploy-ghost">Deploy Ghost</a></li>
-  <li><a href="#4-configure-ghost">Configure Ghost</a></li>
-  <li><a href="#5-finish-cloudflare-configuration">Finish Cloudflare configuration</a></li>
-  <li><a href="#6-create-maintenance-scripts">Create maintenance scripts</a></li>
+  <li><a href="#4-set-up-cloudflare-tunnel">Set up Cloudflare tunnel</a></li>
+  <li><a href="#5-configure-ghost">Configure Ghost</a></li>
+  <li><a href="#6-optional-redirect-apex-domain"><em>(optional)</em> Redirect apex domain</a></li>
+  <li><a href="#7-create-maintenance-scripts">Create maintenance scripts</a></li>
 </ol>
 
 <p>The whole thing takes 1-2 hours depending on your comfort level with the various technologies.</p>
@@ -240,7 +241,7 @@
     <ul>
       <li>Name: <code class="language-plaintext highlighter-rouge">free-web-server</code>
 </li>
-      <li>Location: <code class="language-plaintext highlighter-rouge">Regional</code>
+      <li>Location: <code class="language-plaintext highlighter-rouge">Regional</code> &gt; <code class="language-plaintext highlighter-rouge">us-central1</code>
 </li>
       <li>Machine family: <code class="language-plaintext highlighter-rouge">General-purpose</code>
 </li>
@@ -296,7 +297,7 @@
       </li>
       <li>Schedule frequency: <code class="language-plaintext highlighter-rouge">Weekly</code>
 </li>
-      <li>Autodelete snapshots after: <code class="language-plaintext highlighter-rouge">14</code> days</li>
+      <li>Autodelete snapshots after: <code class="language-plaintext highlighter-rouge">7</code> days</li>
     </ul>
   </li>
   <li>Go to Disks &gt; <code class="language-plaintext highlighter-rouge">ghost-blog</code> &gt; <code class="language-plaintext highlighter-rouge">Edit</code>:
@@ -373,8 +374,7 @@
 
     <div class="language-bash highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get update <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt-get <span class="nt">-y</span> upgrade
-<span class="nb">sudo </span>apt update <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> nano cron bash-completion unattended-upgrades
-<span class="nb">sudo </span>systemctl <span class="nb">enable</span> <span class="nt">--now</span> cron
+<span class="nb">sudo </span>apt update <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> nano bash-completion unattended-upgrades
 <span class="nb">sudo tee</span> /etc/apt/apt.conf.d/20auto-upgrades <span class="o">&gt;</span>/dev/null <span class="o">&lt;&lt;</span><span class="sh">'</span><span class="no">EOF</span><span class="sh">'
 APT::Periodic::Update-Package-Lists "1";
 APT::Periodic::Unattended-Upgrade "1";
@@ -397,7 +397,7 @@ Unattended-Upgrade::Origins-Pattern {
 };
 </code></pre></div>    </div>
 
-    <p>and Ctrl-X to exit.</p>
+    <p>and Ctrl-X &gt; Y &gt; Enter to save and exit.</p>
   </li>
   <li>
     <p>Make a new user called <code class="language-plaintext highlighter-rouge">service_account</code> and grant it sudo:</p>
@@ -490,11 +490,13 @@ curl <span class="nt">-fsSL</span> https://deb.nodesource.com/gpgkey/nodesource-
 </code></pre></div>    </div>
   </li>
   <li>
-    <p>Stop the <code class="language-plaintext highlighter-rouge">snapd</code> process to save on RAM:</p>
+    <p>Disable the <code class="language-plaintext highlighter-rouge">snapd</code> process to save on RAM. Disabling both the service and its socket keeps it from coming back after a reboot:</p>
 
     <div class="language-bash highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl stop snapd.service
+<div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl disable <span class="nt">--now</span> snapd.service snapd.socket
 </code></pre></div>    </div>
+
+    <p>This also stops the preinstalled <code class="language-plaintext highlighter-rouge">gcloud</code> snap from updating, which this walkthrough doesn’t use. If you ever need it, run <code class="language-plaintext highlighter-rouge">sudo systemctl enable --now snapd.socket</code>.</p>
   </li>
   <li>
     <p>Turning off MySQL’s performance schema is a common way to reduce its memory usage, which occasionally tests the limits of the free tier machine’s 1GB of RAM. To do this, open the MySQL configuration file:</p>
@@ -545,7 +547,7 @@ performance_schema=0
 </code></pre></div>    </div>
   </li>
   <li>
-    <p>Make a new directory called <code class="language-plaintext highlighter-rouge">ghost</code>, set its permissions, then navigate to it:</p>
+    <p>Make a new directory called <code class="language-plaintext highlighter-rouge">ghost</code> and set its permissions:</p>
 
     <div class="language-bash highlighter-rouge">
 <div class="highlight"><pre class="highlight"><code><span class="nb">sudo mkdir</span> /var/www/ghost
@@ -637,7 +639,7 @@ performance_schema=0
   </li>
 </ol>
 
-<h3 id="4-setup-cloudflare-tunnel">4. Setup Cloudflare tunnel</h3>
+<h3 id="4-set-up-cloudflare-tunnel">4. Set up Cloudflare tunnel</h3>
 <ol>
   <li>In your Cloudflare dashboard, go to Zero Trust and activate the free plan.</li>
   <li>Then go to Networking &gt; Tunnels &gt; <code class="language-plaintext highlighter-rouge">Create Tunnel</code> and set Tunnel name to <code class="language-plaintext highlighter-rouge">www.ghostblog.com</code>.</li>
@@ -675,10 +677,9 @@ then copy and paste the two install commands (‘Install cloudflared’ and ‘I
   </li>
 </ol>
 
-<h3 id="6-finish-cloudflare-configuration">6. Finish Cloudflare configuration</h3>
+<h3 id="6-optional-redirect-apex-domain">6. <em>(optional)</em> Redirect apex domain</h3>
 <ol>
-  <li>
-<em>(optional)</em> If you want your site to also be accessible at the apex domain (i.e., <code class="language-plaintext highlighter-rouge">https://ghostblog.com</code>), go back to Cloudflare &gt; ghostblog.com &gt; DNS &gt; <code class="language-plaintext highlighter-rouge">Add record</code>:
+  <li>If you want your site to also be accessible at the apex domain (i.e., <code class="language-plaintext highlighter-rouge">https://ghostblog.com</code>), go back to Cloudflare &gt; ghostblog.com &gt; DNS &gt; <code class="language-plaintext highlighter-rouge">Add record</code>:
     <ul>
       <li>Type: <code class="language-plaintext highlighter-rouge">AAAA</code>
 </li>
@@ -709,27 +710,6 @@ and ensure that the record is proxied through Cloudflare.</li>
 
 <h3 id="7-create-maintenance-scripts">7. Create maintenance scripts</h3>
 
-<h4 id="enable-ghost-auto-start">Enable Ghost auto-start</h4>
-
-<p>Sometimes virtual machines restart by themselves. Create this cron job so that whenever the virtual machine restarts, Ghost does, too.</p>
-
-<ol>
-  <li>
-    <p>From the home directory of <code class="language-plaintext highlighter-rouge">service_account</code>, run:</p>
-
-    <div class="language-bash highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code>crontab <span class="nt">-e</span>
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>Paste the following into the cronfile:</p>
-
-    <div class="language-plaintext highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code>@reboot cd /var/www/ghost &amp;&amp; /usr/bin/ghost start
-</code></pre></div>    </div>
-  </li>
-</ol>
-
 <h4 id="create-update-script">Create update script</h4>
 
 <p>I use <a href="https://gist.github.com/scottleechua/ca3db03becdfcc1efe5730b26b7fa8f8" target="_blank" rel="noopener noreferrer">this script</a> to keep my self-hosted Ghost machines up to date — feel free to adapt it for your purposes or use it as is!</p>
@@ -746,14 +726,13 @@ and ensure that the record is proxied through Cloudflare.</li>
     <p>Copy and paste <a href="https://gist.github.com/scottleechua/ca3db03becdfcc1efe5730b26b7fa8f8" target="_blank" rel="noopener noreferrer">the contents of this update script</a> into the editor.</p>
   </li>
   <li>
-    <p>On line 5, replace <code class="language-plaintext highlighter-rouge">GHOST_STAFF_TOKEN</code> with your Ghost staff token, which you can get from clicking your profile in the lower left of the Ghost admin dashboard, then copying <code class="language-plaintext highlighter-rouge">Staff access token</code>.</p>
+    <p>Replace <code class="language-plaintext highlighter-rouge">GHOST_STAFF_TOKEN</code> with your Ghost staff token, which you can get from clicking your profile in the lower left of the Ghost admin dashboard, then copying <code class="language-plaintext highlighter-rouge">Staff access token</code>.</p>
   </li>
   <li>
-    <p>Make it executable:</p>
+    <p>Make it executable, and readable only by <code class="language-plaintext highlighter-rouge">service_account</code> since it contains your staff token:</p>
 
     <div class="language-bash highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="nb">sudo chown </span>service_account:service_account update-ghost.sh
-<span class="nb">sudo chmod </span>775 update-ghost.sh
+<div class="highlight"><pre class="highlight"><code><span class="nb">chmod </span>700 update-ghost.sh
 </code></pre></div>    </div>
   </li>
   <li>
@@ -787,7 +766,10 @@ and ensure that the record is proxied through Cloudflare.</li>
 
 <ul>
   <li>
-    <p><strong>2026-11-07</strong>: The major change is to introduce the use of a Cloudflare tunnel to expose the blog to the internet. This hardens security, as we can close the server’s own ports, and also removes the need to reserve a static IP address within Google Cloud. Some minor changes: recommend setting up blogs on the <code class="language-plaintext highlighter-rouge">www</code> subdomain instead of the apex; recommend Cloudflare domain registrar instead of Namecheap; update the <code class="language-plaintext highlighter-rouge">update.sh</code> bash script.</p>
+    <p><strong>2026-11-08</strong>: Remove the cron job that auto-starts Ghost on reboot, as the systemd service set up by Ghost CLI already does this. Disable <code class="language-plaintext highlighter-rouge">snapd</code> so it stays off after a reboot. Restrict <code class="language-plaintext highlighter-rouge">update-ghost.sh</code> to its owner (<code class="language-plaintext highlighter-rouge">chmod 700</code>).</p>
+  </li>
+  <li>
+    <p><strong>2026-11-07</strong>: The major change is to introduce the use of a Cloudflare tunnel to expose the blog to the internet. This hardens security, as we can close the server’s own ports, and also removes the need to reserve a static IP address within Google Cloud. Some minor changes: recommend setting up blogs on the <code class="language-plaintext highlighter-rouge">www</code> subdomain instead of the apex; recommend Cloudflare domain registrar instead of Namecheap; update the <code class="language-plaintext highlighter-rouge">update-ghost.sh</code> bash script.</p>
   </li>
   <li>
     <p><strong>2026-10-11</strong>: Change my recommended boot OS to the Minimal version of Ubuntu, and updated setup instructions with any necessary additional installations. Ghost seems to run and update faster on Minimal.</p>
