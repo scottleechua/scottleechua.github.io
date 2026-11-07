@@ -1,14 +1,14 @@
 ---
 layout: post
-title:  Self-hosting Ghost on Google Cloud
-last_updated:   2024-11-20
-description: A plaintext guide to deploying an almost-free, fully self-hosted Ghost blog on Google Cloud.
+title:  Self-hosting Ghost on Google Cloud and Cloudflare
+last_updated: 2026-11-07
+description: A plaintext guide to deploying an almost-free, fully self-hosted Ghost blog on Google Cloud and Cloudflare.
 categories: guide, website, cloud
 og_image: ghost-google-cloud-diagram.png
 twitter_large_image: true
 ---
 
-<img class="img-fluid rounded" src="/assets/img/ghost-google-cloud-diagram.png" alt="A flowchart. Engine X web server and ghost blog engine. A right directed arrow toward a grey box entitled google cloud. Inside the grey box, compute engine. Right directed arrow. Static IP address. Right directed arrow. Cloud flare content delivery network. From above the grey box, name cheap, domain registrar. Below directed arrow. Static IP address. From above cloud flare, mail provider mail gun. Below directed arrow. Cloud flare, content delivery network. Right directed arrow. Blog and newsletter.">
+<img class="img-fluid rounded" src="/assets/img/ghost-google-cloud-diagram.png" alt="Architecture diagram of a self-hosted blog setup, shown with each service’s logo. On the left, Ghost, labeled “Blog engine,” has an arrow pointing to Google Cloud Compute Engine in the center. Above Compute Engine, Mailgun, labeled “Mail provider,” has an arrow pointing down into it. From Compute Engine, an arrow points right to Cloudflare, labeled “Tunnel, CDN, and domain registrar.">
 
 [I'm sold on this stack, jump to the walkthrough!](#overview)
 
@@ -28,13 +28,12 @@ I recently helped a friend migrate his movie review blog off [Wix](https://www.w
 Requirement (1) ruled out other "as-a-service" website builders, while (2), (3), and (4) together ruled out my go-to [Jekyll](https://jekyllrb.com/) + [GitHub Pages](https://pages.github.com/) combo. In the end, I settled on the stack shown in the diagram above. A brief overview of why I chose each component:
 
 - **Blog engine.** I chose [Ghost](https://ghost.org/) as it has a beautiful content editor and a mobile-friendly control panel. While Ghost (the company) offers managed hosting plans for a fee, Ghost (the blog engine) is open-source and free to self-host.
-- **Web server.** I chose [NGINX](https://www.nginx.com/) as it is Ghost's default option, and I went with the path of least resistance and most documentation. (In the previous version of this guide, I chose [Caddy](https://caddyserver.com/) as it seemed less arcane, but replicating the custom setup proved irksome after [the breaking changes](#changelog) in Ghost v5.0.)
-- **Hosting server.** I chose to use a [Compute Engine](https://cloud.google.com/compute) virtual machine to host the website, because Google Cloud has a unique [Always Free Tier](https://cloud.google.com/free/docs/free-cloud-features#compute) (distinct from their free trial period) with resources enough to permanently host a small- to medium-sized blog (1GB RAM, 1GB monthly traffic to all regions except China and Australia). Google Cloud usually charges for static external IP addresses, but these are also free when attached to Free Tier virtual machines.
-- **Domain registrar.** I like to buy my domain names through [Namecheap](https://namecheap.com) because they're transparent with their prices and don't fill your cart with upsells.
-- **Content delivery network (CDN).** I use [Cloudflare](https://cloudflare.com)'s free CDN service to shorten website loading times and protect against [DDOS](https://www.cloudflare.com/learning/ddos/what-is-a-ddos-attack/) attacks. I also prefer managing DNS records through Cloudflare (rather than at the domain registrar level); not only is [domain resolution](https://www.cloudflare.com/learning/dns/what-is-dns/) faster, the user interface is also sleeker.
+- **Hosting server.** I chose to use a [Compute Engine](https://cloud.google.com/compute) virtual machine to host the website, because Google Cloud has a unique [Always Free Tier](https://cloud.google.com/free/docs/free-cloud-features#compute) (distinct from their free trial period) with resources enough to permanently host a small- to medium-sized blog (1GB RAM, 1GB monthly traffic to all regions except China and Australia). We'll then expose the blog to the public internet using a [Cloudflare tunnel](https://developers.cloudflare.com/tunnel/), which saves us from having to open ports to the public internet.
+- **Domain registrar.** I like to buy my domain names through [Cloudflare](https://cloudflare.com) because they're transparent with their prices and don't fill your cart with upsells. Their DNS record management is also more modern and intuitive.
+- **Content delivery network (CDN).** I also use [Cloudflare](https://cloudflare.com) for its free CDN service to shorten website loading times and protect against [DDOS](https://www.cloudflare.com/learning/ddos/what-is-a-ddos-attack/) attacks.
 - **Mail provider.** Ghost has a built-in newsletter feature that integrates most easily with [Mailgun](https://mailgun.com). I'm not too familiar with mail providers, but Mailgun has been great so far, consistently sending emails to inbox, not spam. The first 1,250 emails every month are [free](https://help.mailgun.com/hc/en-us/articles/360048661093-How-does-PAYG-billing-work), and 0.80 USD / thousand emails thereafter. (Ghost also uses Mailgun to send password reset emails, so it's a good idea to set Mailgun up even if you won't be sending out newsletters.)
 
-I tried to come up with a tech stack that was **as low-cost as a self-hosted website could possibly be.** In the diagram above, the only cost for certain is the annual domain name rental fee; everything else is either totally free (Ghost, NGINX, MySQL) or free with usage limits (Google Cloud, Cloudflare, Mailgun).
+I tried to come up with a tech stack that was **as low-cost as a self-hosted website could possibly be.** In the diagram above, the only cost for certain is the annual domain name rental fee; everything else is either totally free (Ghost) or free with usage limits (Google Cloud, Cloudflare, Mailgun).
 
 ## Overview
 
@@ -73,34 +72,39 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
    - `Yes, I'm using Compute Engine`    
 2. Go to Instance Templates > `Create Instance Template`:
    - Name: `free-web-server`
+   - Location: `Regional`
    - Machine family: `General-purpose`
    - Series: `E2`
-   - Machine type: `e2-micro (2vCPU, 1GB memory)`
+   - Machine type: `e2-micro (2vCPU, 1 core, 1GB memory)`
    - Boot disk:
       - Operating system: `Ubuntu`
       - Version: `Ubuntu 24.04 LTS Minimal x86/64`
       - Boot disk type: `Standard persistent disk`
-      - Size (GB): 25
-   - Firewall:
-      - `Allow HTTP traffic`, `Allow HTTPS traffic`
+      - Size (GB): `30`
    - Advanced Options > Networking > `Network tags`:
       - Type `mail` then press `Enter`
+   - Management > Metadata > `Add item`:
+      - `enable-oslogin`: TRUE
 3. Go to VM instances > `Create an instance`:
    - New VM Instance from template: `free-web-server`
    - Name: `ghost-blog`
-   - Region: `us-west1` (or any region on the [Always Free Tier](https://cloud.google.com/free/docs/free-cloud-features#compute))
+   - Region: `us-central1` (or any region on the [Always Free Tier](https://cloud.google.com/free/docs/free-cloud-features#compute))
 4. Go to Snapshots > `Create Snapshot Schedule`:
    - Name: `weekly-backup-schedule`
-   - Schedule location: `us-west1` (the same region as your instance)
+   - Schedule location: `us-central1` (the same region as your instance)
    - Snapshot storage location: `Regional`
-      - Location: `us-west1`
+      - Location: `us-central1`
    - Schedule frequency: `Weekly`
-   - Autodelete snapshots after: `7` days
+   - Autodelete snapshots after: `14` days
 5. Go to Disks > `ghost-blog` > `Edit`:
    - Snapshot schedule: `weekly-backup-schedule`
 
 #### Initialize VPC Network
-1. Go to VPC network > Firewall > `Create Firewall Rule`:
+1. Go to VPC network > Firewall and delete the following default rules:
+   - `default-allow-icmp`
+   - `default-allow-rdp`
+2. Click on `default-allow-ssh` > Edit. Remove `0.0.0.0/0` from the Source IPv4 ranges and replace it with `35.235.240.0/20`.
+3. Click `Create Firewall Rule`:
    - Name: `allow-outgoing-2525`
    - Logs: `Off`
    - Direction: `Egress`
@@ -108,28 +112,12 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
    - Targets: `Specified target tags` > `mail`
    - Destination filter: `IPv4 ranges` > `0.0.0.0/0`
    - Protocols and ports: `Specified protocols and ports` > `TCP`: `2525`
-2. Go to IP addresses > `Reserve External Static Address`:
-   - Name: `ghost-blog-ip`
-   - Network service tier: `Standard`
-   - Region: `us-west1` (the same region as your instance)
-   - Attached to: `ghost-blog`
-3. Take note of the External IP address assigned to your instance.
 
 ### 2. Configure the domain
 
 #### Buy a domain and set up Cloudflare
-1. Make a [Namecheap account](https://www.namecheap.com/myaccount/signup/) and buy your domain. I'll use `ghostblog.com` as an example. Going forward, everywhere you see `ghostblog.com`, replace it with your own domain name. 
-2. Make a [Cloudflare account](https://www.cloudflare.com/plans/) and add your domain under the Free subscription plan.
-3. Under "Review your DNS records", first **delete all the records**.
-4. Then `Add record`:
-   - Type: `A`
-   - Name: `@`
-   - IPv4 address: your external IP address
-   - Proxy status: `DNS only`
-   - `Save` > `Continue` > `Confirm`.
-5. Go back to Namecheap > ghostblog.com > Manage > Nameservers > `Custom DNS` and input the specified Cloudflare nameservers.
-6. Go back to Cloudflare > `Done, check nameservers`.
-7. Select Overview > Advanced Actions (in the right sidebar) > `Pause Cloudflare on site` while finishing setup.
+1. Make a [Cloudflare account](https://www.cloudflare.com/plans/) and buy your domain. I'll use `ghostblog.com` as an example. Going forward, everywhere you see `ghostblog.com`, replace it with your own domain name.
+2. Add your domain under the Free subscription plan.
 
 #### Set up Mailgun
 1. Make a [Mailgun account](https://signup.mailgun.com/new/signup) under the `Flex` plan. You'll be asked to confirm a phone number and put your card details on file. For the latest on how to access the `Flex` plan, check [this forum thread](https://forum.ghost.org/t/mailgun-flex-plan-deprecated/60120).
@@ -151,7 +139,7 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
 
    ```bash
    sudo apt-get update && sudo apt-get -y upgrade
-   sudo apt update && sudo apt install -y nano ufw cron
+   sudo apt update && sudo apt install -y nano cron bash-completion
    sudo systemctl enable --now cron
    ```
 
@@ -204,12 +192,6 @@ To minimize the chance of Ghost running out of memory on a small virtual machine
    should show `Swap: 2.0G`.
 
 #### Install Ghost dependencies
-1. Install Nginx and open the firewall:
-
-   ```bash
-   sudo apt-get install -y nginx && sudo ufw allow 'Nginx Full'
-   ```
-
 2. Install NodeJS:
 
    ```bash
@@ -310,14 +292,13 @@ To minimize the chance of Ghost running out of memory on a small virtual machine
    ```
 
    then configure as follows:
-   - Blog URL: `https://ghostblog.com`
+   - Blog URL: `https://www.ghostblog.com`
    - MySQL hostname: `localhost`
    - MySQL username: `root`
    - MySQL password: the password you set for `root`
    - Ghost database name: `ghost_prod`
    - Set up Ghost MySQL user? — `Y`
-   - Set up NGINX? — `Y`
-   - Set up SSL? — `Y`, then enter your email
+   - Set up NGINX? — `N`
    - Set up systemd? — `Y`
    - Start Ghost? — `Y`
     
@@ -368,8 +349,21 @@ To minimize the chance of Ghost running out of memory on a small virtual machine
    ghost restart
    ```
 
-### 4. Configure Ghost
-1. Go to `https://ghostblog.com/ghost`. Create your admin login credentials.
+### 4. Setup Cloudflare tunnel
+1. In your Cloudflare dashboard, go to Zero Trust and activate the free plan.
+2. Then go to Networking > Tunnels > `Create Tunnel` and set Tunnel name to `www.ghostblog.com`.
+3. Under Setup Environment, select:
+   - Operating system: Debian
+   - Architecture: 64-bit
+then copy and paste the two install commands ('Install cloudflared' and 'Install as service') into the SSH window.
+4. Once the Connection status says 'Tunnel connected successfully', click `Continue`.
+5. Click into the tunnel > Routes > `Add route`:
+   - Type: Published Application
+   - Subdomain: `www`
+   - Service URL: `http://localhost:2368`
+
+### 5. Configure Ghost
+1. Go to `https://www.ghostblog.com/ghost`. Create your admin login credentials.
 2. Customize your site > the "gear" icon > Membership > Newsletters > Mailgun > `Edit`:
    - Mailgun region: `US` (unless you previously chose `EU`)
    - Mailgun domain: `mg.ghostblog.com`
@@ -377,17 +371,22 @@ To minimize the chance of Ghost running out of memory on a small virtual machine
 
    Then click `Save` in the upper-right corner.
 
-### 5. Finish Cloudflare configuration
-1. Go back to Cloudflare. If you had previously `Paused` Cloudflare, go back to Advanced Actions > `Enable Cloudflare on site`.
-2. Go to ghostblog.com > DNS > `Add record`:
-   - Type: `A`
-   - Name: `www`
-   - IPv4 address: your Google Cloud external IP address
-   - Proxy status: `Proxied`
-3. `Edit` the other A record to change Proxy status to `Proxied`.
-4. Go to ghostblog.com > SSL/TLS > Overview and change SSL/TLS encryption mode to `Full`.
+### 6. Finish Cloudflare configuration
+1. *(optional)* If you want your site to also be accessible at the apex domain (i.e., `https://ghostblog.com`), go back to Cloudflare > ghostblog.com > DNS > `Add record`:
+   - Type: `AAAA`
+   - Name: `@`
+   - IPv6 address: `100::`
+   and ensure that the record is proxied through Cloudflare.
+2. Under Rules > Redirect Rules > `Create rule`:
+   - Rule name: `Redirect Apex to www`
+   - If incoming requests match: `Custom filter expression`
+   - When incoming requests match: `Hostname equals ghostblog.com`
+   - Type: `Dynamic`
+   - Expression: `concat("https://www.ghostblog.com", http.request.uri.path)`
+   - Status code: `301`
+   - Preserve query string: ticked
 
-### 6. Create maintenance scripts
+### 7. Create maintenance scripts
 
 #### Enable Ghost auto-start
 
@@ -398,8 +397,6 @@ Sometimes virtual machines restart by themselves. Create this cron job so that w
    ```bash
    crontab -e
    ```
-
-   and press `1` to select Nano as your text editor.
 
 2. Paste the following into the cronfile:
 
@@ -444,7 +441,7 @@ I use [this script](https://gist.github.com/scottleechua/ca3db03becdfcc1efe5730b
 While it would technically be possible to configure automatic updates with a cron job, I would advise keeping an eye on the update process in case human intervention is required.
 
 ### Congratulations!
-At this point you should have a working self-hosted Ghost blog. Updates aside, you should be working from the `https://ghostblog.com/ghost` control panel from now on.
+At this point you should have a working self-hosted Ghost blog. Updates aside, you should be working from the `https://www.ghostblog.com/ghost` control panel from now on.
 
 ---
 
@@ -452,6 +449,10 @@ At this point you should have a working self-hosted Ghost blog. Updates aside, y
 This workflow last worked for me as of the most recent date in the changelog below. If you spot errors, vulnerabilities, or potential improvements, please do [open a pull request](https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2022-01-01-self-hosting-ghost-on-google-cloud.md) on this blog post!
 
 ## Changelog
+
+- **2026-11-07**: The major change is to introduce the use of a Cloudflare tunnel to expose the blog to the internet. This hardens security, as we can close the server's own ports, and also removes the need to reserve a static IP address within Google Cloud. Some minor changes: recommend setting up blogs on the `www` subdomain instead of the apex; recommend Cloudflare domain registrar instead of Namecheap; update the `update.sh` bash script.
+
+Change my recommended boot OS to the Minimal version of Ubuntu, and updated setup instructions with any necessary additional installations. Ghost seems to run and update faster on Minimal.
 
 - **2026-10-11**: Change my recommended boot OS to the Minimal version of Ubuntu, and updated setup instructions with any necessary additional installations. Ghost seems to run and update faster on Minimal.
 
