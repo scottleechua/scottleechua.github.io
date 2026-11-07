@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  Self-hosting Ghost on Google Cloud and Cloudflare
-last_updated: 2026-11-07
+last_updated: 2026-11-08
 description: A plaintext guide to deploying an almost-free, fully self-hosted Ghost blog on Google Cloud and Cloudflare.
 categories: guide, website, cloud
 og_image: ghost-google-cloud-diagram.png
@@ -37,14 +37,15 @@ I tried to come up with a tech stack that was **as low-cost as a self-hosted web
 
 ## Overview
 
-In this guide, I outline the whole process of setting up **each and every part** of this exact stack, in six steps:
+In this guide, I outline the whole process of setting up **each and every part** of this exact stack, in seven steps:
 
 1. [Set up Google Cloud](#1-set-up-google-cloud)
 2. [Configure the domain](#2-configure-the-domain)
 3. [Deploy Ghost](#3-deploy-ghost)
-4. [Configure Ghost](#4-configure-ghost)
-5. [Finish Cloudflare configuration](#5-finish-cloudflare-configuration)
-6. [Create maintenance scripts](#6-create-maintenance-scripts)
+4. [Set up Cloudflare tunnel](#4-set-up-cloudflare-tunnel)
+5. [Configure Ghost](#5-configure-ghost)
+6. [*(optional)* Redirect apex domain](#6-optional-redirect-apex-domain)
+7. [Create maintenance scripts](#7-create-maintenance-scripts)
 
 The whole thing takes 1-2 hours depending on your comfort level with the various technologies.
 
@@ -72,7 +73,7 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
    - `Yes, I'm using Compute Engine`    
 2. Go to Instance Templates > `Create Instance Template`:
    - Name: `free-web-server`
-   - Location: `Regional`
+   - Location: `Regional` > `us-central1`
    - Machine family: `General-purpose`
    - Series: `E2`
    - Machine type: `e2-micro (2vCPU, 1 core, 1GB memory)`
@@ -95,7 +96,7 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
    - Snapshot storage location: `Regional`
       - Location: `us-central1`
    - Schedule frequency: `Weekly`
-   - Autodelete snapshots after: `14` days
+   - Autodelete snapshots after: `7` days
 5. Go to Disks > `ghost-blog` > `Edit`:
    - Snapshot schedule: `weekly-backup-schedule`
 
@@ -139,8 +140,7 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
 
    ```bash
    sudo apt-get update && sudo apt-get -y upgrade
-   sudo apt update && sudo apt install -y nano cron bash-completion unattended-upgrades
-   sudo systemctl enable --now cron
+   sudo apt update && sudo apt install -y nano bash-completion unattended-upgrades
    sudo tee /etc/apt/apt.conf.d/20auto-upgrades >/dev/null <<'EOF'
    APT::Periodic::Update-Package-Lists "1";
    APT::Periodic::Unattended-Upgrade "1";
@@ -163,7 +163,7 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
    };
    ```
 
-   and Ctrl-X to exit.
+   and Ctrl-X > Y > Enter to save and exit.
 
 4. Make a new user called `service_account` and grant it sudo:
 
@@ -243,11 +243,13 @@ To minimize the chance of Ghost running out of memory on a small virtual machine
    sudo apt-get clean && sudo apt-get autoclean && sudo apt-get autoremove
    ```
 
-6. Stop the `snapd` process to save on RAM:
+6. Disable the `snapd` process to save on RAM. Disabling both the service and its socket keeps it from coming back after a reboot:
 
    ```bash
-   sudo systemctl stop snapd.service
+   sudo systemctl disable --now snapd.service snapd.socket
    ```
+
+   This also stops the preinstalled `gcloud` snap from updating, which this walkthrough doesn't use. If you ever need it, run `sudo systemctl enable --now snapd.socket`.
 
 7. Turning off MySQL's performance schema is a common way to reduce its memory usage, which occasionally tests the limits of the free tier machine's 1GB of RAM. To do this, open the MySQL configuration file:
 
@@ -291,7 +293,7 @@ To minimize the chance of Ghost running out of memory on a small virtual machine
    sudo npm install ghost-cli@latest -g
    ```
 
-2. Make a new directory called `ghost`, set its permissions, then navigate to it:
+2. Make a new directory called `ghost` and set its permissions:
 
    ```bash
    sudo mkdir /var/www/ghost
@@ -363,7 +365,7 @@ To minimize the chance of Ghost running out of memory on a small virtual machine
    ghost restart
    ```
 
-### 4. Setup Cloudflare tunnel
+### 4. Set up Cloudflare tunnel
 1. In your Cloudflare dashboard, go to Zero Trust and activate the free plan.
 2. Then go to Networking > Tunnels > `Create Tunnel` and set Tunnel name to `www.ghostblog.com`.
 3. Under Setup Environment, select:
@@ -385,8 +387,8 @@ then copy and paste the two install commands ('Install cloudflared' and 'Install
 
    Then click `Save` in the upper-right corner.
 
-### 6. Finish Cloudflare configuration
-1. *(optional)* If you want your site to also be accessible at the apex domain (i.e., `https://ghostblog.com`), go back to Cloudflare > ghostblog.com > DNS > `Add record`:
+### 6. *(optional)* Redirect apex domain
+1. If you want your site to also be accessible at the apex domain (i.e., `https://ghostblog.com`), go back to Cloudflare > ghostblog.com > DNS > `Add record`:
    - Type: `AAAA`
    - Name: `@`
    - IPv6 address: `100::`
@@ -402,22 +404,6 @@ then copy and paste the two install commands ('Install cloudflared' and 'Install
 
 ### 7. Create maintenance scripts
 
-#### Enable Ghost auto-start
-
-Sometimes virtual machines restart by themselves. Create this cron job so that whenever the virtual machine restarts, Ghost does, too.
-
-1. From the home directory of `service_account`, run:
-
-   ```bash
-   crontab -e
-   ```
-
-2. Paste the following into the cronfile:
-
-   ```
-   @reboot cd /var/www/ghost && /usr/bin/ghost start
-   ```
-
 #### Create update script
 
 I use [this script](https://gist.github.com/scottleechua/ca3db03becdfcc1efe5730b26b7fa8f8) to keep my self-hosted Ghost machines up to date --- feel free to adapt it for your purposes or use it as is!
@@ -430,13 +416,12 @@ I use [this script](https://gist.github.com/scottleechua/ca3db03becdfcc1efe5730b
 
 2. Copy and paste [the contents of this update script](https://gist.github.com/scottleechua/ca3db03becdfcc1efe5730b26b7fa8f8) into the editor.
 
-3. On line 5, replace `GHOST_STAFF_TOKEN` with your Ghost staff token, which you can get from clicking your profile in the lower left of the Ghost admin dashboard, then copying `Staff access token`.
+3. Replace `GHOST_STAFF_TOKEN` with your Ghost staff token, which you can get from clicking your profile in the lower left of the Ghost admin dashboard, then copying `Staff access token`.
 
-4. Make it executable:
+4. Make it executable, and readable only by `service_account` since it contains your staff token:
 
    ```bash
-   sudo chown service_account:service_account update-ghost.sh
-   sudo chmod 775 update-ghost.sh
+   chmod 700 update-ghost.sh
    ```
 
 5. Now every time you want to update Ghost in the future, `SSH` to the virtual machine, then
@@ -464,7 +449,9 @@ This workflow last worked for me as of the most recent date in the changelog bel
 
 ## Changelog
 
-- **2026-11-07**: The major change is to introduce the use of a Cloudflare tunnel to expose the blog to the internet. This hardens security, as we can close the server's own ports, and also removes the need to reserve a static IP address within Google Cloud. Some minor changes: recommend setting up blogs on the `www` subdomain instead of the apex; recommend Cloudflare domain registrar instead of Namecheap; update the `update.sh` bash script.
+- **2026-11-08**: Remove the cron job that auto-starts Ghost on reboot, as the systemd service set up by Ghost CLI already does this. Disable `snapd` so it stays off after a reboot. Restrict `update-ghost.sh` to its owner (`chmod 700`).
+
+- **2026-11-07**: The major change is to introduce the use of a Cloudflare tunnel to expose the blog to the internet. This hardens security, as we can close the server's own ports, and also removes the need to reserve a static IP address within Google Cloud. Some minor changes: recommend setting up blogs on the `www` subdomain instead of the apex; recommend Cloudflare domain registrar instead of Namecheap; update the `update-ghost.sh` bash script.
 
 - **2026-10-11**: Change my recommended boot OS to the Minimal version of Ubuntu, and updated setup instructions with any necessary additional installations. Ghost seems to run and update faster on Minimal.
 
