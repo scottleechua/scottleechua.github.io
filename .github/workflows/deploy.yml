@@ -29,12 +29,3 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@fa24774553152dd7873cd16ebd8d959b010c5445 # v4.9.0
       with:
         folder: _site
-    - name: Notify on failure
-      if: failure()
-      uses: scottleechua/simple-notify-telegram-action@743bf701680e1b9593741c30a8b0feabbd13e276 # v1
-      with:
-        bot-token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-        chat-id: ${{ secrets.TELEGRAM_CHAT_ID }}
-        message: |
-          ${{ github.workflow }} failed in ${{ github.repository }} (${{ github.ref_name }}).
-          ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
