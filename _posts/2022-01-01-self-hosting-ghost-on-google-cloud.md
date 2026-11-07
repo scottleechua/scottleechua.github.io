@@ -85,7 +85,7 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
    - Advanced Options > Networking > `Network tags`:
       - Type `mail` then press `Enter`
    - Management > Metadata > `Add item`:
-      - `enable-oslogin`: TRUE
+      - `enable-oslogin`: `TRUE`
 3. Go to VM instances > `Create an instance`:
    - New VM Instance from template: `free-web-server`
    - Name: `ghost-blog`
@@ -140,7 +140,7 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
 
    ```bash
    sudo apt-get update && sudo apt-get -y upgrade
-   sudo apt update && sudo apt install -y nano bash-completion unattended-upgrades
+   sudo apt update && sudo apt install -y nano bash-completion
    sudo tee /etc/apt/apt.conf.d/20auto-upgrades >/dev/null <<'EOF'
    APT::Periodic::Update-Package-Lists "1";
    APT::Periodic::Unattended-Upgrade "1";
