@@ -1,0 +1,10 @@
+---
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    target-branch: source
+    schedule:
+      interval: monthly
+    cooldown:
+      default-days: 7

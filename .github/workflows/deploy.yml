@@ -8,22 +8,33 @@ on:
   push:
     branches:
       - source
+  schedule:
+    - cron: '37 8 1 1 *'  # rebuild on Jan 1 to update copyright year
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
-      uses: actions/checkout@v7
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
     - name: Setup Ruby
-      uses: ruby/setup-ruby@v1
+      uses: ruby/setup-ruby@b3aaceaef7e0ee231b499e7b5f49c03fc1d32199 # v1.338.0
       with:
-        ruby-version: '3.4.7'
+        ruby-version: '3.4'
         bundler-cache: true
     - name: Build site
       run: |
         bundle exec jekyll build
     - name: Deploy
-      uses: JamesIves/github-pages-deploy-action@v4.9.0
+      uses: JamesIves/github-pages-deploy-action@fa24774553152dd7873cd16ebd8d959b010c5445 # v4.9.0
       with:
         folder: _site
+    - name: Notify on failure
+      if: failure()
+      uses: scottleechua/simple-notify-telegram-action@743bf701680e1b9593741c30a8b0feabbd13e276 # v1
+      with:
+        bot-token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        chat-id: ${{ secrets.TELEGRAM_CHAT_ID }}
+        message: |
+          ${{ github.workflow }} failed in ${{ github.repository }} (${{ github.ref_name }}).
+          ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
