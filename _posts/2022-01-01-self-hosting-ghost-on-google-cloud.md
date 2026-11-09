@@ -73,7 +73,7 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
    - `Yes, I'm using Compute Engine`    
 2. Go to Instance Templates > `Create Instance Template`:
    - Name: `free-web-server`
-   - Location: `Regional` > `us-central1`
+   - Location: `Regional` > `us-central1` (or any region on the [Always Free Tier](https://cloud.google.com/free/docs/free-cloud-features#compute))
    - Machine family: `General-purpose`
    - Series: `E2`
    - Machine type: `e2-micro (2vCPU, 1 core, 1GB memory)`
@@ -86,10 +86,7 @@ The whole thing takes 1-2 hours depending on your comfort level with the various
       - Type `mail` then press `Enter`
    - Management > Metadata > `Add item`:
       - `enable-oslogin`: `TRUE`
-3. Go to VM instances > `Create an instance`:
-   - New VM Instance from template: `free-web-server`
-   - Name: `ghost-blog`
-   - Region: `us-central1` (or any region on the [Always Free Tier](https://cloud.google.com/free/docs/free-cloud-features#compute))
+3. Go to VM instances > `Create instance` > Create VM from: Instance templates > `free-web-server` > Create.
 4. Go to Snapshots > `Create Snapshot Schedule`:
    - Name: `weekly-backup-schedule`
    - Schedule location: `us-central1` (the same region as your instance)
