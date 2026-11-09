@@ -544,7 +544,8 @@ performance_schema=0
     <p>Install Ghost CLI:</p>
 
     <div class="language-bash highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>npm <span class="nb">install </span>ghost-cli@latest <span class="nt">-g</span>
+<div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>npm <span class="nb">install </span>npm@latest <span class="nt">-g</span>
+<span class="nb">sudo </span>npm <span class="nb">install </span>ghost-cli@latest <span class="nt">-g</span>
 </code></pre></div>    </div>
   </li>
   <li>
@@ -765,6 +766,9 @@ and ensure that the record is proxied through Cloudflare.</li>
 <h2 id="changelog">Changelog</h2>
 
 <ul>
+  <li>
+    <p><strong>2026-11-09</strong>: Also update <code class="language-plaintext highlighter-rouge">npm</code>.</p>
+  </li>
   <li>
     <p><strong>2026-11-08</strong>: Remove the cron job that auto-starts Ghost on reboot, as the systemd service set up by Ghost CLI already does this. Disable <code class="language-plaintext highlighter-rouge">snapd</code> so it stays off after a reboot. Restrict <code class="language-plaintext highlighter-rouge">update-ghost.sh</code> to its owner (<code class="language-plaintext highlighter-rouge">chmod 700</code>).</p>
   </li>
