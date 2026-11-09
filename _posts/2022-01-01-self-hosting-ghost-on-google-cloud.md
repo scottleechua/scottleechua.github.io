@@ -290,6 +290,7 @@ To minimize the chance of Ghost running out of memory on a small virtual machine
 1. Install Ghost CLI:
 
    ```bash
+   sudo npm install npm@latest -g
    sudo npm install ghost-cli@latest -g
    ```
 
@@ -448,6 +449,8 @@ At this point you should have a working self-hosted Ghost blog. Updates aside, y
 This workflow last worked for me as of the most recent date in the changelog below. If you spot errors, vulnerabilities, or potential improvements, please do [open a pull request](https://github.com/scottleechua/scottleechua.github.io/blob/source/_posts/2022-01-01-self-hosting-ghost-on-google-cloud.md) on this blog post!
 
 ## Changelog
+
+- **2026-11-09**: Also update `npm`.
 
 - **2026-11-08**: Remove the cron job that auto-starts Ghost on reboot, as the systemd service set up by Ghost CLI already does this. Disable `snapd` so it stays off after a reboot. Restrict `update-ghost.sh` to its owner (`chmod 700`).
 
