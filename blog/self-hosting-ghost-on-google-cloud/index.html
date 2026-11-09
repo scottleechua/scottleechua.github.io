@@ -551,9 +551,10 @@ performance_schema=0
     <p>Make a new directory called <code class="language-plaintext highlighter-rouge">ghost</code> and set its permissions:</p>
 
     <div class="language-bash highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="nb">sudo mkdir</span> /var/www/ghost
+<div class="highlight"><pre class="highlight"><code><span class="nb">sudo mkdir</span> <span class="nt">-p</span> /var/www/ghost
 <span class="nb">sudo chown </span>service_account:service_account /var/www/ghost
 <span class="nb">sudo chmod </span>775 /var/www/ghost
+<span class="nb">sudo chmod </span>755 /var/www
 </code></pre></div>    </div>
   </li>
   <li>
@@ -576,8 +577,6 @@ performance_schema=0
       <li>Ghost database name: <code class="language-plaintext highlighter-rouge">ghost_prod</code>
 </li>
       <li>Set up Ghost MySQL user? — <code class="language-plaintext highlighter-rouge">Y</code>
-</li>
-      <li>Set up NGINX? — <code class="language-plaintext highlighter-rouge">N</code>
 </li>
       <li>Set up systemd? — <code class="language-plaintext highlighter-rouge">Y</code>
 </li>
