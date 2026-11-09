@@ -241,8 +241,7 @@
     <ul>
       <li>Name: <code class="language-plaintext highlighter-rouge">free-web-server</code>
 </li>
-      <li>Location: <code class="language-plaintext highlighter-rouge">Regional</code> &gt; <code class="language-plaintext highlighter-rouge">us-central1</code>
-</li>
+      <li>Location: <code class="language-plaintext highlighter-rouge">Regional</code> &gt; <code class="language-plaintext highlighter-rouge">us-central1</code> (or any region on the <a href="https://cloud.google.com/free/docs/free-cloud-features#compute" target="_blank" rel="noopener noreferrer">Always Free Tier</a>)</li>
       <li>Machine family: <code class="language-plaintext highlighter-rouge">General-purpose</code>
 </li>
       <li>Series: <code class="language-plaintext highlighter-rouge">E2</code>
@@ -276,15 +275,7 @@
       </li>
     </ul>
   </li>
-  <li>Go to VM instances &gt; <code class="language-plaintext highlighter-rouge">Create an instance</code>:
-    <ul>
-      <li>New VM Instance from template: <code class="language-plaintext highlighter-rouge">free-web-server</code>
-</li>
-      <li>Name: <code class="language-plaintext highlighter-rouge">ghost-blog</code>
-</li>
-      <li>Region: <code class="language-plaintext highlighter-rouge">us-central1</code> (or any region on the <a href="https://cloud.google.com/free/docs/free-cloud-features#compute" target="_blank" rel="noopener noreferrer">Always Free Tier</a>)</li>
-    </ul>
-  </li>
+  <li>Go to VM instances &gt; <code class="language-plaintext highlighter-rouge">Create instance</code> &gt; Create VM from: Instance templates &gt; <code class="language-plaintext highlighter-rouge">free-web-server</code> &gt; Create.</li>
   <li>Go to Snapshots &gt; <code class="language-plaintext highlighter-rouge">Create Snapshot Schedule</code>:
     <ul>
       <li>Name: <code class="language-plaintext highlighter-rouge">weekly-backup-schedule</code>
