@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  Self-hosting Ghost on Google Cloud and Cloudflare
-last_updated: 2026-11-08
+last_updated: 2026-11-09
 description: A plaintext guide to deploying an almost-free, fully self-hosted Ghost blog on Google Cloud and Cloudflare.
 categories: guide, website, cloud
 og_image: ghost-google-cloud-diagram.png
