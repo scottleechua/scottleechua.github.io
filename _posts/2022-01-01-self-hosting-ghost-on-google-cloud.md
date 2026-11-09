@@ -296,9 +296,10 @@ To minimize the chance of Ghost running out of memory on a small virtual machine
 2. Make a new directory called `ghost` and set its permissions:
 
    ```bash
-   sudo mkdir /var/www/ghost
+   sudo mkdir -p /var/www/ghost
    sudo chown service_account:service_account /var/www/ghost
    sudo chmod 775 /var/www/ghost
+   sudo chmod 755 /var/www
    ```
 
 3. Navigate to the website folder and install Ghost:
@@ -314,7 +315,6 @@ To minimize the chance of Ghost running out of memory on a small virtual machine
    - MySQL password: the password you set for `root`
    - Ghost database name: `ghost_prod`
    - Set up Ghost MySQL user? — `Y`
-   - Set up NGINX? — `N`
    - Set up systemd? — `Y`
    - Start Ghost? — `Y`
     
