@@ -5,6 +5,12 @@ updates:
     directory: /
     target-branch: source
     schedule:
-      interval: monthly
+      interval: cron
+      cronjob: "23 4 * * 4"
+      timezone: Asia/Singapore
     cooldown:
       default-days: 7
+    groups:
+      github-actions:
+        patterns:
+          - "*"
